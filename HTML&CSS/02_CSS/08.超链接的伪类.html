@@ -1,0 +1,53 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-07 17:54:17
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-07 18:49:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>超链接的伪类</title>
+    <style>
+      /* 
+            :link 用来表示没有访问过的链接 正常的链接
+        */
+      a:link {
+        color: red;
+      }
+      /* 
+          :visited 用来表示访问过的链接
+          由于隐私问题 所以visited这个伪类只能修改链接的颜色
+        */
+      a:visited {
+        color: orange;
+        /* font-size: 50px; */
+      }
+      /* 
+        :hover 用来表示鼠标移入的状态
+      */
+      a:hover {
+        color: aqua;
+        font-size: 50px;
+      }
+      /* 
+        :active 表示鼠标点击 激活状态
+      */
+      a:active {
+        color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        1.没访问过的链接
+        2.访问过的链接
+    -->
+    <a href="https://www.yuque.com/">访问过的链接</a>
+    <br /><br />
+    <a href="https://www.yuque.com/mori4846">没访问过的链接</a>
+  </body>
+</html>

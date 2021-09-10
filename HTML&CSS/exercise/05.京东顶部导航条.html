@@ -1,0 +1,247 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-09 21:31:49
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-10 00:35:23
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>京东顶部导航条</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_2802547_mossw1ypbvm.css"
+    />
+    <style>
+      .clearfix::before,
+      .clearfix::after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+
+      body {
+        /* 设置字体 */
+        font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial,
+          Hiragino Sans GB, '\5B8B\4F53', sans-serif;
+      }
+
+      /* 外围的容器样式 */
+      .top-bar-wrapper {
+        width: 100%;
+        background-color: #e3e4e5;
+        height: 30px;
+        line-height: 30px;
+
+        border-bottom: 1px #ddd solid;
+      }
+      /* 内部容器样式 */
+      .top-bar {
+        width: 1190px;
+        margin: 0 auto;
+        position: relative;
+      }
+      /* 设置字体样式 */
+      .top-bar a,
+      .top-bar span,
+      .top-bar i {
+        color: #999;
+        text-decoration: none;
+      }
+
+      .top-bar a:hover,
+      .top-bar a.highlight {
+        color: #f10215;
+      }
+
+      /* 设置 location */
+      .location {
+        float: left;
+      }
+      /* 设置location下的小图标 */
+      .location .iconfont {
+        font-size: 14px;
+        color: #f10215;
+        margin-right: 4px;
+      }
+
+      /* 鼠标移入显示 */
+      .location:hover .city-list,
+      .dd:hover .dddropdown-layer,
+      .cgcc:hover .cgk,
+      .khfw:hover .khfwe,
+      .wzdh:hover .wzdhe,
+      .sj:hover .sjs {
+        display: block;
+      }
+      .current-city,
+      .dda,
+      .cg,
+      .khfww,
+      .wzdhh,
+      .sjj {
+        padding: 0 10px;
+        border: 1px solid transparent;
+        border-bottom: none;
+        position: relative;
+        z-index: 9999;
+      }
+      .location:hover .current-city,
+      .dd:hover .dda,
+      .cgcc:hover .cg,
+      .khfw:hover .khfww,
+      .wzdh:hover .wzdhh,
+      .sj:hover .sjj {
+        background-color: white;
+        border: 1px solid rgb(204, 204, 204);
+        border-bottom: none;
+        padding-bottom: 0.5px;
+      }
+
+      /* 下拉框样式 */
+      .dropdown-layer {
+        display: none;
+        background-color: white;
+        border: 1px solid rgb(204, 204, 204);
+        /* 设置绝对定位 使列表不占据页面位置 */
+        position: absolute;
+        top: 31px;
+        z-index: 999;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+      }
+      /* 城市列表 */
+      .location .city-list {
+        width: 320px;
+        height: 436px;
+      }
+      /* 我的京东 */
+      .dddropdown-layer {
+        width: 282px;
+        height: 163px;
+      }
+      /* 企业采购 */
+      .cgk {
+        width: 282px;
+        height: 163px;
+      }
+      /* 客户服务 */
+      .khfwe {
+        width: 172px;
+        height: 273px;
+      }
+      /* 网站导航 */
+      .wzdhe {
+        width: 990px;
+        height: 229px;
+        right: 0;
+      }
+      /* 手机 下载链接 */
+      .sjs {
+        width: 190px;
+        height: 505px;
+        right: 0;
+      }
+
+      /* 设置 shortcut */
+      .shortcut {
+        float: right;
+      }
+      /* 分割线 */
+      .shortcut .line {
+        /* overflow: hidden; */
+        margin: 11px 5px 0;
+        width: 1px;
+        height: 10px;
+        background-color: #ccc;
+      }
+      .shortcut li {
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 创建外围的容器 -->
+    <div class="top-bar-wrapper">
+      <!-- 创建内部容器 -->
+      <div class="top-bar clearfix">
+        <!-- 左侧菜单 -->
+        <div class="location">
+          <div class="current-city">
+            <i class="iconfont icon-dizhidingweiweizhi"></i>
+            <a href="javascript:;">北京</a>
+          </div>
+
+          <!-- 城市列表 -->
+          <div class="city-list dropdown-layer"></div>
+        </div>
+
+        <!-- 右侧菜单 -->
+        <ul class="shortcut">
+          <li>
+            <a href="javascript:;">你好，请登录</a>
+            <a class="highlight" href="javascript:;">免费注册</a>
+          </li>
+
+          <!-- 分割线 -->
+          <li class="line"></li>
+          <li>
+            <a href="javascript:;">我的订单</a>
+          </li>
+
+          <li class="line"></li>
+          <li class="dd">
+            <div class="dda">
+              <a href="javascript:;">我的京东</a>
+              <i class="iconfont icon-xiajiantou"></i>
+            </div>
+            <div class="dddropdown-layer dropdown-layer"></div>
+          </li>
+
+          <li class="line"></li>
+          <li>
+            <a href="javascript:;">京东会员</a>
+          </li>
+
+          <li class="line"></li>
+          <li class="cgcc">
+            <div class="cg">
+              <a class="highlight" href="javascript:;">企业采购</a>
+              <i class="iconfont icon-xiajiantou"></i>
+            </div>
+            <div class="cgk dropdown-layer"></div>
+          </li>
+
+          <li class="line"></li>
+          <li class="khfw">
+            <div class="khfww">
+              <span>客户服务</span>
+              <i class="iconfont icon-xiajiantou"></i>
+            </div>
+            <div class="khfwe dropdown-layer"></div>
+          </li>
+          <li class="line"></li>
+          <li class="wzdh">
+            <div class="wzdhh">
+              <span>网站导航</span>
+              <i class="iconfont icon-xiajiantou"></i>
+            </div>
+            <div class="wzdhe dropdown-layer"></div>
+          </li>
+          <li class="line"></li>
+          <li class="sj">
+            <div class="sjj">
+              <span>手机京东</span>
+            </div>
+            <div class="sjs dropdown-layer"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

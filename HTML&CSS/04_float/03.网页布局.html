@@ -1,0 +1,124 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-08 21:44:40
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-08 22:32:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网页布局</title>
+    <style>
+      body {
+        background-color: #e0d5eb;
+      }
+      header,
+      main,
+      footer {
+        width: 1000px;
+        margin: 0 auto;
+      }
+      /* 设置头部 */
+      header {
+        height: 150px;
+        background-color: sienna;
+      }
+
+      /* 设置主体 */
+      main {
+        height: 500px;
+        background-color: aqua;
+        margin: 10px auto;
+      }
+
+      nav,
+      article,
+      aside {
+        float: left;
+        height: 100%;
+      }
+      nav {
+        width: 200px;
+        background-color: skyblue;
+      }
+
+      article {
+        margin: auto 10px;
+      }
+      article {
+        width: 580px;
+        background-color: sandybrown;
+      }
+
+      .floorhd {
+        width: 580px;
+        line-height: 45px;
+        background-color: #f4f4f4;
+        text-align: center;
+        margin: 10px auto;
+      }
+      .zuo {
+        float: left;
+        width: 290px;
+        height: 435px;
+        background-color: khaki;
+      }
+      .you {
+        float: left;
+        width: 290px;
+        height: 435px;
+        background-color: slategray;
+      }
+      .zuoshang {
+        width: 280px;
+        height: 200px;
+        background-color: rgb(194, 23, 23);
+        margin: 10px auto;
+      }
+      .zuoxia {
+        width: 280px;
+        height: 200px;
+        background-color: rgb(43, 194, 23);
+        margin: 15px auto;
+      }
+      aside {
+        width: 200px;
+        background-color: red;
+      }
+
+      /* 设置底部 */
+      footer {
+        height: 150px;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 创建头部 -->
+    <header></header>
+    <!-- 创建网页的主体 -->
+    <main>
+      <!-- 左侧导航 -->
+      <nav></nav>
+      <!-- 中间的内容 -->
+      <article>
+        <!-- 标题 -->
+        <h1 class="floorhd">频道广场</h1>
+        <div class="zuo"></div>
+        <div class="you">
+          <div class="zuoshang"></div>
+          <div class="zuoxia"></div>
+        </div>
+      </article>
+      <!-- 右边栏 -->
+      <aside></aside>
+    </main>
+    <!-- 网页的页脚 -->
+    <footer></footer>
+  </body>
+</html>

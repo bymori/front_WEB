@@ -1,0 +1,84 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-07 15:47:27
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-07 16:07:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS常用选择器</title>
+    <style>
+        /* 
+            将所有的段落设置为红色（字体）
+
+            元素选择器：
+                作用：根据标签名来选中指定的元素
+                语法：标签名{}
+                例子：p{} h1{} div{}
+         */
+         /* p{
+             color: red;
+         }
+         h1{
+             color: green;
+         } */
+
+         /* 
+            将 今夕何夕兮，搴舟中流。 设置为红色
+
+            id选择器：
+                作用：根据元素的id属性值选中一个元素
+                语法：#id属性值{}
+                例子：#box{} #red{}
+                注意：id选择器不能以 数字 开头
+         */
+         #red{
+             color: red;
+         }
+
+         /* 
+            将最后两句设为蓝色
+
+            类选择器：
+            作用：根据元素的class属性值选中一组元素
+            语法：.class属性值{}
+            例子：.blue{} .abc{}
+
+         */
+         /* .blue{
+             color: blue;
+         }
+         .abc{
+             font-size: 20px;
+         } */
+
+         /* 
+            通配选择器
+                作用：选中页面中的所有元素
+                语法：*{}
+
+          */
+          *{
+              color: red;
+          }
+    </style>
+  </head>
+  <body>
+    <h1 class="blue abc">这里是标题</h1>
+    <p>落霞与孤鹜齐飞，秋水共长天一色</p>
+    <p id="red">今夕何夕兮，搴舟中流。</p>
+    <p>今日何日兮，得与王子同舟。</p>
+    <p>蒙羞被好兮，不訾诟耻。</p>
+    <!-- 
+        class 是一个标签的属性 他和id类似，不用的是 class 可以重复使用
+            可以通过 class 属性为元素分组
+            可以同时为一个元素指定多个 class 属性
+     -->
+    <p class="blue">心几烦而不绝兮，得知王子。</p>
+    <p class="blue">山有木兮木有枝，心悦君兮君不知。</p>
+  </body>
+</html>

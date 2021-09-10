@@ -1,0 +1,120 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-08 18:15:31
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-08 19:37:51
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网易新闻列表</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <style>
+      * {
+        /* 去除a标签下划线 */
+        text-decoration: none;
+      }
+      /* 设置容器样式 */
+      .news-wrapper {
+        width: 300px;
+        height: 324px;
+        /* 设置宽高 */
+
+        /* 设置上边框 */
+        border-top: 1px #dddddd solid;
+
+        /* 测试 */
+        /* margin: 50px 300px;
+        background-color: #bfa; */
+      }
+
+      .news-title {
+        /* 为了边框和文字宽度一致 需要将h2转换为 行内块元素 */
+        display: inline-block;
+        height: 30px;
+        border-top: 1px #f34540 solid;
+        margin-top: -1px;
+        padding-top: 10px;
+      }
+      .news-title a {
+        color: #404068;
+        font-weight: bold;
+      }
+      .news-title i {
+        color: #888888;
+      }
+
+      .news-img .img-title {
+        margin-top: -30px;
+        color: #fff;
+        font-weight: bold;
+        padding-left: 30px;
+      }
+
+      .news-list {
+        margin-top: 20px;
+      }
+      .news-list li {
+        /* 设置li 下外边距 */
+        margin-bottom: 17px;
+      }
+      /* 设置li中文字样式 */
+      .news-list li a {
+        font-size: 13px;
+        color: #666;
+        /* 设置字体大小 颜色 */
+      }
+
+      /* 通过 before 伪元素 来为每一个li添加项目符号*/
+      .news-list li::before {
+        content: '◼';
+        color: rgb(184, 184, 184);
+        font-size: 12px;
+        margin-right: 4px;
+      }
+      .news-list li a:hover {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 新闻列表外侧容器 -->
+    <div class="news-wrapper">
+      <!-- 标题标签 -->
+      <h2 class="news-title">
+        <a href="#">军事</a>
+        <i>·</i>
+        <a href="#">航空</a>
+      </h2>
+
+      <!-- 创建图片容器 -->
+      <div class="news-img">
+        <a href="#">
+          <img src="images/WY-1.webp" alt="" />
+          <h3 class="img-title">美军飞行表演队双机編队紧贴合</h3>
+        </a>
+      </div>
+
+      <!-- 新闻列表 -->
+      <ul class="news-list">
+        <li>
+          <a href="#">美军F-35A着陆起火报废 无法修复被当作教具</a>
+        </li>
+        <li>
+          <a href="#">日本P-1巡逻机刚出厂试飞就折断起落架</a>
+        </li>
+        <li>
+          <a href="#">航拍土耳其海滩美如画 民众享受大海惬意十</a>
+        </li>
+        <li>
+          <a href="#">"9·11"二十周年临近 美国航空安全再成话题</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

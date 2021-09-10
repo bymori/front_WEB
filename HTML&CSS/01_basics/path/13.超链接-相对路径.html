@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-06 23:03:44
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-06 23:27:05
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>超链接-相对路径</title>
+  </head>
+  <body>
+    <!-- 
+        当我们需要跳转一个服务器内部的页面时，一般我们都会使用相对路径
+            相对路径都会使用 . 或 .. 开头
+                ./
+                ../
+            ./ 可以省略不写，如果不写 ./ 也不写 ../ 则就相当于写了 ./ 
+
+            ./ 表示当前文件所在的目录
+                - 在这里当前页面就是13.超链接-相对路径.html
+                - ./就等于13.超链接-相对路径.html所在的目录path
+            
+            ../ 表示当前当前文件所在目录的上一级目录
+     -->
+    <a href="target.html">target</a>
+    <br />
+    <a href="../11.列表.html">相对路径-本地地址-列表</a>
+    <br />
+    <a href="./inner/target2.html">target2</a>
+  </body>
+</html>
+
+

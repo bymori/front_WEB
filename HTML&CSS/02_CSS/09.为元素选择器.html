@@ -1,0 +1,65 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-07 18:51:50
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-07 19:12:56
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>伪元素选择器</title>
+    <style>
+      p {
+        font-size: 20px;
+      }
+      /* 
+          伪元素 表示页面中一些特殊的并不真实存在的元素(特殊的位置)
+            为元素使用 :: 开头
+            ::first-letter 表示第一个字母
+            ::first-line  表示第一行
+            ::selection   表示选中的内容
+
+            ::before  元素的开始
+            ::after   元素的最后
+              before 和 after 必须结合 content属性使用
+        */
+
+      p::first-letter {
+        font-size: 50px;
+      }
+      p::first-line {
+        background-color: yellow;
+      }
+      p::selection {
+        background-color: skyblue;
+      }
+      /* div::before {
+        content: 'abc';
+        color: red;
+      }
+      div::after {
+        content: 'hahh';
+        color: blue;
+      } */
+
+      div::before {
+        content: '『';
+      }
+      div::after {
+        content: '』';
+      }
+    </style>
+  </head>
+  <body>
+    <q>hello</q>
+    <div>Hello Hello How are you</div>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit Atque velit modi
+      veniam nisi veritatis tempore laborum nemo ipsa itaque optio. Id odit
+      consequatur mollitia excepturi, minus saepe nostrum vel porro
+    </p>
+  </body>
+</html>
