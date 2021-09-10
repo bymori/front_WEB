@@ -1,0 +1,50 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-10 14:52:57
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-10 15:08:05
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表格</title>
+  </head>
+  <body>
+    <!-- 
+          通过table标签来创建一个表格
+       -->
+    <table border="1" width="50%" align="center">
+      <!-- 在table中使用tr表示表格中的一行，有几个tr就有几行 -->
+      <tr>
+        <!-- 在tr中使用td表示一个单元格，有几个td就有几个单元格 -->
+        <td>A1</td>
+        <td>B1</td>
+        <td>C3</td>
+        <td>D1</td>
+      </tr>
+      <tr>
+        <td>A2</td>
+        <!-- rowspan 纵向的合并单元格 -->
+        <td rowspan="2">B2</td>
+        <td>C3</td>
+        <td rowspan="2">D2</td>
+      </tr>
+      <tr>
+        <td>A3</td>
+
+        <td>C3</td>
+      </tr>
+      <tr>
+        <td>A4</td>
+        <td>B2</td>
+        <!-- colspan 横向的合并单元格-->
+        <td colspan="2">C4</td>
+      </tr>
+    </table>
+  </body>
+</html>
