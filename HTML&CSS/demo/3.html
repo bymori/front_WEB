@@ -1,0 +1,35 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-10 16:44:30
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-10 16:50:26
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var name='aaa'
+      var obj={
+          name:'bbb',
+          dose:function(){
+              this.name='ccc'
+              console.log(name,'2');
+              return function(){
+                  return this.name
+                  console.log(name,'1');
+              }
+          }
+      }
+      console.log(obj.dose().call(this),'3');
+      console.log(this.name,'4');
+    </script>
+  </body>
+</html>
