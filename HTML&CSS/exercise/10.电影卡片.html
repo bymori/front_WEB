@@ -1,0 +1,111 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-10 14:14:07
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-10 14:50:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>电影卡片</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_2802547_9tjcy25zhia.css"
+    />
+    <style>
+      .outer {
+        width: 240px;
+        margin: 100px auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .img-wrapper img {
+        width: 100%;
+        vertical-align: bottom;
+      }
+
+      .info {
+        padding: 0 18px;
+      }
+      .info .title {
+        color: #717171;
+        font-size: 18px;
+        margin: 13px 0 15px;
+      }
+      .info .category {
+        color: #aaa;
+        font-size: 14px;
+      }
+      .info .category i {
+        margin-left: 4px;
+        margin-right: 7px;
+      }
+
+      /* 简介样式 */
+      .info .intro {
+        margin: 18px 4px;
+        line-height: 20px;
+      }
+
+      /* 图标 */
+      .star-wrapper {
+        height: 46px;
+        line-height: 46px;
+        border: 1px solid #e9e9e9;
+        color: #ddd;
+        padding: 0 16px;
+      }
+      /* 图标横向排列 */
+      .star-wrapper .star li {
+        float: left;
+        padding: 0 3px;
+      }
+      .star-wrapper .h {
+        color: #b9cb41;
+      }
+      .star-wrapper .ls {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 外层容器 -->
+    <div class="outer">
+      <!-- 图片容器 -->
+      <div class="img-wrapper">
+        <!-- 设置图片 -->
+        <img src="./images/10-1.jpg" alt="" />
+      </div>
+      <!-- 内容区容器 -->
+      <div class="info">
+        <h2 class="title">动画电影</h2>
+        <h3 class="category">
+          <i class="iconfont icon-dizhidingweiweizhi"></i>
+          动画
+        </h3>
+        <p class="intro">
+          这里是一段简介内容这里是一段简介内容这里是一段简介内容这里是一段简介内容这里是一段简介内容
+        </p>
+      </div>
+
+      <!-- 评分的容器 -->
+      <div class="star-wrapper">
+        <!-- 星星 -->
+        <ul class="star">
+          <li class="iconfont icon-xingxing h"></li>
+          <li class="iconfont icon-xingxing h"></li>
+          <li class="iconfont icon-xingxing"></li>
+          <li class="iconfont icon-xingxing"></li>
+        </ul>
+        <ul class="ls">
+          <li class="iconfont icon-lianshu"></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
