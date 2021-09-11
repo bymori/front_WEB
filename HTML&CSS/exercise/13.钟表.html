@@ -1,0 +1,127 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-12 01:20:32
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-12 02:00:43
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>钟表</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      /* .sec {
+        height: 400px;
+        width: 4px;
+        background-color: red;
+        margin: 0 auto;
+      } */
+
+      .clock {
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        margin-top: 100px;
+        border-radius: 50%;
+        /* border: 10px solid black; */
+        position: relative;
+
+        background-image: url('./images/13-bg.png');
+        /* background-image: url('./images/13-bg3.jpg'); */
+        background-size: cover;
+      }
+
+      .clock > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+      }
+      /* 设置时针 */
+      .hour-wrapper {
+        height: 60%;
+        width: 60%;
+        /* background-color: #bfa; */
+        animation: run 7200s linear infinite;
+      }
+
+      .hour {
+        height: 50%;
+        width: 6px;
+        background-color: #000;
+        margin: 0 auto;
+      }
+
+      /* 设置分针 */
+      .min-wrapper {
+        height: 75%;
+        width: 75%;
+        animation: run 600s steps(60) infinite;
+      }
+
+      .min {
+        height: 50%;
+        width: 4px;
+        background-color: rgb(14, 11, 11);
+        margin: 0 auto;
+      }
+
+      /* 设置秒针 */
+      .sec-wrapper {
+        height: 90%;
+        width: 90%;
+        /* animation: run 60s; */
+        animation: run 10s steps(60) infinite;
+      }
+
+      .sec {
+        height: 50%;
+        width: 2px;
+        background-color: rgb(253, 0, 0);
+        margin: 0 auto;
+      }
+
+      /* 旋转关键帧 */
+      @keyframes run {
+        from {
+          transform: rotateZ(0);
+        }
+
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="sec"></div> -->
+
+    <!-- 表的容器 -->
+    <div class="clock">
+      <!-- 时针 -->
+      <div class="hour-wrapper">
+        <div class="hour"></div>
+      </div>
+
+      <!-- 分针 -->
+      <div class="min-wrapper">
+        <div class="min"></div>
+      </div>
+
+      <!-- 秒针 -->
+      <div class="sec-wrapper">
+        <div class="sec"></div>
+      </div>
+    </div>
+  </body>
+</html>

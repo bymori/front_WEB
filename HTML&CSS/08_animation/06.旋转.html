@@ -1,0 +1,48 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-12 00:19:18
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-12 01:19:26
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旋转</title>
+    <style>
+      html {
+        perspective: 800px;
+      }
+      body {
+        border: 1px red solid;
+        background-color: rgb(241, 241, 241);
+      }
+      .box1 {
+        width: 320px;
+        height: 320px;
+        background-color: #bfa;
+        margin: 200px auto;
+
+        transition: 2s;
+      }
+      body:hover .box1 {
+        /* transform:rotateZ(.5turn); */
+        /* transform:rotateZ(360deg); */
+        /* transform: rotateY(360deg) translateZ(400px); */
+        transform: rotateY(180deg) translateZ(400px);
+        /* transform: rotateY(360deg); */
+        /* transform:tra nslateZ(400px) rotateY(180deg); */
+        /* transform: rotateY(180deg); */
+        /* 是否显示元素的背面 */
+        backface-visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+  </body>
+</html>
