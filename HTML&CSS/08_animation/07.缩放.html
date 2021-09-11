@@ -1,0 +1,50 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-12 02:39:28
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-12 02:52:04
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>缩放</title>
+    <style>
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background-color: #bfa;
+        transform: 2s;
+        margin: 100px auto;
+      }
+      .box1:hover {
+        /* transform: scaleX(2); */
+        /* transform: scaleY(2); */
+        transform: scale(2);
+      }
+
+      .img-wrapper {
+        width: 200px;
+        height: 200px;
+        border: 1px red solid;
+        overflow: hidden;
+      }
+      img {
+        transform: 0.3s;
+      }
+      .img-wrapper:hover img {
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="img-wrapper">
+      <img src="an.jpg" width="100%" />
+    </div>
+  </body>
+</html>
