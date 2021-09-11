@@ -1,0 +1,16 @@
+{
+  "id": "2802547",
+  "name": "基础",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12515458",
+      "name": "下箭头",
+      "font_class": "xiajiantou",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    }
+  ]
+}
