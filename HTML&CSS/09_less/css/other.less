@@ -1,0 +1,18 @@
+//import用来将其他的less引入到当前的less
+//可以通过import来将其他的less引入到当前的less中
+@import 'style2.less';
+
+.box1 {
+  // less中 数值可以直接计算
+  //  + - *
+  width: 100px + 50px;
+  height: 100px - 50px;
+  height: 100px * 3px;
+
+  //进入4.0版本后， 除法运算符如果在括号外面，不执行除法运算， 如果在小括号内可以看做是除法运算， 或者 使用 ./ 强制做除法运算
+  // 除法运算加（）
+  // 将/写成./
+  height: (100px / 25px);
+  //   height: 100px % 50px;
+  background-color: #bfa;
+}
