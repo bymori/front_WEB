@@ -1,0 +1,85 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-12 17:55:18
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-12 18:37:19
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>淘宝导航</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <style>
+      /* 设置外层的容器 */
+      .nav {
+        width: 100%;
+      }
+
+      /* 设置每一行的容器 */
+      .nav-inner {
+        /* 设置为弹性容器 */
+        display: flex;
+        /* 设置主轴上空白的分布 */
+        justify-content: space-around;
+      }
+      .item {
+        /* background-color: #bfa; */
+        /* flex: auto; */
+        width: 18%;
+        text-align: center;
+      }
+      .item img {
+        /* 设置图片的宽度和父元素宽度一样 */
+        width: 100%;
+      }
+      .item a {
+        color: #333;
+        text-decoration: none;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="item">
+          <a href="#"><img src="./images/16-1.png" /><span>天猫新品</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-2.png" /><span>聚划算</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-3.png" /><span>阿里拍卖</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-4.png" /><span>外卖</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-5.png" /><span>天猫超市</span></a>
+        </div>
+      </div>
+      <div class="nav-inner">
+        <div class="item">
+          <a href="#"><img src="./images/16-6.png" /><span>重置中心</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-7.png" /><span>聚划算</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-8.png" /><span>天猫国际</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-9.png" /><span>飞猪旅行</span></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="./images/16-10.png" /><span>分类</span></a>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
