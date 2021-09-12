@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@total-width: 750;
+
+.w {
+  width: (693/40rem);
+  margin: 0 auto;
+}
+// 设置根元素
+html {
+  // 设置rem的比值
+  font-size: (100vw / @total-width) * 40;
+  background-color: #eff0f4;
+}
+
+a {
+  text-decoration: none;
+}
+
+//头部header
+.top-bar:extend(.w) {
+  // //设置弹性容器
+  display: flex;
+  //  设置高度
+  height: (175/40rem);
+  line-height: (175/40rem);
+  // 设置对齐方式
+  justify-content: space-between;
+  // 设置辅轴的对齐方式
+  align-items: center;
+  a {
+    color: #24253d;
+    font-size: (50/40rem);
+    i {
+      color: #999;
+      font-size: (40/40rem);
+    }
+  }
+}
+
+// banner图
+.banner:extend(.w) {
+  img {
+    width: 100%;
+  }
+}
+
+// 设置中间菜单
+.menu:extend(.w) {
+  // 确定元素的高度
+  height: (329/40rem);
+  // 设置弹性元素
+  display: flex;
+  // 设置换行
+  flex-flow: row wrap;
+  // 设置对齐方式
+  justify-content: space-between;
+  //设置辅轴方向的对齐方式
+  align-content: space-evenly;
+
+  //设置框的大小
+  a {
+    width: (327/40rem);
+    height: (104/40rem);
+    line-height: $height;
+    color: white;
+    border-radius: (10/40rem);
+    i {
+      margin: 0 (20/40rem) 0 (38/40rem);
+      //   font-size: x-large;
+    }
+  }
+  .course {
+    background-color: #f97053;
+  }
+  .star {
+    background-color: #cd6efe;
+  }
+  .sub {
+    background-color: #fe4479;
+  }
+  .download {
+    background-color: #1bc4fb;
+  }
+}
+
+
