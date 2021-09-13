@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-13 15:57:47
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-13 16:49:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>js编写位置</title>
+    <!-- 
+        可以将 js 代码编写到外部js文件中，然后通过 script 标签引入
+        写到外部文件中可以在不同的页面中同时引用，也可以利用到浏览器的缓存机制
+        推荐使用的方式
+     -->
+     <!-- 
+         script标签一旦用于引入外部文件了，就不能在编写代码了，即使编写了浏览器也会忽略
+        如果需要则可以在创建一个新的 script标签用于编写内部代码
+      -->
+    <script src="./js/02-js编写位置.js"></script>
+
+    <!-- 可以将js代码编写到 script 标签 -->
+    <script>
+        alert('这里是 script 标签中的代码');
+    </script>
+  </head>
+  <body>
+    <!-- 
+          可以将代码编写到标签的 onclick 属性中
+            当我们点击按钮时，js代码才会执行
+       -->
+    <button onclick="alert('点击弹出的内容');">点我一下</button>
+
+    <!-- 可以将js代码写在超链接的href属性中，这样当点击超链接时，会执行js代码 -->
+    <a href="javascript:alert('点击弹出的内容');">再点一下这里</a>
+    <a href="javascript:;">这里也点一下这里</a>
+  </body>
+</html>

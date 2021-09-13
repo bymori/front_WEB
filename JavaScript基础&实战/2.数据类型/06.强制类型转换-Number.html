@@ -1,0 +1,80 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-13 22:49:07
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-13 23:14:29
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>强制类型转换-Number</title>
+    <script>
+      /*
+        将其他的数据类型转换为 Number
+            方式一：
+                使用 Number() 函数 
+                    字符串 --> 数字
+                        1.如果是纯数字的字符串，则直接将其转换为数字
+                        2.如果字符串中有非数字的内容，则转换为NaN
+                        3.如果字符串是一个空串或者是一个全是空格的字符串，则转换为0
+                    布尔值 --> 数字
+                        true 转成 1
+                        false 转成 0
+                    
+                    null --> 数字  0
+
+                    undefined --> 数字  NaN
+
+            方式二：
+                专门用于转换字符串
+                    parseInt() 把一个字符串转换为一个整数
+                    parseFloat() 把一个字符串转换为一个浮点数
+        */
+      var a = '123';
+
+      // 调用 Number() 函数来将a转换为 Number 类型
+      a = Number(a); //number 123
+
+      a = false;
+      a = Number(a); // number 0
+
+      a = null;
+      a = Number(a); //number 0
+
+      a = undefined;
+      a = Number(a); //number NaN
+
+      a = '123px';
+      //   调用 parseInt() 函数将a转换为 Number
+      /*
+        parseInt() 可以将一个字符串中的有效的整数内容取出来，
+            然后转换为Number
+    */
+      a = parseInt(a); //number 123
+
+      a = '123.456px';
+      a = parseFloat(a); //number 123.456
+      //parseFloat() 作用和 parseInt() 类似，不同的是它可以获得有效的小数
+
+      /*
+        如果对非 String 使用 parseInt() 或 parseFloat() 
+            它会先将其转换为 String 然后在操作
+    */
+      a = true;
+      a = parseInt(a); //number NaN
+
+      a = 18.88;
+      a = parseInt(a); //number 18
+      //   对小数取整
+
+      console.log('a', typeof a);
+      console.log('a', a);
+    </script>
+  </head>
+  <body></body>
+</html>
