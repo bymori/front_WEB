@@ -1,0 +1,45 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-14 01:52:46
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-14 02:03:21
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>一元运算符</title>
+    <script>
+      /*
+        一元运算符 只需要一个操作数
+            + 正号
+                正号不会对数字产生任何影响
+            - 负号
+                负号可以对数字进行负号的取反
+
+            对于非 Number类型的值，
+                它会将先转换为 Number,然后在运算
+
+                可以对一个其他的数据类型使用 + ,来将其转换为 number
+                它的原理和 Number（）函数一样
+        */
+      var a = 123;
+
+      a = +a; //123
+      a = -a; //-123
+      a = true; // 1 boolean
+      a = -a; // -1 boolean
+
+      a = '18';
+      a = +a;
+      console.log('a', +a);
+      console.log('a', typeof a);
+
+      var result = 1 + +'2' + 3;//6 隐式类型转换
+      console.log('result', result);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,81 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-14 01:10:25
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-14 01:52:10
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>运算符</title>
+    <script>
+      /*
+        运算符也叫操作符
+            通过运算符 可以对一个或多个值进行运算，并获取运算结果
+            比如： typeof 就是运算符，可以来获得一个值的类型
+                它会将该值的类型以字符串的形式返回
+                number string boolean undefined object
+
+            算数运算符
+                当对非Number类型的值进行运算时，会将这些值转换为Number 然后再运算
+                    任何值和NaN运算都得NaN
+
+                + 对两个值进行 加法 运算并返回结果
+                    如果是两个字符串进行相加，则会做拼串操作，将两个字符连接为一个字符串。并返回结果
+                    任何值和字符串做加法，都会先转换为字符串，然后再拼串操作
+                - 对两个值进行 减法 运算并返回结果
+                * 对两个值进行 乘法 运算并返回结果
+                / 对两个值进行 除法 运算并返回结果
+                % 对两个值进行 取模（取余数） 运算并返回结果
+        */
+      var a = 123;
+
+      var result = typeof a; //string
+
+      //   console.log('result', typeof result);
+
+      result = a + 1; //124
+      result = 456 + 789; //1245
+      result = true + false; //1  1+0
+      result = 2 + null; //2
+      result = 2 + NaN; //NaN
+
+      result = '你好' + 'momo'; //你好momo
+      result = 'a' + 'b' + '1' + '2' + '3'; //ab123
+      result = 123 + '1'; //1231
+      result = true + ' ioinn.cn'; //true ioinn.cn
+      console.log('result', result);
+
+      /*
+        
+    */
+      var c = 123;
+      c = c + ''; //string 隐式类型的转换
+      console.log('c', typeof c);
+      console.log('c', c);
+
+      /*
+        
+    /*
+    任何值做 - * / 运算时都会自动转换为Number
+        我们可以利用这一特点做隐式的类型转换
+            可以通过为一个值 -0 *1 /1 来将其转换为 Number
+            原理和 Number（）函数一样，使用起来更加简单
+    */
+
+      var d = '123';
+      d = d - 0; //number 123
+      console.log('d', typeof d);
+      console.log('d', d);
+
+      result = 9 % 3; //0
+      result = 9 % 4; //1
+      result = 9 % 5; //4
+      console.log('result', result);
+    </script>
+  </head>
+  <body></body>
+</html>
