@@ -1,0 +1,57 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-15 00:52:30
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-15 02:02:33
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>嵌套的for循环-质数补充2</title>
+    <script>
+      /*
+            测试如下的程序的性能
+            在程序执行前，开启计时器
+              console.time("计时器的名字")可以用来开启一个计时器
+              它需要一个字符串作为参数，这个字符串将会作为计时器的标识
+        */
+
+      console.time('test');
+      //    打印2~100所有的数
+      for (var i = 2; i <= 100000; i++) {
+        // for (var j = 2, flag = true; j < i; j++) {
+        for (var j = 2, flag = true; j < Math.sqrt(i); j++) {
+          if (i % j == 0) {
+            //如果进入判断则证明i不是质数，修改flag值为false
+            flag = false;
+
+            //一旦进入判断，则证明i不可能是质数了，此时循环再执行已经没有任何意义了
+            //使用break来结束循环
+            break;
+
+            // 不加 break; 100000 次 7365.14404296875 ms
+            // 加 break; 100000 次 658.2041015625 ms
+            // 修改 j < Math.sqrt(i) 后 100000 次 5.921875 ms
+            // 以上数据不打印 i 的值
+          }
+        }
+        // if (flag) {
+        //   // 如果是质数 打印i的值
+        //   console.log(i);
+        // }
+      }
+
+      // 终止计时器;
+      // console. timeEnd（）用来停止一个计时器，需要一个计时器的名字作为参数
+      console.timeEnd('test');
+
+      // 可以通过Math.sqrt（）对一个数进行开方
+      // var result = Math.sqrt(4);
+      // console.log('result', result);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-15 00:52:30
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-15 01:02:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>嵌套的for循环7</title>
+    <script>
+      /*
+            打印出1-100之间所有的质数
+        */
+      //    打印2~100所有的数
+      for (var i = 2; i <= 100; i++) {
+        //判断i是否是质数
+        //获取到2-i之间的所有的数
+
+        //创建一个布尔值，用来保存结果，默认i是质数
+        // var flag = true;
+        for (var j = 2, flag = true; j < i; j++) {
+          //判断i是否能被j整除
+          if (i % j == 0) {
+            //如果进入判断则证明i不是质数，修改flag值 false为
+            flag = false;
+          }
+        }
+        if (flag) {
+          console.log(i);
+        }
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

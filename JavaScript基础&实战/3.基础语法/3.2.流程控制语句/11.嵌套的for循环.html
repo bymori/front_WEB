@@ -1,0 +1,44 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-15 00:17:28
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-15 00:40:49
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>嵌套的for循环5</title>
+    <script>
+      /*
+        通过程序。在页面中输出如下的图形：
+
+            *
+            * * 
+            * * * 
+            * * * * 
+            * * * * *
+        */
+
+      // 通过for循环输出图形
+      //这个for循环执行几次，图形的高度就是多少
+      // 它可以用来控制图形的高度
+      for (var i = 0; i < 5; i++) {
+        // 在循环的内部再创建一个循环，用来控制图形的宽度
+        // 目前我们的外部的for循环执行1次内部的就会执行5次
+        // 内层循环可以来决定图形的宽度，执行几次图形的宽度就是多
+        // for (var j = 0; j < i + 1; j++) {
+        //   document.write('*&nbsp;&nbsp;');
+        // }
+        for (var j = 0; j < 5 - i; j++) {
+          document.write('*&nbsp;&nbsp;');
+        }
+        // 内部循环结束后 输出换行
+        document.write('<br/>');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

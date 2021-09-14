@@ -1,0 +1,76 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-15 01:08:08
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-15 01:43:15
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>break和continue</title>
+    <script>
+      /*
+            break关键字可以用来退出 switch 或 循环语句
+                不能在if语句中 break 使用和 continue
+                break关键字，会立即终止离他最近的那个循环语句
+
+                break结束循环， continue跳出当次循环继续下一次循环
+        */
+
+      //   for (var i = 0; i < 5; i++) {
+      //     console.log(i);
+      //     if (i == 2) {
+      //       break;
+      //     }
+      //   }
+
+      //   for (var i = 0; i < 5; i++) {
+      //     console.log('@外层循环:' + i);
+      //     for (var j = 0; j < 5; j++) {
+      //       break;
+      //       console.log('内层循环:' + j);
+      //     }
+      //   }
+
+      /*
+        可以为循环语句创建一个 label ,来标识当前的循环
+            label:循环语句
+            使用 break语句时，可以在 break 后跟着一个 label,
+                这样 break将会结束指定的循环，而不是最近的
+      */
+      //   outer: for (var i = 0; i < 5; i++) {
+      //     console.log('@外层循环:' + i);
+      //     for (var j = 0; j < 5; j++) {
+      //       break outer;
+      //       console.log('内层循环:' + j);
+      //     }
+      //   }
+
+      /*
+        continue关键字可以用来跳过当次循环
+            同样 continue也是默认只会对离他最近的循环循环起作用
+      */
+      //   for (var i = 0; i < 5; i++) {
+      //     if (i == 2) {
+      //       continue;
+      //     }
+      //     console.log(i);
+      //   }
+
+      outer: for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5; j++) {
+          //   if (j == 1) {
+          //     continue;
+          //   }
+          continue outer;
+          console.log('-->' + j);
+        }
+        console.log('@-->' + i);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
