@@ -1,0 +1,70 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-14 20:38:13
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-14 20:57:43
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>条件分支语句</title>
+    <script>
+      /* 条件分支语句也叫 switch语句
+            语法:
+            switch(条件表达式){  
+            	case 表达式:  
+            		语句...  
+            		break;  
+            	case 表达式:  
+            		语句...  
+            		break;  
+            	case 表达式:  
+            		语句...  
+            		break;  
+            	default:  
+            		语句...  
+            		break;  
+            }
+        执行流程：
+            switch…case…语句
+                在执行时，会依次将case后的表达式的值和switch后的表达式的值进行 全等 比较
+                    如果比较结果为true，则从当前case处开始向下执行代码。
+                        当前case后的所有的代码都会执行, 我们可以在case的后边跟 break着一个关键字 
+                        这样可以确保只会执行当前case后的语句，而不会执行其他的case
+                    如果比较结果为false，则继续向下比较。
+                    
+                    如果所有的比较结果都为 false,则只执行 default后的语句
+
+        switch语句和f语句的功能实际上有重复的，使用 switch可以实现if的功能
+            同样使用if也可以 switch实现的功能，所以我们使用时，可以根据自己的习惯选择
+
+       */
+
+      var num = 1;
+
+      switch (num) {
+        case 1:
+          console.log('壹');
+          //   使用break可以来退出 switch语句
+          break;
+        case 2:
+          console.log('贰');
+          break;
+        case 3:
+          console.log('叁');
+          break;
+        case 4:
+          console.log('肆');
+          break;
+
+        default:
+          console.log('非法数字!!!');
+          break;
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
