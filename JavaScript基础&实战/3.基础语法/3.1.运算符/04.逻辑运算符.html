@@ -1,0 +1,90 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-14 14:43:10
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-14 15:16:13
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>逻辑运算符</title>
+
+    <script>
+      /*
+            js提供了三种逻辑运算符
+
+            ! 非
+                ! 可以用来对一个值进行非运算
+                所谓非运算就是值对一个布尔值进行取反操作，
+                    true变 false, false变true
+                如果对非布尔值进行取反，则会将其转换为布尔值，然后再取反
+                    所以我们可以利用该特点，来将一个其他的数据类型转换为布尔值
+                    可以为一个任意数据类型取两次反，来将其转换为布尔值，
+                        原理和 Boolean（）函数一样
+            && 与 
+                && 可以对符号两侧的值进行 与运算 并返回结果
+                运算规则   同真为真 其余为假
+                    两个值中只要有一个值为 false 就返回 false 
+                        只有两个值都为true时，才会返回true
+                    JS中的“与”属于短路的与，
+                        如果第一个值为 false,则不会看第二个值
+            || 或
+                || 可以对符号两侧的值进行或运算并返回结果
+                运算规则：
+                    两个值中只要有一个true,就返回true
+                        如果两个值都为 false,才返回 false
+                    -JS中的“或”属于短路的或
+                        如果第一个值为true,则不会检查第二个值
+        */
+
+      // && 与 运算
+      // 如果两个值都是true 则返回true
+      var result = true && false;
+
+      //   只要有一个 false 就返回false
+      result = true && false; //false
+      result = false && true; //false
+      result = false && false; //false
+
+      //   console.log('result', result);
+
+      //   第一个值为 true 会继续检查第二个值
+      //   true && console.log('看我出不出来 第一个true');
+
+      //   第一个值为 false 不会检查第二个值
+      //   false && console.log('看我出不出来 第一个 false');
+
+      //   || 或 运算
+      //   只要有一个 false 就返回false
+      result = false || false; //false
+
+      //   只要有一个true 就返回 true
+      result = true || false; //true
+      result = false || true; //true
+      result = true || true; //true
+
+      //   console.log('result', result);
+      //   第一个值为 true 不会继续检查第二个值
+      //   true || console.log('看我出不出来 第一个true');
+
+      //   第一个值为 false 会继续检查第二个值
+      //   false || console.log('看我出不出来 第一个 false');
+
+      //   ! 非 运算
+      var a = true;
+
+      //   对a进行非运算
+      a = !a;
+      //   console.log('a', a);
+
+      var b = 10;
+      b = !!b;
+      //   console.log('b', typeof b);
+      //   console.log('b', b);
+    </script>
+  </head>
+  <body></body>
+</html>
