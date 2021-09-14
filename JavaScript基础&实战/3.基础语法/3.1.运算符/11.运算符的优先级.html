@@ -1,0 +1,48 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-14 17:25:58
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-14 17:41:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>运算符的优先级</title>
+    <script>
+      /*
+            , 运算符
+                使用, 可以分割多个语句, 一般可以在声明多个变量时使用 , 
+        */
+      // 使用 , 运算符同时声明多个变量
+      // var a,b,c
+
+      // 可以同时声明多个变量并赋值
+      //   var a = 1,b = 2,c = 3;
+
+      /*
+            就和数学中一样，在JS中运算符也有优先级，
+                比如：先乘除后加减
+            在JS中有一个运算符优先级的表，
+                在表中越靠上优先级越高，优先级越高越优先计算，
+                如果优先级一样，则从左往右计算。
+            但是这个表我们并不需要记忆 如果越到拿不准的，使用()来改变优先级。
+        */
+      //   var result = 1 + 2 * 3;
+      // 如果 || 或 的优先级高，或者两个一样高，则应该返回3
+      // 如果 && 与 的优先级高，则应该返回1
+      var result = 1 || (2 && 3); //1
+      var result = (1 || 2) && 3; //3
+      console.log('result', result);
+
+      /*
+    下面的表格将所有运算符按照优先级的不同从高（21）到低（1）排列。
+        注意，下表中故意不包含展开语法（Spread syntax） —— 原因可以引用Stack Overflow 上的一个回答，“展开语法不是一个运算符，因此没有优先级。它是数组字面量和函数调用（和对象字面量）语法的一部分。”
+        https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+    */
+    </script>
+  </head>
+  <body></body>
+</html>
