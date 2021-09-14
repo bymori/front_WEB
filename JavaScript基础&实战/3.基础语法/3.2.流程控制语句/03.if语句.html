@@ -1,0 +1,85 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-14 18:16:34
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-14 19:32:42
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>if语句二</title>
+    <script>
+      /*
+          if语句
+              语法二
+                  if(条件表达式){
+                  	语句...
+                  }else{
+                  	语句...
+                  }
+              执行流程：
+              if...else...   语句执行时，会对条件表达式进行求值判断
+              	如果值为true，则执行if后的语句
+              	如果值为false，则执行else后的语句
+
+              语法三
+                  if(条件表达式){
+                  	语句...
+                  }else if(条件表达式){
+                  	语句...
+                  }else if(条件表达式){
+                  	语句...
+                  }else if(条件表达式){
+                  	语句...
+                  }else{
+                  	语句...
+                  }
+              执行流程
+              if...else if...else   语句执行时，会自上至下依次对条件表达式进行求值判断，
+               如果判断结果为true，则执行当前if后的语句，执行完成后语句结束。
+               如果判断结果为false，则继续向下判断，直到找到为true的为止。
+               如果所有的条件表达式都是false，则执行else后的语句
+
+                  该语句中，只会有一个代码块被执行，一旦代码块执行了，则接结束语句
+
+          */
+      var age = 22;
+      //   if (age >= 60) {
+      //     console.log('已经退休了');
+      //   } else {
+      //     console.log('你还没退休');
+      //   }
+
+      //   if (age > 100) {
+      //     console.log('开启修仙');
+      //   } else if (age > 80) {
+      //     console.log('老大不小的');
+      //   } else if (age > 60) {
+      //     console.log('退休了吧');
+      //   } else if (age > 30) {
+      //     console.log('中年人 加油');
+      //   } else if (age > 17) {
+      //     console.log('成年 gogogo');
+      //   } else {
+      //     console.log('你还是个小孩子');
+      //   }
+
+      age = 15;
+      if (age <= 17) {
+        console.log('还未成年噢');
+      } else if (age > 17 && age <= 30) {
+        console.log('成年 gogogo');
+      } else if (age > 30 && age <= 60) {
+        console.log('中年人 加油');
+      } else if (age > 60 && age <= 80) {
+        console.log('退休了吧');
+      } else {
+        console.log('开启修仙');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
