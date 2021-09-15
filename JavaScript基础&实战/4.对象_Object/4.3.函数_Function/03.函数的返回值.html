@@ -1,0 +1,53 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-15 14:44:09
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-15 14:56:44
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>函数的返回值</title>
+    <script>
+      /*
+       *  创建一个函数，用来计算三个数的和
+
+       *  可以使用 return来设置函数的返回值
+       *    语法：
+       *        return 值
+       * 
+       *    return后的值将会会作为函数的执行结果返回，
+       *      可以定义一个变量，来接收该结果
+       * 
+       *    在函数中 return后的语句都不会被执行
+       * 
+       *    如果 return语句后不跟任何值就相当于返回一个 undefined,
+       *    如果函数中不写 return,则也会返回 undefined
+       * 
+       *    return后可以跟任意类型的值
+       */
+      function sum(a, b, c) {
+        // console.log(a + b + c);
+        var d = a + b + c;
+        return d;
+        // return undefined;
+        console.log('return后的语句都不会被执行');
+      }
+      //   sum(1, 2, 3);
+
+      //调用函数
+      //变量 result 的值就是函数的执行结果
+      //函数返回什么result的值就是什么
+
+      //   var result = sum(1, 2, 3);
+      //   console.log('result', result);
+
+      var result = console.log('ioinn');
+      console.log('result', result); //undefined
+    </script>
+  </head>
+  <body></body>
+</html>
