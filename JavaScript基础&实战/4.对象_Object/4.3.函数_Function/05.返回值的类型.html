@@ -1,0 +1,58 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-15 15:45:59
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-15 16:04:00
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>返回值的类型</title>
+    <script>
+      function fun() {
+        console.log('函数要开始执行了----');
+        for (var i = 0; i < 5; i++) {
+          if (i == 2) {
+            // break;
+            //      使用break可以退出当前的循环
+            // continue;
+            //      continue用于跳过当次循环
+            // return;
+            //      使用return可以结束整个函数
+          }
+          console.log(i);
+        }
+        console.log('函数执行完毕了----');
+      }
+      //   fun();
+
+      /*
+       *  返回值可以是任意的数据类型
+       *    也可以是一个对象 也可以是一个函数
+       */
+      function fun2() {
+        // var obj = { name: '沫沫' };
+        // return obj;
+      }
+      var a = fun2();
+      //   console.log('a', a);
+
+      function fun3() {
+        function fun4() {
+          console.log('log fun4');
+        }
+        // 将 fun4函数对象 作为返回值 返回
+        return fun4;
+      }
+
+      a = fun3();
+      //   console.log('a', a);
+      //   a(); //调用 函数  log fun4
+      fun3()(); //同上 log fun4
+    </script>
+  </head>
+  <body></body>
+</html>
