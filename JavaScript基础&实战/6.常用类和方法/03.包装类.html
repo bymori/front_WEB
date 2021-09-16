@@ -1,0 +1,63 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-16 18:02:14
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-16 18:19:28
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>包装类</title>
+    <script>
+      /*
+       *  基本数据类型
+       *    String Number Boolean Null Undefined
+       *  引用数据类型
+       *    Object
+       *
+       *  在JS中为我们提供了三个包装类，通过这三个包装类可以将基本数据类型的数据转换为对象
+       *    String（）
+       *      可以将基本数据类型字符串转换为String对象
+       *    Number（）
+       *      可以将基本数据类型的数字转换为Number对象，
+       *    Boolean（）
+       *      可以将基本数据类型的布尔值转换为Boolean对象
+       *    但是注意：
+       *        我们在实际应用中不会使用基本数据类型的对象，
+       *        如果使用基本数据类型的对象，在做一些比较时可能会带来一些不可预期的结果
+       *
+       *    当我们去操作一个基本数据类型的属性和方法时，
+       *    解析器会临时将其转换为对应的包装类，然后再去操作属性和方法，
+       *    操作完成以后再将这个临时对象进行销毁。
+       */
+      var num = new Number(3);
+      var str = new String('ioinn');
+      var bool = new Boolean(true);
+      console.log('num', num); //Number {3}
+      console.log('str', str); //String {'ioinn'}
+      console.log('bool', bool); //Boolean {true}
+
+      //   向 num 中添加一个属性
+      num.hello = 'hello';
+      //   console.log('num', num); //Number {3, hello: 'hello'}
+
+      var a = 3;
+      a.hello = 'hello';
+      //   console.log(a.hello); //undefined
+
+      /*
+       *  方法和属性之能添加给对象，不能添加给基本数据类型
+       *    当我们对一些基本数据类型的值去调用属性和方法时，
+       *      浏览器会临时使用包装类将其转换为对象，然后在调用对象的属性和方法
+       */
+      var s = 123;
+      s = s.toString();
+      console.log('s', s);
+      console.log('s', typeof s);
+    </script>
+  </head>
+  <body></body>
+</html>
