@@ -1,0 +1,29 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-16 22:50:16
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-16 23:02:22
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>邮件的正则</title>
+    <script>
+      /*
+       * 邮件的正则
+       * hello  .ioinn  @  abc  com.cn
+       * 任意字母数字下划线 .任意字母数字下划线  @ 任意字母数字 .任意字母(2-5位）.任意字母(2-5位)
+       * \w{3,}  (\.\w+)*  @  [A-z0-9]+ (\.[A-z]{2,5}){1,2}
+       */
+
+      var emailReg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+    //   var email = 'mori@ioinn.cn';
+      var email = 'mori@ioinn.cn';
+      console.log(emailReg.test(email));
+    </script>
+  </head>
+  <body></body>
+</html>
