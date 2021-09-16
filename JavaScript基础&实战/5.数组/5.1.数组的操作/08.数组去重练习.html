@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-16 14:52:33
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-16 15:11:37
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>数组去重练习</title>
+    <script>
+      //创建一个数组
+      var arr = [1, 5, 4, 2, 2, 4, 4, 6, 2, 8, 5];
+
+      //去除数组中重复的数字
+      //获取数组中的每一个元素
+      for (var i = 0; i < arr.length; i++) {
+        // console.log(arr[i]);
+        //获取当前元素后的所有元素
+        for (var j = i + 1; j < arr.length; j++) {
+          //   console.log(arr[j]);
+          //判断两个元素的值是否相等
+          if (arr[i] == arr[j]) {
+            //如果相等则证明出现了重复的元素，则删除j对应的元素
+            arr.splice(j, 1);
+            //当删除了当前j所在的元素以后，后边的元素会自动补位
+            //此时将不会在比较这个元素，需要在比较一次j所在位置的元素
+            //使j自减 达到重复比较该位置
+            j--;
+          }
+        }
+        console.log(arr[i]);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
