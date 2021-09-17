@@ -1,0 +1,50 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-17 21:16:58
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-17 21:40:04
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>事件对象</title>
+    <style>
+      #areaDiv {
+        width: 500px;
+        height: 150px;
+        border: 2px solid black;
+      }
+      #showMsg {
+        margin-top: 30px;
+        width: 500px;
+        height: 30px;
+        line-height: 30px;
+        border: 2px solid black;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        //获取 两个div
+        var areaDiv = document.getElementById('areaDiv');
+        var showMsg = document.getElementById('showMsg');
+        areaDiv.onmousemove = function (event) {
+          //  clientX 可以获得鼠标指针的水平坐标
+          //  clientY 可以获得鼠标指针的垂直坐标
+          var x = event.clientX;
+          var y = event.clientY;
+
+          //在 showMsg 中显示鼠标的坐标
+          //   showMsg.innerHTML = `x= ${x} +, y= ${y}`;
+          showMsg.innerHTML = 'x = ' + x + ', y = ' + y;
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="areaDiv"></div>
+    <div id="showMsg"></div>
+  </body>
+</html>
