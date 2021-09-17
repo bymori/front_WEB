@@ -1,0 +1,85 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-17 18:26:36
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-17 19:02:14
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>获取元素的样式</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+
+        background-color: rgb(41, 19, 102);
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        // 获取box1
+        var box1 = document.getElementById('box1');
+        // 为按钮绑定单击响应函数
+        var btn01 = document.getElementById('btn01');
+        btn01.onclick = function () {
+          /*
+           *  获取元素的当前显示的样式
+           *    语法：元素.currentStyle.样式名
+           *  它可以用来读取当前元素正在显示的样式
+           *    如果当前元素没有设置该样式，则获取它的默认值
+           *
+           *  currentStyle 只有IE浏览器支持，其他的浏览器都不支持
+           */
+          //   alert(box1.currentStyle.width); //只能用于ie浏览器
+          /*
+           *  在其他浏览器中可以使用
+           *    getComputedStyle() 这个方法来获取元素当前的样式
+           *    这个方法是window的方法，可以直接使用
+           *  需要两个参数
+           *    第一个：要获取样式的元素
+           *    第二个：可以传递一个伪元素，一般都传null
+           *
+           *  该方法会返回一个对象，对象中封装了当前元素对应的样式
+           *
+           *  该方法会返回一个对象，对象中封装了当前元素对应的样式
+           *    可以通过对象。样式名来读取样式
+           *    如果获取的样式没有设置，则会获取到真实的值，而不是默认值
+           *    比如：没有设置width,它不会获取到auto，而是一个长度
+           */
+          //   var obj = getComputedStyle(box1, null);
+          //   alert(obj.width);
+          //正常浏览器
+          //   alert(getComputedStyle(box1, null).width);
+          //   ie8
+          //   alert(box1.currentStyle.width);
+          alert(getStyle(box1, 'width'));
+        };
+      };
+
+      /*
+       *  定义一个函数，用来获取指定元素的当前的样式
+       *  参数：
+       *    obj 要获取样式的元素
+       *    name 要获取的样式名
+       */
+      function getStyle(obj, name) {
+        if (window.getComputedStyle) {
+          //正常浏览器  具有 getComputedStyle 方法
+          return getComputedStyle(obj, null)[name];
+        } else {
+          //   ie8 没有 getComputedStyle 方法
+          return obj.currentStyle[name];
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">读取元素</button>
+    <br /><br />
+    <div id="box1" style="width: 200px"></div>
+  </body>
+</html>
