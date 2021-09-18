@@ -1,0 +1,82 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-18 14:21:01
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-18 14:46:51
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>键盘事件</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /*
+         *  使div可以根据不同的方向键向不同的方向移动
+         *   按左键，div向左移
+         *   按右键，div向右移
+         */
+
+        document.onkeydown = function (event) {
+          event = event || window.event;
+          //   ArrowLeft ArrowLeft 37 左
+          //   ArrowUp ArrowUp 38 上
+          //   ArrowRight ArrowRight 39 右
+          //   ArrowDown ArrowDown 40 下
+
+          //定义一个变量 表示移动的速度
+          var speed = 10;
+          //当用户按了ctr1以后，速度加快
+          if (event.ctrlKey) {
+            speed = 50;
+          }
+          switch (event.code) {
+            case 'ArrowLeft':
+              //   console.log('左');
+              box1.style.left = box1.offsetLeft - speed + 'px';
+              break;
+            case 'ArrowUp':
+              //   console.log('上');
+              box1.style.top = box1.offsetTop - speed + 'px';
+              break;
+            case 'ArrowRight':
+              //   console.log('右');
+              box1.style.left = box1.offsetLeft + speed + 'px';
+              break;
+            case 'ArrowDown':
+              //   console.log('下');
+              box1.style.top = box1.offsetTop + speed + 'px';
+              break;
+
+            default:
+              break;
+          }
+          //   if (event.key === 'ArrowLeft') {
+          //     console.log('左');
+          //   } else if (event.key === 'ArrowRight') {
+          //     var ol = event.clientX - box1.offsetLeft;
+          //     var left = event.clientX - ol;
+          //     box1.style.left = left + 'px';
+          //   } else {
+          //     return false;
+          //   }
+
+          // console.log(event.key, event.code, event.keyCode);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box1"></div>
+  </body>
+</html>
