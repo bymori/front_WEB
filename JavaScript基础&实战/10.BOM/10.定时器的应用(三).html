@@ -1,0 +1,111 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-18 17:52:34
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-18 19:07:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>定时器的应用(三)</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+      }
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        position: absolute;
+        left: 0;
+        top: 200px;
+      }
+    </style>
+    <script src="js/tools.js"></script>
+    <script>
+      window.onload = function () {
+        //获取box1
+        var box1 = document.getElementById('box1');
+        //获取btn01
+        var btn01 = document.getElementById('btn01');
+        //获取btn02
+        var btn02 = document.getElementById('btn02');
+
+        //点击按钮以后，使box1向右移动(left值增大)
+        btn01.onclick = function () {
+          move(box1, 'left', 800, 10);
+        };
+
+        //点击按钮以后，使box1向左移动（left值减小）
+        btn02.onclick = function () {
+          move(box1, 'left', 0, 10);
+        };
+
+        //获取box2
+        var box2 = document.getElementById('box2');
+        //获取btn03
+        var btn03 = document.getElementById('btn03');
+        //获取btn04
+        var btn04 = document.getElementById('btn04');
+        //点击按钮以后，使box2向右移动(left值增大)
+        btn03.onclick = function () {
+          move(box2, 'left', 800, 10);
+        };
+        //点击按钮以后，使box2向左移动（left值减小）
+        btn04.onclick = function () {
+          move(box2, 'left', 0, 10);
+        };
+
+        //获取btn05
+        var btn05 = document.getElementById('btn05');
+        btn05.onclick = function () {
+          // move(box2, 'height', 800, 10);
+          // move(box2, 'top', 800, 10);
+          move(box2, 'width', 800, 10, function () {
+            move(box2, 'height', 400, 10, function () {
+              move(box2, 'top', 200, 10, function () {
+                move(box2, 'width', 100, 10, function () {
+                  move(box2, 'height', 100, 10, function () {});
+                });
+              });
+            });
+          });
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+    <button id="btn03">点击按钮以后box2向左移动</button>
+    <button id="btn04">点击按钮以后box2向左移动</button>
+    <button id="btn05">测试按钮</button>
+    <br /><br />
+
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+    <div
+      style="
+        width: 0;
+        height: 1000px;
+        border-left: 1px black solid;
+        position: absolute;
+        left: 800px;
+        top: 0;
+      "
+    ></div>
+  </body>
+</html>

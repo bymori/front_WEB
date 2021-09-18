@@ -1,0 +1,63 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-18 16:49:25
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-18 17:02:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>定时器简介</title>
+    <script>
+      window.onload = function () {
+        //获取 count
+        var count = document.getElementById('count');
+
+        //JS的程序的执行速度是非常非常快的
+        //如果希望一段程序，可以每间隔一 段时间执行一次，可以使用定时调用
+        // for (var i = 0; i < 10; i++) {
+        //   count.innerHTML = i;
+        // }
+
+        /*
+         *  setInterval()
+         *    定时调用
+         *  可以将一个函数，每隔一段时间执行一次
+         *    参数：
+         *      1.回调函数，该函数会每隔一段时间被调用一次
+         *      2.每次调用间隔的时间，单位是毫秒
+         *
+         *  返回值：
+         *    返回一个Number类型的数据
+         *    这个数字用来作为定时器的唯一标识
+         */
+
+        var num = 1;
+        var timer = setInterval(function () {
+          count.innerHTML = num++;
+          if (num == 11) {
+            //关闭定时器
+            clearInterval(timer);
+          }
+        }, 1000);
+        // console.log(timer);
+
+        /*
+         *  clearInterval()可以用来关闭一个定时器
+         *    方法中需要一个定时器的标识作为参数，这样将关闭标识对应的定时器
+         *
+         *  clearInterval()可以接收任意参数，
+         *    如果参数是一个有效的定时器的标识，则停止对应的定时器
+         *    如果参数不是一个有效的标识，则什么也不做
+         */
+        // clearInterval(timer)
+      };
+    </script>
+  </head>
+  <body>
+    <h1 id="count">1</h1>
+  </body>
+</html>

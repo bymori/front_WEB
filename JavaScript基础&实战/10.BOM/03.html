@@ -1,0 +1,60 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-18 15:49:35
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-18 16:22:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        // let id = document.querySelector('#aaa');
+
+        // let keys = [];
+
+        // document.onkeydown = function (e) {
+        // //   e.preventDefault();
+        //   keys.push(e.keyCode);
+        //   if (keys[0] === 65 && keys[1] === 66) {
+        //     console.log('按下了 a 和 b');
+        //   }
+        //   if (keys.length % 2 === 0) {
+        //     console.log(keys);
+        //     keys.length = 0;
+        //   }
+        // };
+
+        let keys = [];
+        document.onkeydown = function (e) {
+          e.preventDefault();
+            if (e.keyCode === 65 || e.keyCode === 66) {
+              keys.push(e.keyCode);
+              setTimeout(function () {
+
+                keys.length = 0;
+              }, 500);
+            } else {
+              keys.length = 0;
+            }
+          //   console.log(keys[/0||1/gi]);
+          if (keys[0] === 65 && keys[1] === 66) {
+            console.log('按下了a和b');
+            keys.length = 0;
+          }
+        };
+
+       
+      };
+    </script>
+  </head>
+  <body>
+    <input type="text" id="aaa" />
+  </body>
+</html>

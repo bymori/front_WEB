@@ -1,0 +1,96 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-18 14:21:01
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-18 17:43:12
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>键盘事件</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /*
+         *  使div可以根据不同的方向键向不同的方向移动
+         *   按左键，div向左移
+         *   按右键，div向右移
+         */
+
+        document.onkeydown = function (event) {
+          event = event || window.event;
+          //   ArrowLeft ArrowLeft 37 左
+          //   ArrowUp ArrowUp 38 上
+          //   ArrowRight ArrowRight 39 右
+          //   ArrowDown ArrowDown 40 下
+
+          //定义一个变量 表示移动的速度
+          var speed = 10;
+
+          //创建一个变量表示方向
+          //通过修改dir来影响移动的方向
+          var dir = '';
+
+          setInterval(function () {
+            switch (dir) {
+              // case 'ArrowLeft && ArrowDown':
+              //   //   console.log('左');
+              //   box1.style.left = box1.offsetLeft - speed + 'px';
+              //   box1.style.top = box1.offsetTop + speed + 'px';
+              //   break;
+              case 'ArrowLeft':
+                //   console.log('左');
+                box1.style.left = box1.offsetLeft - speed + 'px';
+                break;
+              case 'ArrowUp':
+                //   console.log('上');
+                box1.style.top = box1.offsetTop - speed + 'px';
+                break;
+              case 'ArrowRight':
+                //   console.log('右');
+                box1.style.left = box1.offsetLeft + speed + 'px';
+                break;
+              case 'ArrowDown':
+                //   console.log('下');
+                box1.style.top = box1.offsetTop + speed + 'px';
+                break;
+            }
+          }, 50);
+
+          //为document绑定一个按键按下的事件
+          document.onkeydown = function (event) {
+            event = event || window.event;
+            //当用户按了ctrl以后，速度加快
+            if (event.ctrlKey) {
+              speed = 50;
+            } else {
+              speed = 10;
+            }
+
+            //使dir等于按键的值
+            dir = event.code;
+          };
+
+          //当按键松开时，div不再移动
+          document.onkeyup = function () {
+            //设置方向为0
+            dir = 0;
+          };
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box1"></div>
+  </body>
+</html>
