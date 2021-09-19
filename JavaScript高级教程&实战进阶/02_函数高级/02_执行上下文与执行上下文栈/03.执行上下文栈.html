@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 00:15:58
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 00:29:48
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>执行上下文栈</title>
+    <script>
+      //  1.在全局代码执行前, JS引擎就会创建一个栈来存储管理所有的执行上下文对象
+      //  2.在全局执行上下文(window)确定后, 将其添加到栈中(压栈)-->所以栈底百分百是[window]
+      //  3.在函数执行上下文创建后, 将其添加到栈中(压栈)
+      //  4.在当前函数执行完后,将栈顶的对象移除(出栈)
+      //  5.当所有的代码执行完后, 栈中只剩下window
+      //    上下文栈数==函数调用数+1
+      //1. 进入全局执行上下文
+      var a = 10;
+      var bar = function (x) {
+        var b = 5;
+        //3. 进入foo执行上下文
+        foo(x + b);
+      };
+
+      //赋值语句执行不代表函数执行
+      var foo = function (y) {
+        var c = 5;
+        console.log(a + c + y);
+      };
+      //2. 进入bar函数执行上下文
+      bar(10);
+    </script>
+  </head>
+  <body></body>
+</html>
