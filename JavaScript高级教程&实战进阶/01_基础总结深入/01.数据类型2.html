@@ -1,0 +1,57 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 13:17:49
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 13:39:26
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>数据类型2</title>
+    <script>
+      //  1.undefined与null的区别？
+      //    undefined代表定义未赋值
+      //    null定义并赋值了，只是值为null
+      //  2.什么时候给变量赋值为null呢？
+      //    初始赋值，表明将要赋值为对象
+      //    结束前，让对象成为垃圾对象（被垃圾回收器回收）
+      //  3.严格区别变量类型与数据类型？
+      //    数据的类型
+      //      基本类型
+      //      对象类型
+      //    变量的类型(变量内存值的类型)
+      //      基本类型: 保存就是基本类型的数据
+      //      引用类型: 保存的是地址值(对象类型)
+
+      //  实例：实例对象
+      // 类型： 类型对象
+      function Person(name, age) {
+        //构造函数 类型
+        this.name = name;
+        this.age = age;
+      }
+      var p = new Person('沫沫', 18);
+      //   console.log(p);
+
+      //  1.undefined与null的区别？
+      var a;
+      console.log(a); //undefined
+      a = null;
+      console.log(a); //null
+
+      //开始
+      var b = null; //初始赋值为null 表明将要赋值为对象
+      // 确定对象就赋值
+      b = ['ioinn', 18];
+      //最后
+      b = null; //让b指向的对象成为核极对象（被垃圾回收器回收）
+      //   b = 2; // 将 b = ['ioinn', 18]; 转变为垃圾对象 同时又声明一个无用对象  用b=null即可
+
+      var c = {};
+    </script>
+  </head>
+  <body></body>
+</html>
