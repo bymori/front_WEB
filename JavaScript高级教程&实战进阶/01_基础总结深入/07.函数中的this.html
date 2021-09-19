@@ -1,0 +1,66 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 18:11:55
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 18:31:47
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>函数中的this</title>
+    <script>
+      //  1.this是什么?
+      //    任何函数本质上都是通过某个对象来调用的,如果没有直接指定就是window
+      //    所有函数内部都有一个变量this
+      //    它的值是调用函数的当前对象
+      //  2.如何确定this的值?
+      //    test(): window
+      //    p.test(): p
+      //    new test(): 新创建的对象
+      //    p.call(obj): obj
+      //
+      //    1.以函数的形式调用时，this是window
+      //    call（）或apply（）通过第一个实参来指定函数中this
+      //    2.以方法的形式调用时，this就是调用方法的对象
+      //    3.以构造函数的形式调用时，this就是新创建的对象
+
+      function Person(color) {
+        console.log(this);
+        this.color = color;
+        this.getColor = function () {
+          console.log(this);
+          return this.color;
+        };
+        this.setColor = function (color) {
+          console.log(this);
+          this.color = color;
+        };
+      }
+
+      Person('red'); //window
+
+      var p = new Person('pink'); //p
+
+      p.getColor(); //p
+
+      var obj = {};
+      //调用call会改变this指向-->让我的p函数成为`obj`的临时方法进行调用
+      p.setColor.call(obj, 'black'); //obj
+
+      var test = p.setColor;
+      test(); //window
+
+      function fun1() {
+        function fun2() {
+          console.log(this);
+        }
+        fun2(); //this是谁? window
+      }
+      fun1(); //调用fun1
+    </script>
+  </head>
+  <body></body>
+</html>

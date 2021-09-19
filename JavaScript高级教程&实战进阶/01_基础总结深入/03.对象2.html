@@ -1,0 +1,38 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 16:55:52
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 17:06:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>03-相关问题</title>
+    <script>
+      //  什么时候必须使用['属性名']的方式?
+      //    1.属性名包含特殊字符: - 空格
+      //    2.属性名不确定
+
+      var p = {};
+      //1. 给p对象添加一个属性: content-type: text/json
+      //   p.content-type = 'text/json'//无法使用
+      p['content-type'] = 'text/json';
+      console.log(p['content-type']);
+
+      //2.属性名不确定
+      var propName = 'myAge';
+      var value = 18;
+      // p.propName = value; //不能用
+      // console.log(p.propName);//18
+      //    此时 {propName: 18}
+      p[propName] = value;
+      console.log(p[propName]); //18
+      //    此时 {myAge: 18}
+      console.log(p);
+    </script>
+  </head>
+  <body></body>
+</html>

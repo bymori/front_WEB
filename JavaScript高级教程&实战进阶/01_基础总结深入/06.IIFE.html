@@ -1,0 +1,56 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 17:54:19
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 18:10:06
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>IIFE (自调用函数)</title>
+    <script>
+      //IIFE (自调用函数)
+      //  1.理解
+      //      全称: Immediately-Invoked Function Expression 自调用函数
+      //  2.作用
+      //    隐藏实现
+      //    不会污染外部(一般指全局)命名空间
+      //    用它来编码js模块
+
+      //匿名函数自调用
+      (function () {
+        var a = 3;
+        console.log(a + 3);
+      })();
+      var a = 4;
+      console.log(a);
+
+      //此处前方为何要一个`;`-->因为自调用函数外部有一个()包裹,可能与前方以()结尾的代码被一起认为是函数调用
+      //不加分号可能会被认为这样 console.log(a)(IIFE)
+      //;(function () {
+
+      (function () {
+        //不会污染外部(全局)命名空间-->举例
+        var a = 1;
+        //声明一个局部函数test
+        function test() {
+          console.log(++a);
+        }
+        //向外暴露一个全局函数
+        window.$ = function () {
+          return {
+            test: test,
+          };
+        };
+      })();
+
+      //   test(); //test is not defined
+      // 1. $是一个函数 2. $执行后返回的是一个对象
+      $().test();
+    </script>
+  </head>
+  <body></body>
+</html>
