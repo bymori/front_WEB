@@ -1,0 +1,35 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 15:01:44
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 15:33:34
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>内存管理</title>
+    <script>
+      //  1.内存生命周期
+      //    分配小内存空间, 得到它的使用权
+      //    存储数据, 可以反复进行操作
+      //    释放小内存空间
+      //  2.释放内存
+      //    局部变量: 函数执行完自动释放
+      //    对象: 成为垃圾对象==>垃圾回收器回收
+
+      var a = 3;
+      var obj = { name: '沫沫' };
+      obj = undefined || null;
+      //此时,obj没有被释放,但是之前声明的 {name:"沫沫"} 由于没有人指向它,会在后面你某个时刻被垃圾回收器回收
+
+      function fun() {
+        var b = {};
+      }
+      fun(); // b是自动释放, b所指向的对象是在后面的某个时刻由垃圾回收器回收
+    </script>
+  </head>
+  <body></body>
+</html>

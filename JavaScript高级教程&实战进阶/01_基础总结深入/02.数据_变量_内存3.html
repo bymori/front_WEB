@@ -1,0 +1,52 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 14:33:04
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 15:00:02
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>关于引用变量赋值问题</title>
+    <script>
+      //  2个引用变量指向同一个对象, 通过一个变量修改对象内部数据, 另一个变量看到的是修改之后的数据
+      //  2个引用变量指向同一个对象, 让其中一个引用变量指向另一个对象, 另一引用变量依然指向前一个对象
+
+      //   var obj1 = { name: '沫沫' };
+      //   var obj2 = obj1;
+      //   obj1.name = 'ioinn';
+      //   console.log(obj2.name);
+
+      var obj1 = { name: '沫沫' };
+      var obj2 = obj1;
+      obj2.age = 18;
+      console.log(obj1.age); //18
+      function fun(obj) {
+        obj.name = '末日';
+      }
+      fun(obj1);
+      console.log(obj2.name); //末日
+
+      var a = { age: 12 };
+      var b = a; //此时是将a指向的地址值赋值给B,所以 b 此时也指向{age:12}这个内存
+      a = { name: 'MORI', age: 13 }; //此时重新创建了一个内存并让a指向它,所以此处a指向的是{name:'MORI'},而b指向仍是刚开始的指向{age:12}
+      console.log(b.age, a.name, a.age); //12 'MORI' 13
+      b.age = 18;
+      //此时a与b指向的内存已经不一样了,所以修改互不影响
+      console.log(b.age, a.name, a.age); //18 'MORI' 13
+
+      function fun2(obj) {
+        obj = { age: 15 };
+        //obj一开始指向a保存的地址，赋值{age: 15}的时候虽然obj指向新的地址，但是a还是指向原来的地址
+        console.log(obj.age); //15
+      }
+      fun2(a);
+      // fun2( a )和fun2( obj )同时a = {age: 13 }
+      console.log(a.age); //13
+    </script>
+  </head>
+  <body></body>
+</html>

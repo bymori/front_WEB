@@ -1,0 +1,34 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 14:33:35
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 15:25:08
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>关于数据传递问题</title>
+    <script>
+      //  在js调用函数时传递变量参数时, 是值传递还是引用传递
+      //    理解1: 都是值(基本/地址值)传递
+      //      值传递永远都是传递的内容，这个内容可内容可能是基本数据类型的值，也可能是引用数据类的的地址值。
+      //    理解2: 可能是值传递, 也可能是引用传递(地址值)
+      var a = 3;
+      function fun(a) {
+        a = a + 1;
+      }
+      fun(a);
+      console.log(a);
+
+      function fun2(obj) {
+        console.log(obj.name);
+      }
+      var obj = { name: '沫沫' };
+      fun2(obj);
+    </script>
+  </head>
+  <body></body>
+</html>

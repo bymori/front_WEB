@@ -1,0 +1,31 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-19 14:25:10
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-19 14:30:09
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>关于赋值和内存的问题</title>
+    <script>
+      //  问题let a = xxx, a内存中到底保存的是什么?
+      //    xxx是基本数据, 保存的就是这个数据
+      //    xxx是对象, 保存的是对象的地址值
+      //    xxx是一个变量, 保存的xxx的内存内容(可能是基本数据, 也可能是地址值)
+      var a = 3;
+      a = function () {};
+
+      var b = 'ioinn';
+      a = b;
+      b = {};
+      a = b;
+      console.log(a);
+      console.log(b);
+    </script>
+  </head>
+  <body></body>
+</html>
