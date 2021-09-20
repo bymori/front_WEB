@@ -1,0 +1,46 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 19:27:50
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 19:33:02
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>借用构造函数继承(假的)</title>
+    <!--  方式2: 借用构造函数继承(假的)
+            1.套路:
+              定义父类型构造函数
+              定义子类型构造函数
+              在子类型构造函数中调用父类型构造
+            2.关键:
+              在子类型构造函数中通用call()调用父类型构造函数
+            3.作用:
+              能借用父类中的构造方法,但是不灵活
+     -->
+    <script>
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      function Student(name, age, price) {
+        //此处利用call(),将 [Student]的this传递给Person构造函数
+        Person.call(this, name, age); // 相当于: this.Person(name, age)
+        /*this.name = name
+        this.age = age*/
+        this.price = price;
+      }
+
+      var s = new Student('Tom', 20, 14000);
+      console.log(s.name, s.age, s.price);
+      console.log(s);
+
+      //  [Person]中的this是动态变化的,在[Student]中利用[Person.call(this, name, age)]改变了其this指向,所以可以实现此效果
+    </script>
+  </head>
+  <body></body>
+</html>
