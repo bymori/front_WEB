@@ -1,0 +1,35 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 18:31:21
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 18:35:08
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>构造函数+原型的组合模式</title>
+    <!--  方式六: 构造函数+原型的组合模式  最好用这个写法
+            套路: 自定义构造函数, 属性在函数中初始化, 方法添加到原型上
+            适用场景: 需要创建多个类型确定的对象
+            放在原型上可以节省空间(只需要加载一遍方法)      
+     -->
+    <script>
+      //在构造函数中只初始化一般函数
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      Person.prototype.setName = function (name) {
+        this.name = name;
+      };
+      var p1 = new Person('Tom', 23);
+      var p2 = new Person('Jack', 24);
+      console.log(p1, p2);
+      console.log(p1.setName === p2.setName); //true
+    </script>
+  </head>
+  <body></body>
+</html>
