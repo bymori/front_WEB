@@ -1,0 +1,32 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 22:59:05
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 23:02:39
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Workers</title>
+  </head>
+  <body>
+    <input type="text" placeholder="数值" id="number" />
+    <button id="btn">计算</button>
+    <script>
+      function fibonacci(n) {
+        return n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2); //递归调用
+      }
+      // console.log(fibonacci(7))
+      var input = document.getElementById('number');
+      document.getElementById('btn').onclick = function () {
+        var number = input.value;
+        var result = fibonacci(number);
+        alert(result);
+      };
+      //当运行此行代码,传入计算数值为50左右(有的甚至更低),整个页面就会卡住好久的时间不能操作(计算结束后才会弹窗,但是未弹窗的这段时间用户并不能进行操作),这时候就会发现单线程的弊端了
+    </script>
+  </body>
+</html>

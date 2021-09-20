@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 22:59:05
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 23:18:01
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Workers</title>
+  </head>
+  <body>
+    <h2>斐波那契（Fibonacci）数列</h2>
+    <input type="text" placeholder="数值" id="number" />
+    <button id="btn">计算</button>
+    <script>
+      var input = document.getElementById('number');
+      document.getElementById('btn').onclick = function () {
+        var number = input.value;
+
+        //创建一个Worker对象
+        var worker = new Worker('worker.js');
+
+        // 绑定接收消息的监听
+        worker.onmessage = function (event) {
+          //此处变成回调代码,会在初始化工作完成后才会进行
+          console.log('主线程接收分线程返回的数据: ' + event.data);
+          alert(event.data);
+        };
+
+        // 向分线程发送消息
+        worker.postMessage(number);
+        console.log('主线程向分线程发送数据: ' + number);
+      };
+    </script>
+  </body>
+</html>
