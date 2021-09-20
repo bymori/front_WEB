@@ -1,0 +1,53 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 17:35:46
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 17:44:36
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>相关面试题1</title>
+    <script>
+      //代码片段一  -->没有产生闭包:因为内部函数没有调用外部变量
+      var name = 'The Window';
+      var object = {
+        name: 'My Object',
+        getNameFunc: function () {
+          return function () {
+            return this.name;
+          };
+        },
+      };
+      console.log(object.getNameFunc()()); //the window
+      //函数体的this是window
+
+      //代码片段二
+      var name2 = 'The Window';
+      var object2 = {
+        name2: 'My Object',
+        getNameFunc: function () {
+          //此处的this指向是[getNameFunc],他是对象中的属性,所以this指向就是object
+          var that = this;
+          return function () {
+            //此处用的是保存的  that
+            return that.name2;
+          };
+        },
+      };
+      console.log(object2.getNameFunc()()); //  My Object
+      /* 
+          1.代码片段一:
+            函数体的this指向是[window]
+            没有产生闭包:因为内部函数没有调用外部变量
+          2.代码片段二为何指向是对象?
+            this指向是调用它的[getNameFunc],他是对象中的属性,所以this指向就是object
+            产生了闭包
+        */
+    </script>
+  </head>
+  <body></body>
+</html>

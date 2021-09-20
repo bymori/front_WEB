@@ -1,0 +1,38 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 16:17:52
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 16:46:33
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>闭包的应用-定义JS模块</title>
+    <!--  闭包的应用 : 定义JS模块
+            具有特定功能的js文件
+            将所有的数据和功能都封装在一个函数内部(私有的)
+            只向外暴露一个包含n个方法的对象或函数
+            模块的使用者, 只需要通过模块暴露的对象调用方法来实现对应的功能 
+         -->
+
+    <!-- 模块调用1 -->
+    <script src="myModule.js"></script>
+    <script>
+      var module = myModule();
+      module.doSomething();
+      module.doOtherthing();
+    </script>
+
+    <!-- 模块调用2 -->
+    <script src="myModule2.js"></script>
+    <script>
+      console.log('------');
+      myModule2.doSomething();
+      myModule2.doOtherthing();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,38 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 16:08:44
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 16:19:53
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>闭包的声明周期</title>
+    <script>
+      /*  1.产生：在嵌套内部函数定义执行完时就产生了（不是在调用）
+          2.死亡：在嵌套的内部函数成为垃圾对象时 
+
+            即没有人指向它时死亡,通常置为[null],当然指向其他也行,但不安全(容易污染变量)
+        */
+
+      function fn1() {
+        //此时闭包就已经产生了（函数提升，,实际上[fn2]提升到了第一行, 内部函数对象已经创建了）
+        var a = 2;
+        function fn2() {
+          // var fn2=function() {  //如果这时[var fn2=function(){}],那么在这行才会产生闭包
+          a++;
+          console.log(a);
+        }
+        return fn2;
+      }
+      var f = fn1();
+      f(); // 3
+      f(); // 4
+      f = null; //闭包死亡 （包含闭包的函数对象成为垃圾对象）
+    </script>
+  </head>
+  <body></body>
+</html>
