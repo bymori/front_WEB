@@ -1,0 +1,32 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 14:43:37
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 14:47:56
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>相关面试题2</title>
+    <script>
+      var fn = function () {
+        console.log(fn);
+      };
+      fn();
+
+      var obj = {
+        //对象变量不能产生局部作用域,所以会找到全局去,导致报错
+        fn2: function () {
+          //   console.log(fn2);
+          // 这里的this指obj对象
+          console.log(this.fn2);
+        },
+      };
+      obj.fn2();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,32 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-20 14:38:44
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-20 14:39:46
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>相关面试题</title>
+    <script>
+      /*  1.作用域在函数定义时就已经确定了。而不是在函数调用时
+            作用域1:作用域在函数定义时就已经确定了。而不是在函数调用时 
+        */
+
+      var x = 10;
+      function fn() {
+        console.log(x);
+      }
+      function show(f) {
+        var x = 20;
+        f();
+      }
+      show(fn);
+      
+    </script>
+  </head>
+  <body></body>
+</html>
