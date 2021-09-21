@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-21 22:32:17
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-21 22:56:21
+ * @LastEditTime: 2021-09-21 23:23:10
  */
 /*
 	简单文件写入
@@ -24,7 +24,7 @@
 //引入fs模块
 var fs = require('fs');
 /* fs.writeFile(
-  './Nodejs/02_文件系统/04.hello.txt',
+  './writing/04.hello.txt',
   '这是通过writeFile写入的内容',
   { flag: 'a' },
   function (err) {
@@ -40,7 +40,7 @@ var fs = require('fs');
 // D:\Test_project\Demo_project\front_WEB\Nodejs\02_文件系统\04.hello1.txt
 // D:/Test_project/Demo_project/front_WEB/Nodejs/02_文件系统/04.hello1.txt
 fs.writeFile(
-  'D:/Test_project/Demo_project/front_WEB/Nodejs/02_文件系统/04.hello1.txt',
+  'D:/Test_project/Demo_project/front_WEB/Nodejs/02_文件系统/writing/04.hello1.txt',
   '这是通过writeFile写入的内容',
   { flag: 'a' },
   function (err) {

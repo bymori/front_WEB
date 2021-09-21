@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-21 22:14:43
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-21 22:30:01
+ * @LastEditTime: 2021-09-21 23:22:05
  */
 
 /*
@@ -26,7 +26,7 @@
 var fs = require('fs');
 
 //打开文件
-fs.open('./Nodejs/02_文件系统/03.hello.txt', 'w', function (err, fd) {
+fs.open('./writing/03.hello.txt', 'w', function (err, fd) {
   //判断是否出错
   if (!err) {
     //如果没有出错，则对文件进行写入操作

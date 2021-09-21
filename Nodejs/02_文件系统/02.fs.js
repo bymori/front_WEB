@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-21 21:48:18
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-21 22:14:52
+ * @LastEditTime: 2021-09-21 23:22:41
  */
 /*
 	文件系统（File System）
@@ -37,7 +37,7 @@
 var fs = require('fs');
 
 //打开文件
-var fd = fs.openSync('./Nodejs/02_文件系统/02.hello.txt', 'w');
+var fd = fs.openSync('./writing/02.hello.txt', 'w');
 
 //向文件中写入内容
 //  hello ioinn 沫沫
