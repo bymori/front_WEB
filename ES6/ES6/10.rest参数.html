@@ -1,0 +1,43 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 13:55:00
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 14:04:29
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rest参数</title>
+  </head>
+  <body>
+    <script>
+      // ES6 引入 rest 参数，用于获取函数的实参，用来代替 arguments
+      // ES5 获取实参的方式
+      function date_es5() {
+        console.log(arguments);
+      }
+      date_es5('白芷', '阿娇', '思慧');
+
+      // rest 参数
+      function date_rest(...args) {
+        console.log(args);
+        //可以使用数组方法 filter some every map
+      }
+      date_rest('白芷', '阿娇', '思慧');
+
+      // rest 参数必须要放到参数最后
+      // 注意！！！ Rest parameter may not have a default initializer
+      function fn(a, b, ...args) {
+        console.log(a);
+        console.log(b);
+        console.log(args);
+      }
+      fn(1, 2, 3, 4, 5, 6, 7);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 11:22:53
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 11:31:07
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>let</title>
+  </head>
+  <body>
+    <script>
+      // 用 let 声明变量
+      let a;
+      let b, c, d;
+      let e = 100;
+      let f = 521,
+        g = 'ioinn',
+        h = [];
+
+      // 1. 变量不能重复声明
+      //   let star = '沫沫';
+      //   let star = '末日';//Identifier 'star' has already been declared
+
+      // 2. 块级作用域 全局 函数 eval(es5严格模式中才会出现)
+      // if else while for
+      //   {
+      //     let girl = '周';
+      //   }
+      //   console.log(girl); //girl is not defined
+
+      // 3. 不存在变量提升
+      //   console.log(son);//Cannot access 'son' before initialization
+      //   let son = 'son-let';
+
+      // 4. 不影响作用域链
+      {
+        let name = '沫沫';
+        function fn() {
+          console.log(name);
+        }
+        fn();//沫沫
+      }
+    </script>
+  </body>
+</html>

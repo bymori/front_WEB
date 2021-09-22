@@ -1,0 +1,43 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 14:11:34
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 14:18:59
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>扩展运算符应用</title>
+  </head>
+  <body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+      //1. 数组的合并 情圣  误杀  唐探
+      const kuaizi = ['王太利', '肖央'];
+      const fenghuang = ['曾毅', '玲花'];
+      const hb_pg_es5 = kuaizi.concat(fenghuang); //es5
+      console.log(hb_pg_es5);
+
+      const hb_pg = [...kuaizi, ...fenghuang]; //es6
+      console.log(hb_pg);
+
+      //2. 数组的克隆  如果内部有引用类型数据 会成为浅拷贝
+      //  浅拷贝是,复制被复制对象的地址,实则指向同一块堆空间,被复制对象里的值发生改变,复制对象也会受到影响发生改变,这就是浅拷贝
+      const sanzhihua = ['E', 'G', 'M'];
+      const sanyecao = [...sanzhihua];
+      console.log(sanyecao);
+
+      //3. 将伪数组转为真正的数组
+      const divs = document.querySelectorAll('div');
+      const divArr = [...divs];
+      console.log(divArr); // arguments
+    </script>
+  </body>
+</html>

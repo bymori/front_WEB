@@ -1,0 +1,48 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 11:41:44
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 11:52:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>const 定义常量</title>
+  </head>
+  <body>
+    <script>
+      // 值 不能修改的称为常量
+      //声明常量
+      const NAME = '沫沫';
+      console.log('NAME', NAME);
+
+      //1. 一定要赋初始值
+      //   const A;//常量声明中缺少初始值设定项
+
+      //2. 一般常量使用大写(潜规则)
+      //   const a=200
+
+      //3. 常量的值不能修改
+      //   const NAME = '末日'; //标识符“name”已声明
+
+      //4. 块儿级作用域
+      //   {
+      //     const PLAYER = '小虎';
+      //   }
+      //   console.log('PLAYER', PLAYER);//PLAYER is not defined
+
+      //5. 对于数组和对象的元素修改, 不算做对常量的修改, 不会报错
+      // 对象保存的值是地址
+      const TEAM = ['UZI', 'MXLG', 'Ming', 'Letme'];
+      TEAM.push('Meiko');
+
+      //   TEAM = '200';//Assignment to constant variable.
+      console.log('TEAM', TEAM);
+    </script>
+  </body>
+</html>
