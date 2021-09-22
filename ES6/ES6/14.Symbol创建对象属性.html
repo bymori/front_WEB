@@ -1,0 +1,59 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 14:34:26
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 15:08:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbol 创建对象属性</title>
+  </head>
+  <body>
+    <script>
+      //向对象中添加方法 up down
+      let game = {
+        name: '俄罗斯方块',
+        up: function () {},
+        down: function () {},
+      };
+
+      //声明一个对象
+      // let methods = {
+      //   up: Symbol(),
+      //   down: Symbol(),
+      // };
+      // game[methods.up] = function () {
+      //   console.log('改变形状');
+      // };
+      // game[methods.down] = function () {
+      //   console.log('快速下降');
+      // };
+      // console.log(game);
+      // console.log(game[methods.down]());
+
+      let youxi = {
+        name: '狼人杀',
+        [Symbol('say')]: function () {
+          console.log('我可以发言');
+        },
+        [Symbol('zibao')]: function () {
+          console.log('我可以自爆');
+        },
+      };
+
+      console.log(youxi);
+      // Symbol调用
+      // 这种情况无法调用
+      // 因为每次 Symbol('xxxx') 的值可能不一样
+      //   console.log([Reflect.ownKeys(youxi)[0]]());
+      let say = Symbol('say');
+      console.log(youxi[say]());
+    </script>
+  </body>
+</html>

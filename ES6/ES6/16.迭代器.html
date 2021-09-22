@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 15:29:27
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 15:37:11
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>迭代器</title>
+  </head>
+  <body>
+    <script>
+      //声明一个数组
+      const xiyou = ['唐僧', '孙悟空', '猪八戒', '沙僧'];
+
+      //使用 for...of 遍历数组
+      //   for (let v in xiyou) { //键名
+      //   for (let v of xiyou) { //键值
+      //     console.log(v);
+      //   }
+      //   console.log(xiyou);
+
+      let iterator = xiyou[Symbol.iterator]();
+
+      //调用对象的next方法
+      console.log(iterator.next());
+      console.log(iterator.next());
+      console.log(iterator.next());
+      console.log(iterator.next());
+      console.log(iterator.next());
+    </script>
+  </body>
+</html>

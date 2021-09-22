@@ -1,0 +1,58 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 14:20:31
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 14:32:47
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbol</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        ES6 引入了一种新的原始数据类型 Symbol ，表示独一无二的值。它是JavaScript语言的第七种数据类型，是一种类似于字符串的数据类型。
+          Symbol 特点：
+            1. Symbol的值是唯一的，用来解决命名冲突的问题
+            2. Symbol值不能与其他数据进行运算
+            3. Symbol 定义的对象属性
+              不能使用for...in循环遍历
+              但是可以使用Reflect.ownKeys来获取对象的所有键名
+        */
+
+      //创建Symbol
+      let s = Symbol();
+      //   console.log('s', s, typeof s);
+
+      let s2 = Symbol('ioinn');
+      let s3 = Symbol('ioinn');
+      //   console.log(s2 === s3);//false
+
+      //Symbol.for 创建
+      let s4 = Symbol.for('ioinn');
+      let s5 = Symbol.for('ioinn');
+      //   console.log(s4 === s5); //true
+      //symbol.for访问的是一个全局的symbol表，如果有了就访问对应对象，没有就重新创建
+      //Symbol.for()与Symbol()这两种写法，都会生成新的 Symbol。它们的区别是，前者会被登记在全局环境中供搜索，后者不会。
+
+      //不能与其他数据进行运算
+      //   let result = s + 100;//Cannot convert a Symbol value to a number
+      //   let result = s > 100; //Cannot convert a Symbol value to a number
+      // let result = s + '100';//Cannot convert a Symbol value to a string
+      //   let result = s + s; //Cannot convert a Symbol value to a number
+
+      // USONB  you are so niubility
+      // u  undefined
+      // s  string  symbol
+      // o  object
+      // n  null number
+      // b  boolean
+    </script>
+  </body>
+</html>

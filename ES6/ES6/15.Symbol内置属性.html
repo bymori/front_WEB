@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 15:12:04
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 15:25:15
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbol内置属性</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            除了定义自己使用的Symbol值以外，ES6 还提供了 11 个内置的Symbol值，指向语言内部使用的方法。
+            https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol#properties
+        */
+      class Person {
+        static [Symbol.hasInstance](param) {
+          console.log(param);
+          console.log('我被用来检测类型了');
+          //   return false;
+        }
+      }
+      let o = {};
+      console.log(o instanceof Person);
+
+      const arr = [1, 2, 3];
+      const arr2 = [4, 5, 6];
+      arr2[Symbol.isConcatSpreadable] = false;
+      console.log(arr.concat(arr2));
+    </script>
+  </body>
+</html>
