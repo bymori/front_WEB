@@ -1,0 +1,43 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 21:35:52
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 22:47:04
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>类的静态成员</title>
+  </head>
+  <body>
+    <script>
+      /* function Phone() {}
+      Phone.name = '手机';
+      Phone.change = function () {
+        console.log('我可以改变世界！');
+      };
+
+      Phone.prototype.size = '5.5inch';
+      let nokia = new Phone();
+      console.log(nokia.name);
+      //   nokia.change()
+      console.log(nokia.size); */
+
+      class Phone {
+        //静态属性
+        name = '手机';
+        change() {
+          console.log('我可以改变世界！');
+        }
+      }
+      let nokia = new Phone();
+      console.log(nokia.name);
+      console.log(Phone.name);
+    </script>
+  </body>
+</html>

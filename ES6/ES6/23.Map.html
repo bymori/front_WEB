@@ -1,0 +1,53 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-22 21:02:37
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-22 21:15:31
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map</title>
+  </head>
+  <body>
+    <script>
+      //声明 Map
+      let m = new Map();
+
+      //添加元素
+      m.set('name', '沫沫');
+      m.set('change', function () {
+        console.log('我们可以改变你!!');
+      });
+      let key = {
+        website: 'ioinn.cn',
+      };
+      m.set(key, ['北京', '上海', '深圳']);
+
+      //size
+      console.log(m.size);
+
+      //删除
+      console.log(m.delete('name') ? '删除成功' : '删除失败');
+
+      //获取
+      console.log('获取:', m.get('change'));
+      console.log('获取:', m.get(key));
+
+      //清空
+      //   m.clear();
+
+      //遍历
+      for (let v of m) {
+        console.log('遍历:', v);
+      }
+
+      console.log(m);
+    </script>
+  </body>
+</html>
