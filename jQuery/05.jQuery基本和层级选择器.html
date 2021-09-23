@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 21:21:10
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-23 21:23:45
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery基本和层级选择器</title>
+    <script src="jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div>我是div</div>
+    <div class="nav">我是nav div</div>
+    <p>我是p</p>
+    <ol>
+      <li>我是ol 的</li>
+      <li>我是ol 的</li>
+      <li>我是ol 的</li>
+      <li>我是ol 的</li>
+    </ol>
+    <ul>
+      <li>我是ul 的</li>
+      <li>我是ul 的</li>
+      <li>我是ul 的</li>
+      <li>我是ul 的</li>
+    </ul>
+    <script>
+      $(function () {
+        console.log($('.nav'));
+        console.log($('ul li'));
+      });
+    </script>
+  </body>
+</html>

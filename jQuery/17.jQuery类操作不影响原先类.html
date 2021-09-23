@@ -1,0 +1,43 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 22:53:26
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-24 00:12:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery类操作不影响原先类</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <style>
+      .one {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        transition: all 0.5s;
+      }
+
+      .two {
+        transform: rotate(720deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="one two"></div>
+    <!-- <div class="one"></div> -->
+    <script>
+      $(function () {
+        // var one = document.querySelector('.one');
+        // one.className = 'two';
+
+        // $('.one').addClass('two');//这个addClass相当于追加类名 不影响以前的类名
+        $('.one').removeClass('two');
+      });
+    </script>
+  </body>
+</html>
