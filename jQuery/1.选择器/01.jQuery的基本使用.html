@@ -2,9 +2,9 @@
  * @Descripttion: 
  * @version: 
  * @Author: by_mori
- * @Date: 2021-09-23 22:53:25
+ * @Date: 2021-09-23 20:39:34
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-24 01:25:46
+ * @LastEditTime: 2021-09-24 02:03:13
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +12,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jQuery自定义动画效果animate</title>
-    <script src="jquery-3.6.0.min.js"></script>
+    <title>jQuery的基本使用</title>
+    <script src="../../../jquery-3.6.0.min.js"></script>
     <style>
       div {
-        position: absolute;
         width: 200px;
         height: 200px;
         background-color: pink;
@@ -24,22 +23,17 @@
     </style>
   </head>
   <body>
-    <button>动起来</button>
-    <div></div>
     <script>
+      //   $('div').hide();
+      // 1. 等着页面DOM加载完毕再去执行js 代码
+      // $(document).ready(function() {
+      //     $('div').hide();
+      // })
+      // 2.  等着页面DOM加载完毕再去执行js 代码
       $(function () {
-        $('button').click(function () {
-          $('div').animate(
-            {
-              left: 500,
-              top: 300,
-              opacity: 0.4,
-              width: 500,
-            },
-            500
-          );
-        });
+        $('div').hide();
       });
     </script>
+    <div></div>
   </body>
 </html>

@@ -2,9 +2,9 @@
  * @Descripttion: 
  * @version: 
  * @Author: by_mori
- * @Date: 2021-09-23 20:50:10
+ * @Date: 2021-09-23 22:53:25
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-23 20:52:48
+ * @LastEditTime: 2021-09-24 01:25:46
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,10 +12,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jQuery顶级对象$</title>
-    <script src="jquery-3.6.0.min.js"></script>
+    <title>jQuery自定义动画效果animate</title>
+    <script src="../jquery-3.6.0.min.js"></script>
     <style>
       div {
+        position: absolute;
         width: 200px;
         height: 200px;
         background-color: pink;
@@ -23,19 +24,22 @@
     </style>
   </head>
   <body>
+    <button>动起来</button>
     <div></div>
     <script>
-      // 1. $ 是jQuery的别称（另外的名字）
-      //   $(function () {
-      //     // alert(1);
-      //   });
-
-      jQuery(function () {
-        // alert(1);
-        // $('div').hide();
-        jQuery('div').hide();
+      $(function () {
+        $('button').click(function () {
+          $('div').animate(
+            {
+              left: 500,
+              top: 300,
+              opacity: 0.4,
+              width: 500,
+            },
+            500
+          );
+        });
       });
-      // 2. $同时也是jQuery的 顶级对象
     </script>
   </body>
 </html>

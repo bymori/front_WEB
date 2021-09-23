@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-23 22:03:00
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-24 00:28:31
+ * @LastEditTime: 2021-09-24 00:24:56
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>新浪下拉菜单-动画</title>
+    <title>新浪下拉菜单</title>
     <style>
       * {
         margin: 0;
@@ -70,7 +70,7 @@
         background-color: #fff5da;
       }
     </style>
-    <script src="jquery-3.6.0.min.js"></script>
+    <script src="../../jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <ul class="nav">
@@ -134,37 +134,14 @@
     <script>
       $(function () {
         // 鼠标经过
-        /*  $('.nav>li').mouseover(function () {
+        $('.nav>li').mouseover(function () {
           // $(this) jQuery 当前元素  this不要加引号
           // show() 显示元素  hide() 隐藏元素
-          // $(this).children('ul').show();
-          $(this).children('ul').slideDown(300);
+          $(this).children('ul').show();
         });
         // 鼠标离开
         $('.nav>li').mouseout(function () {
-          $(this).children('ul').slideUp(300);
-        }); */
-
-        // 1.事件切换
-        /* $('.nav>li').hover(
-          function () {
-            $(this).children('ul').slideDown(300);
-          },
-          function () {
-            $(this).children('ul').slideUp(300);
-          }
-        ); */
-
-        // 2. 事件切换 hover  如果只写一个函数，那么鼠标经过和鼠标离开都会触发这个函数
-
-        /* $('.nav>li').hover(function () {
-          // $(this).children('ul').slideToggle(300);
-        }); */
-
-        // jQuery停止动画排队stop方法
-        $('.nav>li').hover(function () {
-          // stop 方法必须写到动画的前面
-          $(this).children('ul').stop().slideToggle();
+          $(this).children('ul').hide();
         });
       });
     </script>
