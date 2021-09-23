@@ -1,0 +1,49 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 16:08:32
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-23 16:19:39
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>私有属性</title>
+  </head>
+  <body>
+    <script>
+      class Person {
+        //公有属性
+        name;
+        //私有属性
+        #age;
+        #weight;
+        //构造方法
+        constructor(name, age, weight) {
+          this.name = name;
+          this.#age = age;
+          this.#weight = weight;
+        }
+
+        intro() {
+          console.log(girl.name);
+          console.log(girl.#age); //私有属性'#age'必须在封闭类中声明
+          console.log(girl.#weight);
+        }
+      }
+
+      //实例化
+      const girl = new Person('冰冰', 19, '45kg');
+      console.log(girl);
+      girl.intro();
+      
+      //   console.log(girl.name);
+      //   console.log(girl.#age);//私有属性'#age'必须在封闭类中声明
+      //   console.log(girl.#weight);
+    </script>
+  </body>
+</html>
