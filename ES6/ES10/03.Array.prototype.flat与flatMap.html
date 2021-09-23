@@ -1,0 +1,35 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 15:58:45
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-23 16:05:16
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flat 与 flatMap</title>
+  </head>
+  <body>
+    <script>
+      //flat 平
+      //将多维数组转化为低位数组
+      //   const arr = [1, 2, 3, 4, [5, 6]];
+      //   const arr = [1, 2, 3, 4, [5, 6, [7, 8, 9, [10, 11]]]];
+
+      //参数为深度 是一个数字 默认为1
+      //   console.log(arr.flat(3));
+
+      //flatMap
+      const arr = [1, 2, 3, 4];
+      //   const result = arr.map((item) => item * 10);
+      // const result = arr.map((item) => [item * 10]);
+      const result = arr.flatMap((item) => [item * 10]);
+      console.log(result);
+    </script>
+  </body>
+</html>

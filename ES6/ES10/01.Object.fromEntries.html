@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 15:37:59
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-23 15:54:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object.fromEntries</title>
+  </head>
+  <body>
+    <script>
+      //二维数组
+      // const result = Object.fromEntries([
+      //   ['name', '沫沫'],
+      //   ['xueke', 'Java,大数据,前端,云计算'],
+      // ]);
+      // console.log(result);
+
+      //Map
+      //   const m = new Map();
+      //   m.set('name', 'ioinn');
+      //   m.set('xueke', 'Java,大数据,前端,云计算');
+      //   const result = Object.fromEntries(m);
+      //   console.log(result);
+
+      //Object.entries ES8
+      const arr = Object.entries({
+        name: '沫沫',
+        xueke: ['Java', '大数据', '前端', '云计算'],
+      });
+      console.log(arr);
+    </script>
+  </body>
+</html>
