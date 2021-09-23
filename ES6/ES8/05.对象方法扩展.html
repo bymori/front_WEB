@@ -1,0 +1,53 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 14:45:09
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-23 14:52:45
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ES8 对象方法扩展</title>
+  </head>
+  <body>
+    <script>
+      //声明对象
+      const school = {
+        name: '沫沫',
+        cities: ['北京', '上海', '深圳'],
+        xueke: ['前端', 'Java', '大数据', '运维'],
+      };
+
+      //获取对象所有的键
+      //   console.log(Object.keys(school));
+
+      //获取对象所有的值
+      //   console.log(Object.values(school));
+
+      //entries
+      //   console.log(Object.entries(school));
+
+      //创建 Map
+      //   const m = new Map(Object.entries(school));
+      //   console.log(m);
+      //   console.log(m.get('xueke'));
+
+      //对象属性的描述对象
+      //   console.log(Object.getOwnPropertyDescriptors(school));
+
+      const obj = Object.create(null, {
+        name: {
+          value: '末日',
+          writable: true,
+          configurable: true,
+          enumerable: true,
+        },
+      });
+    </script>
+  </body>
+</html>

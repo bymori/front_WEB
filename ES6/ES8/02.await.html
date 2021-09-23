@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 13:00:35
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-23 14:17:20
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>await</title>
+  </head>
+  <body>
+    <script>
+      //创建 promise 对象
+      const p = new Promise((resolve, reject) => {
+        // resolve('用户数据');
+        reject('失败啦!');
+      });
+
+      // await 要放在 async 函数中
+      async function main() {
+        try {
+          let result = await p;
+          console.log('result', result);
+        } catch (error) {
+          console.warn(error);
+        }
+      }
+
+      //调用函数
+      main();
+    </script>
+  </body>
+</html>
