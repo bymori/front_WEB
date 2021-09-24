@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-24 21:37:03
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-24 21:42:40
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件对象</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+    </style>
+    <script src="../jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      $(function () {
+        $(document).on('click', function () {
+          console.log('点击了document');
+        });
+        $('div').on('click', function (event) {
+          //   console.log(event);
+          console.log('点击了div');
+          event.stopPropagation(); //阻止冒泡
+        });
+      });
+    </script>
+  </body>
+</html>
