@@ -1,0 +1,58 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-24 13:41:03
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-24 17:23:18
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery元素大小</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        padding: 10px;
+        border: 15px solid red;
+        margin: 20px;
+      }
+    </style>
+    <script src="../jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      $(function () {
+        // 1. width() / height() 获取设置元素 width和height大小
+        console.log('width和height大小', $('div').width(), $('div').height());
+
+        // 2. innerWidth() / innerHeight()  获取设置元素 width和height + padding 大小
+        console.log(
+          'width和height + padding 大小',
+          $('div').innerWidth(),
+          $('div').innerHeight()
+        );
+
+        // 3. outerWidth()  / outerHeight()  获取设置元素 width和height + padding + border 大小
+        console.log(
+          'width和height + padding + border 大小',
+          $('div').outerWidth(),
+          $('div').outerWidth()
+        );
+        
+        // 4. outerWidth(true) / outerHeight(true) 获取设置 width和height + padding + border + margin
+        console.log(
+          'width和height + padding + border + margin',
+          $('div').outerWidth(true),
+          $('div').outerWidth(true)
+        );
+      });
+    </script>
+  </body>
+</html>
