@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 00:43:35
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 00:54:49
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+  </head>
+  <body>
+    <h1>io小栈</h1>
+    <button>点击获取用户数据</button>
+    <script>
+      const btn = document.querySelector('button');
+
+      btn.onclick = function () {
+        var xhr = new XMLHttpRequest();
+        //这里因为是满足同源策略的, 所以 url 可以简写
+        xhr.open('get', '/data');
+        //发送请求
+        xhr.send(null);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              console.log(xhr.response);
+            }
+          }
+        };
+      };
+    </script>
+  </body>
+</html>

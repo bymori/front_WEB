@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 00:33:37
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 00:40:35
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch 发送 AJAX请求</title>
+  </head>
+  <body>
+    <button>AJAX请求</button>
+    <script>
+      //文档地址
+      //https://developer.mozilla.org/zh-CN/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+      const btn = document.querySelector('button');
+      let url = 'http://127.0.0.1:8000/fetch-server';
+      btn.onclick = function () {
+        fetch(url + '?vip=10', {
+          method: 'POST',
+          headers: { name: 'ioinn' },
+          body: 'username=admin&password=admin',
+        })
+          .then(function (data) {
+            return data.json();
+          })
+          .then(function (data) {
+            console.log(data);
+          });
+      };
+    </script>
+  </body>
+</html>

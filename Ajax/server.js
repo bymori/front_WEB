@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-23 16:58:32
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-23 19:12:13
+ * @LastEditTime: 2021-09-25 01:37:34
  */
 //1. 引入express
 const express = require('express');
@@ -67,6 +67,85 @@ app.get('/delay', (request, response) => {
     //设置响应体
     response.send('HELLO AJAX 延迟了');
   }, 3000);
+});
+
+//jQuery 服务
+app.all('/jquery-server', (request, response) => {
+  //设置响应头  设置允许跨域
+  response.header('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Headers', '*');
+  // response.send('Hello jQuery AJAX');
+  const data = { name: '沫沫jquery' };
+  response.send(JSON.stringify(data));
+});
+
+//axios 服务
+app.all('/axios-server', (request, response) => {
+  //设置响应头  设置允许跨域
+  response.header('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Headers', '*');
+  // response.send('Hello jQuery AJAX');
+  const data = { name: '沫沫axios' };
+  response.send(JSON.stringify(data));
+});
+//fetch 服务
+app.all('/fetch-server', (request, response) => {
+  //设置响应头  设置允许跨域
+  response.header('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Headers', '*');
+  // response.send('Hello jQuery AJAX');
+  const data = { name: '沫沫fetch' };
+  response.send(JSON.stringify(data));
+});
+
+//jsonp 服务
+app.all('/jsonp-server', (request, response) => {
+  // response.send('console.log("沫沫jsonps")');
+  const data = {
+    name: '沫沫jsonp',
+  };
+  //将数据转化为字符串
+  let str = JSON.stringify(data);
+  //返回结果
+  response.end(`handle(${str})`);
+});
+
+//用户名检测是否存在
+app.all('/check-username', (request, response) => {
+  // response.send('console.log("沫沫jsonps")');
+  const data = {
+    exist: 1,
+    msg: '用户名已存在，请重新输入',
+  };
+  //将数据转化为字符串
+  let str = JSON.stringify(data);
+  //返回结果
+  response.end(`handle(${str})`);
+});
+//jQuery-jsonp
+app.all('/jquery-jsonp-server', (request, response) => {
+  // response.send('console.log("沫沫jsonps")');
+  const data = {
+    website: 'ioinn.cn',
+    name: ['末日', '沫沫', '千凉'],
+  };
+  //将数据转化为字符串
+  let str = JSON.stringify(data);
+  //接收 callback 参数
+  let cb = request.query.callback;
+  //返回结果
+  response.end(`${cb}(${str})`);
+});
+
+//cors
+app.all('/cors-server', (request, response) => {
+  //设置响应头
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Headers', '*');
+  response.setHeader('Access-Control-Allow-Method', '*');
+  
+  // response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+  response.send('hello CORS');
 });
 
 //4. 监听端口启动服务
