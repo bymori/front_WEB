@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "io小栈",
+      "author": "小编"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "body": "喜大普奔",
+      "postId": 2,
+      "id": 2
+    },
+    {
+      "body": "加一条评论",
+      "postId": 2,
+      "id": 3
+    },
+    {
+      "body": "加一条评论",
+      "postId": 2,
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
