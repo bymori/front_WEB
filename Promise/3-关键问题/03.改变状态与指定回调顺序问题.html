@@ -1,0 +1,33 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 15:37:10
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 15:42:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>改变状态与指定回调顺序问题</title>
+  </head>
+  <body>
+    <script>
+      let p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('ok');
+        }, 1000);
+      });
+
+      p.then(
+        (value) => {
+          console.log(value);
+        },
+        (reason) => {}
+      );
+    </script>
+  </body>
+</html>

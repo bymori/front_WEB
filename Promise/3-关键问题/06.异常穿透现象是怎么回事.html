@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 15:53:59
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 15:57:40
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>异常穿透现象是怎么回事</title>
+  </head>
+  <body>
+    <script>
+      let p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('ok');
+          //   reject('error');
+        }, 1000);
+      });
+
+      p.then((value) => {
+        // console.log(111);
+        throw '失败了';
+      })
+        .then((value) => {
+          console.log(222);
+        })
+        .then((value) => {
+          console.log(333);
+        })
+        .catch((reason) => {
+          console.warn(reason);
+        });
+    </script>
+  </body>
+</html>

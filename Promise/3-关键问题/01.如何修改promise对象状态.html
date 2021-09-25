@@ -1,0 +1,33 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 15:27:51
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 15:31:21
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>如何修改promise对象状态</title>
+  </head>
+  <body>
+    <script>
+      let p = new Promise((resolve, reject) => {
+        //1. resolve 函数
+        // resolve('ok'); // pending   => fulfilled (resolved)
+
+        //2. reject 函数
+        // reject('error'); // pending  =>  rejected
+
+        //3. 抛出错误
+        throw '出问题了';
+      });
+
+      console.log(p);
+    </script>
+  </body>
+</html>

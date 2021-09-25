@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 15:58:11
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 15:59:38
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>如何中断Promise链条</title>
+  </head>
+  <body>
+    <script>
+      let p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('ok');
+        }, 1000);
+      });
+
+      p.then((value) => {
+        console.log(111);
+        //有且只有一个方式 返回一个 pending 状态的Promise对象
+        return new Promise(() => {});
+      })
+        .then((value) => {
+          console.log(222);
+        })
+        .then((value) => {
+          console.log(333);
+        })
+        .catch((reason) => {
+          console.warn(reason);
+        });
+    </script>
+  </body>
+</html>

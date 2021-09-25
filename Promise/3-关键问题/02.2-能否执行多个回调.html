@@ -1,0 +1,35 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 15:32:52
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 15:36:45
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>能否执行多个回调</title>
+  </head>
+  <body>
+    <script>
+      //一个 Promise 指定多个成功/失败回调函数,都会调用
+      let p = new Promise((resolve, reject) => {
+        // resolve('ok');
+      });
+
+      //指定回调 - 1
+      p.then((value) => {
+        console.log(value);
+      });
+
+      //指定回调 - 2
+      p.then((value) => {
+        alert(value);
+      });
+    </script>
+  </body>
+</html>
