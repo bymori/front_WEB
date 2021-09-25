@@ -1,0 +1,43 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 16:13:12
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 20:23:53
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>同步修改状态then方法返回结果</title>
+    <script src="./promise.js"></script>
+  </head>
+  <body>
+    <script>
+      let p = new Promise((resolve, reject) => {
+        resolve('ok');
+      });
+
+      //指向 then 方法
+      const res = p.then(
+        (value) => {
+          // console.log(value);
+          // return 'hello'
+          /* return new Promise((resolve, reject) => {
+            // resolve('success');
+            reject('失败了');
+          }); */
+          //抛出异常
+          throw '出异常了';
+        },
+        (reason) => {
+          console.warn(reason);
+        }
+      );
+      console.log(res);
+    </script>
+  </body>
+</html>

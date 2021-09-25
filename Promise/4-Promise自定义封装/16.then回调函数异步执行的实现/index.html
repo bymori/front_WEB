@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 16:13:12
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 20:25:16
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>then回调函数异步执行的实现</title>
+    <script src="./promise.js"></script>
+  </head>
+  <body>
+    <script>
+      let p1 = new Promise((resolve, reject) => {
+        // resolve('ok');
+        reject('error');
+        console.log(111);
+      });
+
+      p1.then(
+        (value) => {
+          console.log(222);
+        },
+        (reason) => {
+          console.log(444);
+        }
+      );
+      console.log(333);
+    </script>
+  </body>
+</html>

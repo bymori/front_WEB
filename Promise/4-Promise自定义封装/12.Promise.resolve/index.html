@@ -1,0 +1,33 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 16:13:12
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 20:24:43
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise.resolve</title>
+    <script src="./promise.js"></script>
+  </head>
+  <body>
+    <script>
+      let p = Promise.resolve('ok');
+      let p2 = new Promise.resolve(
+        new Promise((resolve, reject) => {
+          // resolve('p2-ok');
+          reject('p2-ex');
+        })
+      );
+      let p3 = Promise.resolve(Promise.resolve('okokokokok'));
+      console.log(p);
+      console.log(p2);
+      console.log(p3);
+    </script>
+  </body>
+</html>
