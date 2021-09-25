@@ -1,0 +1,32 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 15:21:56
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 15:24:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise的API-race</title>
+  </head>
+  <body>
+    <script>
+      let p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('ok');
+        }, 1000);
+      });
+      let p2 = Promise.resolve('Success');
+      //   let p2 = Promise.reject('Error');
+      let p3 = Promise.resolve('成功');
+
+      const result = Promise.race([p1, p2, p3]);
+      console.log(result);
+    </script>
+  </body>
+</html>

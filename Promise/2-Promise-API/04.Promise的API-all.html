@@ -1,0 +1,32 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-25 15:16:14
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-25 15:21:42
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise的API-all</title>
+  </head>
+  <body>
+    <script>
+      let p1 = new Promise((resolve, reject) => {
+        resolve('ok');
+      });
+      //   let p2 = Promise.resolve('Success');
+      let p2 = Promise.reject('Error');
+      let p3 = Promise.resolve('成功');
+
+      const result = Promise.all([p1, p2, p3]);
+      console.log(result);
+
+      //多个失败结果只会返回第一个查找到的失败结果值
+    </script>
+  </body>
+</html>
