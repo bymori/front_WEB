@@ -9,9 +9,10 @@
 5. [ES6](ES6)
 6. [Ajax](Ajax)
 7. [jQuery](jQuery)
-8. [Promise][Promise]
-8. [Axios][Axios]
+8. [Promise](Promise)
+9. [Axios](Axios)
+10. [Webpack](Webpack)
 
 
 
-HTML->CSS-JS->ES6->node->AJAX->Promise->axios->vue(React)框架
+HTML->CSS-JS->ES6->node->AJAX->Promise->Axios->vue(React)框架
