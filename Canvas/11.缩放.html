@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-28 23:24:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-28 23:36:29
+ * @LastEditTime: 2021-09-28 23:59:56
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +20,28 @@
       /** @type {HTMLCanvasElement} */
       let canvas = document.querySelector('#c1');
       let cxt = canvas.getContext('2d');
-      
-      cxt.fillStyle = 'pink';
-      cxt.fillRect(100, 0, 300, 100);
 
-      cxt.rotate(Math.PI / 4);
+      cxt.fillStyle = 'hotpink';
+      cxt.fillRect(0, 0, 100, 100);
+
+      //保留环境的状态（画笔的状态）
+      cxt.save();
+
+      cxt.scale(2, 4);
       cxt.fillStyle = 'pink';
       cxt.fillRect(100, 0, 300, 100);
+      cxt.save();
+
+      //恢复之前保留的画笔状态
+      cxt.restore();
+      //恢复距离最近一次保留画笔的状态 即33行保存的cxt.scale(2, 4); 状态
+      cxt.fillStyle = 'red';
+      cxt.fillRect(100, 120, 300, 10);
+
+      cxt.restore();
+      // cxt.scale(0.5, 0.25);
+      // cxt.fillStyle = 'hotpink';
+      cxt.fillRect(0, 150, 100, 100);
     </script>
   </body>
 </html>
