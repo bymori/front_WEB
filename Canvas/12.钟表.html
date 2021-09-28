@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-29 00:01:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-29 00:55:40
+ * @LastEditTime: 2021-09-29 01:04:03
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +50,8 @@
         }
         cxt.restore();
         cxt.save();
-        //绘制时钟刻度
 
+        //绘制时钟刻度
         for (let i = 0; i < 12; i++) {
           cxt.rotate(Math.PI / 6);
           cxt.beginPath();
@@ -74,6 +74,23 @@
         //如果时间是大于12的话,就直接减去12
         hour = hour > 12 ? hour - 12 : hour;
         // console.log(hour + ':' + min + ':' + sec);
+
+        //表盘数字
+        cxt.rotate(Math.PI / 2);
+        for (var i = 0; i < 12; i++) {
+          var num = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2];
+          cxt.beginPath();
+          cxt.save();
+          cxt.translate(-10, 10);
+          cxt.fillStyle = 'black';
+          cxt.font = '30px 黑体';
+          var x = Math.cos(((2 * Math.PI) / 12) * i) * 165;
+          var y = Math.sin(((2 * Math.PI) / 12) * i) * 165;
+          cxt.fillText(num[i], x, y);
+          cxt.stroke();
+          cxt.restore();
+          cxt.closePath();
+        }
 
         //绘制秒针
         cxt.beginPath();
