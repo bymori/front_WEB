@@ -1,0 +1,57 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-28 21:03:16
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-28 21:27:43
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绘制图像</title>
+  </head>
+  <body>
+    <canvas id="c1" width="600" height="600"></canvas>
+    <script>
+      /** @type {HTMLCanvasElement} */
+      let c1 = document.querySelector('#c1');
+      let ctx = c1.getContext('2d');
+
+      //语法：context.drawImage(图像对象,x位置,y位置);
+      //语法：context.drawImage(图像对象,x位置,y位置,宽度,高度);
+      //语法：context.drawImage(图像对象,图像裁剪的位置x,图像裁剪的位置y,裁剪的宽度,裁剪的高度,x位置,y位置,宽度,高度);
+
+      //绘制图像
+      let img = new Image();
+      img.src = 'img/85297850_p0_master1200.jpg';
+
+      let img2 = new Image();
+      img2.src = 'img/wallhaven-eoj2p8.png';
+
+      //图片载入数据后再绘制内容
+      img.onload = function () {
+        //语法：context.drawImage(img,x,y);
+        ctx.drawImage(img, 0, 0);
+        console.log(img);
+      };
+
+      /* img2.onload = function () {
+        //语法：context.drawImage(img,x,y,width,height);
+        ctx.drawImage(img2, 100, 100, 300, 300);
+        ctx.font = '20px 微软雅黑';
+        ctx.fillText('io小栈', 500, 550);
+      }; */
+
+      img2.onload = function () {
+        //语法：context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+        ctx.drawImage(img2, 0, 0, 200, 200, 200, 100, 300, 300);
+        ctx.font = '20px 微软雅黑';
+        ctx.fillText('io小栈', 500, 550);
+      };
+    </script>
+  </body>
+</html>

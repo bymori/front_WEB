@@ -1,0 +1,54 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-28 16:44:06
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-28 17:49:10
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+  </head>
+  <body>
+    <!-- 
+        Canvas 三要素
+        id : 作为唯一的标识
+        width : 画布内容宽度的像素的大小
+        height : 画布内容高度的像素的大小
+            与style的宽度和高度是有区别
+
+        Canvas 仅仅只是1个画布标签， 要绘制内容，必须用js绘制
+     -->
+    <canvas id="c1" width="200" height="200"
+      >这里的内容，正常的画布是不现实的。你的浏览器不支持canvas</canvas
+    >
+    <script>
+      /** @type {HTMLCanvasElement} */
+      //1. 找到画布对象
+      let c1 = document.querySelector('#c1');
+      console.log([c1]);
+
+      //2.上下文对象 （画笔）
+      let ctx = c1.getContext('2d');
+      console.log(ctx);
+
+      //3. 绘制路径
+      //  语法：context.rect(x,y,width,height);
+      ctx.rect(50, 50, 100, 100);
+
+      //4. 填充
+      ctx.fillStyle = 'pink';
+      ctx.fill();
+
+      //5. 描边 渲染路径
+      ctx.strokeStyle = '#bfa';
+      ctx.lineWidth = 10;
+      ctx.stroke();
+    </script>
+  </body>
+</html>

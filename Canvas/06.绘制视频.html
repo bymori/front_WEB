@@ -1,0 +1,44 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-28 21:29:53
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-28 21:50:59
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绘制视频</title>
+  </head>
+  <body>
+    <canvas id="c1" width="200" height="200"></canvas>
+    <video width="220" height="" src="img/mov_bbb.mp4" controls></video>
+    <script>
+      /** @type {HTMLCanvasElement} */
+      let canvas = document.querySelector('#c1');
+      let video = document.querySelector('video');
+
+      let interId;
+      let ctx = canvas.getContext('2d');
+      video.onplay = function () {
+        interId = setInterval(() => {
+          ctx.clearRect(0, 0, 200, 150);
+          ctx.fillRect(0, 0, 300, 300);
+          ctx.drawImage(video, 0, 50, 200, 100);
+
+          ctx.font = '20px 微软雅黑';
+          ctx.strokeStyle = '#a5a5ed';
+          ctx.strokeText('io小栈', 100, 180);
+        }, 17);
+      };
+
+      video.onpause = function () {
+        clearInterval(interId);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-28 19:37:01
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-28 19:48:11
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="c1" width="600" height="600"></canvas>
+    <script>
+      /** @type {HTMLCanvasElement} */
+      let c1 = document.querySelector('#c1');
+      let ctx = c1.getContext('2d');
+
+      //创建一个圆形：
+      // 语法：context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+      //   x 圆的中心的 x 坐标。
+      //   y 圆的中心的 y 坐标。
+      //   r 圆的半径。
+      //   sAngle 起始角，以弧度计（弧的圆形的三点钟位置是 0 度）。
+      //   eAngle 结束角，以弧度计。
+      //   counterclockwise 可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆时针。
+      ctx.arc(200, 200, 100, 0, 2 * Math.PI, true);
+
+      ctx.fillStyle = 'bisque';
+      ctx.fill();
+      ctx.stroke();
+    </script>
+  </body>
+</html>
