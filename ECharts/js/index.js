@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-29 23:13:53
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-30 01:14:38
+ * @LastEditTime: 2021-09-30 01:56:19
  */
 // 柱状图1模块
 (function () {
@@ -113,6 +113,113 @@
   // 把配置给实例对象
   myChart.setOption(option);
   // 让图表跟随屏幕自动的去适应
+  window.addEventListener('resize', function () {
+    myChart.resize();
+  });
+})();
+
+//柱状图2
+
+(function () {
+  var myColor = ['#1089E7', '#F57474', '#56D0E3', '#F8B448', '#8B78F6'];
+  // 1. 实例化对象
+  var myChart = echarts.init(document.querySelector('.bar2 .chart'));
+
+  // 2. 指定配置和数据
+  var option = {
+    grid: {
+      top: '10%',
+      left: '22%',
+      bottom: '10%',
+      //   containLabel: true,
+    },
+    // 不显示x轴的相关信息
+    xAxis: {
+      show: false,
+    },
+    yAxis: [
+      {
+        type: 'category',
+        // inverse: true, 是否是反向坐标轴。
+        inverse: true,
+        data: ['HTML5', 'CSS3', 'javascript', 'VUE', 'NODE'],
+        // 不显示y轴的线
+        axisLine: {
+          show: false,
+        },
+        // 不显示刻度
+        axisTick: {
+          show: false,
+        },
+        // 把刻度标签里面的文字颜色设置为白色
+        axisLabel: {
+          color: '#fff',
+        },
+      },
+      {
+        type: 'category',
+        data: [702, 350, 610, 793, 664],
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          color: '#fff',
+        },
+      },
+    ],
+    series: [
+      {
+        name: '条',
+        type: 'bar',
+        data: [70, 80, 90, 85, 60],
+        //两组柱子层叠
+        yAxisIndex: 0,
+        // 修改第一组柱子的圆角
+        itemStyle: {
+          barBorderRadius: 20,
+          // 此时的color 可以修改柱子的颜色
+          //   color: 'pink',
+          color: function (params) {
+            // params 传进来的是柱子对象
+            // console.log(params);
+            // dataIndex 是当前柱子的索引号
+            return myColor[params.dataIndex];
+          },
+        },
+        // 柱子之间的距离
+        barCategoryGap: 50,
+        //柱子的宽度
+        barWidth: 10,
+        // 显示柱子内的文字
+        label: {
+          show: true,
+          position: 'inside',
+          // {c} 会自动的解析为 数据  data里面的数据
+          formatter: '{c}%',
+        },
+      },
+      {
+        name: '框',
+        type: 'bar',
+        yAxisIndex: 1,
+        barCategoryGap: 50,
+        barWidth: 15,
+        itemStyle: {
+          color: 'none',
+          borderColor: '#00c1de',
+          borderWidth: 3,
+          barBorderRadius: 15,
+        },
+        data: [100, 100, 100, 100, 100],
+      },
+    ],
+  };
+  // 3. 把配置给实例对象
+  myChart.setOption(option);
+  // 4. 让图表跟随屏幕自动的去适应
   window.addEventListener('resize', function () {
     myChart.resize();
   });
