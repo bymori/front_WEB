@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-29 18:39:24
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-29 21:45:55
+ * @LastEditTime: 2021-09-30 00:43:57
 -->
 
 <!DOCTYPE html>
@@ -56,7 +56,7 @@
       <div class="column">
         <div class="panel bar">
           <h2>柱形图</h2>
-          <div class="chart">图表</div>
+          <div class="chart"></div>
           <div class="panel-footer"></div>
         </div>
         <div class="panel line">
@@ -79,7 +79,20 @@
               <li>99999</li>
             </ul>
           </div>
-          <div class="no-bd">文字</div>
+          <div class="no-bd">
+            <ul>
+              <li>需求人数</li>
+              <li>供应人数</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 地图模块 -->
+        <div class="map">
+          <div class="chart"></div>
+          <div class="map1"></div>
+          <div class="map2"></div>
+          <div class="map3"></div>
         </div>
       </div>
       <div class="column">
@@ -101,5 +114,7 @@
       </div>
     </section>
     <script src="js/flexible.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

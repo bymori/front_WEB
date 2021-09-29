@@ -117,7 +117,7 @@ header {
     }
     .chart {
       height: 3rem;
-      background-color: pink;
+      //   background-color: pink;
     }
   }
 }
@@ -170,6 +170,78 @@ header {
           top: 25%;
         }
       }
+    }
+  }
+  .no-bd {
+    ul {
+      display: flex;
+      li {
+        flex: 1;
+        height: 0.5rem;
+        line-height: 0.5rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        font-size: 0.225rem;
+        padding-top: 0.125rem;
+      }
+    }
+  }
+}
+
+.map {
+  position: relative;
+  height: 10.125rem;
+  .map1 {
+    width: 6.475rem;
+    height: 6.475rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url(../images/map.png);
+    //   background-size: contain;//等比缩放，按照某一边来覆盖显示区域的，若区域大于图片的比例，会有白边，图片不会变形
+    background-size: 100% 100%; //按容器比例撑满，图片变形；
+    opacity: 0.3;
+  }
+  .map2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8.0375rem;
+    height: 8.0375rem;
+    background: url(../images/lbx.png);
+    background-size: 100% 100%;
+    opacity: 0.6;
+    animation: rotate1 15s linear infinite;
+  }
+  .map3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 7.075rem;
+    height: 7.075rem;
+    background: url(../images/jt.png);
+    background-size: 100% 100%;
+    opacity: 0.6;
+    animation: rotate1 10s linear infinite reverse;
+    // animation-direction: reverse;
+  }
+  .chart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10.125rem;
+    width: 100%;
+  }
+
+  @keyframes rotate1 {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
     }
   }
 }
