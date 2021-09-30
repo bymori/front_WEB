@@ -1,0 +1,86 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-30 16:29:48
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-01 01:22:55
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>内置主题的使用</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      //  init方法有两个参数，第一个参数代表是一个dom节点，第二个参数，代表你需要使用哪一套主题
+      //  默认内置了两套主题，light dark
+      var mCharts = echarts.init(document.querySelector('div'), 'dark');
+      var xDataArr = [
+        '张三',
+        '李四',
+        '王五',
+        '闰土',
+        '小明',
+        '茅台',
+        '二妞',
+        '大强',
+      ];
+      var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86];
+      /** @type EChartsOption */
+      var option = {
+        //纵向图
+        xAxis: {
+          type: 'category',
+          data: xDataArr,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            name: '语文',
+            type: 'bar',
+            markPoint: {
+              // 标记点
+              data: [
+                {
+                  type: 'max',
+                  name: '最大值',
+                },
+                {
+                  type: 'min',
+                  name: '最小值',
+                },
+              ],
+            },
+            markLine: {
+              // 标记线
+              data: [
+                {
+                  type: 'average',
+                  name: '平均值',
+                },
+              ],
+            },
+            label: {
+              // 柱状图上的文字设置
+              show: true, // 是否显示
+              rotate: 10, // 旋转角度
+              position: 'top', // 显示位置
+            },
+            barWidth: '30%', // 柱的宽度
+            data: yDataArr,
+          },
+        ],
+      };
+
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>
