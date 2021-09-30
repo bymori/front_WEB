@@ -1,0 +1,70 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-30 19:47:49
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-30 20:20:17
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>折线图的实现</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      var xDataArr = [
+        '1月',
+        '2月',
+        '3月',
+        '4月',
+        '5月',
+        '6月',
+        '7月',
+        '8月',
+        '9月',
+        '10月',
+        '11月',
+        '12月',
+      ];
+      var yDataArr = [
+        3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600,
+      ];
+      var yDataArr2 = [
+        2000, 3800, 1900, 500, 900, 1700, 2400, 300, 1900, 1500, 1800, 200,
+      ];
+      /** @type EChartsOption */
+      var option = {
+        xAxis: {
+          type: 'category',
+          data: xDataArr,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            data: yDataArr,
+            type: 'line',
+            stack: 'all',
+            areaStyle: {},
+          },
+          {
+            type: 'line',
+            data: yDataArr2,
+            stack: 'all', // 堆叠图的设置
+            areaStyle: {},
+          },
+        ],
+      };
+
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>

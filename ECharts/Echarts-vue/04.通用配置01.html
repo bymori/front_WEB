@@ -1,0 +1,97 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-30 16:29:48
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-30 19:31:55
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>通用配置01</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      var xDataArr = [
+        '张三',
+        '李四',
+        '王五',
+        '闰土',
+        '小明',
+        '茅台',
+        '二妞',
+        '大强',
+      ];
+      var yDataArrChinese = [62, 72, 33, 57, 84, 60, 92, 46];
+      var yDataArrMath = [88, 92, 63, 77, 94, 80, 72, 86];
+
+      /** @type EChartsOption */
+      var option = {
+        title: {
+          text: '成绩展示',
+          textStyle: {
+            color: 'red',
+          },
+          borderWidth: 5,
+          borderColor: 'blue',
+          borderRadius: 5,
+          left: '50',
+          top: 10,
+        },
+        tooltip: {
+          // trigger: 'item',
+          trigger: 'axis',
+          // triggerOn: 'click',
+          // formatter: '{b} 的成绩是 {c}',
+          formatter: function (arg) {
+            return arg[0].name + ' 的成绩是 ' + arg[0].data;
+          },
+        },
+        toolbox: {
+          // 工具箱按钮
+          feature: {
+            saveAsImage: {}, //导出图片
+            dataView: {}, // 数据视图
+            restore: {}, // 重置
+            dataZoom: {}, // 区域缩放
+            magicType: {
+              // 动态图表类型的切换
+              type: ['bar', 'line'],
+            },
+          },
+        },
+        legend: {
+          data: ['语文', '数学'],
+        },
+        xAxis: {
+          type: 'category',
+          data: xDataArr,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            name: '语文',
+            type: 'bar',
+            data: yDataArrChinese,
+          },
+          {
+            name: '数学',
+            type: 'bar',
+            data: yDataArrMath,
+          },
+        ],
+      };
+
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>

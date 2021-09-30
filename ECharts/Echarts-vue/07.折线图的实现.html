@@ -1,0 +1,65 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-30 19:47:49
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-30 20:14:22
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>折线图的实现</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      var xDataArr = [
+        '1月',
+        '2月',
+        '3月',
+        '4月',
+        '5月',
+        '6月',
+        '7月',
+        '8月',
+        '9月',
+        '10月',
+        '11月',
+        '12月',
+      ];
+      /* var yDataArr = [
+        200, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600,
+      ]; */
+      var yDataArr = [
+        3008, 3006, 2999, 2997, 3005, 3004, 2998, 3007, 2999, 3003, 3008, 2997,
+      ];
+      /** @type EChartsOption */
+      var option = {
+        xAxis: {
+          type: 'category',
+          data: xDataArr,
+          boundaryGap: false,
+        },
+        yAxis: {
+          type: 'value',
+          scale: true,
+        },
+        series: [
+          {
+            name: '一个折线图',
+            data: yDataArr,
+            type: 'line',
+          },
+        ],
+      };
+
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>

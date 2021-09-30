@@ -8,3 +8,9 @@
 - 基于ECharts 数据可视化展示
 - ECharts 柱状图数据设置
 - ECharts 地图引入
+
+
+
+### Echarts-vue 电商平台数据可视化实时监控系统
+
+[Echarts-vue](Echarts-vue)
