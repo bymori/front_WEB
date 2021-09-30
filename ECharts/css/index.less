@@ -47,11 +47,14 @@ header {
   margin: 0 auto;
   padding: 0.125rem 0.125rem 0;
   //   background-color: #fff;
+
   .column {
     flex: 3;
     &:nth-child(2) {
       flex: 5;
       margin: 0 0.125rem 0.1875rem;
+      //解决滚动条反复出现滚动
+      overflow: hidden;
     }
   }
   .panel {
@@ -239,6 +242,7 @@ header {
     left: 0;
     height: 10.125rem;
     width: 100%;
+    z-index: 1;
   }
 
   @keyframes rotate1 {
@@ -248,5 +252,17 @@ header {
     to {
       transform: translate(-50%, -50%) rotate(360deg);
     }
+  }
+}
+
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
   }
 }
