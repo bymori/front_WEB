@@ -185,7 +185,42 @@
 
 #### <a id="Pie_chart">饼图</a> [🔝](#Common_chart)
 
+- [基本的饼图](14.饼图的实现.html)
+  - 基本的代码结构
+  - 数据是由name和value组成的对象所形成的数组
+  - series中的type设置为pie
+  - 无须配置xAxis和yAxis
+- [饼图常见效果](15.饼图的常见效果.html)
+  - 显示文字的格式化 `label.formatter`
+  - 圆环 设置两个半径 `radius: ['50%', '75%']`
+  - 南丁格尔图 `roseType: 'radius'`
+  - 选中效果
+    - 选中模式 `selectedMode: 'multiple'`
+    - 选中偏移量  `selectedOffset: 30`
+- 饼图的特点
+  - 饼图可以很好地帮助用户快速了解不同分类的数据的`占比情况`
+
 #### <a id="Map">地图</a> [🔝](#Common_chart)
+> 地图图表的使用方式
+- 百度地图API
+  - 需要申请[百度地图AK](https://lbsyun.baidu.com/)(API Key)
+- [矢量地图](16.地图的实现.html)
+  - 需要准备适量地图数据
+  - [国家地理信息公共服务平台天地图](https://www.tianditu.gov.cn/)
+  - [标准地图服务](http://bzdt.ch.mnr.gov.cn/)
+    - 常用配置
+    - 缩放拖动 `roam`
+    - 名称显示 `label`
+    - 初始缩放比例 `zoom`
+    - 地图中心点 `center`
+- 地图的绘制
+  - 加载数据
+  - 将数据注册给echarts全局对象
+  - 配置geo
+- 常见效果
+  - 缩放拖动/初始缩放比例/中心点
+  - visualMap和地图的结合
+  - 散点图和地图的结合
 
 #### <a id="Radar_chart">雷达图</a> [🔝](#Common_chart)
 

@@ -1,0 +1,81 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-30 16:29:48
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-09-30 21:55:19
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>饼图的实现</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      var pieData = [
+        {
+          name: '淘宝',
+          value: 11231,
+        },
+        {
+          name: '京东',
+          value: 22673,
+        },
+        {
+          name: '唯品会',
+          value: 6123,
+        },
+        {
+          name: '1号店',
+          value: 8989,
+        },
+        {
+          name: '聚美优品',
+          value: 6700,
+        },
+      ];
+      //pieData 就是需要设置给饼图的数据, 数组,数组中包含一个又一个的对象, 每一个对象中, 需要有name和value
+
+      /** @type EChartsOption */
+      var option = {
+        series: [
+          {
+            type: 'pie',
+            data: pieData,
+            // 饼图文字的显示
+            label: {
+              // 显示文字
+              show: true,
+              // formatter: '沫沫',
+
+              // 决定文字显示的内容
+              formatter: function (arg) {
+                // console.log(arg)
+                return (
+                  arg.name + '平台\n' + arg.value + '元\n' + arg.percent + '%'
+                );
+              },
+            },
+            // radius: 20,// 饼图的半径
+            // radius: '20%', // 百分比参照的是宽度和高度中较小的那一部分的一半来进行百分比设置
+            //例如 width: 600px; height: 400px 则 取较小的宽度400px 取一半200px *20% 计算大小 即为40px
+            // radius: ['50%', '75%'], //第0个元素代表的是內圆的半径 第1个元素外圆的半径
+            roseType: 'radius', // 南丁格尔图 饼图的每一个区域的半径是不同的
+            // selectedMode: 'single' // 选中的效果,能够将选中的区域偏离圆点一小段距离
+            selectedMode: 'multiple', //选择一个数据后 点击其他数据 不会自动闭合
+            selectedOffset: 30, //距离圆点的距离
+          },
+        ],
+      };
+
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>
