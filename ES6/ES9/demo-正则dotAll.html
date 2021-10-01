@@ -1,0 +1,45 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-23 15:19:54
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-01 21:10:27
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正则扩展-dotAll模式</title>
+  </head>
+  <body>
+    <script>
+      //dot  .  元字符  除换行符以外的任意单个字符
+      let str = `
+      <div id="pic-list" class="ptview"><p class="img_info">(1/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/1633059010D-6Z3mj58hMUpBko.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;" width="100" height="350"><p class="img_info">(2/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/16330590095Fo4eJ9g_yhtGvjA.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"><p class="img_info">(3/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/1633059008ZjUtu5Vs-A6J-HtH.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"><p class="img_info">(4/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/1633058997o5rAJ9HzXmLO3-ph.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"><p class="img_info">(5/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/1633058991U6GDteOpWcbrIXG8.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"><p class="img_info">(6/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/1633058990Ho84bc55caJ_PCzn.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"><p class="img_info">(7/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/1633058989Dee24UViWkdM_8Mn.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"><p class="img_info">(8/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/16330589886Zhv6zq0S3JCyGvm.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"><p class="img_info">(9/9)</p><img src="https://res.xiaoqinre.com/images/comic/815/1628364/1633058987fGLjq-mEs7zAYC6U.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;"></div>`;
+
+      // let sss=`<img src="https://res.xiaoqinre.com/images/comic/815/1628364/16330590095Fo4eJ9g_yhtGvjA.jpg" alt="" referrerpolicy="no-referrer" style="display: inline;">`
+      //声明正则
+      //   const reg = /<li>\s+<a>(.*?)<\/a>\s+<p>(.*?)<\/p>/;
+      //   const reg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>/gs;
+
+      //命名捕获分组
+      const reg = /<img src="(?<imgUrl>.*?) alt=""/gs;
+
+      //执行匹配
+        // const result = reg.exec(str);
+        // console.log(result);
+
+      let result,
+        data = [];
+      while ((result = reg.exec(str))) {
+        // 使用命名捕获分组捕获
+        let { imgUrl } = result.groups;
+        data.push({ imgUrl});
+      }
+      console.log(data);
+    </script>
+  </body>
+</html>
