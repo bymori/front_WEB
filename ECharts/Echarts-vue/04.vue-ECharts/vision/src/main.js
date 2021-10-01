@@ -4,13 +4,15 @@
  * @Author: by_mori
  * @Date: 2021-10-01 17:27:53
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-01 19:08:31
+ * @LastEditTime: 2021-10-02 00:27:44
  */
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import axios from 'axios';
+// 引入字体的文件
+import './assets/font/iconfont.css'
 
 // 引入全局的样式文件
 import './assets/css/global.less';
