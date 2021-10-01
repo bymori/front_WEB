@@ -1,0 +1,90 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-30 16:29:48
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-01 14:08:38
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图表的加载动画</title>
+    <script src="lib/echarts.min.js"></script>
+    <script src="lib/jquery.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      // mCharts.showLoading(); // 在获取数据之前, 显示加载动画
+      mCharts.showLoading({ text: '正在加载数据' }); //增加等待提示
+      $.get('lib/data/test_data.json', function (ret) {
+        mCharts.hideLoading(); // 当服务器数据获取成功之后, 隐藏加载动画
+        var axisData = [];
+        for (let i = 0; i < ret.length; i++) {
+          let height = ret[i].height;
+          let weight = ret[i].weight;
+          let newArr = [height, weight];
+          axisData.push(newArr);
+        }
+        console.log(axisData);
+
+        /** @type EChartsOption */
+        var option = {
+          xAxis: {
+            type: 'value',
+            scale: true,
+          },
+          yAxis: {
+            type: 'value',
+            scale: true,
+          },
+          series: [
+            {
+              data: axisData,
+              // type: 'scatter',
+              type: 'effectScatter', // 指明图表为带涟漪动画的散点图
+              showEffectOn: 'emphasis', // 出现涟漪动画的时机 render emphasis
+              rippleEffect: {
+                scale: 10, // 涟漪动画时, 散点的缩放比例
+              },
+              // symbolSize: 10,
+              // 控制散点的大小
+              symbolSize: function (arg) {
+                // console.log(arg)
+                var height = arg[0] / 100;
+                var weight = arg[1];
+                // bmi = 体重kg / (身高m*身高m)   大于28,就代表肥胖
+                var bmi = weight / (height * height);
+                if (bmi > 28) {
+                  return 20;
+                }
+                return 5;
+              },
+              // 控制散点的样式
+              itemStyle: {
+                color: function (arg) {
+                  // console.log(arg)
+                  var height = arg.data[0] / 100;
+                  var weight = arg.data[1];
+                  // bmi = 体重kg / (身高m*身高m)   大于28,就代表肥胖
+                  var bmi = weight / (height * height);
+                  if (bmi > 28) {
+                    return 'red';
+                  }
+                  return 'green';
+                },
+              },
+            },
+          ],
+        };
+
+        mCharts.setOption(option);
+      });
+    </script>
+  </body>
+</html>

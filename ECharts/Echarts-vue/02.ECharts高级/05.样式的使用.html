@@ -1,0 +1,73 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-09-30 16:29:48
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-01 13:44:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>样式的使用</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+
+      /** @type EChartsOption */
+      var option = {
+        series: [
+          {
+            type: 'pie',
+            data: [
+              {
+                name: '淘宝',
+                value: 11231,
+                // 控制淘宝这一区域的样式
+                itemStyle: {
+                  color: 'rgb(40, 44, 52)',
+                },
+                label: {
+                  color: 'green',
+                },
+                emphasis: {
+                  itemStyle: {
+                    // 控制淘宝这一区域的样式
+                    color: 'pink',
+                  },
+                  label: {
+                    color: 'black',
+                  },
+                },
+              },
+              {
+                name: '京东',
+                value: 22673,
+              },
+              {
+                name: '唯品会',
+                value: 6123,
+              },
+              {
+                name: '1号店',
+                value: 8989,
+              },
+              {
+                name: '聚美优品',
+                value: 6700,
+              },
+            ],
+          },
+        ],
+      };
+
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>
