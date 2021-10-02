@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 18:19:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 18:38:19
+ * @LastEditTime: 2021-10-02 18:58:20
  */
 export default class SocketService {
   /**
@@ -24,6 +24,15 @@ export default class SocketService {
   // 存储回调函数
   callBackMapping = {};
 
+  // 标识是否连接成功
+  connected = false;
+
+  // 记录重试的次数
+  sendRetryCount = 0;
+
+  // 重新连接尝试的次数
+  connectRetryCount = 0;
+
   //  定义连接服务器的方法
   connect() {
     if (!window.WebSocket) {
@@ -42,14 +51,20 @@ export default class SocketService {
     // 2.当连接成功之后, 服务器关闭的情况
     this.ws.onclose = () => {
       console.log('连接服务端失败！！！');
+      this.connected = false;
+      this.connectRetryCount++;
+      setTimeout(() => {
+        this.connect();
+      }, 500 * this.connectRetryCount);
     };
 
     // 得到服务端发送过来的数据
-    this.ws.onmessage = () => {
+    this.ws.onmessage = (msg) => {
       console.log('从服务端获取到了数据');
       // 真正服务端发送过来的原始数据时在msg中的data字段
       // console.log(msg.data)
-
+      const recvData = JSON.parse(msg.data);
+      const socketType = recvData.socketType;
       // 判断回调函数是否存在
       if (this.callBackMapping[socketType]) {
         const action = recvData.action;
@@ -57,7 +72,9 @@ export default class SocketService {
           const realData = JSON.parse(recvData.data);
           this.callBackMapping[socketType].call(this, realData);
         } else if (action === 'fullScreen') {
+          this.callBackMapping[socketType].call(this, recvData);
         } else if (action === 'themeChange') {
+          this.callBackMapping[socketType].call(this, recvData);
         }
       }
     };

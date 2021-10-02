@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-01 23:32:09
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 01:03:50
+ * @LastEditTime: 2021-10-02 18:49:47
 -->
 <template>
   <div class="com-container">
@@ -39,14 +39,29 @@ export default {
       titleFontSize: 0 // 指明标题的字体大小
     }
   },
+  created () {
+    // 在组件创建完成之后 进行回调函数的注册
+    this.$socket.registerCallBack('trendData', this.getData)
+  },
   mounted () {
     this.initChart()
-    this.getData()
+
+    // this.getData()
+    // 发送数据给服务器, 告诉服务器, 我现在需要数据
+    this.$socket.send({
+      action: 'getData',
+      socketType: 'trendData',
+      chartName: 'trend',
+      value: ''
+    })
+
     window.addEventListener('resize', this.screenAdapter)
     this.screenAdapter()
   },
   destroyed () {
     window.removeEventListener('resize', this.screenAdapter)
+    // 在组件销毁的时候, 进行回调函数的取消
+    this.$socket.unRegisterCallBack('trendData')
   },
   computed: {
     selectTypes () {
@@ -105,10 +120,10 @@ export default {
       this.chartInstance.setOption(initOption)
     },
 
-    // 获取服务器的数据
-    async getData () {
+    // ret 就是服务端发送给客户端的图表的数据
+    getData (ret) {
       // http://127.0.0.1:8888/api/trend
-      const { data: ret } = await this.$http.get('trend')
+      // const { data: ret } = await this.$http.get('trend')
       this.allData = ret
       console.log(this.allData)
       this.updateChart()
