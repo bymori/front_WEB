@@ -2,30 +2,25 @@
  * @Descripttion:
  * @version:
  * @Author: by_mori
- * @Date: 2021-10-01 16:16:59
+ * @Date: 2021-10-02 16:08:14
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 16:36:50
+ * @LastEditTime: 2021-10-03 00:28:58
  */
 // 服务器的入口文件
 // 1.创建KOA的实例对象
 const Koa = require('koa');
 const app = new Koa();
-
 // 2.绑定中间件
 // 绑定第一层中间件
 const respDurationMiddleware = require('./middleware/koa_response_duration');
 app.use(respDurationMiddleware);
-
 // 绑定第二层中间件
 const respHeaderMiddleware = require('./middleware/koa_response_header');
 app.use(respHeaderMiddleware);
-
 // 绑定第三层中间件
 const respDataMiddleware = require('./middleware/koa_response_data');
 app.use(respDataMiddleware);
-
 // 3.绑定端口号 8888
-// nodemon app.js
 app.listen(8888);
 
 const webSocketService = require('./service/web_socket_service');
