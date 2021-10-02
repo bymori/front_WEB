@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 01:11:37
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 14:07:37
+ * @LastEditTime: 2021-10-02 19:42:51
 -->
 <template>
   <div class="com-container">
@@ -150,8 +150,8 @@ export default {
           }
         },
         legend: {
-          itemWidth: this.titleFontSize / 2,
-          itemHeight: this.titleFontSize / 2,
+          itemWidth: this.titleFontSize ,
+          itemHeight: this.titleFontSize ,
           itemGap: this.titleFontSize / 2,
           textStyle: {
             fontSize: this.titleFontSize / 2

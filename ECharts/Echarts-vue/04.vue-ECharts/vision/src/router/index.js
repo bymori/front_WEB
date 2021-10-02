@@ -4,48 +4,22 @@
  * @Author: by_mori
  * @Date: 2021-10-01 17:27:53
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 14:12:25
+ * @LastEditTime: 2021-10-02 19:26:21
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import MmPage from '@/views/MmPage'
-import SellerPage from '@/views/SellerPage';
-import TrendPage from '@/views/TrendPage';
-import MapPage from '@/views/MapPage'
-import RankPage from '@/views/RankPage'
-import HotPage from '@/views/HotPage'
-import StockPage from '@/views/StockPage'
+import ScreenPage from '@/views/ScreenPage';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/mm',
-    component: MmPage,
+    path: '/',
+    redirect: '/screen',
   },
   {
-    path: '/sellerpage',
-    component: SellerPage,
-  },
-  {
-    path: '/trendpage',
-    component: TrendPage,
-  },
-  {
-    path: '/mappage',
-    component: MapPage,
-  },
-  {
-    path: '/rankpage',
-    component: RankPage,
-  },
-  {
-    path: '/hotpage',
-    component: HotPage,
-  },
-  {
-    path: '/stockpage',
-    component: StockPage,
+    path: '/screen',
+    component: ScreenPage,
   },
 ];
 

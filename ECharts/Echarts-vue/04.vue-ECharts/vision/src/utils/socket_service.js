@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 18:19:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 18:58:20
+ * @LastEditTime: 2021-10-02 20:33:03
  */
 export default class SocketService {
   /**
@@ -63,7 +63,8 @@ export default class SocketService {
       console.log('从服务端获取到了数据');
       // 真正服务端发送过来的原始数据时在msg中的data字段
       // console.log(msg.data)
-      const recvData = JSON.parse(msg.data);
+        const recvData = JSON.parse(msg.data);
+    //   const recvData = msg.data;
       const socketType = recvData.socketType;
       // 判断回调函数是否存在
       if (this.callBackMapping[socketType]) {
@@ -74,7 +75,7 @@ export default class SocketService {
         } else if (action === 'fullScreen') {
           this.callBackMapping[socketType].call(this, recvData);
         } else if (action === 'themeChange') {
-          this.callBackMapping[socketType].call(this, recvData);
+        //   this.callBackMapping[socketType].call(this, recvData);
         }
       }
     };
