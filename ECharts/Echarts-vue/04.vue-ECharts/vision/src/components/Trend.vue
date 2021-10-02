@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-01 23:32:09
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 21:13:36
+ * @LastEditTime: 2021-10-03 00:54:40
 -->
 <template>
   <div class="com-container">
@@ -29,6 +29,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -90,7 +91,7 @@ export default {
   methods: {
     // 初始化echartInstance对象
     initChart () {
-      this.chartInstance = this.$echarts.init(this.$refs.trend_ref, 'chalk')
+      this.chartInstance = this.$echarts.init(this.$refs.trend_ref,  this.theme)
 
       /** @type EChartsOption */
       const initOption = {
@@ -209,6 +210,18 @@ export default {
       this.showChoice = false
     }
   },
+  computed: {
+    ...mapState(['theme'])
+  },
+  watch: {
+    theme () {
+      console.log('主题切换了')
+      this.chartInstance.dispose() // 销毁当前的图表
+      this.initChart() // 重新以最新的主题名称初始化图表对象
+      this.screenAdapter() // 完成屏幕的适配
+      this.updateChart() // 更新图表的展示
+    }
+  }
 }
 </script>
 <style lang="less" scoped>

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 01:11:37
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 21:12:10
+ * @LastEditTime: 2021-10-03 00:50:37
 -->
 <template>
   <div class="com-container"
@@ -16,6 +16,7 @@
 <script>
 import axios from 'axios'
 import { getProvinceMapInfo } from '@/utils/map_utils'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -47,7 +48,7 @@ export default {
   methods: {
     async initChart () {
       // 初始化echartInstance对象
-      this.chartInstance = this.$echarts.init(this.$refs.map_ref, 'chalk')
+      this.chartInstance = this.$echarts.init(this.$refs.map_ref,  this.theme)
       // 获取中国地图数据
       // http://localhost:8999/static/map/china.json
       const { data: ret } = await axios.get('http://localhost:8999/static/map/china.json')
@@ -167,6 +168,18 @@ export default {
         }
       }
       this.chartInstance.setOption(revertOption)
+    }
+  },
+  computed: {
+    ...mapState(['theme'])
+  },
+  watch: {
+    theme () {
+      console.log('主题切换了')
+      this.chartInstance.dispose() // 销毁当前的图表
+      this.initChart() // 重新以最新的主题名称初始化图表对象
+      this.screenAdapter() // 完成屏幕的适配
+      this.updateChart() // 更新图表的展示
     }
   }
 }

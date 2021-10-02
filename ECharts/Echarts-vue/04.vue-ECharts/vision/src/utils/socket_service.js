@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 18:19:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-03 00:17:27
+ * @LastEditTime: 2021-10-03 00:42:21
  */ export default class SocketService {
   /**
    * 单例
@@ -62,13 +62,13 @@
       console.log('从服务端获取到了数据');
       // 真正服务端发送过来的原始数据时在msg中的data字段
       // console.log(msg.data)
-      console.log('1111',typeof msg.data);
+      // console.log('1111',typeof msg.data);
       const recvData = JSON.parse(msg.data);
-      console.log('222', typeof recvData);
-      console.log('233----', recvData);
+      // console.log('222', typeof recvData);
+      // console.log('233----', recvData);
       const socketType = recvData.socketType;
       
-      console.log('333', recvData.socketType);
+      // console.log('333', recvData.socketType);
       // 判断回调函数是否存在
       if (this.callBackMapping[socketType]) {
         const action = recvData.action;

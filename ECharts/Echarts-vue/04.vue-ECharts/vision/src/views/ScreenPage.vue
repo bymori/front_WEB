@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 19:22:25
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-03 00:13:33
+ * @LastEditTime: 2021-10-03 00:46:01
 -->
 <template>
   <div class="screen-container">
@@ -122,7 +122,7 @@ export default {
   },
   methods: {
     changeSize (chartName) {
-      console.log('9999',chartName);
+      console.log('9999', chartName);
       // 1.改变fullScreenStatus的数据
       // this.fullScreenStatus[chartName] = !this.fullScreenStatus[chartName]
       // 2.需要调用每一个图表组件的screenAdapter的方法
@@ -152,13 +152,13 @@ export default {
     },
     handleChangeTheme () {
       // 修改VueX中数据
-      // this.$store.commit('changeTheme')
-      this.$socket.send({
-        action: 'themeChange',
-        socketType: 'themeChange',
-        chartName: '',
-        value: ''
-      })
+      this.$store.commit('changeTheme')
+      // this.$socket.send({
+      //   action: 'themeChange',
+      //   socketType: 'themeChange',
+      //   chartName: '',
+      //   value: ''
+      // })
     },
   },
   components: {
