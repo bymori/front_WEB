@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 01:11:37
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 19:42:51
+ * @LastEditTime: 2021-10-02 21:11:12
 -->
 <template>
   <div class="com-container">
@@ -21,6 +21,8 @@
   </div>
 </template>
 <script>
+// import { mapState } from 'vuex'
+// import { getThemeValue } from '@/utils/theme_utils'
 export default {
   data () {
     return {
@@ -29,6 +31,10 @@ export default {
       currentIndex: 0, // 当前所展示出的一级分类数据
       titleFontSize: 0
     }
+  },
+  created () {
+    // 在组件创建完成之后 进行回调函数的注册
+    this.$socket.registerCallBack('hotData', this.getData)
   },
   computed: {
     catName () {
@@ -42,16 +48,24 @@ export default {
       return {
         fontSize: this.titleFontSize + 'px'
       }
-    }
+    },
+    // ...mapState(['theme'])
   },
   mounted () {
     this.initChart()
-    this.getData()
+    // this.getData()
+    this.$socket.send({
+      action: 'getData',
+      socketType: 'hotData',
+      chartName: 'hotproduct',
+      value: ''
+    })
     window.addEventListener('resize', this.screenAdapter)
     this.screenAdapter()
   },
   destroyed () {
     window.removeEventListener('resize', this.screenAdapter)
+    this.$socket.unRegisterCallBack('hotData')
   },
   methods: {
 
@@ -107,9 +121,9 @@ export default {
       }
       this.chartInstance.setOption(initOption)
     },
-    async getData () {
+    getData (ret) {
       //获取服务器的数据，对this.allData进行赋值之后，调用updateChart方法更新图表
-      const { data: ret } = await this.$http.get('hotproduct')
+      // const { data: ret } = await this.$http.get('hotproduct')
       this.allData = ret
       console.log(this.allData);
       this.updateChart()
@@ -150,8 +164,8 @@ export default {
           }
         },
         legend: {
-          itemWidth: this.titleFontSize ,
-          itemHeight: this.titleFontSize ,
+          itemWidth: this.titleFontSize,
+          itemHeight: this.titleFontSize,
           itemGap: this.titleFontSize / 2,
           textStyle: {
             fontSize: this.titleFontSize / 2

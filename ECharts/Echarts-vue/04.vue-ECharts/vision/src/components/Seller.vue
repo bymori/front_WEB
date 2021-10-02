@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-01 18:50:34
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-01 23:27:30
+ * @LastEditTime: 2021-10-02 21:16:26
 -->
 <!-- 商家销量统计的横向柱状图 -->
 <template>
@@ -25,9 +25,19 @@ export default {
       timerId: null // 定时器的标识
     }
   },
+  created () {
+    // 在组件创建完成之后 进行回调函数的注册
+    this.$socket.registerCallBack('sellerData', this.getData)
+  },
   mounted () {
     this.initChart()
-    this.getData()
+    // this.getData()
+    this.$socket.send({
+      action: 'getData',
+      socketType: 'sellerData',
+      chartName: 'seller',
+      value: ''
+    })
     window.addEventListener('resize', this.screenAdapter)
     // 在页面加载完成的时候, 主动进行屏幕的适配
     this.screenAdapter()
@@ -36,6 +46,7 @@ export default {
     clearInterval(this.timerId)
     // 在组件销毁的时候, 需要将监听器取消掉
     window.removeEventListener('resize', this.screenAdapter)
+    this.$socket.unRegisterCallBack('sellerData')
   },
   methods: {
     // 初始化echartInstance对象
@@ -112,9 +123,9 @@ export default {
       })
     },
     // 获取服务器的数据
-    async getData () {
+    getData (ret) {
       // http://127.0.0.1:8888/api/seller
-      const { data: ret } = await this.$http.get('seller')
+      // const { data: ret } = await this.$http.get('seller')
       this.allData = ret
       //对数据排序
       this.allData.sort((a, b) => {

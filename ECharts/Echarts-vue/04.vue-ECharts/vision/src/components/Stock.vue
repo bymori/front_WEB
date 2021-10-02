@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 01:11:37
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 19:44:00
+ * @LastEditTime: 2021-10-02 21:14:24
 -->
 <template>
   <div class="com-container">
@@ -22,15 +22,26 @@ export default {
       timerId: null // 定时器的标识
     }
   },
+  created () {
+    // 在组件创建完成之后 进行回调函数的注册
+    this.$socket.registerCallBack('stockData', this.getData)
+  },
   mounted () {
     this.initChart()
-    this.getData()
+    // this.getData()
+    this.$socket.send({
+      action: 'getData',
+      socketType: 'stockData',
+      chartName: 'stock',
+      value: ''
+    })
     window.addEventListener('resize', this.screenAdapter)
     this.screenAdapter()
   },
   destroyed () {
     window.removeEventListener('resize', this.screenAdapter)
     clearInterval(this.timerId)
+    this.$socket.unRegisterCallBack('stockData')
   },
   methods: {
 
@@ -53,9 +64,9 @@ export default {
         this.startInterval()
       })
     },
-    async getData () {
+    getData (ret) {
       //获取服务器的数据，对this.allData进行赋值之后，调用updateChart方法更新图表
-      const { data: ret } = await this.$http.get('stock')
+      // const { data: ret } = await this.$http.get('stock')
       this.allData = ret
       console.log("this.allData", this.allData);
 

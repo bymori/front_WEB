@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-01 23:32:09
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 18:49:47
+ * @LastEditTime: 2021-10-02 21:13:36
 -->
 <template>
   <div class="com-container">
@@ -61,7 +61,7 @@ export default {
   destroyed () {
     window.removeEventListener('resize', this.screenAdapter)
     // 在组件销毁的时候, 进行回调函数的取消
-    this.$socket.unRegisterCallBack('trendData')
+   this.$socket.unRegisterCallBack('trendData')
   },
   computed: {
     selectTypes () {
