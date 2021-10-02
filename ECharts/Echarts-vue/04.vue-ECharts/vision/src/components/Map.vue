@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 01:11:37
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 11:06:00
+ * @LastEditTime: 2021-10-02 13:46:15
 -->
 <template>
   <div class="com-container"
@@ -67,6 +67,9 @@ export default {
       this.chartInstance.setOption(initOption)
       this.chartInstance.on('click', async (arg) => {
         // arg.name 得到所点击的省份, 这个省份他是中文
+
+        // 若已经切换至省份地图(即点击时chartInstance实例geo中的map的值不是chinaMap) 直接return
+        if (this.chartInstance._model.option.geo[0].map != 'china') return;
         const provinceInfo = getProvinceMapInfo(arg.name)
         console.log(provinceInfo)
 
