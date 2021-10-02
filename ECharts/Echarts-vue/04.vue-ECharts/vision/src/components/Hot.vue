@@ -1,15 +1,8 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: by_mori
- * @Date: 2021-10-02 01:11:37
- * @LastEditors: by_mori
- * @LastEditTime: 2021-10-03 00:46:48
--->
+<!-- 热销商品图表 -->
 <template>
-  <div class="com-container">
-    <div class="com-chart"
-         ref="hot_ref"></div>
+  <div class='com-container'>
+    <div class='com-chart'
+         ref='hot_ref'></div>
     <span class="iconfont arr-left"
           @click="toLeft"
           :style="comStyle">&#xe6ef;</span>
@@ -17,12 +10,12 @@
           @click="toRight"
           :style="comStyle">&#xe6ed;</span>
     <span class="cat-name"
-          :style="comStyle">{{catName}}</span>
+          :style="comStyle">{{ catName }}</span>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
-// import { getThemeValue } from '@/utils/theme_utils'
+import { getThemeValue } from '@/utils/theme_utils'
 export default {
   data () {
     return {
@@ -46,10 +39,11 @@ export default {
     },
     comStyle () {
       return {
-        fontSize: this.titleFontSize + 'px'
+        fontSize: this.titleFontSize + 'px',
+        color: getThemeValue(this.theme).titleColor
       }
     },
-    // ...mapState(['theme'])
+    ...mapState(['theme'])
   },
   mounted () {
     this.initChart()
@@ -68,11 +62,8 @@ export default {
     this.$socket.unRegisterCallBack('hotData')
   },
   methods: {
-
     initChart () {
-      // 初始化echartInstance对象
-      this.chartInstance = this.$echarts.init(this.$refs.hot_ref,  this.theme)
-      /** @type EChartsOption */
+      this.chartInstance = this.$echarts.init(this.$refs.hot_ref, this.theme)
       const initOption = {
         title: {
           text: '▎ 热销商品的占比',
@@ -85,18 +76,20 @@ export default {
         },
         tooltip: {
           show: true,
-          formatter: (arg) => {
+          formatter: arg => {
+            // console.log(arg)
             const thirdCategory = arg.data.children
-            let total = 0;
+            // 计算出所有三级分类的数值总和
+            let total = 0
             thirdCategory.forEach(item => {
               total += item.value
             })
             let retStr = ''
             thirdCategory.forEach(item => {
               retStr += `
-								${item.name} :  ${parseInt(item.value / total * 100) + "%"}
-                </br>
-								`
+              ${item.name}:${parseInt(item.value / total * 100) + '%'}
+              <br/>
+              `
             })
             return retStr
           }
@@ -116,20 +109,19 @@ export default {
               }
             }
           }
-        ],
-
+        ]
       }
       this.chartInstance.setOption(initOption)
     },
     getData (ret) {
-      //获取服务器的数据，对this.allData进行赋值之后，调用updateChart方法更新图表
+      // 获取服务器的数据, 对this.allData进行赋值之后, 调用updateChart方法更新图表
       // const { data: ret } = await this.$http.get('hotproduct')
       this.allData = ret
-      console.log(this.allData);
+      console.log(this.allData)
       this.updateChart()
     },
     updateChart () {
-      //处理图表需要的数据
+      // 处理图表需要的数据
       const legendData = this.allData[this.currentIndex].children.map(item => {
         return item.name
       })
@@ -140,23 +132,20 @@ export default {
           children: item.children // 新增加children的原因是为了在tooltip中的formatter的回调函数中,来拿到这个二级分类下的三级分类数据
         }
       })
-      /** @type EChartsOption */
       const dataOption = {
         legend: {
-          // data: seriesData.name,
-          data: legendData,
+          data: legendData
         },
         series: [
           {
             data: seriesData
           }
-        ],
+        ]
       }
       this.chartInstance.setOption(dataOption)
     },
     screenAdapter () {
       this.titleFontSize = this.$refs.hot_ref.offsetWidth / 100 * 3.6
-      // 当浏览器的大小发生变化的时候, 会调用的方法, 来完成屏幕的适配
       const adapterOption = {
         title: {
           textStyle: {
@@ -194,10 +183,7 @@ export default {
         this.currentIndex = 0
       }
       this.updateChart()
-    },
-  },
-  computed: {
-    ...mapState(['theme'])
+    }
   },
   watch: {
     theme () {
@@ -210,7 +196,8 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+
+<style lang='less' scoped>
 .arr-left,
 .arr-right {
   position: absolute;

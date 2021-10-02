@@ -4,25 +4,25 @@
  * @Author: by_mori
  * @Date: 2021-10-02 19:22:25
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-03 00:46:01
--->
-<template>
-  <div class="screen-container">
+ * @LastEditTime: 2021-10-03 01:22:55
+--><template>
+  <div class="screen-container"
+       :style="containerStyle">
     <header class="screen-header">
       <div>
-        <img src="/static/img/header_border_dark.png"
+        <img :src="headerSrc"
              alt="">
       </div>
       <span class="logo">
-        <img src="/static/img/logo_dark.png"
+        <img :src="logoSrc"
              alt="" />
       </span>
       <span class="title">电商平台实时监控系统</span>
       <div class="title-right">
-        <img src="/static/img/qiehuan_dark.png"
+        <img :src="themeSrc"
              class="qiehuan"
              @click="handleChangeTheme">
-        <span class="datetime">2049-01-01 00:00:00</span>
+        <span class="datetime">2021-10-03 00:00:00</span>
       </div>
     </header>
     <div class="screen-body">
@@ -32,6 +32,7 @@
           <!-- 销量趋势图表 -->
           <Trend ref="trend"></Trend>
           <div class="resize">
+            <!-- icon-compress-alt -->
             <span @click="changeSize('trend')"
                   :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
@@ -41,6 +42,7 @@
           <!-- 商家销售金额图表 -->
           <Seller ref="seller"></Seller>
           <div class="resize">
+            <!-- icon-compress-alt -->
             <span @click="changeSize('seller')"
                   :class="['iconfont', fullScreenStatus.seller ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
@@ -52,6 +54,7 @@
           <!-- 商家分布图表 -->
           <Map ref="map"></Map>
           <div class="resize">
+            <!-- icon-compress-alt -->
             <span @click="changeSize('map')"
                   :class="['iconfont', fullScreenStatus.map ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
@@ -61,6 +64,7 @@
           <!-- 地区销量排行图表 -->
           <Rank ref="rank"></Rank>
           <div class="resize">
+            <!-- icon-compress-alt -->
             <span @click="changeSize('rank')"
                   :class="['iconfont', fullScreenStatus.rank ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
@@ -72,6 +76,7 @@
           <!-- 热销商品占比图表 -->
           <Hot ref="hot"></Hot>
           <div class="resize">
+            <!-- icon-compress-alt -->
             <span @click="changeSize('hot')"
                   :class="['iconfont', fullScreenStatus.hot ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
@@ -81,6 +86,7 @@
           <!-- 库存销量分析图表 -->
           <Stock ref="stock"></Stock>
           <div class="resize">
+            <!-- icon-compress-alt -->
             <span @click="changeSize('stock')"
                   :class="['iconfont', fullScreenStatus.stock ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
@@ -97,15 +103,17 @@ import Rank from '@/components/Rank.vue'
 import Seller from '@/components/Seller.vue'
 import Stock from '@/components/Stock.vue'
 import Trend from '@/components/Trend.vue'
+import { mapState } from 'vuex'
+import { getThemeValue } from '@/utils/theme_utils'
 export default {
   created () {
     // 注册接收到数据的回调函数
     this.$socket.registerCallBack('fullScreen', this.recvData)
-    // this.$socket.registerCallBack('themeChange', this.recvThemeChange)
+    this.$socket.registerCallBack('themeChange', this.recvThemeChange)
   },
   destroyed () {
     this.$socket.unRegisterCallBack('fullScreen')
-    // this.$socket.unRegisterCallBack('themeChange')
+    this.$socket.unRegisterCallBack('themeChange')
   },
   data () {
     return {
@@ -122,7 +130,6 @@ export default {
   },
   methods: {
     changeSize (chartName) {
-      console.log('9999', chartName);
       // 1.改变fullScreenStatus的数据
       // this.fullScreenStatus[chartName] = !this.fullScreenStatus[chartName]
       // 2.需要调用每一个图表组件的screenAdapter的方法
@@ -152,14 +159,17 @@ export default {
     },
     handleChangeTheme () {
       // 修改VueX中数据
-      this.$store.commit('changeTheme')
-      // this.$socket.send({
-      //   action: 'themeChange',
-      //   socketType: 'themeChange',
-      //   chartName: '',
-      //   value: ''
-      // })
+      // this.$store.commit('changeTheme')
+      this.$socket.send({
+        action: 'themeChange',
+        socketType: 'themeChange',
+        chartName: '',
+        value: ''
+      })
     },
+    recvThemeChange () {
+      this.$store.commit('changeTheme')
+    }
   },
   components: {
     Hot,
@@ -167,11 +177,28 @@ export default {
     Rank,
     Seller,
     Stock,
-    Trend,
+    Trend
+  },
+  computed: {
+    logoSrc () {
+      return '/static/img/' + getThemeValue(this.theme).logoSrc
+    },
+    headerSrc () {
+      return '/static/img/' + getThemeValue(this.theme).headerBorderSrc
+    },
+    themeSrc () {
+      return '/static/img/' + getThemeValue(this.theme).themeSrc
+    },
+    containerStyle () {
+      return {
+        backgroundColor: getThemeValue(this.theme).backgroundColor,
+        color: getThemeValue(this.theme).titleColor
+      }
+    },
+    ...mapState(['theme'])
   }
 }
 </script>
-
 <style lang="less" scoped>
 // 全屏样式的定义
 .fullscreen {

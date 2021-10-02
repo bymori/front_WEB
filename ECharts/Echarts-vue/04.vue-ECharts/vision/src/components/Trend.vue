@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-01 23:32:09
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-03 00:54:40
+ * @LastEditTime: 2021-10-03 01:19:08
 -->
 <template>
   <div class="com-container">
@@ -13,14 +13,15 @@
       <span @click="showChoice=!showChoice">{{'▎ '+ showTitle}}</span>
       <span class="iconfont title-icon"
             :style="comStyle"
-            @click="showChoice=!showChoice">&#xe6eb;</span>
+            @click="showChoice = !showChoice">&#xe6eb;</span>
       <div class="select-con"
-           v-show="showChoice">
+           v-show="showChoice"
+           :style="marginStyle">
         <div class="select-item"
              v-for="item in selectTypes"
              :key="item.key"
              @click="handleSelect(item.key)">
-          {{item.text}}
+          {{ item.text }}
         </div>
       </div>
     </div>
@@ -28,13 +29,15 @@
          ref="trend_ref"></div>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
+import { getThemeValue } from '@/utils/theme_utils'
 export default {
   data () {
     return {
-      chartInstance: null,
-      allData: null, // 服务器返回的数据
+      chartInstane: null,
+      allData: null, // 从服务器中获取的所有数据
       showChoice: false, // 是否显示可选项
       choiceType: 'map', // 显示的数据类型
       titleFontSize: 0 // 指明标题的字体大小
@@ -46,7 +49,6 @@ export default {
   },
   mounted () {
     this.initChart()
-
     // this.getData()
     // 发送数据给服务器, 告诉服务器, 我现在需要数据
     this.$socket.send({
@@ -55,14 +57,13 @@ export default {
       chartName: 'trend',
       value: ''
     })
-
-    window.addEventListener('resize', this.screenAdapter)
+  window.addEventListener('resize', this.screenAdapter)
     this.screenAdapter()
   },
   destroyed () {
     window.removeEventListener('resize', this.screenAdapter)
     // 在组件销毁的时候, 进行回调函数的取消
-   this.$socket.unRegisterCallBack('trendData')
+    this.$socket.unRegisterCallBack('trendData')
   },
   computed: {
     selectTypes () {
@@ -81,33 +82,37 @@ export default {
         return this.allData[this.choiceType].title
       }
     },
-    //设置给标题的样式
+    // 设置给标题的样式
     comStyle () {
       return {
-        fontSize: this.titleFontSize + 'px'
+        fontSize: this.titleFontSize + 'px',
+        color: getThemeValue(this.theme).titleColor
       }
-    }
+    },
+    marginStyle () {
+      return {
+        marginLeft: this.titleFontSize + 'px'
+      }
+    },
+    ...mapState(['theme'])
   },
   methods: {
-    // 初始化echartInstance对象
     initChart () {
-      this.chartInstance = this.$echarts.init(this.$refs.trend_ref,  this.theme)
-
-      /** @type EChartsOption */
+      this.chartInstane = this.$echarts.init(this.$refs.trend_ref, this.theme)
       const initOption = {
         grid: {
           left: '3%',
           top: '35%',
           right: '4%',
           bottom: '1%',
-          containLabel: true,
+          containLabel: true
         },
         tooltip: {
-          trigger: 'axis',
+          trigger: 'axis'
         },
         legend: {
           left: 20,
-          top: '20%',
+          top: '15%',
           icon: 'circle'
         },
         xAxis: {
@@ -115,22 +120,20 @@ export default {
           boundaryGap: false
         },
         yAxis: {
-          type: 'value',
-        },
+          type: 'value'
+        }
       }
-      this.chartInstance.setOption(initOption)
+      this.chartInstane.setOption(initOption)
     },
-
     // ret 就是服务端发送给客户端的图表的数据
     getData (ret) {
-      // http://127.0.0.1:8888/api/trend
+      // await this.$http.get()
+      // 对allData进行赋值
       // const { data: ret } = await this.$http.get('trend')
       this.allData = ret
       console.log(this.allData)
       this.updateChart()
-
     },
-    // 处理数据
     updateChart () {
       // 半透明的颜色值
       const colorArr1 = [
@@ -164,17 +167,16 @@ export default {
               {
                 offset: 0,
                 color: colorArr1[index]
-              },
+              }, // %0的颜色值
               {
                 offset: 1,
                 color: colorArr2[index]
-              }
+              } // 100%的颜色值
             ])
           }
-
         }
       })
-      //图例的数据
+      // 图例的数据
       const legendArr = valueArr.map(item => {
         return item.name
       })
@@ -188,21 +190,22 @@ export default {
         },
         series: seriesArr,
       }
-      this.chartInstance.setOption(dataOption)
+      this.chartInstane.setOption(dataOption)
     },
-    // 当浏览器的大小发生变化的时候, 会调用的方法, 来完成屏幕的适配
     screenAdapter () {
       this.titleFontSize = this.$refs.trend_ref.offsetWidth / 100 * 3.6
       const adapterOption = {
-        itemWidth: this.titleFontSize,
-        itemHeight: this.titleFontSize,
-        itemGap: this.titleFontSize,
-        textStyle: {
-          fontSize: this.titleFontSize / 2
+        legend: {
+          itemWidth: this.titleFontSize,
+          itemHeight: this.titleFontSize,
+          itemGap: this.titleFontSize,
+          textStyle: {
+            fontSize: this.titleFontSize / 2
+          }
         }
       }
-      this.chartInstance.setOption(adapterOption)
-      this.chartInstance.resize()
+      this.chartInstane.setOption(adapterOption)
+      this.chartInstane.resize()
     },
     handleSelect (currentType) {
       this.choiceType = currentType
@@ -210,13 +213,10 @@ export default {
       this.showChoice = false
     }
   },
-  computed: {
-    ...mapState(['theme'])
-  },
   watch: {
     theme () {
       console.log('主题切换了')
-      this.chartInstance.dispose() // 销毁当前的图表
+      this.chartInstane.dispose() // 销毁当前的图表
       this.initChart() // 重新以最新的主题名称初始化图表对象
       this.screenAdapter() // 完成屏幕的适配
       this.updateChart() // 更新图表的展示
@@ -230,7 +230,7 @@ export default {
   left: 20px;
   top: 20px;
   z-index: 10;
-  color: wheat;
+  color: white;
   cursor: pointer;
   .title-icon {
     margin-left: 10px;
