@@ -1,0 +1,56 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-02 16:19:54
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-02 18:14:44
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>websocket_demo</title>
+  </head>
+  <body>
+    <button id="connect">连接</button>
+    <button id="send" disabled="true">发送数据</button> <br />
+    从服务端接收的数据如下: <br />
+    <span id="recv"></span>
+    <script>
+      var connect = document.querySelector('#connect');
+      var send = document.querySelector('#send');
+      var recv = document.querySelector('#recv');
+      let ws = null;
+      connect.onclick = function () {
+        ws = new WebSocket('ws://localhost:9998');
+        ws.onopen = () => {
+          console.log('连接服务器成功了...');
+          send.disabled = false;
+        };
+        ws.onclose = () => {
+          console.log('连接服务器失败');
+          send.disabled = true;
+        };
+        ws.onmessage = (msg) => {
+          console.log('接收到从服务端发送过来的数据了');
+          console.log(msg);
+          recv.innerHTML = msg.data;
+        };
+        send.onclick = function () {
+          //   ws.send('hello soket form ioinn 从前端发送数据给后端');
+          ws.send(
+            JSON.stringify({
+              action: 'themeChange',
+              socketType: 'themeChange',
+              chartName: '',
+              value: 'chalk',
+            })
+          );
+        };
+      };
+    </script>
+  </body>
+</html>

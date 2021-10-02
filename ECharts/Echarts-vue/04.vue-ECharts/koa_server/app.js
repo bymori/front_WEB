@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-01 16:16:59
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-01 16:40:31
+ * @LastEditTime: 2021-10-02 16:36:50
  */
 // 服务器的入口文件
 // 1.创建KOA的实例对象
@@ -27,3 +27,8 @@ app.use(respDataMiddleware);
 // 3.绑定端口号 8888
 // nodemon app.js
 app.listen(8888);
+
+const webSocketService = require('./service/web_socket_service');
+// 开启服务端的监听, 监听客户端的连接
+// 当某一个客户端连接成功之后, 就会对这个客户端进行message事件的监听
+webSocketService.listen();
