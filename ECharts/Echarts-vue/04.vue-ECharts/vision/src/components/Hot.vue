@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 01:11:37
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 21:11:12
+ * @LastEditTime: 2021-10-02 23:16:51
 -->
 <template>
   <div class="com-container">
@@ -57,7 +57,7 @@ export default {
     this.$socket.send({
       action: 'getData',
       socketType: 'hotData',
-      chartName: 'hotproduct',
+      chartName: 'hot',
       value: ''
     })
     window.addEventListener('resize', this.screenAdapter)

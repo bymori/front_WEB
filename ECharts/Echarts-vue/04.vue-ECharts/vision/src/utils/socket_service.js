@@ -4,9 +4,8 @@
  * @Author: by_mori
  * @Date: 2021-10-02 18:19:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 20:33:03
- */
-export default class SocketService {
+ * @LastEditTime: 2021-10-03 00:17:27
+ */ export default class SocketService {
   /**
    * 单例
    */
@@ -35,10 +34,12 @@ export default class SocketService {
 
   //  定义连接服务器的方法
   connect() {
+    // 连接服务器
     if (!window.WebSocket) {
       return console.log('您的浏览器不支持WebSocket');
     }
     this.ws = new WebSocket('ws://localhost:9998');
+
     // 连接成功的事件
     this.ws.onopen = () => {
       console.log('连接服务端成功了');
@@ -46,26 +47,28 @@ export default class SocketService {
       // 重置重新连接的次数
       this.connectRetryCount = 0;
     };
-
     // 1.连接服务端失败
     // 2.当连接成功之后, 服务器关闭的情况
     this.ws.onclose = () => {
-      console.log('连接服务端失败！！！');
+      console.log('连接服务端失败');
       this.connected = false;
       this.connectRetryCount++;
       setTimeout(() => {
         this.connect();
       }, 500 * this.connectRetryCount);
     };
-
     // 得到服务端发送过来的数据
     this.ws.onmessage = (msg) => {
       console.log('从服务端获取到了数据');
       // 真正服务端发送过来的原始数据时在msg中的data字段
       // console.log(msg.data)
-        const recvData = JSON.parse(msg.data);
-    //   const recvData = msg.data;
+      console.log('1111',typeof msg.data);
+      const recvData = JSON.parse(msg.data);
+      console.log('222', typeof recvData);
+      console.log('233----', recvData);
       const socketType = recvData.socketType;
+      
+      console.log('333', recvData.socketType);
       // 判断回调函数是否存在
       if (this.callBackMapping[socketType]) {
         const action = recvData.action;
@@ -75,7 +78,7 @@ export default class SocketService {
         } else if (action === 'fullScreen') {
           this.callBackMapping[socketType].call(this, recvData);
         } else if (action === 'themeChange') {
-        //   this.callBackMapping[socketType].call(this, recvData);
+          this.callBackMapping[socketType].call(this, recvData);
         }
       }
     };

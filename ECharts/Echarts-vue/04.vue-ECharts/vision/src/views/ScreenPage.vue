@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-02 19:22:25
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-02 21:05:01
+ * @LastEditTime: 2021-10-03 00:13:33
 -->
 <template>
   <div class="screen-container">
@@ -20,56 +20,69 @@
       <span class="title">电商平台实时监控系统</span>
       <div class="title-right">
         <img src="/static/img/qiehuan_dark.png"
-             class="qiehuan">
+             class="qiehuan"
+             @click="handleChangeTheme">
         <span class="datetime">2049-01-01 00:00:00</span>
       </div>
     </header>
     <div class="screen-body">
       <section class="screen-left">
-        <div id="left-top" :class="[fullScreenStatus.trend ? 'fullscreen' : '']">
+        <div id="left-top"
+             :class="[fullScreenStatus.trend ? 'fullscreen' : '']">
           <!-- 销量趋势图表 -->
-          <Trend></Trend>
+          <Trend ref="trend"></Trend>
           <div class="resize">
-            <span @click="changeSize('trend')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+            <span @click="changeSize('trend')"
+                  :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
-        <div id="left-bottom" :class="[fullScreenStatus.seller ? 'fullscreen' : '']">
+        <div id="left-bottom"
+             :class="[fullScreenStatus.seller ? 'fullscreen' : '']">
           <!-- 商家销售金额图表 -->
-          <Seller></Seller>
+          <Seller ref="seller"></Seller>
           <div class="resize">
-            <span @click="changeSize('seller')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+            <span @click="changeSize('seller')"
+                  :class="['iconfont', fullScreenStatus.seller ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
       </section>
       <section class="screen-middle">
-        <div id="middle-top" :class="[fullScreenStatus.map ? 'fullscreen' : '']">
+        <div id="middle-top"
+             :class="[fullScreenStatus.map ? 'fullscreen' : '']">
           <!-- 商家分布图表 -->
-          <Map></Map>
+          <Map ref="map"></Map>
           <div class="resize">
-            <span @click="changeSize('map')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+            <span @click="changeSize('map')"
+                  :class="['iconfont', fullScreenStatus.map ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
-        <div id="middle-bottom" :class="[fullScreenStatus.rank ? 'fullscreen' : '']">
+        <div id="middle-bottom"
+             :class="[fullScreenStatus.rank ? 'fullscreen' : '']">
           <!-- 地区销量排行图表 -->
-          <Rank></Rank>
+          <Rank ref="rank"></Rank>
           <div class="resize">
-            <span @click="changeSize('rank')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+            <span @click="changeSize('rank')"
+                  :class="['iconfont', fullScreenStatus.rank ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
       </section>
-      <section class="screen-right" :class="[fullScreenStatus.hot ? 'fullscreen' : '']">
-        <div id="right-top">
+      <section class="screen-right">
+        <div id="right-top"
+             :class="[fullScreenStatus.hot ? 'fullscreen' : '']">
           <!-- 热销商品占比图表 -->
-          <Hot></Hot>
+          <Hot ref="hot"></Hot>
           <div class="resize">
-            <span @click="changeSize('hot')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+            <span @click="changeSize('hot')"
+                  :class="['iconfont', fullScreenStatus.hot ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
-        <div id="right-bottom" :class="[fullScreenStatus.stock ? 'fullscreen' : '']">
+        <div id="right-bottom"
+             :class="[fullScreenStatus.stock ? 'fullscreen' : '']">
           <!-- 库存销量分析图表 -->
-          <Stock></Stock>
+          <Stock ref="stock"></Stock>
           <div class="resize">
-            <span @click="changeSize('stock')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+            <span @click="changeSize('stock')"
+                  :class="['iconfont', fullScreenStatus.stock ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
       </section>
@@ -78,13 +91,22 @@
 </template>
 
 <script>
-import Hot from '@/components/Hot'
-import Map from '@/components/Map'
-import Rank from '@/components/Rank'
-import Seller from '@/components/Seller'
-import Stock from '@/components/Stock'
-import Trend from '@/components/Trend'
+import Hot from '@/components/Hot.vue'
+import Map from '@/components/Map.vue'
+import Rank from '@/components/Rank.vue'
+import Seller from '@/components/Seller.vue'
+import Stock from '@/components/Stock.vue'
+import Trend from '@/components/Trend.vue'
 export default {
+  created () {
+    // 注册接收到数据的回调函数
+    this.$socket.registerCallBack('fullScreen', this.recvData)
+    // this.$socket.registerCallBack('themeChange', this.recvThemeChange)
+  },
+  destroyed () {
+    this.$socket.unRegisterCallBack('fullScreen')
+    // this.$socket.unRegisterCallBack('themeChange')
+  },
   data () {
     return {
       // 定义每一个图表的全屏状态
@@ -97,6 +119,47 @@ export default {
         stock: false
       }
     }
+  },
+  methods: {
+    changeSize (chartName) {
+      console.log('9999',chartName);
+      // 1.改变fullScreenStatus的数据
+      // this.fullScreenStatus[chartName] = !this.fullScreenStatus[chartName]
+      // 2.需要调用每一个图表组件的screenAdapter的方法
+      // this.$refs[chartName].screenAdapter()
+      // this.$nextTick(() => {
+      //   this.$refs[chartName].screenAdapter()
+      // })
+      // 将数据发送给服务端
+      const targetValue = !this.fullScreenStatus[chartName]
+      this.$socket.send({
+        action: 'fullScreen',
+        socketType: 'fullScreen',
+        chartName: chartName,
+        value: targetValue
+      })
+    },
+    // 接收到全屏数据之后的处理
+    recvData (data) {
+      // 取出是哪一个图表需要进行切换
+      const chartName = data.chartName
+      // 取出, 切换成什么状态
+      const targetValue = data.value
+      this.fullScreenStatus[chartName] = targetValue
+      this.$nextTick(() => {
+        this.$refs[chartName].screenAdapter()
+      })
+    },
+    handleChangeTheme () {
+      // 修改VueX中数据
+      // this.$store.commit('changeTheme')
+      this.$socket.send({
+        action: 'themeChange',
+        socketType: 'themeChange',
+        chartName: '',
+        value: ''
+      })
+    },
   },
   components: {
     Hot,
