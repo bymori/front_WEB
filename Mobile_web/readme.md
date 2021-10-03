@@ -59,3 +59,39 @@ min-width: 320px;
 ```
 
 ### flex弹性布局
+
+### rem适配布局
+
+#### rem单位
+
+- rem (root em)是一个相对单位，类似于em,em是父元素字体大小。
+- 不同的是`rem`的基准是相对于html元素的`字体大小`。
+- 比如，根元素(html)设置font-size=12px;非根元素设置width:2rem;则换成px表示就是24px。
+
+#### 媒体查询
+
+> 媒体查询(**Media Query**)是CSS3新语法。
+
+- 使用`@media`查询，可以针对不同的媒体类型定义不同的样式
+- `@media可以针对不同的屏幕尺寸设置不同的样式`
+- 当你重置浏览器大小的过程中，页面也会会根据浏览器的宽度和高度重新渲染页面
+- 目前针对很多苹果手机、Android手机， 平板等设备都用得到多媒体查询
+
+#### 语法
+```css
+@media mediatype and|not|only (media feature) {
+    CSS-Code
+}
+```
+- 用@media开头注意@符号
+- mediatype媒体类型
+- 关键字and not only
+- media feature媒体特性 必须有小括号包含
+
+### rem适配方案
+
+**元素大小取值方法**
+
+- 最后的公式：页面元素的rem值 = 页面元素值(px) / (屏幕宽度/划分的份数)
+- 屏幕宽度/划分的份数就是html font-size的大小
+- 或者：页面元素的rem值 = 页面元素值("px)/html font-size字体大小
