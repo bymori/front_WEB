@@ -88,10 +88,12 @@ min-width: 320px;
 - 关键字and not only
 - media feature媒体特性 必须有小括号包含
 
-### rem适配方案
+### [rem适配方案](rem布局/suningH5/index.html)
 
 **元素大小取值方法**
 
 - 最后的公式：页面元素的rem值 = 页面元素值(px) / (屏幕宽度/划分的份数)
 - 屏幕宽度/划分的份数就是html font-size的大小
 - 或者：页面元素的rem值 = 页面元素值("px)/html font-size字体大小
+
+### rem适配方案2-flexible.js
