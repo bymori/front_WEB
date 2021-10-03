@@ -57,3 +57,5 @@ width: 100%;
 max-width: 980px;
 min-width: 320px;
 ```
+
+### flex弹性布局
