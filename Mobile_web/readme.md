@@ -96,4 +96,4 @@ min-width: 320px;
 - 屏幕宽度/划分的份数就是html font-size的大小
 - 或者：页面元素的rem值 = 页面元素值("px)/html font-size字体大小
 
-### rem适配方案2-flexible.js
+### [rem适配方案2-flexible.js](rem布局/suningflexible/index.html)
