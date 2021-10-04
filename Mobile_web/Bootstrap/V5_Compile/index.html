@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-04 21:49:21
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-05 00:09:11
+ * @LastEditTime: 2021-10-05 01:42:47
 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -13,11 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ioinn.cn-Bootstrap5</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="css/main.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
@@ -26,7 +22,15 @@
   </head>
   <body>
     <!-- nav -->
-    <div class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <div
+      class="
+        navbar navbar-expand-lg
+        bg-primary bg-gradient
+        navbar-dark
+        fixed-top
+        shadow
+      "
+    >
       <div class="container">
         <a href="#" class="navbar-brand">沫沫-ioinn.cn</a>
 
@@ -81,7 +85,9 @@
 
     <!-- 头部 -->
     <!-- <section class="p-5 text-center text-sm-start"> -->
-    <section class="p-5 bg-dark text-light text-center text-sm-start">
+    <section
+      class="bg-primary bg-gradient text-light text-center text-sm-start pt-11"
+    >
       <!--padding -->
       <div class="container">
         <div class="d-flex">
@@ -95,7 +101,7 @@
               perspiciatis voluptatum obcaecati quia. Alias corrupti at
               voluptates magnam. Sunt numquam eaque amet accusantium ipsa?
             </p>
-            <button class="btn btn-primary btn-lg">开启编程之旅</button>
+            <button class="btn btn-light btn-lg">开启编程之旅</button>
           </div>
           <img
             src="img/showcase.svg"
@@ -104,21 +110,27 @@
           />
         </div>
       </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="1"
+          d="M0,224L26.7,218.7C53.3,213,107,203,160,170.7C213.3,139,267,85,320,85.3C373.3,85,427,139,480,165.3C533.3,192,587,192,640,176C693.3,160,747,128,800,112C853.3,96,907,96,960,112C1013.3,128,1067,160,1120,149.3C1173.3,139,1227,85,1280,64C1333.3,43,1387,53,1413,58.7L1440,64L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+        ></path>
+      </svg>
     </section>
 
     <!-- 邮箱 -->
-    <section class="p-5 bg-primary text-light">
+    <section class="p-5">
       <div class="container">
-        <div class="d-md-flex justify-content-between align-items-center">
-          <h3 class="mb-3">现在注册账号开始编程之旅</h3>
-          <div class="input-group news-input">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="请输入你的邮箱"
-            />
-            <button class="btn btn-dark btn-lg">注册</button>
-          </div>
+        <p class="fs-2 text-center">现在注册账号开始编程之旅</p>
+        <div class="heading-line"></div>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="请输入你的邮箱"
+          />
+          <button class="btn btn-primary btn-lg">注册</button>
         </div>
       </div>
     </section>
@@ -129,38 +141,38 @@
         <div class="row g-4">
           <!-- g-4 gap -->
           <div class="col-md">
-            <div class="card bg-dark text-light">
+            <div class="card">
               <div class="card-body text-center">
                 <div class="card-title">前端知识</div>
                 <div class="card-text">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
                   rem esse laboriosam?
                 </div>
-                <a href="#" class="btn btn-primary mt-2">前端知识</a>
+                <a href="#" class="btn btn-light mt-2">前端知识</a>
               </div>
             </div>
           </div>
           <div class="col-md">
-            <div class="card bg-secondary">
+            <div class="card">
               <div class="card-body text-center">
                 <div class="card-title">前端知识</div>
                 <div class="card-text">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
                   rem esse laboriosam?
                 </div>
-                <a href="#" class="btn btn-dark mt-2">前端知识</a>
+                <a href="#" class="btn btn-light mt-2">前端知识</a>
               </div>
             </div>
           </div>
           <div class="col-md">
-            <div class="card bg-dark text-light">
+            <div class="card">
               <div class="card-body text-center">
                 <div class="card-title">前端知识</div>
                 <div class="card-text">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
                   rem esse laboriosam?
                 </div>
-                <a href="#" class="btn btn-primary mt-2">前端知识</a>
+                <a href="#" class="btn btn-light mt-2">前端知识</a>
               </div>
             </div>
           </div>
@@ -169,8 +181,15 @@
     </section>
 
     <!-- 展示 -->
-    <section class="p-5">
-      <div class="container">
+    <section class="bg-primary bg-gradient text-light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="1"
+          d="M0,96L26.7,90.7C53.3,85,107,75,160,96C213.3,117,267,171,320,192C373.3,213,427,203,480,197.3C533.3,192,587,192,640,197.3C693.3,203,747,213,800,197.3C853.3,181,907,139,960,122.7C1013.3,107,1067,117,1120,117.3C1173.3,117,1227,107,1280,117.3C1333.3,128,1387,160,1413,176L1440,192L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"
+        ></path>
+      </svg>
+      <div class="container text-center text-sm-start">
         <div class="row align-items-center justify-content-between">
           <div class="col-md">
             <img src="img/1.svg" alt="1" class="img-fluid" />
@@ -190,8 +209,7 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="p-5 bg-dark text-light">
+
       <div class="container">
         <div class="row align-items-center justify-content-between">
           <div class="col-md p-5">
@@ -212,14 +230,22 @@
           </div>
         </div>
       </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="1"
+          d="M0,192L26.7,160C53.3,128,107,64,160,64C213.3,64,267,128,320,128C373.3,128,427,64,480,69.3C533.3,75,587,149,640,170.7C693.3,192,747,160,800,154.7C853.3,149,907,171,960,160C1013.3,149,1067,107,1120,117.3C1173.3,128,1227,192,1280,202.7C1333.3,213,1387,171,1413,149.3L1440,128L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+        ></path>
+      </svg>
     </section>
 
     <!-- 常见问题 -->
     <section class="p-5">
       <div class="container">
         <h2 class="text-center">常见问题</h2>
+        <div class="heading-line"></div>
         <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item">
+          <div class="accordion-item shadow">
             <h2 class="accordion-header" id="flush-headingOne">
               <button
                 class="accordion-button collapsed"
@@ -245,7 +271,7 @@
               </div>
             </div>
           </div>
-          <div class="accordion-item">
+          <div class="accordion-item shadow mt-7">
             <h2 class="accordion-header" id="flush-headingTwo">
               <button
                 class="accordion-button collapsed"
@@ -272,7 +298,7 @@
               </div>
             </div>
           </div>
-          <div class="accordion-item">
+          <div class="accordion-item shadow mt-7">
             <h2 class="accordion-header" id="flush-headingThree">
               <button
                 class="accordion-button collapsed"
@@ -306,10 +332,11 @@
     </section>
 
     <!-- 讲师介绍 -->
-    <section class="p-5 bg-primary">
+    <section class="p-5">
       <div class="container">
-        <h2 class="text-center text-light">讲师介绍</h2>
-        <p class="lead text-center text-white mb-5">
+        <h2 class="text-center">讲师介绍</h2>
+        <div class="heading-line"></div>
+        <p class="lead text-center mb-5">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
           corporis suscipit exercitationem. Nisi quam reprehenderit laudantium
           fugit excepturi sed tempora?
