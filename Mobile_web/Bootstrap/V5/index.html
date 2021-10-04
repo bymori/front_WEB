@@ -1,0 +1,394 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-04 21:49:21
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-05 00:09:11
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ioinn.cn-Bootstrap5</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- nav -->
+    <div class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+      <div class="container">
+        <a href="#" class="navbar-brand">沫沫-ioinn.cn</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <!--margin start = margin left-->
+            <li class="nav-item">
+              <div>
+                <a
+                  class="nav-link"
+                  href="https://github.com/bymori"
+                  target="_blank"
+                >
+                  <i class="text-light bi bi-github d-md-none"></i> 前端知识</a
+                >
+              </div>
+            </li>
+            <li class="nav-item">
+              <div>
+                <a
+                  class="nav-link"
+                  href="https://github.com/bymori"
+                  target="_blank"
+                  ><i class="text-light bi bi-github d-md-none"></i> 后端知识</a
+                >
+              </div>
+            </li>
+            <li class="nav-item">
+              <div>
+                <a
+                  class="nav-link"
+                  href="https://github.com/bymori"
+                  target="_blank"
+                  ><i class="text-light bi bi-github d-md-none"></i>
+                  数据库知识</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 头部 -->
+    <!-- <section class="p-5 text-center text-sm-start"> -->
+    <section class="p-5 bg-dark text-light text-center text-sm-start">
+      <!--padding -->
+      <div class="container">
+        <div class="d-flex">
+          <!--display flex-->
+          <div>
+            <h1>成为一个<span class="text-warning">前端工程师</span></h1>
+            <p class="my-4">
+              <!-- margin-top margin-bottom -->
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Assumenda temporibus velit praesentium reprehenderit vitae non
+              perspiciatis voluptatum obcaecati quia. Alias corrupti at
+              voluptates magnam. Sunt numquam eaque amet accusantium ipsa?
+            </p>
+            <button class="btn btn-primary btn-lg">开启编程之旅</button>
+          </div>
+          <img
+            src="img/showcase.svg"
+            alt="showcase"
+            class="w-50 d-none d-md-block"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 邮箱 -->
+    <section class="p-5 bg-primary text-light">
+      <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center">
+          <h3 class="mb-3">现在注册账号开始编程之旅</h3>
+          <div class="input-group news-input">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="请输入你的邮箱"
+            />
+            <button class="btn btn-dark btn-lg">注册</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目 -->
+    <section class="p-5">
+      <div class="container">
+        <div class="row g-4">
+          <!-- g-4 gap -->
+          <div class="col-md">
+            <div class="card bg-dark text-light">
+              <div class="card-body text-center">
+                <div class="card-title">前端知识</div>
+                <div class="card-text">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
+                  rem esse laboriosam?
+                </div>
+                <a href="#" class="btn btn-primary mt-2">前端知识</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="card bg-secondary">
+              <div class="card-body text-center">
+                <div class="card-title">前端知识</div>
+                <div class="card-text">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
+                  rem esse laboriosam?
+                </div>
+                <a href="#" class="btn btn-dark mt-2">前端知识</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="card bg-dark text-light">
+              <div class="card-body text-center">
+                <div class="card-title">前端知识</div>
+                <div class="card-text">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
+                  rem esse laboriosam?
+                </div>
+                <a href="#" class="btn btn-primary mt-2">前端知识</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 展示 -->
+    <section class="p-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md">
+            <img src="img/1.svg" alt="1" class="img-fluid" />
+          </div>
+          <div class="col-md p-5">
+            <h2>课程介绍</h2>
+            <p class="lead">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
+            </p>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat
+              ea, error maxime accusantium vero quos provident qui assumenda
+              accusamus eum reprehenderit ex quasi! Id magni consequuntur eos
+              vero, numquam ullam.
+            </p>
+            <a href="#" class="btn btn-light">查看更多</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="p-5 bg-dark text-light">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md p-5">
+            <h2>课程介绍</h2>
+            <p class="lead">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
+            </p>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat
+              ea, error maxime accusantium vero quos provident qui assumenda
+              accusamus eum reprehenderit ex quasi! Id magni consequuntur eos
+              vero, numquam ullam.
+            </p>
+            <a href="#" class="btn btn-light">查看更多</a>
+          </div>
+          <div class="col-md">
+            <img src="img/2.svg" alt="1" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="p-5">
+      <div class="container">
+        <h2 class="text-center">常见问题</h2>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                Accordion Item #1
+              </button>
+            </h2>
+            <div
+              id="flush-collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                Placeholder content for this accordion, which is intended to
+                demonstrate the <code>.accordion-flush</code> class. This is the
+                first item's accordion body.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+                aria-expanded="false"
+                aria-controls="flush-collapseTwo"
+              >
+                Accordion Item #2
+              </button>
+            </h2>
+            <div
+              id="flush-collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingTwo"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                Placeholder content for this accordion, which is intended to
+                demonstrate the <code>.accordion-flush</code> class. This is the
+                second item's accordion body. Let's imagine this being filled
+                with some actual content.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThree"
+                aria-expanded="false"
+                aria-controls="flush-collapseThree"
+              >
+                Accordion Item #3
+              </button>
+            </h2>
+            <div
+              id="flush-collapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingThree"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                Placeholder content for this accordion, which is intended to
+                demonstrate the <code>.accordion-flush</code> class. This is the
+                third item's accordion body. Nothing more exciting happening
+                here in terms of content, but just filling up the space to make
+                it look, at least at first glance, a bit more representative of
+                how this would look in a real-world application.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 讲师介绍 -->
+    <section class="p-5 bg-primary">
+      <div class="container">
+        <h2 class="text-center text-light">讲师介绍</h2>
+        <p class="lead text-center text-white mb-5">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+          corporis suscipit exercitationem. Nisi quam reprehenderit laudantium
+          fugit excepturi sed tempora?
+        </p>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card bg-light">
+              <div class="card-body text-center">
+                <img src="img/01-man.jpeg" class="mb-3 rounded-circle" />
+                <h3 class="card-title">张三</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Accusamus, ratione!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card bg-light">
+              <div class="card-body text-center">
+                <img src="img/02-man.jpeg" class="mb-3 rounded-circle" />
+                <h3 class="card-title">张三</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Accusamus, ratione!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card bg-light">
+              <div class="card-body text-center">
+                <img src="img/03-man.jpeg" class="mb-3 rounded-circle" />
+                <h3 class="card-title">张三</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Accusamus, ratione!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card bg-light">
+              <div class="card-body text-center">
+                <img src="img/04-man.jpeg" class="mb-3 rounded-circle" />
+                <h3 class="card-title">张三</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Accusamus, ratione!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="p-5">
+      <div class="container">
+        <h2 class="text-center mb-4">联系我们</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">电话：199XXXXXX</li>
+          <li class="list-group-item">邮箱： mori@ioinn.cn</li>
+          <li class="list-group-item">地址：上海市XXXX区</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 底部 -->
+    <section class="p-5 bg-dark text-white text-center">
+      <div class="container">
+        <p class="lead">Copyright &copy; 2021 沫沫</p>
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
