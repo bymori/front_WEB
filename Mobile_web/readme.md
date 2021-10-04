@@ -99,3 +99,67 @@ min-width: 320px;
 ### [rem适配方案2-flexible.js](rem布局/suningflexible/index.html)
 
 ### 响应式布局
+
+
+### vw和vh
+
+1. 移动端布局
+- 移动端布局---flex布局
+- 为了实现可以适配移动端，页面元素可以宽度和高度等比例缩放
+- 需要移动端适配有如下方案：
+
+#### rem
+
+市场比较常见：
+
+1. 需要不断修改html文字大小
+2. 需要媒体查询media
+3. 需要flexible.js
+
+#### vw / vh
+
+将来（马上）趋势
+1.省去各种判断和修改
+代表：
+b站。。
+
+### vw / vh是什么
+
+- vw/vh是一个相对单位(类似em和rem相对单位)
+  - vw是：`v`iewport `w`idth 视口宽度单位
+  - vh是：`v`iewport `h`eight 视口高度单位
+- 相对视口的尺寸计算结果
+  - 1vw=1/100视口宽度
+  - 1vh=1/100视口高度
+
+> 例如：
+> 当前屏幕视口是375像素，则1vw就是3.75像素 如果当前屏幕视口为414,则1vw就是4.14像素
+
+#### 注意
+
+和百分比有区别的，百分比是相对于父元素来说的，而vw和vh总是针对于当前视口来说的。
+
+
+#### vw注意事项
+
+- 因为设计到大量除法，还是适应LESS搭配更好点。
+- 我们本质是根据视口宽度来等比例缩，放页面元素高度和宽度的，所以开发中使用vw就基本够用了。vh很少使用
+- 兼容性：网站：[https://caniuse.com/](https://caniuse.com/)
+
+#### Easy LESS自动保存css指定位置
+
+vscode-->拓展-->Easy LESS-->拓展设置-->配置settings.json
+
+```json
+"less.compile": {
+  "compress": true, // true => 删除多余的空格
+  "sourceMap": true, // true => 生成源映射(.css.map文件)
+  //"out": true // false => 不输出.css文件(可覆盖每个文下所示)
+  "out": "../css/",//设置导出css路径 行对路径
+},
+```
+
+#### 按照px转换vw的小插件
+
+- px2vw
+- Px2xx
