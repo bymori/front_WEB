@@ -149,7 +149,9 @@
 
 ### 布局
 
-#### Available breakpoints
+#### 断点 Breakpoints
+
+- Available breakpoints
 
 | **Breakpoint**    | **Class infix** | Dimensions |
 | ----------------- | --------------- | ---------- |
@@ -160,7 +162,7 @@
 | Extra large       | xl              | ≥1200px    |
 | Extra extra large | xxl             | ≥1400px    |
 
-These breakpoints are customizable via Sass—you’ll find them in a Sass map in our `_variables.scss` stylesheet.
+- These breakpoints are customizable via Sass—you’ll find them in a Sass map in our `_variables.scss` stylesheet.
 
 ```scss
 $grid-breakpoints: (
@@ -173,13 +175,67 @@ $grid-breakpoints: (
 );
 ```
 
-#### 视口-viewport
+- 视口-viewport
 
 ```html
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 ```
 
+#### 容器 Containers
 
+Bootstrap附带三个不同的容器：
+
+- `.container`, 它在每个响应断点处设置一个`Max-Width`
+- `.container-fluid`, 所有断点均为`width：100%`
+- `.container-{breakpoint}`,在指定断点之前为`width：100%`
+
+The table below illustrates how each container’s `max-width` compares to the original `.container` and `.container-fluid` across each breakpoint.
+
+|| Extra small <576px | Small ≥576px | Medium ≥768px | Large ≥992px | X-Large ≥1200px | XX-Large ≥1400px |        
+| ------------------ | ------------ | ------------- | ------------ | --------------- | ---------------- | ------ |
+| `.container`       | 100%         | 540px         | 720px        | 960px           | 1140px           | 1320px |
+| `.container-sm`    | 100%         | 540px         | 720px        | 960px           | 1140px           | 1320px |
+| `.container-md`    | 100%         | 100%          | 720px        | 960px           | 1140px           | 1320px |
+| `.container-lg`    | 100%         | 100%          | 100%         | 960px           | 1140px           | 1320px |
+| `.container-xl`    | 100%         | 100%          | 100%         | 100%            | 1140px           | 1320px |
+| `.container-xxl`   | 100%         | 100%          | 100%         | 100%            | 100%             | 1320px |
+| `.container-fluid` | 100%         | 100%          | 100%         | 100%            | 100%             | 100%   |
+
+#### Holder 绘图插件
+
+- https://github.com/imsky/holder
+- 使用SVG在浏览器中呈现图像占位符
+
+##### Placeholder options
+
+占位符选项通过URL属性设置，例如 `holder.js/300x200?x=y&a=b`. 多个选项之间用 `&` 连接
+
+- `theme`: 要用于占位符的主题。示例: `holder.js/300x200?theme=sky`
+- `random`: 使用随机主题。示例: `holder.js/300x200?random=yes`
+- `bg`: 背景颜色。示例： `holder.js/300x200?bg=2a2025`
+- `fg`: 前景(文本)颜色。示例： `holder.js/300x200?fg=ffffff`
+- `text`: 自定义文本。示例： `holder.js/300x200?text=Hello`
+- `size`: 自定义文本大小。默认为`pt`单位。示例： `holder.js/300x200?size=50`
+- `font`: 自定义文本字体。示例：`holder.js/300x200?font=Helvetica`
+- `align`: 自定义文本对齐方式(左、右)。示例：`holder.js/300x200?align=left`
+- `outline`: 为占位符绘制轮廓和对角线。示例： `holder.js/300x200?outline=yes`
+- `lineWrap`: 最大线长与图像宽度比。示例：`holder.js/300x200?lineWrap=0.5`
+
+
+
+#### 网格 Grid system
+
+  || xs <576px             | sm ≥576px                                                    | md ≥768px  | lg ≥992px  | xl ≥1200px | xxl ≥1400px |           
+| --------------------- | ------------------------------------------------------------ | ---------- | ---------- | ---------- | ----------- | ----------- |
+| Container `max-width` | None (auto)                                                  | 540px      | 720px      | 960px      | 1140px      | 1320px      |
+| Class prefix          | `.col-`                                                      | `.col-sm-` | `.col-md-` | `.col-lg-` | `.col-xl-`  | `.col-xxl-` |
+| # of columns          | 12                                                           |            |            |            |             |             |
+| Gutter width          | 1.5rem (.75rem on left and right)                            |            |            |            |             |             |
+| Custom gutters        | [Yes](https://v5.bootcss.com/docs/layout/gutters/)           |            |            |            |             |             |
+| Nestable              | [Yes](https://v5.bootcss.com/docs/layout/grid/#nesting)      |            |            |            |             |             |
+| Column ordering       | [Yes](https://v5.bootcss.com/docs/layout/columns/#reordering) |            |            |            |             |             |
+
+#### 列 Columns
 
 
 
