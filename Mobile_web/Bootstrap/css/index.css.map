@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AAAA,IAAI,CAAC;EACH,OAAO,EAAE,GAAG;EACZ,MAAM,EAAE,GAAG;CASZ;;AAXD,AAGE,IAHE,CAGF,KAAK,CAAC;EACJ,gBAAgB,EARV,IAAI;EASV,KAAK,EARC,OAAO;EASb,WAAW,EAAE,IAAI;EACjB,SAAS,EATR,IAAI;EAUL,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;CACd",
+    "sources": [
+        "../Bootstrap5框架技术详解/1.快速入门（Getting Started）/03.Sass/scss/index.scss"
+    ],
+    "names": [],
+    "file": "index.css"
+}

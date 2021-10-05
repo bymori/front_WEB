@@ -1,0 +1,17 @@
+$bgcolor: #555;
+$fgcolor: #cf0707;
+$fs: 30px * 2;
+
+%mainext {
+  background-color: $bgcolor;
+  color: $fgcolor;
+  font-size: $fs;
+}
+body {
+  padding: 0px;
+  margin: 0px;
+  .main {
+    font-weight: bold;
+    @extend %mainext;
+  }
+}

@@ -1,0 +1,15 @@
+body .main {
+  background-color: #555;
+  color: #cf0707;
+  font-size: 60px;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+body .main {
+  font-weight: bold;
+}
+/*# sourceMappingURL=index.css.map */

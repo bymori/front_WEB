@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AASA,AALA,IAKI,CAGF,KAAK,CARE;EACP,gBAAgB,EALR,IAAI;EAMZ,KAAK,EALG,OAAO;EAMf,SAAS,EALN,IAAQ;CAMZ;;AACD,AAAA,IAAI,CAAC;EACH,OAAO,EAAE,GAAG;EACZ,MAAM,EAAE,GAAG;CAKZ;;AAPD,AAGE,IAHE,CAGF,KAAK,CAAC;EACJ,WAAW,EAAE,IAAI;CAElB",
+    "sources": [
+        "../03.Sass/scss/index.scss"
+    ],
+    "names": [],
+    "file": "index.css"
+}
