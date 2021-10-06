@@ -265,3 +265,55 @@ $zindex-tooltip:                    1080;
 
 
 
+### 内容
+
+#### 重置样式 Reboot
+
+1. body
+   1. 取消了margin:8px的默认样式
+   2. background-color为#fff
+2. Headings and paragraphs(H1和p标签)
+   1. margin-top取消
+   2. h1的margin-bottom为0.5rem
+   3. p的margin-bottom为1rem
+3. Lists
+   1. ul、ol和dl的margin-top清除，margin- bottom为1rem
+   2. 嵌套的列表的margin-bottom为0
+   3. 重置了ul和ol的padding-left值
+   4. description lists更新了margin
+   5. dd的margin-left重置为0, 并且margin-bottom重置为0.5rem
+   6. dt为粗体
+
+
+
+#### 排版 Typography
+
+
+
+#### 图片 Image
+
+
+
+#### 表格 Tables
+
+1. table结构
+
+```html
+<table class="table">
+    <caption>表名</caption>
+    <thead>
+      表头
+    </thead>
+    <tbody>
+      表体
+    </tbody>
+    <tfoot>
+      表尾
+    </tfoot>
+  </table>
+```
+
+2. table类
+
+
+
