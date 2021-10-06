@@ -239,3 +239,29 @@ The table below illustrates how each container’s `max-width` compares to the o
 
 
 
+
+
+#### 列填充 Gutters
+
+
+
+#### Z轴距离 Z-index
+
+默认元素的Z-index距离
+
+```scss
+$zindex-dropdown:                   1000;
+$zindex-sticky:                     1020;
+$zindex-fixed:                      1030;
+$zindex-offcanvas-backdrop:         1040;
+$zindex-offcanvas:                  1045;
+$zindex-modal-backdrop:             1050;
+$zindex-modal:                      1055;
+$zindex-popover:                    1070;
+$zindex-tooltip:                    1080;
+```
+
+
+
+
+

@@ -1,0 +1,83 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-06 00:08:34
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-06 00:56:39
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列填充 Gutters</title>
+    <link
+      rel="stylesheet"
+      href="../0.assets/bootstrap-5.1.1-dist/css/bootstrap.min.css"
+    />
+    <script src="../0.assets/bootstrap-5.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="../0.assets/holder/holder.min.js"></script>
+    <style>
+      .bg {
+        height: 100px;
+        background-color: rgb(254, 229, 229);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mb-5">
+      <h3>行列填充</h3>
+      <div class="row row-cols-3 g-3">
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col"><img src="holder.js/100px100?theme=sky" /></div>
+      </div>
+    </div>
+    <div class="container mb-5 bg-dark">
+      <!-- <div class="row gx-2 gy-3"> -->
+      <div class="row g-3">
+        <div class="col-4">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col-4"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col-4"><img src="holder.js/100px100?theme=sky" /></div>
+        <div class="col-4"><img src="holder.js/100px100?theme=sky" /></div>
+      </div>
+    </div>
+    <div class="container px-4 mb-5">
+      <h3>水平填充</h3>
+      <div class="row gx-5">
+        <div class="col">
+          <div class="p-3 border bg-light">Custom column padding</div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">Custom column padding</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container overflow-hidden">
+      <h3>垂直填充</h3>
+      <div class="row gy-5">
+        <div class="col-12">
+          <div class="p-3 border bg-light">Custom column padding</div>
+        </div>
+
+        <div class="col-12">
+          <div class="p-3 border bg-light">Custom column padding</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

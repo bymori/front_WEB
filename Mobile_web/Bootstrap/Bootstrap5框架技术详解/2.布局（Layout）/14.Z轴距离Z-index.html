@@ -1,0 +1,139 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-06 01:00:56
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-06 01:38:12
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Z轴距离 Z-index</title>
+    <link
+      rel="stylesheet"
+      href="../0.assets/bootstrap-5.1.1-dist/css/bootstrap.min.css"
+    />
+    <script src="../0.assets/bootstrap-5.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="../0.assets/holder/holder.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  </head>
+  <body>
+    <div class="container position-relative">
+      <div class="row mb-3 sticky-top">
+        <img src="holder.js/100px500?theme=vine&text=图片占位" class="w-100" />
+      </div>
+      <div class="row row-cols-4 mb-3 g-3">
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+        <div class="col">
+          <img src="holder.js/100px100?theme=sky" />
+        </div>
+      </div>
+
+      <div class="row mb-3 position-absolute mx-0 top-0 start-0 myimg d-none">
+        <img src="holder.js/100px500?theme=lava&size=50" class="w-100" />
+      </div>
+    </div>
+    <script>
+      $(document).on('click', function () {
+        $('.myimg').removeClass('d-none');
+        $('.myimg').css({ 'z-index': '2000' }).slideDown(300);
+      });
+    </script>
+  </body>
+</html>
