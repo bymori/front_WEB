@@ -1,0 +1,47 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-06 18:07:50
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-06 19:50:28
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Range</title>
+    <link
+      rel="stylesheet"
+      href="../0.assets/bootstrap-5.1.1-dist/css/bootstrap.min.css"
+    />
+    <script src="../0.assets/bootstrap-5.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="../0.assets/holder/holder.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <label for="customRange1" class="form-label">Example range</label>
+      <input type="range" class="form-range" id="customRange1" />
+
+      <h3 class="mt-5">Min and max</h3>
+      <label for="customRange2" class="form-label">Example range</label>
+      <input
+        type="range"
+        class="form-range"
+        min="0"
+        step="0.5"
+        max="5"
+        id="customRange2"
+      />
+    </div>
+
+    <script>
+      $('.form-range').change(function () {
+        $('.form-label').html('Example range:' + this.value);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-06 20:54:32
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-06 23:03:06
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation</title>
+    <link
+      rel="stylesheet"
+      href="../0.assets/bootstrap-5.1.1-dist/css/bootstrap.min.css"
+    />
+    <script src="../0.assets/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../0.assets/holder/holder.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <form action="javascript:;" class="form" method="POST">
+        <div class="mb-3 position-relative">
+          <label for="">Username</label>
+          <input type="text" class="form-control username auth" />
+          <div class="invalid-tooltip"></div>
+        </div>
+
+        <div class="mb-3 position-relative">
+          <label for="">Password</label>
+          <input type="password" class="form-control password auth" />
+          <div class="invalid-tooltip">密码至少八位</div>
+        </div>
+
+        <div class="mb-3 position-relative">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input agree auth"
+              id="agreefor"
+            />
+            <div class="invalid-tooltip">You must agree before submitting.</div>
+            <label class="form-check-label" for="agreefor">
+              Agree to terms and conditions
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      //用户名验证
+      $('.username').on('blur', function () {
+        username_val = this.value;
+        if (username_val.length < 6) {
+          $(this).data({ s: 0 });
+          $(this).removeClass('is-valid').addClass('is-invalid');
+          $(this).next('.invalid-tooltip').html('用户名长度至少六位');
+        } else {
+          $(this).data({ s: 1 });
+          $(this).removeClass('is-invalid').addClass('is-valid');
+        }
+      });
+
+      //密码验证
+      $('.password').on('blur', function () {
+        password_val = this.value;
+        if (password_val.length < 8) {
+          $(this).data({ s: 0 });
+          $(this).removeClass('is-valid').addClass('is-invalid');
+        } else {
+          $(this).data({ s: 1 });
+          $(this).removeClass('is-invalid').addClass('is-valid');
+        }
+      });
+
+      //checkbox验证
+      $('.agree').on('change', function () {
+        agree_val = this.checked;
+        if (!agree_val) {
+          $(this).data({ s: 0 });
+          $(this).removeClass('is-valid').addClass('is-invalid');
+        } else {
+          $(this).data({ s: 1 });
+          $(this).removeClass('is-invalid').addClass('is-valid');
+        }
+      });
+
+      //jq验证
+      $('.form').on('submit', function () {
+        $('.username').blur();
+        $('.password').blur();
+        $('.agree').change();
+
+        t = 0;
+        $('.auth').each(function () {
+          t += $(this).data('s');
+        });
+        if (t == 3) {
+          $(this).attr({ action: 'http://www.ioinn.cn' });
+        }
+      });
+    </script>
+  </body>
+</html>

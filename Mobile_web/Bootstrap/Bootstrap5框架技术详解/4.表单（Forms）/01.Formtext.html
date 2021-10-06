@@ -1,0 +1,164 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-06 16:23:47
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-06 16:55:21
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form text</title>
+    <link
+      rel="stylesheet"
+      href="../0.assets/bootstrap-5.1.1-dist/css/bootstrap.min.css"
+    />
+    <script src="../0.assets/bootstrap-5.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="../0.assets/holder/holder.min.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <label for="exampleDataList" class="form-label">数据列表示例</label>
+      <input
+        class="form-control"
+        list="datalistOptions"
+        id="exampleDataList"
+        placeholder="Type to search..."
+      />
+      <datalist id="datalistOptions">
+        <option value="San Francisco"></option>
+        <option value="New York"></option>
+        <option value="Seattle"></option>
+        <option value="Los Angeles"></option>
+        <option value="Chicago"></option>
+      </datalist>
+    </div>
+    <div class="container mt-5">
+      <div class="mb-3">
+        <label for="formFile" class="form-label"
+          >Default file input example</label
+        >
+        <input class="form-control" type="file" id="formFile" />
+      </div>
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label"
+          >Multiple files input example</label
+        >
+        <input
+          class="form-control"
+          type="file"
+          id="formFileMultiple"
+          multiple
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formFileDisabled" class="form-label"
+          >Disabled file input example</label
+        >
+        <input
+          class="form-control"
+          type="file"
+          id="formFileDisabled"
+          disabled
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formFileSm" class="form-label"
+          >Small file input example</label
+        >
+        <input
+          class="form-control form-control-sm"
+          id="formFileSm"
+          type="file"
+        />
+      </div>
+      <div>
+        <label for="formFileLg" class="form-label"
+          >Large file input example</label
+        >
+        <input
+          class="form-control form-control-lg"
+          id="formFileLg"
+          type="file"
+        />
+      </div>
+    </div>
+
+    <div class="container bg-dark mt-5">
+      <form class="row g-3">
+        <div class="col-auto">
+          <label for="staticEmail2" class="visually-hidden">Email</label>
+          <input
+            type="text"
+            readonly
+            class="form-control-plaintext text-light"
+            id="staticEmail2"
+            value="email@example.com"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="inputPassword2" class="visually-hidden">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword2"
+            placeholder="Password"
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">
+            Confirm identity
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mt-3">
+      <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            readonly
+            class="form-control-plaintext"
+            id="staticEmail"
+            value="email@example.com"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Password</label
+        >
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword" />
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-3">
+      <div class="mb-3">
+        <label>Email address</label>
+        <input
+          type="text"
+          placeholder="****@qq.com"
+          class="form-control form-control-lg"
+          disabled
+        />
+      </div>
+      <div class="mb-3">
+        <label>Email address</label>
+        <textarea
+          rows="3"
+          class="form-control"
+          placeholder="Email address"
+          readonly
+        ></textarea>
+      </div>
+    </div>
+  </body>
+</html>
