@@ -1,0 +1,48 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 21:52:00
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 21:57:07
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09.v-on的参数传递</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <!-- 默认传入event对象 可以在方法中获取 -->
+      <button @click="btn1Click">按钮1</button>
+
+      <!-- $event可以获取到事件发生时的事件对象 -->
+      <button @click="btn2Click($event,'momo',19)">按钮2</button>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            message: 'hello',
+          };
+        },
+        methods: {
+          btn1Click(event) {
+            console.log(event);
+          },
+          btn2Click(event, name, age) {
+            console.log(name, age, event);
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

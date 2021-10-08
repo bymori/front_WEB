@@ -423,3 +423,27 @@ https://snippet-generator.app/
 
 ### v-on的用法
 
+**v-on的使用：**
+
+- 缩写：@
+- 预期：Function | Inline Statement | Object
+- 参数：event
+- **修饰符**：
+  - .stop - 调用event.stopPropagation（）
+  - .prevent - 调用event.preventDefault（）
+  - .capture - 添加事件侦听器时使用capture模式
+  - .self - 只当事件是从侦听器绑定的元素本身触发时才触发回调
+  - .{keyAlias} - 仅当事件是从特定键触发时才触发回调
+  - .once - 只触发一次回调
+  - .left - 只当点击鼠标左键时触发
+  - .right - 只当点击鼠标右键时触发
+  - .middle - 只当点击鼠标中键时触发
+  - .passive - {passive: true}模式添加侦听器
+- 用法：绑定事件监听
+
+### v-on参数传递
+
+- 当通过methods中定，义方法，以供@click调用时，需要**注意参数问题**：
+- 情况一：如果该方法不需要额外参数，那么方法后的（）可以不添加。。
+  - 但是注意：如果方法本身中有一个参数，那么会默认将原生事件event参数传递进去
+- 情况二：如果需要同时传，入某个参数，同时需要event时，可以通过$event传入事件。
