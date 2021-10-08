@@ -1,0 +1,33 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 13:38:24
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 13:48:04
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.Vue3的引入_CDN.html</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        
+      //vue相关的代码
+      const mo = {
+        template: `<h2>Hello World</h2>`,
+      };
+      const app = Vue.createApp(mo);
+
+      //将app挂载到id为app的div上
+      app.mount('#app');
+    </script>
+  </body>
+</html>
