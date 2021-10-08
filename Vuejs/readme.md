@@ -570,3 +570,78 @@ https://snippet-generator.app/
 	- splice（）
 	- sort（）
 	- reverse（）
+
+- 替换数组的方法
+  - 上面的方法会直接修改原来的数组，但是某些方法不会替换原来的数组，而是会生成新的数组，比如filter（）、concat（）和slice（）。
+
+### v-for中的key是什么作用？
+
+- 在使用v-for进行列表渲染时，我们通常会给元素或者组件绑定一个`key属性`。
+- 这个key属性有什么作用呢？我们先来看一下`官方的解释`：
+  - key属性主要用在Vue的`虚拟DOM算法`，在`新旧nodes`对比时辨识`VNodes`;,
+  - 如果`不使用key`,Vue会使用一种最大限度减少动态元素并且尽可能的尝尝试就地`修改/复用相同类型元素`的算法；，
+  - 而`使用key`时，它会基于key的变化`重新排列元素顺序`，并f且会`移除/销毁key`不存在的元素；，
+- 官方的解释对于初学者来说并不好理解，比如下面的问题：
+  - 什么是新旧nodes,什么是VNode?
+  - 没有key的时候，如何尝试修改和复用的？
+  - 有key的时候，如何基于key重新排列的？
+
+### 认识VNode
+
+- VNode的概念：
+  - 因为目前我们还没有比较完整的学习组件的概念，所以目前我们先理解HTML元素创建出来的VNode ;
+  - VNode的全称是Virtual Node，也就是虚拟节点；
+  - 事实上，无论是组件还是元素，它们最终在Vue中表示出来的都是一 个个VNode;
+  - VNode的本质是个Java Script的对象；
+
+![image-20211009002456193](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009002456193.png)
+
+
+
+### 虚拟DOM
+
+- 如果我们不只是一个简单的div，而是有一大堆的元素，那么他们应该会形成一个VNode Tree：
+
+![image-20211009002739563](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009002739563.png)
+
+### [diff算法]()
+
+#### 没有key的过程如下
+
+- 我们会发现上面的diff算法效率并不高：
+  - c和d来说它们事实。上并不需要有任何的改动；
+  - 但是因为我们的c被f所使用了，所有后续所有的内容都要一次进行改动，并且最后进行新增；
+
+![image-20211009010046365](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009010046365.png)
+
+#### 有key的diff算法如下 一
+
+- 第一步的操作是从头开始进行遍历、比较：
+  - a和b是一致的会继续进行比较；
+  -  c和f因为key不一致，所以就会break跳出循环；
+
+![image-20211009011849837](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009011849837.png)
+
+- 第二步的操作是从尾部开始进行遍历、比较：
+
+![image-20211009011949673](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009011949673.png)
+
+#### 有key的diff算法如下（二）
+
+- 第三步是如果旧节点遍历完毕，但是依然有新的节点，那么就新增节点：
+
+![image-20211009012316166](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009012316166.png)
+
+- 第四步是如果新的节点遍历完毕，但是依然有旧的节点，那么就移除旧节点：
+
+![image-20211009012400437](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009012400437.png)
+
+#### 有key的diff算法如下（三）
+
+- 第五步是最特色的情况，中间还有很多未知的或者乱序的节点：
+
+![image-20211009012641073](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009012641073.png)
+
+- 所以我们可以发现，Vue在进行diff算法的时候，会尽量利用我们的key来进行优化操作：
+  - 在没有key的时候我们的效率是非常低效的；
+  - 在进行插入或者重置顺序的时候，保持相同的key可以让diff算法更加的高效；
