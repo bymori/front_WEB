@@ -539,4 +539,34 @@ https://snippet-generator.app/
 - v-for的基本格式是`"item in 数组"`:
   - 数组通常是来自`data或者prop`，也可以是其他方式；，
   -  item是我们给每项元素起的一个`别名`，这个别名可以自定来定义；
+- 我们知道，在遍历一个数组的时候会经常需要拿到`数组的索引`：
+  - 如果我们需要索引，可以使用格式： "(item, index) in 数组";
+  - 注意上面的顺序：数组元素项item是在前面的，索引项index是在后面的；
 
+### v-for支持的类型
+
+- v-for也支持遍历对象，并且支持有一 二三个参数：
+  - 一个参数："value in object";
+  - 二个参数："(value, key) in object";
+  - 三个参数："(value, key, index) in object";
+- v-for同时也支持数字的遍历：
+  - 每一个item都是一个数字；
+
+
+
+### template元素
+
+- 类似于v-if,你可以使用template元素来循环渲染一 段包含多个元素的内容：
+  - 我们使用template来对多个元素进行包裹，而不是使用div来完成；
+
+### 数组更新检测
+
+- Vue将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法包括：
+
+	- push（）
+	- pop（）
+	- ishift（）
+	- lunshift（）
+	- splice（）
+	- sort（）
+	- reverse（）
