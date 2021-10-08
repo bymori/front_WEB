@@ -1,0 +1,78 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 14:04:31
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 16:53:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05.template this</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div>
+        <h2>{{counter}}</h2>
+        <button @click="increment">+1</button>
+        <button @click="decrement">-1</button>
+        <br />
+        <br />
+        <button @click="btnClick">this</button>
+        <br />
+        <br />
+        <button @click="btn2Click">this2</button>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      Vue.createApp({
+        template: `#mo`,
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        //定义方法
+        methods: {
+          increment() {
+            this.counter++;
+          },
+          decrement() {
+            console.log(this);
+            this.counter--;
+          },
+          btnClick: () => {
+            // this === window 不能等于window
+            // 写成一个箭头函数时，这个this就是window
+            // 在箭头函数中是不绑定this,但是函数中如果使用了this 会向上层作用域中寻找
+            console.log(this);
+          },
+          btn2Click: function () {
+            console.log(this);
+          },
+        },
+      }).mount('#app');
+
+      const foo = function () {
+        console.log(this);
+      };
+
+      foo(); // window 隐式绑定
+
+      const obj = { bar: foo };
+      obj.bar(); //obj
+      let a = 123.456;
+      console.log(a | 0); // 123
+      console.log(a << 0); // 123
+      console.log(a & a); // 123
+      console.log(~~a); // 123
+    </script>
+  </body>
+</html>

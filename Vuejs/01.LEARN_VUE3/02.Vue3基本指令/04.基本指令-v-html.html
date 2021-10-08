@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 19:14:10
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 19:19:23
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04.基本指令-v-html</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div>
+        <h2>{{message}}</h2>
+        <h2 v-html="message"></h2>
+      </div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            message: '<span style="color:red;background:blue;">沫沫</span>',
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 19:11:16
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 19:12:59
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.基本指令-v-text</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div>
+        <h2 v-text="message"></h2>
+        <!-- 等价于 -->
+        <h2>{{message}}</h2>
+      </div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            message: 'hello',
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 17:33:34
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 19:02:29
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.Mustache语法</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div>
+        <!-- 1.Mustache基本使用 -->
+        <h2>{{message}}</h2>
+
+        <!-- 2.{{}} 里面写表达式 -->
+        <h2>{{counter * 10}}</h2>
+        <h2>{{message.split(" ").reverse().join(" ")}}</h2>
+
+        <!-- 3.调用函数 -->
+        <!-- 可以使用计算属性 computed -->
+        <h2>{{getReverseMessage()}}</h2>
+
+        <!-- 4.三元运算符 -->
+        <h2>{{ isShow ? '沫沫' : '' }}</h2>
+        <button @click="toggle">切换</button>
+
+        <!-- 错误语法 -->
+        <!-- var name='momo' 不能使用赋值语句-->
+        <!-- <h2>{{var name='momo'}}</h2> -->
+        <!-- 控制流的if语句也是不支持的，可以使用三元运算符 -->
+        <!-- <h2>{{ if(isShow){return '沫沫'} }}</h2> -->
+      </div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            message: 'hello World',
+            counter: 100,
+            isShow: true,
+          };
+        },
+        methods: {
+          getReverseMessage() {
+            return this.message.split(' ').reverse().join(' ');
+          },
+          toggle() {
+            this.isShow = !this.isShow;
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

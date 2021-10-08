@@ -149,3 +149,232 @@ Vue.createApp({
 
 
 
+## vue3源码
+
+- 第一步：在GitHub上搜索vue-next，下载源代码；
+  - 这里推荐通过git clone的方式下载
+
+- 第二步：安装Vue源码项目相关的依赖；
+
+  - 执行yarn install
+
+- 第三步：对项目执行打包操作
+
+  - 执行yarn dev（执行前修改脚本）
+
+  ```json
+  "scripts": {
+      "dev": "node scripts/dev.js --sourcemap",
+  }
+  ```
+
+- 第四步：通过packages/vue/dist/vue.global.js调试代码
+
+
+
+## Vue基础-模板语法
+
+### methods方法绑定this
+
+- 我们在methods中要使用data返回对象中的数据：
+  - 那么这个`this是必须有值`的，并且应该可以`通过this获取到data返回对象中的数据`
+- **那么我们这个this能不能是`window`呢？**
+  - `不可以是window`,因为window中我们无法获取到data返回对象中的数据；
+  - 但是如果我们使用`箭头函数`，那么这`个this就会是window`了；
+- **为什么是window呢？**
+  - 这里涉及到箭头函数使用`this的查找规则`，它会在自己的`上层作用域中来查找this`;
+  - 最终刚好找到的是script作用于中的this，所以就是window;
+- this到底是如何查找和绑定的呢？
+  - https://mp.weixin.qq.com/s/hYm0JgBI25grNG_2sCRlTA
+  - https://mp.weixin.qq.com/s/vMSkb5OYvJOzfgTI2V5oyg
+
+## vscode代码片段
+
+### Snippet generator
+
+代码片段很好用，可是生成它们却很麻烦，这个网站可以根据代码一键生成。支持 `VSCode`，`Sublime Text`，`Atom`。
+
+https://snippet-generator.app/
+
+
+
+## 模板语法
+
+- React的开发模式：
+  - React使用的jsx，所以对应的代码都是`编写的类似于js的-种语法`；
+  - 之后通过Babel将jsx编译成React.create Element函数调用；
+- Vue也支持jsx的开发模式（后续有时间也会讲到） :
+  - 但是大多数情况下，使用`基于HTML的模板语法`；
+  - 在模板中，允许开发者以声明式的方式将`DOM`和`底层组件实例的数据`绑定在一起；
+  - 在底层的实现中，Vue将模板编译成虚拟DCIM渲染函数，这个我会在后续给大家讲到；
+
+### Mustache双大括号语法
+
+- 如果我们希望把数据显示到模板(template)中，使用最多的语法是"Mustache”语法（双大括号）的文本插值。
+  - 并且我们前端提到过，`data返回的对象`是有添加到`Vue的响应式系统`中；
+  - 当`data中的数据发生改变`时，`对应的内容也会发生更新`。
+  - 当然，Mustache中不仅仅可以是data中的属性，也可以是一 个`JavaScript的表达式`。
+
+```vue
+ <template id="mo">
+      <div>
+        <!-- 1.Mustache基本使用 -->
+        <h2>{{message}}</h2>
+
+        <!-- 2.{{}} 里面写表达式 -->
+        <h2>{{counter * 10}}</h2>
+        <h2>{{message.split(" ").reverse().join(" ")}}</h2>
+
+        <!-- 3.调用函数 -->
+        <!-- 可以使用计算属性 computed -->
+        <h2>{{getReverseMessage()}}</h2>
+
+        <!-- 4.三元运算符 -->
+        <h2>{{ isShow ? '沫沫' : '' }}</h2>
+        <button @click="toggle">切换</button>
+
+        <!-- 错误语法 -->
+        <!-- var name='momo' 不能使用赋值语句-->
+        <!-- <h2>{{var name='momo'}}</h2> -->
+        <!-- <h2>{{ if(isShow){return '沫沫'} }}</h2> -->
+      </div>
+    </template>
+
+<script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            message: 'hello World',
+            counter: 100,
+            isShow: true,
+          };
+        },
+        methods: {
+          getReverseMessage() {
+            return this.message.split(' ').reverse().join(' ');
+          },
+          toggle() {
+            this.isShow = !this.isShow;
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+```
+
+### 基本指令
+
+
+
+### v-once
+
+- v-once用于指定元素或者组件只渲染一次：
+
+  - 当数据发生变化时，`元素或者组件以及其所有的子元素`将视为`静态内容`并且跳过；
+
+  - 该指令可以用于`性能优化`；
+
+    ```vue
+    <h2>{{counter}}</h2>
+    <button @click="increment">+1</button>
+    ```
+
+    
+
+- 如果是子节点，也是只会渲染一次：
+
+  ```vue
+  <div v-once>
+    <h2>{{counter}}</h2>
+    <h2>{{message}}</h2>
+    <button @click="increment">+1</button>
+  </div>
+  ```
+
+  
+
+### v-text
+
+用于更新元素的textCountent
+
+```vue
+<h2 v-text="message"></h2>
+        <!-- 等价于 -->
+        <h2>{{message}}</h2>
+```
+
+### v-html
+
+- 默认情况下，如果我们展示的内容本身是html的，那么vue并不会对其进行特殊的解析。
+
+  - 如果我们希望这个内容被Vue可以解析出来，那么可以使用v-html来展示；
+
+    ```vue
+    <div>
+            <h2>{{message}}</h2>
+            <h2 v-html='message'></h2>
+          </div>
+    
+    data() {
+              return {
+                message: '<span style="color:red;background:blue;">沫沫</span>',
+              };
+            },
+    ```
+
+    
+
+### v-pre
+
+- v-pre用于跳过元素和它的子元素的编译过程，显示原始的Mustache标签：
+
+  - 跳过不需要编译的节点，加快编译的速度；
+
+    ```vue
+    <template id="mo">
+          <div>
+            <h2>{{message}}</h2>
+            <h2 v-pre>{{message}}</h2>
+          </div>
+        </template>
+    ```
+
+    
+
+### v-cloak
+
+当网络较慢，网页还在加载 Vue.js ，而导致 Vue 来不及渲染，这时页面就会显示出 Vue 源代码。
+
+这样直至div内变量编译完毕后才会显示。
+
+```vue
+<style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+
+<template id="mo">
+      <div>
+        <h2>{{message}}</h2>
+        <h2 v-cloak>{{message}}</h2>
+      </div>
+    </template>
+```
+
+
+
+### v-bind的属性绑定
+
+- 前端讲的一 系列指令，主要是将值插入到`模板内容`中。
+- 但是，除了内容需要动态来决定外，**某些`属性`我们也希望动态来绑定**。
+  - 比如动态绑定a元素的href属性；
+  - 比如动态绑定img元素的src属性；
+- 绑定属性我们使用v-bind :
+  - 缩写：：
+  - 预期：any(with argument)|Object (without argument)
+  - 参数：attrOrProp (optional)
+  - 修饰符：
+    		v.camel- 将kebab-case attribute名转换为camelC ase.
+  - 用法：动态地绑定一个或多个attribute，或一个组件prop到表达式。
