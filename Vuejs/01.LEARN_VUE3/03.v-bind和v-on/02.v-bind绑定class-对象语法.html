@@ -1,0 +1,74 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 20:01:12
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 20:16:10
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02.v-bind绑定class-对象语法</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div :class="className">沫沫</div>
+
+      <!-- 对象语法：{active:Boolean} -->
+      <div :class="{active:isActive}">末日</div>
+      <button @click="toggle">切换</button>
+
+      <!-- 也可以有多个键值对 -->
+      <div :class="{active:isActive,title:true}">末日</div>
+
+      <!-- 默认的class和动态的class结合 -->
+      <div class="abc aaa" :class="{active:isActive,title:true}">末日</div>
+
+      <!-- 将对象放到一个单独的属性中 -->
+      <div class="abc aaa" :class="classObj">末日</div>
+
+      <!-- 将返回的对象放到一个methods(computed)方法中 -->
+      <div class="abc aaa" :class="getClassObj()">末日</div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            className: 'momo',
+            isActive: true,
+            classObj: {
+              active: true,
+              title: true,
+            },
+          };
+        },
+        methods: {
+          toggle() {
+            this.isActive = !this.isActive;
+            this.classObj.active = !this.classObj.active;
+          },
+          getClassObj() {
+            return {
+              active: true,
+              title: true,
+            };
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

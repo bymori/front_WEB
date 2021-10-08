@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 20:57:35
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 20:58:54
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>07.v-bind属性直接绑定一个对象</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div v-bind="info">沫沫</div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            info: {
+              name: 'momo',
+              age: 19,
+              height: 1.88,
+            },
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 20:53:36
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 20:55:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06.v-bind动态绑定属性名称</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div :[name]="value">沫沫</div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            name: 'abc',
+            value: 'momo',
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

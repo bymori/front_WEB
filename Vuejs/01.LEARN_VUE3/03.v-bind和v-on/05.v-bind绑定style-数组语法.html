@@ -1,0 +1,42 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 20:45:13
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 20:48:55
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05.v-bind绑定style-数组语法</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div :style="[styleObj,styleObj2]">沫沫</div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            styleObj: {
+              color: 'red',
+              fontSize: '50px',
+            },
+            styleObj2: {
+              textDecoration: 'underline',
+            },
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

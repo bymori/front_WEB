@@ -1,0 +1,47 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-08 19:52:20
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-08 19:58:58
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.v-bind的基本使用</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- vue2 template模板中只能有一个根元素 -->
+    <!-- vue3 是允许template中有多个根元素 -->
+    <template id="mo">
+      <!-- v-bind:的基本使用 -->
+      <img v-bind:src="imgUrl" alt="" />
+      <a v-bind:href="link">百度</a>
+
+      <!-- v-bind语法糖 : 简写 -->
+      <img :src="imgUrl" alt="" />
+      <img rc="imgUrl" alt="" />
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            imgUrl:
+              'https://gitee.com/bymori/pic-go-core/raw/master/img/72a324a74379631ef7289fb39c159cbe03873fa3.jpg@102w_102h.jpg',
+            link: 'www.baidu.com',
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>
