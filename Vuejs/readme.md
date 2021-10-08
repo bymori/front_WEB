@@ -447,3 +447,96 @@ https://snippet-generator.app/
 - 情况一：如果该方法不需要额外参数，那么方法后的（）可以不添加。。
   - 但是注意：如果方法本身中有一个参数，那么会默认将原生事件event参数传递进去
 - 情况二：如果需要同时传，入某个参数，同时需要event时，可以通过$event传入事件。
+
+### 条件渲染
+
+- 在某些情况下，我们需要根据当前的条件决定某些当元素或组件是否渲染，这时候我们就需要进行条件判断了。
+- Vue提供了下面的指令来进行条件判断:
+  - v-if
+  - v-else
+  - v-else-if
+  - v-show
+
+### v-if、v-else、v-else-if
+
+- v-if、v-else、 v-else-if用于根据条件来渲染某一 块的内容：
+
+  - 这些内容只有在条件为true时，才会被渲染出来；
+  - 这三个指令与Java Script的条件语句if、 else、else if类似；
+
+  ```vue
+  <template id="mo">
+        <input type="text" v-model="score" />
+        <h2 v-if="score>90">优秀-{{score}}</h2>
+        <h2 v-else-if="score>60">良好-{{score}}</h2>
+        <h2 v-else>不及格-{{score}}</h2>
+      </template>
+  ```
+
+- v-if的渲染原理：
+
+  - v-if是惰性的；
+  - 当条件为false时，其判断的内容完全不会被渲染或者会被销毁掉；
+  - 当条件为true时，才会真正渲染条件块中的内容；
+
+### template元素
+
+- 因为v-if是一个指令，所以必须将其添加到一个元素上：
+  - 但是如果我们希望切换的是多个元素呢？
+  - 此时我们`渲染div`，但是我们`并不希望div这种元素被渲染`
+  - 这个时候，我们可以选择使用`template`
+
+- template元素可以当做不可见的包裹元素，并且在v-if上使用，但是最终template不会被渲染出来：
+  - 有点类似于小程序中的block
+
+```vue
+<template id="mo">
+      <template v-if="ifShowHA">
+        <h2>哈哈沫沫</h2>
+        <h2>哈哈沫沫</h2>
+        <h2>哈哈沫沫</h2>
+      </template>
+
+      <template v-else>
+        <h2>呵呵沫沫</h2>
+        <h2>呵呵沫沫</h2>
+        <h2>呵呵沫沫</h2>
+      </template>
+    </template>
+```
+
+
+
+### v-show
+
+- v-show和v-if的用法看起来是一致的，也是根据条件决定是否显示元素或者组件：
+
+
+
+### v-show和v-if的区别
+
+- 首先，在用法上的区别：
+  - v-show是不支持template ;
+  - v-show不可以和v-else一起使用；
+- 其次，本质的区别：
+  - v-show元素无论是否需要显示到浏览器上，它的DOM实际都是有渲染的，只是通过CSS的display属性来进行切换；
+  - v-if当条件为false时，其对应的元素压根不会被渲染到DOM中；
+
+- 开发中如何进行选择呢？
+  - 如果我们的元素需要在显示和隐藏之间频繁的切换，那么使用v-show;,
+  - 如果不会频繁的发生切换，那么使用v-if;
+
+
+
+### 列表渲染
+
+- 在真实开发中，我们往往会从服务器拿到一组数据，并且需要对其进行渲染。
+  - 这个时候我们可以使用`v-for`来完成；
+  - v-for类似于Java Script的for循环，可以用于遍历一组数据；
+
+### v-for基本使用
+
+- v-for的基本格式是`"item in 数组"`:
+  - 数组通常是来自`data或者prop`，也可以是其他方式；，
+  -  item是我们给每项元素起的一个`别名`，这个别名可以自定来定义；
+
