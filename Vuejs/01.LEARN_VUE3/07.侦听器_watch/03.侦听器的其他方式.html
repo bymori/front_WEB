@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-09 19:28:27
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-09 20:10:06
+ * @LastEditTime: 2021-10-09 21:40:19
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +21,8 @@
         <h2>{{info}}</h2>
         <button @click="changeInfo">修改info</button>
         <button @click="changeInfoName">修改infoName</button>
+        <h2>{{friends}}</h2>
+        <button @click="changeFriendsName">修改friends</button>
       </div>
     </template>
     <script src="../js/vue.js"></script>
@@ -31,12 +33,29 @@
         data() {
           return {
             info: { name: '沫沫', age: 19, height: 1.88 },
+            friends: [{ name: '末日' }, { name: '千凉' }],
           };
         },
         watch: {
+          info(newValue, oldValue) {
+            console.log('info', newValue, oldValue);
+          },
           'info.name': function (newValue, oldValue) {
             console.log(newValue, oldValue);
           },
+
+          /* friends: {
+            handle(newValue, oldValue) {
+              console.log(newValue, oldValue);
+            },
+            deep: true,
+          }, */
+          /* 
+            创建一个 BaseFriend的组件
+            通过 v-for 遍历出 <base-friend :friend='friend'></base-friend> 组件
+            BaseFriend组件中 通过props接收  然后监听 BaseFriend 组件中 props 里的 friend
+
+          */
         },
         methods: {
           changeInfo() {
@@ -44,6 +63,9 @@
           },
           changeInfoName() {
             this.info.name = '末日m';
+          },
+          changeFriendsName() {
+            this.friends[0].name = '六道';
           },
         },
         created() {
