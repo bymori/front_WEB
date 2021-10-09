@@ -1,0 +1,59 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-10 01:09:09
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-10 01:15:54
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.注册局部组件</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div>
+        <h2>{{message}}</h2>
+      </div>
+      <component-a></component-a>
+    </template>
+
+    <template id="component-a">
+      <h2>组件A</h2>
+      <p>组件A的p标签</p>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const ComponentA = {
+        template: '#component-a',
+      };
+
+      const App = {
+        template: `#mo`,
+        components: {
+          // key:组件名称
+          // value:组件对象
+          //   ComponentA: ComponentA,
+          ComponentA,
+        },
+        data() {
+          return {
+            message: 'hello',
+          };
+        },
+      };
+      const app = Vue.createApp(App);
+
+      //全局组件
+      //   app.component('component-a', ComponentA);
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>
