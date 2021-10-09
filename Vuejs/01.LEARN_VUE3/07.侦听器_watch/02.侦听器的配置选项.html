@@ -1,0 +1,64 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 19:28:27
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-09 19:52:06
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02.侦听器的配置选项</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div>
+        <h2>{{info}}</h2>
+        <button @click="changeInfo">修改info</button>
+        <button @click="changeInfoName">修改infoName</button>
+      </div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            info: { name: '沫沫', age: 19, height: 1.88 },
+          };
+        },
+        watch: {
+          // 默认情况下侦听器只会针对监听数据本身的改变（内部发生的改变是不能侦听）
+          /* info(newVal, oldVal) {
+            console.log(newVal, oldVal);
+          }, */
+
+          // 深度监听 / 立即执行(一定会执行一次)
+          info: {
+            handler: function (newVal, oldVal) {
+              console.log(oldVal);
+              console.log(newVal);
+            },
+            deep: true, //深度侦听
+            immediate: true, //立即执行
+          },
+        },
+        methods: {
+          changeInfo() {
+            this.info = { name: '末日' };
+          },
+          changeInfoName() {
+            this.info.name = '末日m';
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

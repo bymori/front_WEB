@@ -730,3 +730,64 @@ computed: {
 
 ### 认识侦听器watch
 
+- **什么是侦听器呢？**
+  - 开发中我们在data返回的对象中定义了数据，这个数据通过`插值语法等方式绑定到template`中；
+  - 当数据变化时，template会自动进行更新来显示最新的数据；
+  - 但是在某些情况下，我们希望在`代码逻辑`中监听某个数据的变化，这个时候就需要用`侦听器watch`来完成了；
+
+- 侦听器的用法如下：
+  - 选项：watch
+  - 类型：{[key: string]: string | Function | Object | Array}
+
+#### 侦听器watch的配置选项
+
+- 我们先来看一个例子：
+  - 当我们点击按钮的时候会修改`info.name`的值；
+  - 这个时候我们使用`watch来侦听info，可以侦听到`吗？答案是`不可以`。
+- 这是因为默认情况下，**watch只是在侦听info的引用变化**，对于**内部属性的变化是不会做出响应**的：
+  - 这个时候我们可以使用一个`选项deep`进行更深层的侦听；
+  - 注意前面我们说过watch里面侦听的属性对应的也可以是一个Object;
+- 还有**另外一个属性**，是**希望一开始的就会立即执行一次**：
+  - 这个时候我们使用`immediate选项`；
+  - 这个时候无论后面数据是否有变化，侦听的函数都会有限执行一次；
+
+#### 侦听器watch的其他方式（一）
+
+![image-20211009195358971](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009195358971.png)
+
+#### 侦听器watch的其他方式（二）
+
+- 另外一个是Vue 3文档中没有提到的，但是Vue 2文档中有提到的是侦听对象的属性：
+
+```vue
+'info.name': function (newValue, oldValue) {
+            console.log(newValue, oldValue);
+          },
+```
+
+- **还有另外一种方式就是使用 $watch的API**:
+  我们可以在created的生命周期（后续会讲到）中，使用this.$watchs来侦听；
+
+  - 第一个参数是要侦听的源；
+  - 第二个参数是侦听的回调函数callback;
+  - 第三个参数是额外的其他选项，比如deep、immediate;
+
+  ```vue
+  this.$watch(expOrFn, callback, [options])
+  
+  created() {
+            const unwatch = this.$watch(
+              'info',
+              (newValue, oldValue) => {
+                console.log('$watch', newValue, oldValue);
+              },
+              { deep: true, immediate: true }
+            );
+  
+            //取消侦听
+            // unwatch();
+          },
+  ```
+
+  
+

@@ -1,0 +1,65 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 19:28:27
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-09 20:10:06
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.侦听器的其他方式</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <div>
+        <h2>{{info}}</h2>
+        <button @click="changeInfo">修改info</button>
+        <button @click="changeInfoName">修改infoName</button>
+      </div>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            info: { name: '沫沫', age: 19, height: 1.88 },
+          };
+        },
+        watch: {
+          'info.name': function (newValue, oldValue) {
+            console.log(newValue, oldValue);
+          },
+        },
+        methods: {
+          changeInfo() {
+            this.info = { name: '末日' };
+          },
+          changeInfoName() {
+            this.info.name = '末日m';
+          },
+        },
+        created() {
+          const unwatch = this.$watch(
+            'info',
+            (newValue, oldValue) => {
+              console.log('$watch', newValue, oldValue);
+            },
+            { deep: true, immediate: true }
+          );
+
+          //取消侦听
+          // unwatch();
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>
