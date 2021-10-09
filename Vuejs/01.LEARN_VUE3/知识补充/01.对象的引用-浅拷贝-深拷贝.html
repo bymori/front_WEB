@@ -1,0 +1,63 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 21:42:57
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-09 22:59:05
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.对象的引用-浅拷贝-深拷贝</title>
+  </head>
+  <body>
+    <!-- https://www.jsdelivr.com/package/npm/lodash -->
+    <!-- Lodash modular utilities. -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <!-- 1.对象的引用赋值 -->
+    <script>
+      // 对象是引用类型
+      //   const info = { name: 'momo', age: 18 };
+      //   const obj = info;
+      //   info.name = 'mori';
+      //   console.log(obj.name);
+    </script>
+
+    <!-- 2.对象的浅拷贝 -->
+    <script>
+      const info = {
+        name: 'momo',
+        age: 18,
+        friend: { name: 'mori', height: 1.88 },
+      };
+      //   const obj = Object.assign({}, info);
+
+      //   lodash
+      const obj = _.clone(info);
+      info.name = '千凉';
+      console.log(obj.name); //momo
+      //   info.friend.name = '末日';
+      //   console.log(obj.friend.name); //末日
+    </script>
+
+    <!-- 3.对象的深拷贝 -->
+    <script>
+      //   const info = {
+      //     name: 'momo',
+      //     age: 18,
+      //     friend: { name: 'mori', height: 1.88 },
+      //   };
+      //   const obj = JSON.parse(JSON.stringify(info));
+
+      //   _.cloneDeep(info);
+
+      //   info.friend.name = '末日';
+      //   console.log(obj.friend.name); //mori
+    </script>
+  </body>
+</html>
