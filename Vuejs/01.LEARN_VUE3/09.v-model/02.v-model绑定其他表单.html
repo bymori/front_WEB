@@ -1,0 +1,104 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 23:24:19
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-09 23:44:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02.v-model绑定其他表单</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <!-- 1.绑定 textarea -->
+      <label for="intro">
+        <textarea
+          name="intro"
+          id="intro"
+          cols="30"
+          rows="10"
+          v-model="intro"
+        ></textarea>
+      </label>
+      <p>intro:{{intro}}</p>
+
+      <!-- 2.checkbox -->
+      <!-- 2.1.单选框 -->
+      <label for="agree">
+        <input type="checkbox" id="agree" v-model="isAgree" />同意协议
+      </label>
+      <p>isAgree:{{isAgree}}</p>
+
+      <!-- 2.1.多选框 -->
+      <label for="basketball">
+        <input
+          id="basketball"
+          type="checkbox"
+          id="agree"
+          v-model="hobbies"
+          value="basketball"
+        />篮球
+      </label>
+      <label for="football">
+        <input
+          id="football"
+          type="checkbox"
+          id="agree"
+          v-model="hobbies"
+          value="football"
+        />足球
+      </label>
+      <label for="tennis">
+        <input
+          id="tennis"
+          type="checkbox"
+          id="agree"
+          v-model="hobbies"
+          value="tennis"
+        />网球
+      </label>
+      <p>hobbies:{{hobbies}}</p>
+
+      <!-- 3.radio -->
+      <label for="male">
+        <input type="radio" id="male" v-model="gender" value="male" />男
+      </label>
+      <label for="female">
+        <input type="radio" id="female" v-model="gender" value="female" />女
+      </label>
+      <p>gender:{{gender}}</p>
+
+      <!-- 4.select -->
+      <select v-model="fruit" multiple size="3">
+        <option value="Apple">苹果</option>
+        <option value="Orange">橘子</option>
+        <option value="Banana">香蕉</option>
+      </select>
+      <p>fruit:{{fruit}}</p>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            intro: 'hello',
+            isAgree: false,
+            hobbies: [],
+            gender: '',
+            fruit: 'Orange',
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

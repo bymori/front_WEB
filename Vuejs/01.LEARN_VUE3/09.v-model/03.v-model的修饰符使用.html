@@ -1,0 +1,53 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 23:59:19
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-10 00:16:55
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.v-model的修饰符使用</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <!-- 1. lazy 修饰符 -->
+      <!-- <input type="text" v-model.lazy="message" /> -->
+      <!-- <h2>{{message}}</h2> -->
+
+      <!-- 2. number 修饰符 -->
+      <!-- <input type="text" v-model.number="message" />
+      <h2>{{message}} - {{showType}}</h2> -->
+
+      <!-- 3. trim修饰符 去除空格-->
+      <input type="text" v-model.trim="message" />
+      <h2>{{message}} - {{showType}}</h2>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            // message: 'hello',
+            // message: 0,
+            message: 'hello ioinn.cn',
+          };
+        },
+        computed: {
+          showType() {
+            return typeof this.message;
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

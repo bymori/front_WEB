@@ -1,0 +1,45 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 23:05:50
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-09 23:10:39
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.v-model的基本使用</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <!-- 1. v-bind value的绑定 2. 监听 input 事件，更新message的值 -->
+      <!-- <input type="text" :value="message" @input="inputChange" /> -->
+
+      <input type="text" v-model="message" />
+      <h2>{{message}}</h2>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            message: 'hello',
+          };
+        },
+        methods: {
+          inputChange(event) {
+            this.message = event.target.value;
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

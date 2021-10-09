@@ -820,3 +820,116 @@ computed: {
   - `v-model指令`可以在表单input、textarea以及select元素。上创建`双向数据绑定`；
   - 它会根据`控件类型`自动选取正确的方法来更新元素；
   - 尽管有些神奇，`但v-model本质上不过是语法糖`，它`负责监听用户的输入事件来更新数据`，并在某种极端场景下进行一些特殊处理；
+
+#### v-model的原理
+
+- 官方有说到，**v-model的原理**其实是背后有两个操作：
+  - v-bind绑定value属性的值；
+  - v-on绑定input事件监听到函数中，函数会获取最新的值赋值到绑定的属性中；
+
+```html
+<input v-model="searchText" />
+```
+
+等价于
+
+```html
+<input :value="searchText" @input="searchText = $event.target.value" />
+```
+
+#### 事实上v-model更加复杂
+
+![image-20211009232134361](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211009232134361.png)
+
+
+
+#### v-model绑定其他表单
+
+- textarea
+
+  ```vue
+  <textarea
+            name="intro"
+            id="intro"
+            cols="30"
+            rows="10"
+            v-model="intro"
+          ></textarea>
+  ```
+
+  
+
+- checkbox
+
+  - 单个勾选框：
+    - v-model即为布尔值。
+    - 此时input的value并不影响v-model的值。
+  - 多个复选框：
+    - 当是多个复选框时，因为可以选中多个，所以对应的data中属性是一 个数组。
+    - 当选中某一 个时，就会将input的value添加到数组中。
+
+- radio
+
+  ```vue
+  <label for="male">
+          <input type="radio" id="male" v-model="gender" value="male" />男
+        </label>
+        <label for="female">
+          <input type="radio" id="female" v-model="gender" value="female" />女
+        </label>
+  ```
+
+  
+
+- select
+
+  - 和checkbox一样，select也分单选和多选两种情况。
+  - 单选：只能选中一个值
+    - v-model绑定的是一个值；
+    - 当我们选中option中的一 个时，会将它对应的value赋值到fruit中；
+
+
+
+### v-model的值绑定
+
+- 目前我们在前面的案例中`大部分的值`都是`在template中固定好的`：
+  - 比如gender的两个输入框值male、 female;
+  - 比如hobbies的三个输入框值basketball、 football、tennis;
+- 在真实开发中，我们的`数据可能是来自服务器`的，那么我们就可以先将值`请求下来`，`绑定到data返回的对象`中，再`通过v-bind来进行值`的绑定，这个过程就是`值绑定`。
+
+#### v-model修饰符-Iazy
+
+- **lazy修饰符是什么作用呢？**
+  - 默认情况下，v-model在进行双向绑定时，绑定的是`input事件`，那么会在在每次内容输入后就将最新的值和绑定的属性进行同步；
+  - 如果我们在v-model后跟。上lazy修饰符，那么会将绑定的事件切换为`change事件`，只有在提交时（比如回车）才会触发
+
+#### v-model修饰符-number
+
+- 我们先来看一下v-model绑定后的值是什么类型的：
+  0 message总是`string类型`，即使在我们设置`type为number也是string类型`；
+
+- 如果我们希望转换为`数字类型`，那么可以使用`.number修饰符`：
+
+- 另外,在我们进行`逻辑判断`时，如果是一 个`string类型`，在可以转化的情况下`会进行隐式转换`的：
+
+  - 下面的score在进行判断的过程中会进行隐式转化的；
+
+  ```javascript
+  const score = '10';
+        if (score > 90) {
+          console.log('优秀');
+        }
+        console.log(typeof score);
+  ```
+
+  
+
+#### v-model修饰符-trim
+
+如果要自动过滤用户输入的守卫空白字符，可以给v-model添加 `trim修饰符`：
+
+
+
+#### v-mode组件上使用
+
+V-model也可以使用在组件上
