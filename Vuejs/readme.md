@@ -671,5 +671,62 @@ https://snippet-generator.app/
   - `计算属性`将被混入到组件实例中。所有getter和setter的this. 上下文自动地绑定为组件实例；
 - 计算属性的用法：
   - **选项**：computed
-  - **类型**：{[[key: string]: Function|{get: Function, set: Function}}
+  - **类型**：{[key: string]: Function|{get: Function, set: Function}}
+
+
+
+#### 实现思路一：模板语法
+
+- 缺点一：模板中存在大量的复杂逻辑，不便于维护（模板中表达式的初衷是用于简单的计算）。
+- 缺点二：当有多次一样的逻辑时，存在重复的代码；
+- 缺点三：多次使用的时候，很多运算也需要多次执行，没有缓存；
+
+#### 实现思路二：method实现
+
+- 缺点一：我们事实上先显示的是一 个结果，但是都变成了一种方法的调用；
+- 缺点二：多次使用方法的时候，没有缓存，也需要多次计算；
+
+#### 思路三的实现：computed实现
+
+- 注意：计算属性看起来像是一个函数，但是我们在使用的时候不需要加（），这个后面讲setter和getter时会讲到；
+- 我们会发现无论是直观上，还是效果上计算属性都是更好的选择；
+- 并且计算属性是有缓存的；
+
+### 计算属性 vs methods
+
+- 在上面的实现思路中，我们会发现计算属性和methods的实现看起来是差别！是不大的，而且我们多次提到计算属性`有缓存`的。
+- 接下来我们来看一下同一一个计算多次使用，计算属性和methods的差异：
+
+#### 计算属性的缓存
+
+- 这是因为计算属性会基于它们的`依赖关系进行缓存`。
+- 在`数据不发生变化`时，计算属性是`不需要重新计算`的；
+- 但是如果`依赖的数据发生变化`,在使用时，计算属性依然`会重新进行计算`；
+
+#### 计算属性的getter和setter方法
+
+- 计算属性在大多数情况下，只需要个getter方法即可，所以我们会将计算属性直接写成一个函数。
+- 但是，如果我们确实想设置计算属性的值呢？ 
+  - 这个时候我们也可以给计算属性设置一个setter的方法；
+
+```vue
+computed: {
+          //  FullName的getter和setter方法
+          FullName: {
+            get: function () {
+              return `${this.firstName} ${this.lestName}`;
+            },
+            set: function (newValue) {
+              console.log(newValue);
+              const names = newValue.split(' ');
+              this.firstName = names[0];
+              this.lestName = names[1];
+            },
+          },
+        },
+```
+
+
+
+### 认识侦听器watch
 

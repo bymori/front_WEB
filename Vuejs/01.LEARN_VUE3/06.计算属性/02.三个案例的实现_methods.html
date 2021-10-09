@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-09 15:06:38
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-09 15:11:15
+ * @LastEditTime: 2021-10-09 15:19:51
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +12,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>01.三个案例的实现_插值语法</title>
+    <title>02.三个案例的实现_methods</title>
   </head>
   <body>
     <div id="app"></div>
     <template id="mo">
-      <h2>{{firstName+" "+lestName}}</h2>
-      <h2>{{score>=60?'及格':'不及格'}}</h2>
-      <h2>{{message.split(' ').reverse().join(' ')}}</h2>
+      <h2>{{getFullName()}}</h2>
+      <h2>{{getResult()}}</h2>
+      <h2>{{getReverseMessage()}}</h2>
     </template>
     <script src="../js/vue.js"></script>
 
@@ -33,6 +33,17 @@
             score: 80,
             message: 'hello world',
           };
+        },
+        methods: {
+          getFullName() {
+            return `${this.firstName} ${this.lestName}`;
+          },
+          getResult() {
+            return this.score >= 60 ? '及格' : '不及格';
+          },
+          getReverseMessage() {
+            return this.message.split(' ').reverse().join(' ');
+          },
         },
       };
       Vue.createApp(App).mount('#app');

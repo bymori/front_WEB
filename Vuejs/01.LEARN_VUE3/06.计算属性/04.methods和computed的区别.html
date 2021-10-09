@@ -1,0 +1,61 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 15:06:38
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-09 15:41:13
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04.methods和computed的区别</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <button @click="changeFirstName">修改name</button>
+      <h2>{{FullName}}</h2>
+      <h2>{{FullName}}</h2>
+      <h2>{{FullName}}</h2>
+
+      <h2>{{getFullName()}}</h2>
+      <h2>{{getFullName()}}</h2>
+      <h2>{{getFullName()}}</h2>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            firstName: 'mo',
+            lestName: 'ri',
+          };
+        },
+        computed: {
+          // 计算属性是有缓存的，当我们多次使用计算属性时，计算属性中的运算只会执行一次
+          // 计算属性会随着依赖的数据（firstName）的改变，而进行重新计算
+          FullName() {
+            console.log('computed+FullName');
+            return `${this.firstName} ${this.lestName}`;
+          },
+        },
+        methods: {
+          getFullName() {
+            console.log('methods+getFullName');
+            return `${this.firstName} ${this.lestName}`;
+          },
+          changeFirstName() {
+            this.firstName = '末日';
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

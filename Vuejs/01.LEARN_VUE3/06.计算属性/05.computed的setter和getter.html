@@ -1,0 +1,67 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-09 15:06:38
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-09 15:55:41
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05.computed的setter和getter</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <template id="mo">
+      <button @click="changeFirstName">修改name</button>
+      <button @click="changeFullName">修改计算属性结果</button>
+      <h2>{{FullName}}</h2>
+    </template>
+    <script src="../js/vue.js"></script>
+
+    <script>
+      const App = {
+        template: `#mo`,
+        data() {
+          return {
+            firstName: 'mo',
+            lestName: 'ri',
+          };
+        },
+        computed: {
+          //  FullName的getter方法
+          /* FullName: function () {
+            console.log('computed+FullName');
+            return `${this.firstName} ${this.lestName}`;
+          }, */
+
+          //  FullName的getter和setter方法
+          FullName: {
+            get: function () {
+              return `${this.firstName} ${this.lestName}`;
+            },
+            set: function (newValue) {
+              console.log(newValue);
+              const names = newValue.split(' ');
+              this.firstName = names[0];
+              this.lestName = names[1];
+            },
+          },
+        },
+        methods: {
+          changeFirstName() {
+            this.firstName = '末日';
+          },
+          changeFullName() {
+            this.FullName = '千 凉';
+          },
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>
