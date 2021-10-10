@@ -1139,7 +1139,91 @@ V-model也可以使用在组件上
 
 
 
+#### 指定配置文件
+
+- 但是如果我们的配置文件并不是webpack.config.js的名字，而是其他的名字呢？
+
+  - 比如我们将webpack.config.js修改成了Custom.cconfig.js ;
+
+  - 这个时候我们可以通过--config来指定对应的配置文件；
+
+    ```shell
+    webpack  --config Custom.config.js
+    ```
+
+    
+
+- 但是每次这样执行命令来对源码进行编译，会非常繁琐，所以我们可以在package.json中增加一 个新的脚本：
+
+  ```shell
+  {
+  	"scripts": {
+  		"build": "webpack --config Custom.config.js"
+  	}
+  }
+  ```
+
+  
+
+  #### Webpack的依赖图
+
+- webpack到底是如何对我们的项目进行打包的呢？
+  - 事实。上webpack在处理应用程序时，它会根！据命令或者配置文件找到入口文件；
+  
+  - 从入口开始，会生成一个`依赖关系图`，这个`依赖关系图`会包含应用程序中所需的所有模块(比如：js文件、css文件、图片、字体等）；
+  
+  - 然后遍历图结构，打包一个个模块(根据文件的不同使用不同的loader来解析)
+  
+      ![image-20211010135924111](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010135924111.png)
 
 
-*// "build": "webpack --config Custom.config.js",*
 
+
+
+#### css-loader的使用
+
+![image-20211010141019409](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010141019409.png)
+
+- 上面的错误信息告诉我们需要一个loader来加载这个css文件，但是`loader`是什么呢？
+  - loader可以用于对`模块的源代码`进行转换；
+  - 我们可以`将css文件也看成是一 个模块`，我们是`通过import来加载这个模块`的；
+  - 在加载这个模块时，`webpack其实并不知道如何对其进行加载`，我们必须制定
+    定对应的loader来完成这个功能；
+
+#### css-loader的使用方案
+
+- 如何使用这个loader来加载css文件呢？有三种方式：
+  - 内联方式；
+  - CLI方式(webpack5中不再使用)；
+  - 配置方式；
+
+- **内联方式**：内联方式使用较少，因为不方便管理
+
+  - 在引入的样式前加上使用的loader，并且使用 ! 分割；
+
+    ```css
+    import 'css-loader!../css/style.css';
+    ```
+
+    
+
+- **CLI方式**
+
+  - 在webpack5的文档中已经没有了`--module-bind`;
+  - 实际应用中也比较少使用，因为不方便管理；，
+
+#### loader配置方式
+
+- 配置方式表示的意思是在我们的web pack.config.js文件中写明配置信息：
+  o module.rules中允许我们配置多个loader(因为我们也会继续使用其f怕的loader,来完成其他文件的加载)；
+  0这种方式可以更好的表示loader的配置，也方便后期的维护，同时也让你对各个Loader有一个全局的概览；
+- **module.rules的配置如下：**
+- rules属性对应的值是一个数组：**[Rule]**
+- 数组中存放的是一个个的Rule,Rule是一 个对象，对象中可以设置多个属性：
+  - `test属性`：用于对resource（资源）进行匹配的，通常会设置成正则表达式；
+  - `use属性`：对应的值时一 个数组：**[UseEntry]**
+    - UseEntry是一个对象，可以通过对象的属性来设置一 -些其他属性
+    - loader:必须有一个loader属性，对应的值是一个字符串；
+    - options:可选的属性，值是一 个字符串或者对象，值会被传入到loader中；query:目前已经使用options来替代；
+    - **传递字符串(如：use:['style-loader'])是loader属性的简写方式(如：use:[{loader: 'style-loader'}]);**
+  - `loader属性`：Rule.use:[{ loader}]的简写。
