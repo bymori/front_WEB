@@ -1944,3 +1944,69 @@ https://webpack.docschina.org/configuration/devtool/#root
 
     
 
+### Babel命令行使用
+
+- babel本身可以作为一个**独立的工具(**和postcss一样) ，不和webpack等构建工具配置来单独使用。
+
+- 如果我们希望在命令行尝试使用babel，需要安装如下库：
+
+  - `@babel/core `: babel的核心代码，必须安装；
+
+  - `@babel/cli` :可以让我们在命令行使用babel ;
+
+    ```shell
+    npm install @babel/core @babel/cli -D
+    ```
+
+    
+
+- 使用babel来处理我们的源代码：
+
+  - src:是源文件的目录；
+  - --out-dir:指定要输出的文件夹dist;
+    - `npx babel demo.js --out-dir dist`
+  - --out-file:指定要输出的文件
+    - `npx babel demo.js --out-file test.js`
+
+  
+
+  ### 插件的使用
+
+- 比如我们需要转换箭头函数，那么我们就可以使用箭头函数转换相关的插件：
+
+  ```shell
+  npm install @babel/plugin-transform-arrow-functions -D
+  
+  npx babel demo.js --out-file test.js --plugins=@babel/plugin-transform-arrow-functions
+  ```
+
+- 查看转换后的结果：我们会发现const并没有转成var
+
+  - 这是因为plugin-transform-arrow-functions，并没有提供这样的功能；，
+
+  - 我们需要使用plugin-transform-block-scoping来完成这样的功能；
+
+    ```shell
+    npm install @babel/plugin-transform-block-scoping -D
+    
+    npx babel demo.js --out-file test.js --plugins=@babel/plugin-transform-arrow-functions,@babel/plugin-transform-block-scoping
+    ```
+
+    
+
+### Babel的预设preset
+
+- 但是，如果要转换的内容过多，一一设置是比较麻烦的，我们可以使用预设（preset）
+
+- 安装 @babel/preset-env 预设
+
+  ```shell
+  npm install @babel/preset-env -D
+  
+  npx babel demo.js --out-file test.js --preset=@babel/preset-env
+  ```
+
+  
+
+
+
