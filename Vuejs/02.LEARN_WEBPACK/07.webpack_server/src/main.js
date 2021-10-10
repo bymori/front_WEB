@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:24:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 00:08:36
+ * @LastEditTime: 2021-10-11 00:45:42
  */
 // import { createApp } from 'vue/dist/vue.esm-bundler';
 import { createApp } from 'vue';
@@ -30,3 +30,5 @@ console.log(priceFormat());
 
 const app = createApp(App);
 app.mount('#app');
+
+console.log('--watch');

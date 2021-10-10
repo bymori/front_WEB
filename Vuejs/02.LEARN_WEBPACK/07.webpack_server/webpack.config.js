@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 00:06:47
+ * @LastEditTime: 2021-10-11 00:43:19
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -16,6 +16,7 @@ const { VueLoaderPlugin } = require('vue-loader/dist/index');
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
+  // watch: true, // watch模式 方式一：在导出的配置中，添加`watch:true`
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './build'),

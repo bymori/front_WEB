@@ -15931,7 +15931,7 @@ __webpack_require__.r(__webpack_exports__);
  * @Author: by_mori
  * @Date: 2021-10-10 12:24:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 00:08:36
+ * @LastEditTime: 2021-10-11 00:45:42
  */
 // import { createApp } from 'vue/dist/vue.esm-bundler';
 
@@ -15953,6 +15953,7 @@ console.log((0,_js_format__WEBPACK_IMPORTED_MODULE_2__.priceFormat)()); // Vue ä
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_vue_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 app.mount('#app');
+console.log('--watch');
 })();
 
 /******/ })()
