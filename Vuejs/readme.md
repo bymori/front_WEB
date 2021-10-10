@@ -1227,3 +1227,229 @@ V-model也可以使用在组件上
     - options:可选的属性，值是一 个字符串或者对象，值会被传入到loader中；query:目前已经使用options来替代；
     - **传递字符串(如：use:['style-loader'])是loader属性的简写方式(如：use:[{loader: 'style-loader'}]);**
   - `loader属性`：Rule.use:[{ loader}]的简写。
+
+#### 认识style-loader
+
+- 我们已经可以通过css-loader来加载css文件了
+
+  - 但是你会发现这个css在我们的代码中`并没有生效（页面没有效果）`。
+
+- 这是为什么呢？
+
+  - 因为css-loader只是`负责将 .css文件进行解析`，并不会将解析之后的`css插入到页面`中
+  - 如果我们希望再完`成插入style的操作`，那么我们还需要另外一个loader，就`是style-loader;`
+
+- 安装style-loader :
+
+  ```shell
+  npm install Style-loader -D
+  ```
+
+  
+
+#### 配置style-loader
+
+- 那么我们应该如何使用style-loader:
+
+  - 在配置文件中，添加style-loader ;
+  - 注意：因为loader的执行顺序是从右向左（或者i说从下到上，或者说从后到前的），所以我们需要将style-loader写到css-loader的前面；
+
+  ```js
+  use: [
+            // { loader: 'css-loader' },
+            // 注意 style-loader 需要在 css-loader 的前面
+            'style-loader',
+            'css-loader',
+          ],
+  ```
+
+  
+
+- 重新执行编译npm run build,可以发现打包后的css已经生效了：
+  - 当前目前我们的css是通过页内样式的方式添加进来的；
+  - 后续我们也会讲如何将css抽取到单独独的文件中，并且进行压缩等操作；
+
+### 如何处理less文件？
+
+- 在我们开发中，我们可能会使用`less、sass、stylus的预处理器`来编写css样式,效率会更高。
+
+- 那么，如何可以让我们的`环境支持这些预处理器`呢？ 
+
+  - 首先我们需要确定，less、sass等编写的css需要通过工具转换成普通的css ;
+
+- 比如我们编写如下的less样式：
+
+  ```less
+  @bgColor: blue;
+  @textDecoration: underline;
+  
+  .title {
+    background-color: @bgColor;
+    text-decoration: @textDecoration;
+  }
+  ```
+
+  
+
+#### Less工具处理
+
+- 可以使用less工具来完成它的编译转换
+
+  ```shell
+  npm install less -D
+  ```
+
+- 执行命令如下：
+
+  ```shell
+  npx lessc ./src/css/title.less title.css
+  ```
+
+  
+
+#### less-loader处理
+
+- 但是在项目中我们会编写大量的css,它们如何可以自动转换呢？
+
+  - 这个时候我们就可以使用less-loader，来自动使用less工具转换less到css;
+
+    ```shell
+    npm install less-loader -D
+    ```
+
+- 配置webpack.config.js
+
+  ```js
+  {
+          test: /\.less$/,
+          use: ['style-loader', 'css-loader', 'less-loader'],
+        },
+  ```
+
+- 执行npm run build
+  - less就可以自动转换成css, 并且页面也会生效了
+
+### 认识PostCSS工具
+
+- 什么是PostCSS呢
+  - D Post CSS是一 个通过JavaScript来转换样式的工具；
+  - 这个工具可以帮助我们进行一些CSS的转换和适配，比如自动添加浏览器前缀、css样式的重置；
+  - 但是实现这些功能，我们需要借助于Post CSS对应的插件；
+- 如何使用PostCSS呢？主要就是两个步骤：
+  - 第一步：查找Post CSS在构建工具中的扩展，比如webpack中的postcss-loader;
+  - 第二步：选择可以添加你需要的PostCSS相关的插件；
+
+#### 命令行使用postcss
+
+- 当然，我们能不能也直接在终端使用PostCSS呢？ .
+
+  - 也是可以的，但是我们需要单独安装一 个工具postcss-cli ;
+
+- 我们可以安装一下它们：postcss、 postcss-cli
+
+  ```shell
+  npm install postcss postcss-cli -D
+  ```
+
+  
+
+- 我们编写一个需要添加前缀的css:
+
+  - https://autoprefixer.github.io/
+  - 我们可以在上面的网站中查询-些添加css属性的样式；
+
+#### 插件autoprefixer
+
+- 因为我们需要添加前缀，所以要安装autoprefixer :
+
+  ```shell
+  npm install autoprefixer -D
+  ```
+
+  
+
+- 直接使用使用postcss工具，并且制定使用autoprefixer
+
+  ```shell
+  npx postcss --use autoprefixer -o end.css ./src/css/style.css
+  ```
+
+  
+
+#### postcss-loader
+
+- 真实开发中我们必然不会直接使用命令行工具来对css进行处理，而是可以借助于构建工具：
+
+  - 在webpack中使用postcss就是使用postcss-loader来处理的；
+
+- 我们来安装postcss-loader:
+
+  ```shell
+  npm install postcss-loader -D
+  ```
+
+  
+
+- 我们修改加载css的loader:(配置文件已经过多，给出一部分了）
+
+  - 注意：因为postcss需要有对应的插件才会起效果，所以我们需要配置它的plugin;
+
+    ```js
+    {
+                loader: 'postcss-loader',
+                options: {
+                  postcssOptions: {
+                    plugins: [require('autoprefixer')],
+                  },
+                },
+              },
+    ```
+
+    
+
+#### 单独的postcss配置文件
+
+- 当然，我们也可以将这些配置信息放到一个单独的文件中进行管理：
+
+  - 在根目录下创建postcss.config.js
+
+    ```js
+    module.exports = {
+      plugins: [require('autoprefixer')],
+    };
+    ```
+
+    
+
+#### postcss-preset-env
+
+- 事实上，在配置postcss-loader时，我们配置插件并不需要使用autoprefixer
+- 我们可以使用另外一个插件：postcss-preset-env
+  - postcss-preset-env 也是一一个postcss的插件；
+  - 它可以帮助我们将一 些现代的CSS特性，转成大多数浏览器认识的CSS，并且会根据目标浏器或者运行时环境添加所需的polyfill;
+  - 也包括会自动帮助我们添加autoprefixer (所以相当于已经内置了autoprefixer) ;
+
+- 首先，我们需要安装postcss-preset-env
+
+  ```shell
+  npm install postcss-preset-env -D
+  ```
+
+- 之后，我们直接修改掉之前的autoprefixer即可：
+
+  ```js
+  plugins: [
+      require('postcss-preset-env'),
+    ],
+  ```
+
+  - 注意：我们在使用某些postcss插件时， 也可以直接传入字符串
+
+    ```js
+    plugins: [
+        "postcss-preset-env"
+      ],
+    ```
+
+    
+

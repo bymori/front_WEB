@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 14:26:21
+ * @LastEditTime: 2021-10-10 15:19:39
  */
 const path = require('path');
 
@@ -24,9 +24,28 @@ module.exports = {
         // 2. 完整写法
         use: [
           // { loader: 'css-loader' },
+          // 注意 style-loader 需要在 css-loader 的前面
+          'style-loader',
           'css-loader',
+          'postcss-loader',
+          /* {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [require('autoprefixer')],
+              },
+            },
+          }, */
         ],
       },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      /* {
+        test: /\.(less|css)$/,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      }, */
     ],
   },
 };
