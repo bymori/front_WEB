@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 23:53:22
+ * @LastEditTime: 2021-10-11 00:06:47
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -68,6 +68,8 @@ module.exports = {
     }),
     new DefinePlugin({
       BASE_URL: "'./'",
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
     }),
     new CopyWebpackPlugin({
       patterns: [

@@ -2169,8 +2169,67 @@ app.mount('#app');
 
 
 
+### App.vue的打包过程
+
+- 我们对代码打包会报错：我们需需要合适的Loader来处理文件。
+
+  ![image-20211011001136618](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011001136618.png)
+
+- 这个时候我们需要使用vue-loader :
+
+  ```shell
+  npm install vue-loader@next -D
+  ```
+
+  
+
+- 在webpack的模板规则中进行配置：
+
+  ```js
+  {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+        },
+  ```
+
+  
+
+#### @vue/compiler-sfc
+
+- 打包依然会报错，这是因为我们必须添加@vue/compiler-sfc来对template进行解析：
+
+  ```shell
+  npm install @vue/compiler-sfc -D
+  ```
+
+- 另外我们需要配置对应的Vue插件：
+
+  ```js
+  const { VueLoaderPlugin } = require('vue-loader/dist/index');
+  
+  new VueLoaderPlugin(),
+  ```
+
+- 重新打包即可支持App.vue的写法
 
 
-npm install vue-loader@next -D
 
-npm install @vue/compiler-sfc -D
+### 为什么要搭建本地服务器？
+
+- 目前我们开发的代码，为了运行需要有两个操作：
+  - 操作一：npm run build，编译相关的代码；
+  - 操作二：通过live server或者直接通过浏览器，打开index.html代码，查看效果；
+- 这个过程经常操作会影响我们的开发效率，我们希望可以做到，当文件发生变化时，可以自动的完成编译和展示；
+- 为了完成自动编译，webpack提供了几种可选的方式：
+  - webpack watch mode;
+  - webpack-dev-server（常用）；
+  - webpack-dev-middleware ;
+
+#### Webpack watch
+
+- webpack给我们提供了watch模式：
+  - 在该模式下，webpack依赖图中的所有文件，只要有一一个发生了更新，那么代码将被重新编译；
+  - 我们不需要手动去运行npm run build指令了；
+- 如何开启watch呢？两种方式：
+  - 方式一：在导出的配置中，添加watch:true ;
+  - 方式二：在启动we bpack的命令中，添加 --watch的标识；
