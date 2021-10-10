@@ -2074,11 +2074,84 @@ https://webpack.docschina.org/configuration/devtool/#root
 ### Babel的配置文件
 
 - 像之前一样，我们可以将babel的配置信息放到一 个独立的文件中，babel给我们提供了两种配置文件的编写：
+
   - babel.config.json(或者js,.cjs ,.mjs)文件；
   - .babelrc.json(或者。babelrc, js, .cjs , .mjs)文件；
+
 - 它们两个有什么区别呢？目前很多的项目都采用了多包管理的方式(babel本身、element-plus、 umi等)；
+
 - .babelrc.json :早期使用较多的配置方式，但是对于配置Monorepos项目是比较麻烦的
--  babel.config.json(babel7) :可以直接作用于Monorepos项目的子包，更加推荐；
+
+-  babel.config.json(babel7) : 可以直接作用于Monorepos项目的子包，更加推荐；
+
+  ```js
+  module.exports = {
+    presets: ['@babel/preset-env'],
+  };
+  ```
+
+  
+
+## Vue源码的打包
+
+- 安装 vue
+
+  ```shell
+  npm install vue@next
+  ```
+
+```js
+import { createApp } from 'vue';
+
+// Vue 代码
+const app = createApp({
+  template: `<h2>这里是Vue渲染出来的-</h2>`,
+  data() {
+    return {
+      msg: 'hello vue',
+    };
+  },
+});
+
+app.mount('#app');
+```
 
 
 
+- 界面上是没有效果的：
+
+  - 并且我们查看运行的控制台，会发现如下的警告信息；
+
+    ![image-20211010232544924](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010232544924.png)
+
+
+
+### Vue打包后不同版本解析
+
+- **vue(.runtime).global(.prod).js:**
+  - 通过浏览器中的<script src=".." >直接使用；
+  - 我们之前通过CDN引入和下载的Vue版本就是这个版本；
+  - 会暴露一个全局的Vue来使用；
+- **vue(.runtime).esm-browser(.prod).js:**
+  - 用于通过原生ES模块导入使用(在浏览器中通过<script type="module">来使用)。
+- **vue(.runtime).esm-bundler.js:**
+  - 用于webpack, rollup和parcel等构建工具；
+  - 构建工具中默认是vue.runtime.esm-bundlerjs;
+  - 如果我们需要解析模板template，那么需要手动指定vue.esm-bundlerjs;
+- **vue.cjs(.prod).js:**
+  - 服务器端渲染使用；
+  - 通过require（）在Node:js中使用；
+
+### 运行时+编译器vs仅运行时
+- 在Vue的开发过程中我们有**三种方式**来编写DOM元素：
+  - 方式一：`template模板`的方式（之前经常使用的方式） ;
+  - 方式二：`render函数`的方式，使用h函数来编写渲染的内容；，
+  - 方式三：通过 `.vue文件`中的template来编写模板； .
+- **它们的模板分别是如何处理的呢？**
+  - 方式二中的h函数可以直接返回一个**虚拟节点**，也就是**Vnode节点**；
+  - 方式一和方式三的template都需要有`特定的代码`来对其进行解析：
+    - 方式三。vue文件中的template可以通i寸在`vue-loader`对其进行编译和处理；
+    - (方式一种的template我们必须要`通过源码中一部分代码`来进行编译；
+- 所以，Vue在让我们选择版本的时候分为**运行时+编译器vs仅运行时**
+  - `运行时+编译器`包含了对template模板的编译代码，更加完整，但是也更大-些；
+  - `仅运行时`没有包含对template版本的编译代码，相对更小- -些；
