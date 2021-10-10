@@ -1040,3 +1040,63 @@ V-model也可以使用在组件上
 - Webpack的运行是依赖于`Node环境`的，所以我们电脑，上必须有Node环境
   - 所以我们需要先安装Nodejs，并且同时会安装npm;
   - Node官方网站：https://nodejs.org/
+
+## Webpack基础打包
+
+- **事实上随着前端的快速发展，目前前端的开发已经变的越来越复杂了：**
+  - 比如开发过程中我们需要通过`模块化的方式`来开发；
+  - 比如也会使用一 些`高级的特性来加快我们的开发效率或者安全性`，比如通过ES6+、TypeScript开发脚本逻辑，通过sass、less等方式来编写css样式代码；
+  - 比如开发过程中，我们还希望`实时的监听文件的变化`来并且`反映到浏览器上`，提高开发的效率；
+  - 比如开发完成后我们还需要`将代码进行压缩`、`合并以及其他相关的优化`；
+  - 等等。。..
+
+- 但是对于很多的**前端开发者**来说，并不需要思考这些问题，日常的开发中根本就没有面临这些问题：
+  - 这是因为目前前端开发我们通常都会直接使用三大框架来开发：`Vue、React、Angular;`
+  - 但是事实上，这三大框架的创建过程我们都是`借助于脚手架(CLI)`的；
+  - 事实上Vue-CLI、create-react-app、Angular-CLI都是`基于webpack`来帮助我们支持模块化、less、TypeScript、打包优化等的；
+
+### Webpack到底是什么呢？
+
+- 我们先来看一下官方的解释：
+  **webpack** is a` static module bundler `for` modern ` JavaScript applications.
+- **webpack是一个静态的模块化打包工具，为现代的JavaScript应用程序**；
+- 我们来对上面的解释进行拆解：
+  - `打包bundler` : webpack可以将帮助我们进行打包，所以它是一 个打包工具
+  - `静态的static`:这样表述的原因是我们最终可以将代码打包成最终的静态资源（部署到静态服务器）；
+  - `模块化module` : webpack默认支持各种模块化开发，ES Module、CommonJS、AMD等；
+  - `现代的modern`: 我们前端说过，正是因为：现代前端开发面临各种各样的问题，才催生webpack的出现和发展；
+
+### Vue项目加载的文件有哪些呢？
+
+- **JavaScript的打包：**
+  - 将ES6转换成ES5的语法；
+  -  TypeS cript的处理，将其转换成Java Script;
+- **Css的处理：**
+  - CSS文件模块的加载、提取；
+  -  Less、Sass等预处理器的处理；
+- **资源文件img、font:**
+  - 图片img文件的加载；
+  - 字体font文件的加载；
+- **HTML资源的处理：**
+  - 打包HTML资源文件；
+
+### Webpack的安装
+
+- webpack的安装目前分为两个：`webpack、 webpack-cli`
+
+- **那么它们是什么关系呢？**
+
+  - 执行we bpack命令，会执行node_modules下的。bin目录下的webpack;
+  - webpack在执行时是依赖webpack-cli的，如果没有安装就会报错；
+  - 而we bpack- cli中代码执行时，才是真正利用vvebpack进行编译和打包的过程；
+  - 所以在安装webpack时，我们需要同时安装webpack-cli(第三方的脚手架事实上是没有使用webpack-cli的，而是类似于自己的vue-service-cli的东西）
+
+  ![image-20211010122050593](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010122050593.png)
+  
+  ```shell
+  npm install webpack webpack-cli -g #全局安装
+  npm install webpack webpack-cli -D #局部安装
+  ```
+  
+  
+
