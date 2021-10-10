@@ -2267,3 +2267,9 @@ app.mount('#app');
 
 - **webpack-dev-server 在编译之后`不会写入到任何输出文件`，而是将 bundle 文件`保留在内存`中**：
   - 事实上webpaclk-dev-server使用了一个库叫memfs(memory-fs webpack自己写的)
+
+
+
+
+
+![image-20211011014205668](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011014205668.png)

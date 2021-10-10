@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 00:43:19
+ * @LastEditTime: 2021-10-11 01:38:35
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -21,6 +21,14 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'js/bundle.js',
+  },
+  devServer: {
+    // 21.10.11 默认寻找 ./public 文件夹 无需定义
+    // contentBase: './public', //更变为 static
+    /* static: {
+      directory: path.resolve(__dirname, 'build'),
+    }, */
+    open: true, //自动打开浏览器
   },
   module: {
     rules: [
@@ -72,17 +80,17 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'public',
-          // to: './',
-          globOptions: {
-            ignore: ['**/index.html'],
-          },
-        },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: 'public',
+    //       // to: './',
+    //       globOptions: {
+    //         ignore: ['**/index.html'],
+    //       },
+    //     },
+    //   ],
+    // }),
     new VueLoaderPlugin(),
   ],
 };
