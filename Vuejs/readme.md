@@ -1451,5 +1451,115 @@ V-model也可以使用在组件上
       ],
     ```
 
-    
+
+
+### 加载图片案例
+
+- 为了演示项目中可以加载图片，我们需要在项目中使用图片，比较常见的使用图片的方式是两种：
+  - img元素，设置src属性；
+  - 其他元素(比如div),设置background-image的css属性
+
+
+
+### file-loader
+
+- 要处理jpg、png等格式的图片，我们也需要有对应的loader : file-loader
+  - file-loader的作用就是帮助我们处理`import/require()方式`引入的一 个文件资源，并且会将它放到我们`输出的的文件夹`中； 
+
+- 安装 file-loader
+
+  ```shell
+  npm install file-loader -D
+  ```
+
+- 配置处理图片的 Rule
+
+  ```js
+  {
+          // test: /\.(jpg|jpeg|png|gif|svg)$/,
+          test: /\.(jpe?g|png|gif|svg)$/,
+          use: [
+            {
+              loader: 'file-loader',
+            },
+          ],
+        },
+  ```
+
+  
+
+#### 解决 Automatic publicPath is not supported in this browser 错误
+
+问题描述：webpack 打包出现 
+Error: Automatic publicPath is not supported in this browser
+
+解决方法：
+在webpack.config.js文件中添加
+
+```js
+module.exports = 
+{
+    output: {
+        publicPath: './'
+    }
+}
+```
+
+publicPath 属性，指的是打包后公共资源的一个路径，默认路径不是./，所以打包的时候会出现找不到路径的问题，具体属性的意义，可以查询webpack配置文件官方文档。
+
+
+
+#### 文件的命名规则
+
+- 有时候我们处理后的`文件名称`按照一一定的规则进行显示：
+
+  - 比如保留原来的`文件名、扩展名`，同时为了防止重复，包含一一个`hash值`等；
+
+- 这个时候我们可以使用`PlaceHolders`来完成，webpack给我们提供1了大量的PlaceHolders来显示不同的内容：
+
+  - https://webpack.js.org/loaders/file-loader/#placeholders
+  - 我们可以在文档中查阅自己需要的placeholder;
+
+- 我们这里介绍几个最常用的placeholder :
+
+  - [ext]:处理文件的扩展名；
+
+  - [name]:处理文件的名称；
+
+  - [hash]:文件的内容，使用MD4的散列函数处理，生成的一一个128位的hash值(32个十六进制)；
+
+  - [contentHash]:在file-loader中和[hash]结果是一 致的(在webpack的一些其他地方不一样，后面会讲到)；
+
+  - [hash:<ength>]:截图has h的长度，默认32个字符太长了；
+
+  - [path]：文件件相对于webpack配置文件的路径；
+
+#### 设置文件的存放路径
+
+- 当然，我们刚才通过img/已经设置了文件夹，这个也是vue、react脚手架中常见的设置方式：
+
+  - 其实按照这种设置方式就可以了；
+
+  - 当然我们也可以通过`output Path`来设置输出的文件夹；
+
+    ```js
+    {
+            // test: /\.(jpg|jpeg|png|gif|svg)$/,
+            test: /\.(jpe?g|png|gif|svg)$/,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  name: 'img/[name]_[hash:6].[ext]',
+                  // outputPath: 'img',
+                  publicPath: './build',
+                },
+              },
+            ],
+          },
+    ```
+
+
+
+#### url-loader
 
