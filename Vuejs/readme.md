@@ -1741,4 +1741,113 @@ https://blog.csdn.net/w184167377/article/details/118930758
 - 前面我们演示的过程中，每次修改了一些当配置，重新打包时，都需要`手动删除dist文件夹`：
   - 我们可以借助于一个插件来帮助我们完成，这个插件就是`CleanWebpackPlugin`
 
-npm install clean-webpack-plugin -D
+- 安装插件
+
+  ```shell
+  npm install clean-webpack-plugin -D
+  ```
+
+- 在插件中配置
+
+  ```js
+  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+  module.exports = {
+      ...
+      plugins: [new CleanWebpackPlugin()],
+  }
+  
+  ```
+
+
+
+#### HtmlWebpack Plugin
+
+- 我们的HTML文件是编写在根目录下的，而最终打包的`dist文件夹中是没有index.html文件的`。
+- 在`进行项目部署`的时候，必然也是需要`有对应的入口文件index.html`
+- 所以我们也需要对`index.html进行打包处理`。
+
+- 对HTML进行打包处理我们可以使用另外一一个插件：HtmlWebpack Plugin;
+
+  ```shell
+  npm install html-webpack-plugin -D
+  ```
+
+  ```js
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  
+  module.exports = {
+      //略...
+      plugins:[
+          new HtmlWebpackPlugin({
+        title: '沫沫webpack5',
+      })
+      ]
+  }
+  ```
+
+  
+
+#### 自定义HTML模板
+
+- 如果我们想在自己的模块中加入一些比较特别的内容：
+  
+  - 比如添加一个`noscript标签`，在用户"的JavaScript被关闭时，给予响应的提示；
+  - 比如在`开发vue或者react项目`时，我们需要一 个可以挂载载后续组件的`根标签` `<div id="app"></div>`
+  
+- 这个我们需要一个属于自己的index.html模块：
+
+  ![image-20211010195850735](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010195850735.png)
+
+#### 自定义模板数据填充
+
+- 上面的代码中，会有一些类似这样的`语法<%变量%>`，这个是`EJS模块填充数据`的方式。
+
+- 在配置HtmlWebpackPlugin时，我们可以添加如下配置：
+
+  - template:指定我们要使用的模块所在的路径；
+
+  - title:在进行htmlWebpackplugin.options.title读取时，就会读到该信息； 
+
+    ```js
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    
+    module.exports = {
+        //略...
+        plugins:[
+            new HtmlWebpackPlugin({
+          template: './public/index.html',
+          title: '沫沫webpack5',
+        })
+        ]
+    }
+    ```
+
+    
+
+#### Define Plugin插件
+
+- 但是，这个时候编译还是会报错，因为在我们的模块中还使用到一个`BASE_URL的常量`
+
+- 这是因为在编译template模块时，有一个BASE_URL:
+
+  - <link rel="icon" href="<%=BASE_ uRL %>favicon.ico">;
+  - 但是我们并没有设置过这个常量值，所以会出现没有定义的错误；
+  - 这个时候我们可以使用Define Plugin插件；
+
+- DefinePlugin允许在编译时创建配置的全局常量，是一个webpack内置的插件（不需要单独安装）
+
+  ```js
+  const { DefinePlugin } = require('webpack');
+  
+  module.exports = {
+      //略...
+      plugins:[
+  new DefinePlugin({
+        BASE_URL: "'./'",
+      }),
+              ]
+  }
+  ```
+
+  
+
