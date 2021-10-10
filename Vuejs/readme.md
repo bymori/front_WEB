@@ -1849,5 +1849,71 @@ https://blog.csdn.net/w184167377/article/details/118930758
   }
   ```
 
+- 这个时候，编译template就可以正确的编译了，会读取到BASE_URL的值；
+
+
+
+### CopyWebpackPlugin
+
+- 在vue的打包过程中，如果我们将一些文件`放到public的目录`下，那么这个目录会`被复制到dist文件夹`中。
+  - 这个复制的功能，我们可以使用CopyWebpackPlugin来完成；
+
+- 安装CopyWebpackPlugin插件
+
+  ```shell
+  npm install copy-webpack-plugin -D
+  ```
+
   
+
+- **接下来配置CopyWebpackPlugin即可：**
+  
+  - 复制的规则在patterns中设置；
+  
+  - from:设置从哪一个源中开始复制；
+  
+  - to:复制到的位置，可以省略，会默认复制到打包的目录下；
+  
+  - globOptions:设置一 些额外的选项，其中可以编写需要忽略的文件：
+  
+    - .DS_Store : mac目录下回自动生成的一 个文件；
+  
+    - index.html:也不需要复制，因为我们已经通过HtmlWebpack Plugin完成了index.html的生成
+  
+  ```js
+  new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'public',
+            // to: './',
+            globOptions: {
+              ignore: ['**/index.html'],
+            },
+          },
+        ],
+      }),
+  ```
+  
+  
+
+### Mode配置
+
+- Mode配置选项，可以告知webpack使用响应模式的内置优化：
+  - 默认值是production（什么都不设置的情况下） ;
+  - 可选值有：'none' | 'development'l'production';
+- 这几个选项有什么样的区别呢？
+
+| 选项          | 描述                                                         |
+| :------------ | :----------------------------------------------------------- |
+| `development` | 会将 `DefinePlugin` 中 `process.env.NODE_ENV` 的值设置为 `development`. 为模块和 chunk 启用有效的名。 |
+| `production`  | 会将 `DefinePlugin` 中 `process.env.NODE_ENV` 的值设置为 `production`。为模块和 chunk 启用确定性的混淆名称，`FlagDependencyUsagePlugin`，`FlagIncludedChunksPlugin`，`ModuleConcatenationPlugin`，`NoEmitOnErrorsPlugin` 和 `TerserPlugin` 。 |
+| `none`        | 不使用任何默认优化选项                                       |
+
+如果没有设置，webpack 会给 `mode` 的默认值设置为 `production`。
+
+
+
+#### Devtool
+
+https://webpack.docschina.org/configuration/devtool/#root
 

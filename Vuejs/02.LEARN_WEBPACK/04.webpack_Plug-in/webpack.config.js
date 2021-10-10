@@ -4,15 +4,21 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 19:53:21
+ * @LastEditTime: 2021-10-10 20:59:38
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  // mode: 'development',
+  //设置模式
+  // development 开发模式 开发阶段
+  // production 生成模式 打包上线
+  mode: 'development',
+  // 设置 source-map 建立js映射文件 方便调试代码和错误
+  devtool: 'source-map',
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './build'),
@@ -106,6 +112,17 @@ module.exports = {
     }),
     new DefinePlugin({
       BASE_URL: "'./'",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          // to: './',
+          globOptions: {
+            ignore: ['**/index.html'],
+          },
+        },
+      ],
     }),
   ],
 };
