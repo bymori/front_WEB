@@ -1100,3 +1100,46 @@ V-model也可以使用在组件上
   
   
 
+#### 创建局部的webpack
+
+- 前面我们直接执行webpack命令使用的是全局弱的webpack,如果希望使用局部的可以按照下面的步骤来操作。
+
+- 第一步：创建package.json文件，用于管理项目的信息、库依赖等
+
+  ```shell
+  npm init  //  npm init -y
+  ```
+
+  
+
+- 第二步：安装局部的webpack
+
+  ```shell
+  npm install webpack webpack-cli -D #局部安装
+  ```
+
+  
+
+- 第三步：使用局部的webpack
+
+  ```shell
+  npx webpack
+  ```
+
+  
+
+- 第四步：在package.json中创建scripts脚本，执行脚本打包即可
+
+  ```shell
+  "scripts": {
+      "build": "webpack"
+    },
+    npm run build
+  ```
+
+
+
+
+
+*// "build": "webpack --config Custom.config.js",*
+
