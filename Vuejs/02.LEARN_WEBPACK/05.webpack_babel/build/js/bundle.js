@@ -1,6 +1,285 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = "";
+      var needLayer = typeof item[5] !== "undefined";
+
+      if (item[4]) {
+        content += "@supports (".concat(item[4], ") {");
+      }
+
+      if (item[2]) {
+        content += "@media ".concat(item[2], " {");
+      }
+
+      if (needLayer) {
+        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
+      }
+
+      content += cssWithMappingToString(item);
+
+      if (needLayer) {
+        content += "}";
+      }
+
+      if (item[2]) {
+        content += "}";
+      }
+
+      if (item[4]) {
+        content += "}";
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+
+
+  list.i = function i(modules, media, dedupe, supports, layer) {
+    if (typeof modules === "string") {
+      modules = [[null, modules, undefined]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var _i = 0; _i < this.length; _i++) {
+        var id = this[_i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i2 = 0; _i2 < modules.length; _i2++) {
+      var item = [].concat(modules[_i2]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        continue;
+      }
+
+      if (typeof layer !== "undefined") {
+        if (typeof item[5] === "undefined") {
+          item[5] = layer;
+        } else {
+          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
+          item[5] = layer;
+        }
+      }
+
+      if (media) {
+        if (!item[2]) {
+          item[2] = media;
+        } else {
+          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
+          item[2] = media;
+        }
+      }
+
+      if (supports) {
+        if (!item[4]) {
+          item[4] = "".concat(supports);
+        } else {
+          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
+          item[4] = supports;
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    options = {};
+  }
+
+  if (!url) {
+    return url;
+  }
+
+  url = String(url.__esModule ? url["default"] : url); // If url is already wrapped in quotes, remove them
+
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  }
+
+  if (options.hash) {
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+
+  return url;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
+/*!************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
+  \************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (item) {
+  var content = item[1];
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (typeof btoa === "function") {
+    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
+    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+    var sourceMapping = "/*# ".concat(data, " */");
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
+  }
+
+  return [content].join("\n");
+};
+
+/***/ }),
+
+/***/ "./src/js/element.js":
+/*!***************************!*\
+  !*** ./src/js/element.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
+/* harmony import */ var _css_title_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/title.less */ "./src/css/title.less");
+/* harmony import */ var _css_image_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/image.css */ "./src/css/image.css");
+/* harmony import */ var _font_iconfont_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../font/iconfont.css */ "./src/font/iconfont.css");
+/* harmony import */ var _img_83989505_p1_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../img/83989505_p1.png */ "./src/img/83989505_p1.png");
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: by_mori
+ * @Date: 2021-10-10 13:50:40
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-10 18:35:02
+ */
+// import 'css-loader!../css/style.css';
+
+
+
+
+
+var divEl = document.createElement('div');
+divEl.className = 'title';
+divEl.innerHTML = 'hello 沫沫'; //设置背景
+
+var bgDivEl = document.createElement('div');
+bgDivEl.className = 'image-bg'; //设置img元素的src
+
+var imgEl = document.createElement('img');
+imgEl.src = _img_83989505_p1_png__WEBPACK_IMPORTED_MODULE_4__; //i元素
+
+var iEl = document.createElement('i');
+iEl.className = 'iconfont icon-dingyuezhe';
+document.body.appendChild(iEl);
+document.body.appendChild(divEl);
+document.body.appendChild(bgDivEl);
+document.body.appendChild(imgEl);
+
+/***/ }),
+
+/***/ "./src/js/format.js":
+/*!**************************!*\
+  !*** ./src/js/format.js ***!
+  \**************************/
+/***/ ((module) => {
+
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: by_mori
+ * @Date: 2021-10-10 12:25:45
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-10 12:26:52
+ */
+var priceFormat = function priceFormat() {
+  return '￥99.88';
+};
+
+module.exports = {
+  priceFormat: priceFormat
+};
+
+/***/ }),
+
+/***/ "./src/js/math.js":
+/*!************************!*\
+  !*** ./src/js/math.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "sum": () => (/* binding */ sum)
+/* harmony export */ });
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: by_mori
+ * @Date: 2021-10-10 12:24:36
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-10 12:25:37
+ */
+// ES module
+function sum(num1, num2) {
+  return num1 + num2;
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/css/title.less":
 /*!*********************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/css/title.less ***!
@@ -120,189 +399,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@font-face {\n  font-family: \"iconfon
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-module.exports = function (cssWithMappingToString) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = "";
-      var needLayer = typeof item[5] !== "undefined";
-
-      if (item[4]) {
-        content += "@supports (".concat(item[4], ") {");
-      }
-
-      if (item[2]) {
-        content += "@media ".concat(item[2], " {");
-      }
-
-      if (needLayer) {
-        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
-      }
-
-      content += cssWithMappingToString(item);
-
-      if (needLayer) {
-        content += "}";
-      }
-
-      if (item[2]) {
-        content += "}";
-      }
-
-      if (item[4]) {
-        content += "}";
-      }
-
-      return content;
-    }).join("");
-  }; // import a list of modules into the list
-
-
-  list.i = function i(modules, media, dedupe, supports, layer) {
-    if (typeof modules === "string") {
-      modules = [[null, modules, undefined]];
-    }
-
-    var alreadyImportedModules = {};
-
-    if (dedupe) {
-      for (var _i = 0; _i < this.length; _i++) {
-        var id = this[_i][0];
-
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-
-    for (var _i2 = 0; _i2 < modules.length; _i2++) {
-      var item = [].concat(modules[_i2]);
-
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        continue;
-      }
-
-      if (typeof layer !== "undefined") {
-        if (typeof item[5] === "undefined") {
-          item[5] = layer;
-        } else {
-          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
-          item[5] = layer;
-        }
-      }
-
-      if (media) {
-        if (!item[2]) {
-          item[2] = media;
-        } else {
-          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
-          item[2] = media;
-        }
-      }
-
-      if (supports) {
-        if (!item[4]) {
-          item[4] = "".concat(supports);
-        } else {
-          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
-          item[4] = supports;
-        }
-      }
-
-      list.push(item);
-    }
-  };
-
-  return list;
-};
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
-/*!********************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
-  \********************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-module.exports = function (url, options) {
-  if (!options) {
-    options = {};
-  }
-
-  if (!url) {
-    return url;
-  }
-
-  url = String(url.__esModule ? url.default : url); // If url is already wrapped in quotes, remove them
-
-  if (/^['"].*['"]$/.test(url)) {
-    url = url.slice(1, -1);
-  }
-
-  if (options.hash) {
-    url += options.hash;
-  } // Should url be wrapped?
-  // See https://drafts.csswg.org/css-values-3/#urls
-
-
-  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
-    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
-  }
-
-  return url;
-};
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
-/*!************************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
-  \************************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-module.exports = function (item) {
-  var content = item[1];
-  var cssMapping = item[3];
-
-  if (!cssMapping) {
-    return content;
-  }
-
-  if (typeof btoa === "function") {
-    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
-    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
-    var sourceMapping = "/*# ".concat(data, " */");
-    var sourceURLs = cssMapping.sources.map(function (source) {
-      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
-    });
-    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
-  }
-
-  return [content].join("\n");
-};
 
 /***/ }),
 
@@ -838,113 +934,6 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/js/element.js":
-/*!***************************!*\
-  !*** ./src/js/element.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
-/* harmony import */ var _css_title_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/title.less */ "./src/css/title.less");
-/* harmony import */ var _css_image_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/image.css */ "./src/css/image.css");
-/* harmony import */ var _font_iconfont_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../font/iconfont.css */ "./src/font/iconfont.css");
-/* harmony import */ var _img_83989505_p1_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../img/83989505_p1.png */ "./src/img/83989505_p1.png");
-/*
- * @Descripttion:
- * @version:
- * @Author: by_mori
- * @Date: 2021-10-10 13:50:40
- * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 18:35:02
- */
-// import 'css-loader!../css/style.css';
-
-
-
-
-
-
-
-const divEl = document.createElement('div');
-divEl.className = 'title';
-divEl.innerHTML = 'hello 沫沫';
-
-//设置背景
-const bgDivEl = document.createElement('div');
-bgDivEl.className = 'image-bg';
-
-//设置img元素的src
-const imgEl = document.createElement('img');
-imgEl.src = _img_83989505_p1_png__WEBPACK_IMPORTED_MODULE_4__;
-
-//i元素
-const iEl = document.createElement('i');
-iEl.className = 'iconfont icon-dingyuezhe';
-
-document.body.appendChild(iEl);
-document.body.appendChild(divEl);
-document.body.appendChild(bgDivEl);
-document.body.appendChild(imgEl);
-
-
-/***/ }),
-
-/***/ "./src/js/format.js":
-/*!**************************!*\
-  !*** ./src/js/format.js ***!
-  \**************************/
-/***/ ((module) => {
-
-/*
- * @Descripttion:
- * @version:
- * @Author: by_mori
- * @Date: 2021-10-10 12:25:45
- * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 12:26:52
- */
-
-const priceFormat = function () {
-  return '￥99.88';
-};
-
-module.exports = {
-  priceFormat,
-};
-
-
-/***/ }),
-
-/***/ "./src/js/math.js":
-/*!************************!*\
-  !*** ./src/js/math.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sum": () => (/* binding */ sum)
-/* harmony export */ });
-/*
- * @Descripttion:
- * @version:
- * @Author: by_mori
- * @Date: 2021-10-10 12:24:36
- * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 12:25:37
- */
-
-// ES module
-function sum(num1, num2) {
-  return num1 + num2;
-}
-
-
-/***/ }),
-
 /***/ "./src/font/iconfont.ttf?t=1633861598865":
 /*!***********************************************!*\
   !*** ./src/font/iconfont.ttf?t=1633861598865 ***!
@@ -1147,16 +1136,19 @@ __webpack_require__.r(__webpack_exports__);
  * @Author: by_mori
  * @Date: 2021-10-10 12:24:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 13:56:31
+ * @LastEditTime: 2021-10-10 22:50:15
  */
-
-
 
 
 
 console.log((0,_js_math__WEBPACK_IMPORTED_MODULE_0__.sum)(20, 25));
 console.log((0,_js_format__WEBPACK_IMPORTED_MODULE_1__.priceFormat)());
-
+var mag = 'Hello World';
+var names = ['abc', 'cba', 'nba'];
+names.forEach(function (item) {
+  return console.log(item);
+});
+console.log(mag);
 })();
 
 /******/ })()

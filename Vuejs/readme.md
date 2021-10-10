@@ -2008,5 +2008,77 @@ https://webpack.docschina.org/configuration/devtool/#root
 
   
 
+### Babel的底层原理
+
+- babel是如何做到将我们的**一段代码(ES6、TypeScript、 React)**转成**另外一段代码(ES5)**的呢？
+  - 从一种`源代码（原生语言）`转换成`另一种源代码（目标语言）`，这是什么的工作呢？
+  - 就是`编译器`，事实。上我们可以将babel看成就是一 个编译器。
+  - Babel编译器的作用就是`将我们的源代码`，转换成浏览器可以直接识别的`另外一段源代码`；
+- **Babel也拥有编译器的工作流程：**
+  - 解析阶段(Parsing)
+  - 转换阶段(Transformation)
+  - 生成阶段(Code Generation)
+
+- https://github.com/jamiebuilds/the-super-tiny-compiler
+
+
+
+### Babel编译器执行原理
+
+- bable的执行阶段
+
+  ![image-20211010223258198](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010223258198.png)
+
+- 当然，这只是一个简化版的编译器工具流程，在每个阶段又会有自己具体的工作： 
+
+  ![image-20211010223350748](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010223350748.png)
+
+  ​									抽象语法树
+
+
+
+### babel-loader
+
+- 在实际开发中，我们通常会在构建工具中通过配置babel来对其进行使用的，比如在webpack中。
+
+- 那么我们就需要去安装相关的依赖：
+
+  - 如果之前已经安装了@babel/core，那么这里不需要再次安装；
+
+    ```shell
+    npm install babel-loader @babel/core -D
+    ```
+
+    
+
+- 我们可以设置一个规则，在加载js文件时，使用我们的babel:
+
+  ```js
+  {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              // plugins: [
+              //   '@babel/plugin-transform-arrow-functions',
+              //   '@babel/plugin-transform-block-scoping',
+              // ],
+              presets: ['@babel/preset-env'],
+            },
+          },
+        },
+  ```
+
+
+
+### Babel的配置文件
+
+- 像之前一样，我们可以将babel的配置信息放到一 个独立的文件中，babel给我们提供了两种配置文件的编写：
+  - babel.config.json(或者js,.cjs ,.mjs)文件；
+  - .babelrc.json(或者。babelrc, js, .cjs , .mjs)文件；
+- 它们两个有什么区别呢？目前很多的项目都采用了多包管理的方式(babel本身、element-plus、 umi等)；
+- .babelrc.json :早期使用较多的配置方式，但是对于配置Monorepos项目是比较麻烦的
+-  babel.config.json(babel7) :可以直接作用于Monorepos项目的子包，更加推荐；
+
 
 
