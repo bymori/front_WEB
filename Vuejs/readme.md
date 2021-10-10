@@ -1575,5 +1575,35 @@ https://blog.csdn.net/w184167377/article/details/118930758
   npm install url-loader -D
   ```
 
+  ```js
+  {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                name: 'img/[name]_[hash:6].[ext]',
+                publicPath: './build',
+                limit: 700 * 1024, //小于700kb的图片 生成base64
+                esModule: false,
+              },
+            },
+          ],
+          type: 'javascript/auto',
+        },
+  ```
+
   
 
+### 认识asset moduletype
+
+- 我们当前使用的webpack版本是webpack5:
+  - 在webpack5之前，加载这些资源我们需要`使用一些loader`,`比如raw--loader、url-loader, file-loader;`
+  - 在webpack5开始，我们可以直接使用`资源模块类型(asset module type)`，来替代上面的这些loader;
+
+- **资源模块类型(asset module type)**，通过添加4种新的模块类型，来替换所有这些loader:
+  - **asset/resource** 发送一 个单独的文件并导出URL。之前通过使用file-loader实现；
+  - **asset/inline** 导出一个资源的data URI。之前通过使用url-loader实现；
+  - **asset/source** 导出资源的源代码。 之前通过使用raw-loader实现；
+  - **asset ** 在导出一个data URI和发送一 个单独的文件之间自动选择。之前通过使用url-loader,并且配置资源体
+    积限制实现；

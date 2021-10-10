@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 17:52:19
+ * @LastEditTime: 2021-10-10 18:08:28
  */
 const path = require('path');
 
@@ -14,7 +14,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'bundle.js',
-    publicPath: './',
+    // assetModuleFilename: 'img/[name]_[hash:6].[ext]',
+    // publicPath: './',
   },
   module: {
     rules: [
@@ -42,8 +43,7 @@ module.exports = {
         ],
         type: 'javascript/auto',
       }, */
-      {
-        // test: /\.(jpg|jpeg|png|gif|svg)$/,
+      /* {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [
           {
@@ -57,6 +57,19 @@ module.exports = {
           },
         ],
         type: 'javascript/auto',
+      }, */
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        type: 'asset',
+        generator: {
+          filename: 'img/[name]_[hash:6].[ext]',
+          publicPath: './build/',
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 700 * 1024,
+          },
+        },
       },
     ],
   },
