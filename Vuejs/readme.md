@@ -2243,4 +2243,27 @@ app.mount('#app');
     },
   ```
 
+
+
+#### webpack-dev-server
+
+- 上面的方式可以**监听到文件的变化**，但是事实_上它本身是**没有自动刷新浏览器的功能**的：
+
+  - 当然，目前我们可以在VSCode中使用live-server来完成这样的功能；
+  - 但是，我们希望在`不使用live-server`的情况下，可以具备`live reloading（实时重新加载）`的
+    的功能；
+
+- **安装web pack-dev-server**
+
+  ```shell
+  npm install webpack-dev-server -D
+  ```
+
   
+
+- **修改配置文件**，告知dev server，从什么位置查找文件：
+
+
+
+- **webpack-dev-server 在编译之后`不会写入到任何输出文件`，而是将 bundle 文件`保留在内存`中**：
+  - 事实上webpaclk-dev-server使用了一个库叫memfs(memory-fs webpack自己写的)
