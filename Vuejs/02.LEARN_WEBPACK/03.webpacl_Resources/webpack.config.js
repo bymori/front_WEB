@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 18:08:28
+ * @LastEditTime: 2021-10-10 19:02:05
  */
 const path = require('path');
 
@@ -69,6 +69,28 @@ module.exports = {
           dataUrlCondition: {
             maxSize: 700 * 1024,
           },
+        },
+      },
+      /* {
+        test: /\.(eot|ttf|woff2?)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'font/[name]_[hash:6].[ext]',
+              publicPath: './build',
+              esModule: false,
+            },
+          },
+        ],
+        type: 'javascript/auto',
+      }, */
+      {
+        test: /\.(eot|ttf|woff2?)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'font/[name]_[hash:6].[ext]',
+          publicPath: './build/',
         },
       },
     ],

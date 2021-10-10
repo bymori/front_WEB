@@ -1597,6 +1597,8 @@ https://blog.csdn.net/w184167377/article/details/118930758
 
 ### 认识asset moduletype
 
+- https://webpack.docschina.org/guides/asset-modules/
+
 - 我们当前使用的webpack版本是webpack5:
   - 在webpack5之前，加载这些资源我们需要`使用一些loader`,`比如raw--loader、url-loader, file-loader;`
   - 在webpack5开始，我们可以直接使用`资源模块类型(asset module type)`，来替代上面的这些loader;
@@ -1607,3 +1609,69 @@ https://blog.csdn.net/w184167377/article/details/118930758
   - **asset/source** 导出资源的源代码。 之前通过使用raw-loader实现；
   - **asset ** 在导出一个data URI和发送一 个单独的文件之间自动选择。之前通过使用url-loader,并且配置资源体
     积限制实现；
+
+#### asset module type的使用
+
+- 比如加载图片，我们可以使用下面的方式：
+
+  ```js
+  {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+  }
+  ```
+
+  
+
+- 但是，如何可以自定，义文件的输出路径和文件名呢？
+
+  - 方式一：修改output，添加asset Module Filename属性；
+
+  - 方式二：在Rule中，添加一一个generator属性，并且设置filename;
+
+    ```js
+    output: {
+        path: path.resolve(__dirname, './build'),
+        filename: 'bundle.js',
+        assetModuleFilename: 'img/[name]_[hash:6].[ext]',
+      },
+    ```
+
+    ```js
+    {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
+            generator: {
+              filename: 'img/[name]_[hash:6].[ext]',
+            },
+    }
+    ```
+
+    
+
+#### url-loader的limit效果
+
+- 步骤一：将type修改为asset;
+
+- 步骤二：添加一个parser属性，并且制定dataUrl的条件，添加maxSize属性；
+
+  ```js
+  {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          type: 'asset',
+          generator: {
+            filename: 'img/[name]_[hash:6].[ext]',
+            publicPath: './build/',
+          },
+          parser: {
+            dataUrlCondition: {
+              maxSize: 700 * 1024,
+            },
+          },
+        },
+  ```
+
+  
+
+### 加载字体文件
+
