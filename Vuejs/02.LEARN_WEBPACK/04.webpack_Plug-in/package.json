@@ -1,0 +1,29 @@
+{
+  "name": "01.base_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.3.7",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.4.0",
+    "file-loader": "^6.2.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.0.1",
+    "postcss": "^8.3.9",
+    "postcss-cli": "^9.0.1",
+    "postcss-loader": "^6.1.1",
+    "postcss-preset-env": "^6.7.0",
+    "style-loader": "^3.3.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0"
+  }
+}

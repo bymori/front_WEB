@@ -1675,3 +1675,70 @@ https://blog.csdn.net/w184167377/article/details/118930758
 
 ### 加载字体文件
 
+- 如果我们需要使用身其些`特殊的字体或者字体图标`，那么我们会引入很多`字体相关的文件`，这些文件的处理也是一样的。
+
+- 在component中引入，并且添加一个i元素用于显示字体图标：
+
+  ```js
+  import '../font/iconfont.css';
+  
+  //i元素
+  const iEl = document.createElement('i');
+  iEl.className = 'iconfont icon-dingyuezhe';
+  
+  document.body.appendChild(iEl);
+  ```
+  
+- 这个时候打包会报错，因为无法正确的处理`eot、ttf、woff等`文件
+  
+  - 我们可以选择使用file-loader来处理，也可以选择直接使用welbpack5的资源模块-类型来处理；
+  
+  ```js
+  {
+          test: /\.(eot|ttf|woff2?)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: 'font/[name]_[hash:6].[ext]',
+                publicPath: './build',
+                esModule: false,
+              },
+            },
+          ],
+          type: 'javascript/auto',
+        },
+            
+            //webpack5
+            {
+          test: /\.(eot|ttf|woff2?)$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'font/[name]_[hash:6].[ext]',
+            publicPath: './build/',
+          },
+        },
+  ```
+  
+  
+
+## 认识Plugin
+
+- **Webpack的另一个核心是Plugin，官方有这样- -段对Plugin的描述**：
+
+  - While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
+
+- 上面表达的含义翻译过来就是：
+
+  - Loader是用于`特定的模块类型`进行转换；
+
+  - Plugin可以用于`执行更加广泛的任务`，比如打包优化、资源管理、环境变量注入等；
+
+    ![image-20211010192446011](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211010192446011.png)
+
+#### CleanWebpack Plugin
+
+- 前面我们演示的过程中，每次修改了一些当配置，重新打包时，都需要`手动删除dist文件夹`：
+  - 我们可以借助于一个插件来帮助我们完成，这个插件就是`CleanWebpackPlugin`
+
+npm install clean-webpack-plugin -D
