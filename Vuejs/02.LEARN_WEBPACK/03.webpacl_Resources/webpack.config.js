@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 17:36:47
+ * @LastEditTime: 2021-10-10 17:52:19
  */
 const path = require('path');
 
@@ -26,7 +26,7 @@ module.exports = {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader'],
       },
-      {
+      /* {
         // test: /\.(jpg|jpeg|png|gif|svg)$/,
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [
@@ -36,6 +36,22 @@ module.exports = {
               name: 'img/[name]_[hash:6].[ext]',
               // outputPath: 'img',
               publicPath: './build',
+              esModule: false,
+            },
+          },
+        ],
+        type: 'javascript/auto',
+      }, */
+      {
+        // test: /\.(jpg|jpeg|png|gif|svg)$/,
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: 'img/[name]_[hash:6].[ext]',
+              publicPath: './build',
+              limit: 700 * 1024, //小于700kb的图片 生成base64
               esModule: false,
             },
           },

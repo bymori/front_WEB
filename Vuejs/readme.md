@@ -1559,7 +1559,21 @@ publicPath 属性，指的是打包后公共资源的一个路径，默认路径
           },
     ```
 
+#### css url方式引入图片 加载失败解决办法
+
+https://blog.csdn.net/w184167377/article/details/118930758
+
 
 
 #### url-loader
+
+- url-loader和file-loader的工作方式是相似的，但是可以将较小的文件，转成`base64的URI`.
+
+- 安装url-loader :
+
+  ```shell
+  npm install url-loader -D
+  ```
+
+  
 
