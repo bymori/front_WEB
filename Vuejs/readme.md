@@ -2233,3 +2233,4 @@ app.mount('#app');
 - 如何开启watch呢？两种方式：
   - 方式一：在导出的配置中，添加watch:true ;
   - 方式二：在启动we bpack的命令中，添加 --watch的标识；
+
