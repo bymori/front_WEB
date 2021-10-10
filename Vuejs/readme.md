@@ -2155,3 +2155,22 @@ app.mount('#app');
 - 所以，Vue在让我们选择版本的时候分为**运行时+编译器vs仅运行时**
   - `运行时+编译器`包含了对template模板的编译代码，更加完整，但是也更大-些；
   - `仅运行时`没有包含对template版本的编译代码，相对更小- -些；
+
+
+
+### VSCode对SFC文件的支持
+
+- 在前面我们提到过，真实开发中多数情况下我们都是使用SFC(`single-file components（单文件组件）`）
+- 我们先说一下VSCode对SFC的支持：
+  - 插件一：Vetur ,从Vue 2开发就一 直在使用的VSC ode支持Vue的插件；
+  - 插件二：Volar ,官方推荐的插件(后续会基于Volar开发官方的VSCode插件)；
+
+
+
+
+
+
+
+npm install vue-loader@next -D
+
+npm install @vue/compiler-sfc -D

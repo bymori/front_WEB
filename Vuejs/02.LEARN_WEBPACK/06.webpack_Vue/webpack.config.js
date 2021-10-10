@@ -4,13 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 23:01:44
+ * @LastEditTime: 2021-10-10 23:53:22
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader/dist/index');
 
 module.exports = {
   mode: 'development',
@@ -49,22 +50,13 @@ module.exports = {
           filename: 'font/[name]_[hash:6].[ext]',
         },
       },
-      /* {
-        test: /\.js$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            // plugins: [
-            //   '@babel/plugin-transform-arrow-functions',
-            //   '@babel/plugin-transform-block-scoping',
-            // ],
-            presets: ['@babel/preset-env'],
-          },
-        },
-      }, */
       {
         test: /\.js$/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
       },
     ],
   },
@@ -88,5 +80,6 @@ module.exports = {
         },
       ],
     }),
+    new VueLoaderPlugin(),
   ],
 };
