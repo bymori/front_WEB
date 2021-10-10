@@ -1917,3 +1917,30 @@ https://blog.csdn.net/w184167377/article/details/118930758
 
 https://webpack.docschina.org/configuration/devtool/#root
 
+
+
+## Babel和devServer
+
+### 为什么需要babel?
+
+- 事实上，在开发中我们很少直接去接触babel，但是**babel对于前端开发**来说，目前是**不可缺少的一部分**：
+
+  - 开发中，我们想要使用`ES6+的语法`，想要使用`TypeScript`，开发`React项目`，它们`都是离不开Babel的`；
+  - 所以，`学习Babel`对于我们理解代码从编写到线。上的转变过程至关重要；
+
+- **那么，Babel到底是什么呢？**
+
+  - Babel是一 个`工具链`，主要用于旧浏览器或者环境中将ECMAS cript 2015+代码转换为向后兼容版本的JavaScript ;
+
+  - 包括：语法转换、源代码转换等；
+
+    ```js
+    [1, 2, 3].map((n) => n + 1);
+    
+    [1, 2, 3].map(function (n) {
+      return n + 1;
+    });
+    ```
+
+    
+
