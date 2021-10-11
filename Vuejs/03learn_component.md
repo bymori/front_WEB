@@ -206,17 +206,6 @@
 
   
 
-  
-
-  
-
-  
-
-  
-
-# 12
-
-
 
 ## 非父子组件的通信
 
@@ -245,4 +234,101 @@
 - 我们开发一个这样的结构：
 
   ![image-20211011233208206](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011233208206.png)
+
+![image-20211012002333844](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211012002333844.png)
+
+#### Provide和Inject函数的写法
+
+- 如果Provide中提供的一些数据是来自data，那么我们可能会想要通过this来获取
+- 需要把 provide 写成函数形式 
+
+#### 处理响应式数据
+
+- 我们先来验证一个结果：**如果我们修改了this.names的内容，那么使用length的子组件会不会是响应式的？**
+- 我们会发现对应的子组件中是**没有反应的**：
+  - 这是因为当我们`修改了names之后`，之前在provide中引入的`this.names.length本身并不是响应式`的；
+- **那么怎么样可以让我们的数据变成响应式的呢？**
+  - 非常的简单，我们可以使用`响应式的一些API`来完成这些功能，比如说`computed函数`；
+  - 这个computed是`vue3的新特性`
+- **注意：我们在使用length的时候需要获取其中的value**
+  - 这是因为`computed返回的是一个ref对象`，需要取出其中的` .value来使用`
+
+### 全局事件总线mitt库
+
+- Vue3从实例中移除了$on、$off和$once;方法，所以我们如果希望**继续使用全局事件总线**，**要通过第三方的库**：
+
+  - Vue 3官方有推荐一些库，`例如，mitt或tiny-emitter;`
+  - 下面主要是`mitt库`的使用；
+
+- 首先，我们需要先安装这个库：
+
+  ```bash
+  npm install mitt
+  ```
+
+- 其次，我们可以封装一个工具eventbus.js
+
+  ```js
+  import mitt from 'mitt';
+  
+  const emitter = mitt();
+  
+  export default emitter;
+  ```
+
+#### 使用事件总线工具
+
+- 在项目中可以使用它们：
+
+  - 我们在HomeContent.vue中监听事件；
+
+  - 我们在About.vue中触发事件；
+
+    ```vue
+    // About.vue
+    btnClick () {
+          console.log('About按钮点击了');
+          emitter.emit('ioinn', { name: 'io小栈', age: 19 })
+          emitter.emit('momo', { name: '沫沫', age: 19 })
+        }
+    
+    // HomeContent.vue
+    created () {
+        emitter.on('ioinn', (info) => {
+          console.log('ioinn:', info);
+        })
+        emitter.on('momo', (info) => {
+          console.log('momo:', info);
+        })
+        emitter.on('*', (type, info) => {
+          console.log('* listenr:', type, info);
+        })
+      },
+    ```
+
+
+
+#### Mitt的事件取消
+
+- 在某些情况下我们可能希望**取消掉之前注册的函数监听**：
+
+  ```js
+  //取消 emitter 中所有的监听
+        emitter.all.clear()
+  
+  // 定义一个函数
+  function onFoo() {}
+  emitter.on('foo', onFoo)   // 监听
+  emitter.off('foo', onFoo)  // 取消监听
+  ```
+
+
+
+
+
+## 认识插槽Slot
+
+
+
+# 12  1.15.20
 
