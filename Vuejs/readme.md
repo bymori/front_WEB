@@ -2756,3 +2756,69 @@ npm install lodash-es
 
 ### Vite打包项目
 
+- 我们可以直接通过vite build来完成对当前项目的打包工具：
+
+  ```bash
+  vite build
+  ```
+
+  ![image-20211011182833070](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011182833070.png)
+
+- 我们可以通过preview的方式，开启一一个本地服务来预览打包后的效果：
+
+  ```bash
+  npx vite preview
+  ```
+
+  
+
+### ESBuild解析
+
+- ESBuild的特点
+  - 超快的构建速度，并且不需要缓存；
+  - 支持ES6和CommonJS的模块化；
+  - 支持ES6的Tree Shaking;
+  - 支持Go、JavaScript的API;
+  - 支持TypeScript、JSX等语法编译；
+  - 支持SourceMap;
+  - 支持代码压缩；
+  - 支持扩展其他插件；
+
+#### ESBuild的构建速度
+
+- ESBuild的构建速度和其他构建工具速度对比：
+
+  ![image-20211011183632640](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011183632640.png)
+
+- ESBuild为什么这么快呢？
+  - 使用Go语言编写的，可以直接转换成机器代码，而无需经过字节码；
+  - ESBuild可以充分利用CPU的多内核，尽可能让它们饱和运行；
+  - ESBuild的所有内容都是从零开始编写的，而不是使用第三方，所以从一开始就可以考虑各种性能问题；
+  - 等等。。
+
+### Vite脚手架工具
+
+- 在开发中，我们不可能所有的项目都使用vite从零去搭建，比如一个react项目、Vue项目
+
+  - 这个时候vite还给我们提供了对应的脚手架工具；
+
+- 所以Vite实际上是有两个工具的：
+
+  - vite:相当于是一 个构件工具，类似于webpack.rollup
+  - @vitejs/create-app:类似vue-cli、create-react-app
+
+- 如果使用脚手架工具呢？
+
+  ```bash
+  npm init @vitejs/app
+  ```
+
+- 上面的做法相当于省略了安装脚手架的过程：
+
+  ```bash
+  npm install @vitejs/create-app -g #全局安装
+  
+  create-app
+  ```
+
+  
