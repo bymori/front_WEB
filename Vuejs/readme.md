@@ -2382,6 +2382,11 @@ app.mount('#app');
 
   - changeOrigin: 它表示是否更新代理后请求的headers中host地址； 
 
+    - 这个changeOrigin官方说的非常模糊，通过查看源码我发：现其实是要修改代理请求中的headers中的host属性：
+      - 因为我们真实的请求，其实是需要通过` target设置的 http://localhost:8888 `来请求的；
+      - 但是因为使用了代码，默认情况下它的值时http://localhost:8000;
+      - 如果我们需要修改，那么可以将changeOrigin设置为true即可；
+
     ```js
     proxy: {
           '/api': {
@@ -2399,4 +2404,69 @@ app.mount('#app');
     [vue-cli本地环境API代理设置和解决跨域](https://segmentfault.com/a/1190000011007043)
 
 
+
+#### historyApiFallback
+
+- historyApiFallback是开发中一 个非常常见的属性，它主要的作用是解决SPA页面在路由跳转之后，进行页面刷新时，返回404的错误。
+- boolean值：默认是false
+  - 如果设置为true，那么在刷新时，返回404错误时，会自动返回index.html的内容；
+- object类型的值，可以配置rewrites属性（了解） :
+  - 可以配置from来匹配路径，决定要跳转到哪一 个页面；
+- 事实。上devServer中实现historyApiFaliback功能是通过connect-history-api-fallback库的：
+  - 可以查看`connect-history. api-fallback`文档
+
+
+
+#### resolve模块解析
+
+- resolve用于设置模块如何被解析：
+  - 在开发中我们会有各种各样的模块依赖，这些模块可能来自于自己编写的代码，也可能来自第三方库；
+  - resolve可以帮助webpack从每个require/import语句中，找到需要引入到合适的模块代码；
+  - webpack使用enhanced-resolve来解析文件路径；
+- **webpack能解析三种文件路径：**
+- 绝对路径
+  - 由于已经获得文件的绝对路径，因此不需要再做进一 步解析。
+- 相对路径
+  - 在这种情况下，使用import或require的资源文件所处的目录，被认为是上下文目录；
+  - 在import/require中给定的相对路径，会拼接此。上下文路径，来生成模块的绝对路径；
+- 模块路径
+  - 在resolve.modules中指定的所有目录检索模块；，
+    - 默认值是['node_ modules']，所以默认会从node. modules中查找文件；
+  - 我们可以通过设置别名的方式来替换初训只模块路径，具体后面讲解alias的配置；
+
+#### 确实文件还是文件夹
+
+- 如果是一个文件：
+  - 如果文件具有扩展名，则直接打包文件；
+  - 否则，将使用resolve.extensions选项作为文件扩展名解析；
+- 如果是一个文件夹：
+  - 会在文件夹中根据resolve.mainFiles配置选项中指定的文件顺序查找；
+    - resolve.mainFiles的默认值是['index'];
+    - 再根据resolve.extensions来解析扩展名；
+
+#### extensions和alias配置
+
++ extensions是解析到文件时自动添加扩展名：
+  - 默认值是['.wasm', 'mjs','js','json'];
+  - 所以如果我们代码中想要添加 加载 .vue或者jsx或者ts等文件时，我们必须自己写上扩展名
+
+- 配置别名alias:
+
+  - 特别是当我们项目的目录结构比较深的时候，或者一一个文件的路径可能需要 `../../../` 这种路径片段；
+  - 我们可以给某些常见的路径起一个别名；
+
+  ```js
+  resolve: {
+      // modules: ['node_ modules'],
+      extensions: ['.js', '.json', '.mjs', '.vue', '.ts', '.jsx', '.tsx'],
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        js: path.resolve(__dirname, './src/js'),
+      },
+    },
+  ```
+
+  
+
+### 如何区分开发环境
 

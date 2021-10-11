@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 11:09:50
+ * @LastEditTime: 2021-10-11 11:42:39
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -45,6 +45,14 @@ module.exports = {
           '^/api': '', //需要rewrite的,
         },
       },
+    },
+  },
+  resolve: {
+    // modules: ['node_ modules'],
+    extensions: ['.js', '.json', '.mjs', '.vue', '.ts', '.jsx', '.tsx'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      js: path.resolve(__dirname, './src/js'),
     },
   },
   module: {
