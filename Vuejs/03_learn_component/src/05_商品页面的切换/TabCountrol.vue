@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-11 22:31:35
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 22:55:16
+ * @LastEditTime: 2021-10-11 23:13:45
 -->
 <template>
   <div class="tab-control">
@@ -30,7 +30,6 @@ export default {
         return []
       }
     }
-
   },
   data () {
     return {
@@ -39,6 +38,8 @@ export default {
   },
   methods: {
     itemClick (index) {
+      // 判断index 是否为当前页面 
+      if (index == this.currentIndex) return
       this.currentIndex = index
       this.$emit('titleClick', index)
     }
@@ -50,16 +51,28 @@ export default {
 <style scoped>
 .tab-control {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .tab-control-item {
   flex: 1;
   text-align: center;
+  color: #333;
+  margin-top: 7px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 27px;
+  height: 27px;
 }
 .tab-control-item.active {
-  color: red;
+  color: #fff;
 }
 .tab-control-item.active span {
-  border-bottom: 3px solid red;
-  padding: 5px 10px;
+  background: #e1251b;
+  width: 70px;
+  height: 27px;
+  line-height: 27px;
+  display: inline-block;
+  border-radius: 50px;
 }
 </style>
