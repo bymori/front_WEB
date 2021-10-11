@@ -2263,13 +2263,102 @@ app.mount('#app');
 
 - **修改配置文件**，告知dev server，从什么位置查找文件：
 
-
+  `// 21.10.11 默认寻找 ./public 文件夹 无需定义`
 
 - **webpack-dev-server 在编译之后`不会写入到任何输出文件`，而是将 bundle 文件`保留在内存`中**：
+
   - 事实上webpaclk-dev-server使用了一个库叫memfs(memory-fs webpack自己写的)
 
-
-
-
-
 ![image-20211011014205668](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011014205668.png)
+
+
+
+### 认识模块热替换(HMR)
+
+- **什么是HMR呢？**
+  - HMR的全称是`Hot Module Replacement,`翻译为`模块热替换`
+  - 模块热替换是指在`应用程序运行过程中，替换、添加、删除模块`，而`无需重新刷新整个页面`；
+- **HMR通过如下几种方式，来提高开发的速度：**
+  - `不重新加载整个页面`，这样`可以以保留某些应用程序的状态不丢失`，
+  - 只更新`需要变化的内容，节省开发的时间`；
+  - 修改了`css、js源代码`，会`立即在浏览器更新`，相当于直直接在浏览器的devtools中直接修改样式
+
+- **如何使用HMR呢？**
+  - 默认情况下，`webpack-dev-server已经支持HMR`，我们`只需要开启即可`
+  - 在不开启HMR的情况下，当我们修改了源代码之后，整个页面会自动刷新，使用的是live reloading;
+
+
+
+#### 开启 HMR
+
+- 修改webpack的配置
+
+  ```js
+  devServer: {
+      hot: true, // 开启 HMR
+    },
+  ```
+
+- 浏览器可以看到如下效果：
+
+  ![image-20211011020247809](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011020247809.png)
+
+- 但是你会发现，**当我们修改了某一一个模块的代码时，依然是刷新的整个页面**：
+
+  - 这是因为我们需要；去指定哪些模块发生更新时，进行HMR;
+
+    ```js
+    if (module.hot) {
+      module.hot.accept('./js/element', () => {
+        console.log('element更新了');
+      });
+    }
+    ```
+
+
+
+
+### 框架的HMR
+
+- **有一个问题**：在开发其他项目时，**我们是否需要经常手动去写入module.hot.accpet相关的API呢？**
+  - 比如`开发Vue、React项目`，我们`修改了组件`，希望`进行热更新`，这个`时候应该如何去操作`呢？
+  - 事实_上社区已经针对这些有很成熟的解决方案了；
+  - 比如vue开发中，我们使用`vue-loader`,此loader支持vue组件的HMR，提供开箱即用的体验；
+  - 比如react开发中，有`React Hot Loader`，实时调整react组件（目前React官方已经弃用了，改成使用react-refresh);
+
+#### HMR的原理
+
+- **那么HMR的原理是什么呢？如何可以做到只更新一一个模块中的内容呢？**
+  - webpack- dev-server会创建两个服务：`提供静态资源的服务(express)`和`Socket服务(net.Socket)` ;
+  - express server负责直接提供`静态资源的服务`（打包后的资源直接被浏览器请求和解析） ;
+- **HMR Socket Server,是一个socket的长连接：**
+  - 长连接有一个最好的好处是`建立连接后双方可以通信`（服务器可以直接发送文件到客户端） ;
+  - 当服务器`监听到对应的模块发生变化`时，会生成`两个文件 .json(manifest文件)和js文件(update chunk) ;`
+  - 通过长连接，可以直接`将这两个文件主动发送给客户端`（浏览器）；
+  - 浏览器`拿到两个新的文件`后，通过HMR runtime机制，`加载这两个文件`，并且`针对修改的模块进行更新`；
+
+![image-20211011101651116](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011101651116.png)
+
+#### hotOnly、host配置
+
+- **host设置主机地址：**
+  - 默认值是localhost;
+  - 如果希望其他地方也可以访问，可以设置为0.0.0.0;
+- **localhost和0.0.0.0的区别：**
+  - localhost:本质上是一 个域名，通常情况下会被解析成127.0.0.1;
+  - 127.0.0.1:回环地址(Loop Back Address)，表达的意思其实是我们主机自己发出去的包，直接被自己接收；
+    - 正常的数据库包经常 应用层-传输层-网络层-数据链路层-物理层； .
+    - 而回环地址，是在网络层直接就被获取至」了，是不会经常数据链路层和物理层的；
+    - 比如我们监听 127.0.0.1时，在同一个网段下的主机中，通过ip地址是不能访问的；
+  - 0.0.0.0.0.监听IPV4.上所有的地址，再根据端口找到不同的应用程序；
+    - 比如我们监听0.0.0.0时，在同一个网段下的主机中，通过ip地址是可以访问的；
+
+#### port、open, compress
+
+- **port设置监听的端口，默认情况下是8080**
+- **pen是否打开浏览器：**
+  - 默认值是false，设置为true会打开浏览器；
+  - 也可以设置为类似于Google Chrome等值；
+
+- **compress是否为静态文件开启gzip compression:**
+  - 默认值是false，可以设置为true;

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 01:38:35
+ * @LastEditTime: 2021-10-11 10:35:42
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -14,6 +14,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader/dist/index');
 
 module.exports = {
+  target: 'web',
   mode: 'development',
   devtool: 'source-map',
   // watch: true, // watch模式 方式一：在导出的配置中，添加`watch:true`
@@ -29,6 +30,10 @@ module.exports = {
       directory: path.resolve(__dirname, 'build'),
     }, */
     open: true, //自动打开浏览器
+    hot: true, // 开启 HMR
+    // host: '0.0.0.0', //主机地址
+    port: 8000, //端口
+    // compress: true, //gzip压缩
   },
   module: {
     rules: [

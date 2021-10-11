@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 13:50:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-10 18:35:02
+ * @LastEditTime: 2021-10-11 01:59:58
  */
 // import 'css-loader!../css/style.css';
 import '../css/style.css';
@@ -34,3 +34,5 @@ document.body.appendChild(iEl);
 document.body.appendChild(divEl);
 document.body.appendChild(bgDivEl);
 document.body.appendChild(imgEl);
+
+console.log(11234);
