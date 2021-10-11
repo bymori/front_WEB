@@ -159,11 +159,58 @@
 
       
 
-
-
-
-
 - [Vue.js #  Prop 验证](https://v3.cn.vuejs.org/guide/component-props.html#prop-%E9%AA%8C%E8%AF%81)
 
 
+
+##### 子组件传递给父组件
+
+- **什么情况下子组件需要传递内容到父组件呢？**
+  - 当`子组件有一些事件发生`的时候，比如在组件中发生了点击，父组件需要切换内容；
+  - 子组件`有一些内容想要传递给父组件`的时候；
+- **我们如何完成上面的操作呢？**
+  - 首先，我们需要在`子组件中定义好在某些情况下触发的事件名称`；
+  - 其次，在`父组件中以v-on的方式传入要监听的事件名称`，并且绑定到对应的方法中；
+  - 最后，在子组件中发生某-个事件的时候，`相根据事件名称触发对应的事件`；
+
+##### 自定义事件的流程
+
+- 我们封装一个CounterOperation.vue的组件：
+
+  - 内部其实是监听两个按钮的点击，点击之后通过this.$emit的方式发出去事件；
+
+- 自定义事件的时候，我们也可以传递一些参数给父组件：
+
+  ```js
+  incrementN () {
+        console.log(`+${this.num}`);
+        this.$emit('addN', this.num, '沫沫', 19)
+      }
+  ```
+
+  
+
+  - 在vue3当中，我们可以对传递的参数进行验证：
+
+    ```js
+    emits: {
+        add: null,
+        sub: null,
+        addN: (num, name, age) => {
+          console.log(num, name, age);
+          if (num > 10) return true
+          return false
+        }
+      },
+    ```
+
+  
+
+  
+
+  
+
+  
+
+  
 
