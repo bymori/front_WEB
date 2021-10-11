@@ -7,6 +7,6 @@
  * @LastEditTime: 2021-10-11 22:26:51
  */
 import { createApp } from 'vue';
-import App from './04_子组件传递父组件/App.vue';
+import App from './05_商品页面的切换/App.vue';
 
 createApp(App).mount('#app');
