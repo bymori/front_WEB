@@ -64,6 +64,106 @@
   - Props是你可以在组件上`注册一些自定义的attribute`;
   - 父组件给`这些attribute赋值`，`子组件通过attribute的名称获取到对应的值`；
 - **Props有两种常见的用法**：
+
   - `方式一：字符串数组`，数组中的字符串就是attribute的名称；
+
+    ![image-20211011211024902](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011211024902.png)
+
+    
+
   - `方式二：对象类型`,对象类型我们可以在指定attribute名称的同时，指定它需要传递的类型、是否是必须的、默认值等等；
+
+    
+
+##### Props的对象用法
+
+- 数组用法中我们**只能说明传入的attribute的名称**，并**不能对其进行任何形式的限制**，接下来我们来看一下**对象的写法**是如何让我们的props变得更加完善的。
+
+- **当使用对象语法的时候，我们可以对传入的内容限制更多：**
+
+  - 比如指定传入的`attribute的类型；`
+
+  - 比如指定传，入的`attribute是否是必传的；`
+
+  - 比如指定没有传入时，`attribute的默认值；`
+
+    ```js
+    props: {
+        title: String,
+        content: {
+          type: String,//类型
+          required: true,//必传参数
+          default: '123'//默认值 和上面必传冲突
+        }
+      }
+    ```
+
+- 那么type的类型都可以是哪些呢？
+
+  - String
+  - Number
+  - Boolean
+  - Array
+  - Object
+  - Date
+  - Function
+  - Symbol
+
+- 对象类型的其他写法
+
+  ![image-20211011212334444](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011212334444.png)
+
+  - **Prop的大小写命名(camelCase vs kebab-case)**
+
+    - HTML中的attribute名是大小写不敏感的，所以浏览器：会把所有大写字符解释为小写字符
+
+    - 这意味着当你使用DOM中的模板时，camelCase (驯驼峰命名法）的prop名需要使用其等价的kebab-case(短横线分隔命名）命名
+
+      ![image-20211011212850316](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011212850316.png)
+
+  - **非Prop的Attribute**
+
+    - 当我们`传递给一个组件某个属性`，但是`该属性并没有定义对应的props或者emits`时，就称之为`非Prop的Attribute`;
+    - 常见的包括`class、style、id属性`等；
+
+  - **Attribute继承**
+
+    - 当`组件有单个根节点`时，`非Prop的Attribute将自动添加到根节点的Attribute`中：
+
+  - **禁用Attribute继承和多根节点**
+
+  - 如果我们**不希望组件的根元素继承attribute**，可以在组件中设置**inheritAttrs: false**
+
+    - 禁用attribute继承的`常见情况`是`需要将attribute应用于根元素之外的其他元素`
+
+    - 我们可以通过`$attrs来访问所有的非props的attribute`;
+
+      ```html
+      <h2 :class="$attrs.class">{{title}}</h2>
+      <h2 v-bind="$attrs">{{title}}</h2>
+      ```
+
+      
+
+  - **多个根节点的attribute**
+
+    - `多个根节点的attribute如果没有显示的绑定`，那么会报警告，我们`必须手动的指定要绑定到哪一个属性`上：
+
+      ```html
+      <template>
+        <h2>MultiRootElement11</h2>
+        <h2 :id="$attrs.id">MultiRootElement22</h2>
+        <h2>MultiRootElement33</h2>
+      </template>
+      ```
+
+      
+
+
+
+
+
+- [Vue.js #  Prop 验证](https://v3.cn.vuejs.org/guide/component-props.html#prop-%E9%AA%8C%E8%AF%81)
+
+
 
