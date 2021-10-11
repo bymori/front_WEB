@@ -214,3 +214,35 @@
 
   
 
+# 12
+
+
+
+## 非父子组件的通信
+
+- 在开发中，我们构建了组件树之后，除了**父子组件之间的通信**之外，还会有**非父子组件之间**的通信。
+- **这里我们主要讲两种方式：**
+  - `Provide/Inject`
+  - `Mitt全局事件总线`
+
+### Provide/Inject
+
+- Provide/Inject用于**非父子组件之间共享数据**：
+  - 比如有`一些深度嵌套的组件，子组件想要获取父组件的部分内容`；
+  - 在这种情况下，如果我们仍然`将props沿着组件链逐级传递`下去，就会非常的麻烦；
+- 对于这种情况下，**我们可以使用Provide和Inject** :
+  - 无论层级结构有多深，父组件都可以作为其所有子组件的`依赖提供者`；
+  - 父组件有一个`provide选项`来提供数据；
+  - 子组件有一个`inject选项`来开始使用这些数据；
+- 实际上，你可以将依赖注入看作是**"long range props”**
+  - 父组件不需要知道哪些子组件使用它provide的property
+  - 子组件不需要知道inject的property来自哪里
+
+![image-20211011232930551](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011232930551.png)
+
+### Provide和Inject基本使用
+
+- 我们开发一个这样的结构：
+
+  ![image-20211011233208206](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011233208206.png)
+
