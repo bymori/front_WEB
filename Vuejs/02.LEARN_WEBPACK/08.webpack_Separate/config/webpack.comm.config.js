@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-11 11:52:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 13:10:45
+ * @LastEditTime: 2021-10-11 13:20:13
  */
 
 const path = require('path');
@@ -15,6 +15,7 @@ const { VueLoaderPlugin } = require('vue-loader/dist/index');
 module.exports = {
   target: 'web',
   // watch: true, // watch模式 方式一：在导出的配置中，添加`watch:true`
+  //   context: path.resolve(__dirname, './'), //配置文件所在的目录
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, '../build'),

@@ -2470,4 +2470,151 @@ app.mount('#app');
 
 ### 如何区分开发环境
 
-npm install webpack-merge -D
+- 目前我们所有的webpack配置信息都是放到一个配置文件中的：webpack.config.js
+
+  - 当配置越来越多时，这个文件会变得越来越不容易维护；
+  - 并且某些配置是在开发环境需要使用的，某些配置是在生成环境需要使用的，当然某些配置是在开发和生成环境都会使用的；
+  - 所以，我们最好对配置进行划分，方便我们维护和管理；
+
+- 那么，在启动时如何可以区分不同的配置呢？
+
+  - 方案一：编写两个不同的配置文件，开发和生成时，分别加载？不同的配置]文件即可；
+
+  - 方式二：使用相同的一个入口配置文件，通过设置参数来区分它们； 
+
+    ```js
+    "scripts": {
+        "build": "webpack --config ./config/webpack.prod.config.js",
+        "serve": "webpack serve --config ./config/webpack.dev.config.js"
+      },
+    ```
+
+    使用 webpack-merge 整合内容  `npm install webpack-merge -D`
+
+    ```js
+    const { merge } = require('webpack-merge');
+    const CommonConfig = require('./webpack.comm.config');
+    
+    module.exports = merge(CommonConfig,{
+        //配置...
+    })
+    ```
+
+
+
+#### 入口文件解析
+
+- 我们之前编写入口文件的规则是这样的：./src/index.js，但是如果我们的配置文件所在的位置变成了 config目录，我们是否应该变成。./src/index.js呢？
+  - 如果我们这样编写，会发现是报错的，依然要写成` ./src/index.js`
+  - 这是因为入口文件其实是和另一一个属性时有关的` context`
+
+- context的作用是用于解析入口(entry point)和加载器(loader):
+
+  - 官方说法：默认是当前路径(默认应该是webpack的启动目录)，
+
+  - 另外推荐在配置中传入一个值；
+
+    ```js
+    context: path.resolve(__dirname, './'), //配置文件所在的目录
+    entry: './src/main.js',
+    ```
+
+    
+
+## VueCLI和Vite
+
+### Vue CLI脚手架
+
+- 什么是Vue脚手架？
+  - 我们前面学习了如何通过webpack配置Vue的开发环境，但是在真实开发中我们不可能每
+    每一个项目从头来完成所有的webpack配置，这样显示开发的效率会大大的降低；
+  - 所以在真实开发中，我们通常会使用脚手架来创建一 个项目，Vue的项目我们使用的就是Vue的脚手架；
+  - 脚手架其实是建筑工程中的一一个概念，在我们软件工程中也会将一-些帮助我们搭建项目的工具称之。为脚手架；
+
+- Vue的脚手架就是Vue CLI:
+  - CLI是Command-Line Interface,翻译为命令行界面；
+  - 我们可以通过CLI选择项目的配置和创建出我们的项目；
+  - Vue CLI已经内置了webpack相关的配置，我们不需要从零来配置；
+
+### Vue CLI安装和使用
+
+- 安装Vue CLI
+
+  - 我们是进行全局安装，这样在任何时1侯都可以通过vue的命令来创建项目；
+
+    ```shell
+    npm install -g @vue/cli
+    # OR
+    yarn global add @vue/cli
+    ```
+
+  - 查看Vue CLI版本
+
+    ```shell
+    vue --version
+    ```
+
+    
+
+- 升级Vue CLI:
+
+  - 如果是比较旧的版本，可以通过‘下面的命令来升级
+
+    ```bash
+    npm update -g @vue/cli
+    # 或者
+    yarn global upgrade --latest @vue/cli
+    ```
+
+    
+
+- 通过Vue的命令来创建项目
+
+  ```she
+  vue create 项目的名称
+  ```
+
+  
+
+### 创建一个项目
+
+- https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create
+
+- 运行以下命令来创建一个新项目：
+
+  - ```bash
+    vue create hello-world
+    ```
+
+#### 使用图形化界面
+
+你也可以通过 `vue ui` 命令以图形化界面创建和管理项目：
+
+```bash
+vue ui
+```
+
+
+
+### 项目的目录结构
+
+```
+
+│  .browserslistrc  // 设置目标浏览器 #https://github.com/browserslist/browserslist
+│  .gitignore  // git的忽略文件
+│  babel.config.js  // babel配置
+│  package.json  // 项目管理文件
+│  README.md
+│  yarn.lock
+├─public //项目资源
+│      favicon.ico
+│      index.html 
+└─src  // 源代码
+    │  App.vue
+    │  main.js
+    ├─assets
+    │      logo.png  
+    └─components
+            HelloWorld.vue
+```
+
