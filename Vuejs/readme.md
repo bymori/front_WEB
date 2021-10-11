@@ -2672,5 +2672,87 @@ npm install lodash-es
   npm install vite -D # 局部安装
   ```
 
+- 通过 vite 启动项目
+
+  ```bash
+  npx vite
+  ```
+
   
+
+#### Vite对css的支持
+
+- vite可以直接支持css的处理
+
+  - 直接导入css即可；
+
+- vite可以直接支持css预处理器，比如less
+
+  - 直接导入less;
+
+  - 之后安装less编译器；
+
+    ```bash
+    npm install less -D
+    ```
+
+    
+
+- vite直接支持postcss的转换：
+
+  - 只需要安装postcss，并且配置postcss.config.js的配置文件即可；
+
+    ```bash
+    npm install postcss postcss-preset-env-D
+    
+    ## postcss.config.js
+    module.exports = {
+      plugins: [require('postcss-preset-env')],
+    };
+    ```
+
+    
+
+#### Vite对TypeScript的支持
+
+- vite对TypeScript是原生支持的，'它会直接使用ESBuild来完成编译：
+
+  - 只需要直接导入即可；
+
+- 如果我们查看浏览器中的请求，会发现请求的依然是ts的代码：
+
+  - 这是因为vite中的服务器Connect会对我们的请求进行转发；
+  - 获取ts编译后的代码，给浏览器逃回，浏览器可以直接进行解析；
+
+- 注意：在vite2中，已经不再使用Koa了，而是使用Connect来搭建的服务器
+
+  ![image-20211011171522731](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211011171522731.png)
+
+#### Vite对vue的支持
+
+- vite对vue提供第一优先级支持：
+  - Vue 3单文件组件支持：[@vitejs/plugin-vue](https://www.npmjs.com/package/@vitejs/plugin-vue)
+  - Vue 3 JSX支持：[@vitejs/plugin-vue-jsx](https://www.npmjs.com/package/@vitejs/plugin-vue-jsx)
+  - Vue 2支持：[underfin/vite-plugin-vue2](https://www.npmjs.com/package/vite-plugin-vue2)
+
+- 安装支持vue的插件：
+
+  ```bash
+  npm install @vitejs/plugin-vue -D
+  ```
+
+  
+
+- 在vite.config.js中配置插件：
+
+  ```js
+  const vue = require('@vitejs/plugin-vue');
+  module.exports = {
+    plugins: [vue()],
+  };
+  ```
+
+
+
+### Vite打包项目
 
