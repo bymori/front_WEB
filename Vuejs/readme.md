@@ -2470,3 +2470,4 @@ app.mount('#app');
 
 ### 如何区分开发环境
 
+npm install webpack-merge -D
