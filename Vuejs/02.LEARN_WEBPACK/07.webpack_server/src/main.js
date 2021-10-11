@@ -4,10 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:24:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 01:59:50
+ * @LastEditTime: 2021-10-11 11:05:31
  */
 // import { createApp } from 'vue/dist/vue.esm-bundler';
 import { createApp } from 'vue';
+import axios from 'axios';
+
 import { sum } from './js/math';
 import { priceFormat } from './js/format';
 
@@ -38,3 +40,12 @@ const app = createApp(App);
 app.mount('#app');
 
 console.log('--watch');
+
+axios
+  .get('/api/banner')
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

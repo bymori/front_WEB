@@ -2362,3 +2362,41 @@ app.mount('#app');
 
 - **compress是否为静态文件开启gzip compression:**
   - 默认值是false，可以设置为true;
+
+
+
+#### Proxy
+
+- **proxy是我们开发中非常常用的一个配置选项，它的目的设置代理来解决跨域访问的问题：**
+
+  - 比如我们的`一个api请求是http://localhost:8888`，但是`本地启动服务器的域名是http://localhost:8000`，这个时候发送网络请求就`会出现跨域的问题`；
+  - 那么我们可以将请求`先发送到一个代理服务器`，`代理服务器和API服务器没有跨域的问题`，就可以`解决我们的跨域问题`了；
+
+- **我们可以进行如下的设置：**
+
+  - target: 表示的是代理到的目标地址，比如 `/api/banner` 会被代理到https://api.ioinn.cn
+
+  - pathRewrite: 默认情况下，我们的 /api 也会被写入到URL中，如果希望删除，可以使用pathRewrite 进行重写
+
+  - secure: 默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false;
+
+  - changeOrigin: 它表示是否更新代理后请求的headers中host地址； 
+
+    ```js
+    proxy: {
+          '/api': {
+            //将target印射为/api
+            target: 'https://api.ioinn.cn', // 接口域名
+            secure: false, // 如果是https接口，需要配置这个参数
+            changeOrigin: true, //是否跨域
+            pathRewrite: {
+              '^/api': '', //需要rewrite的,
+            },
+          },
+        },
+    ```
+
+    [vue-cli本地环境API代理设置和解决跨域](https://segmentfault.com/a/1190000011007043)
+
+
+

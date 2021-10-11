@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-10 12:54:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-11 10:35:42
+ * @LastEditTime: 2021-10-11 11:09:50
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -34,6 +34,18 @@ module.exports = {
     // host: '0.0.0.0', //主机地址
     port: 8000, //端口
     // compress: true, //gzip压缩
+
+    proxy: {
+      '/api': {
+        //将target印射为/api
+        target: 'https://api.ioinn.cn', // 接口域名
+        secure: false, // 如果是https接口，需要配置这个参数
+        changeOrigin: true, //是否跨域
+        pathRewrite: {
+          '^/api': '', //需要rewrite的,
+        },
+      },
+    },
   },
   module: {
     rules: [
