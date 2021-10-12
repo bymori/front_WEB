@@ -1,0 +1,147 @@
+<svg width="838" height="1388" xmlns="http://www.w3.org/2000/svg" text-anchor="middle" font-size="14" font-family="Inter,Roboto,sans-serif" fill="none">
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="1390" width="840" y="-1" x="-1"/>
+ </g>
+
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <path id="svg_2" fill="#9AA9B2" d="m414,129l0,35l6,0l-7,14l-7,-14l6,0l0,-35l2,0z"/>
+   <rect id="svg_3" rx="8" height="66" width="259" y="63.5" x="283.5" fill="#3E6B94" stroke="#2F679A"/>
+   <text id="svg_4" dominant-baseline="middle" fill="#FFF" y="87.5" x="413">app = Vue.
+    <tspan id="svg_5" dominant-baseline="middle" fill="#FFB196">createApp</tspan>(
+    <tspan id="svg_6" dominant-baseline="middle" fill="#39DD95">options</tspan>)</text>
+   <text id="svg_7" dominant-baseline="middle" fill="#FFF" y="106" x="413">app.
+    <tspan id="svg_8" dominant-baseline="middle" fill="#FFB196">mount</tspan>(
+    <tspan id="svg_9" dominant-baseline="middle" fill="#39DD95">el</tspan>)</text>
+  </g>
+  <g id="svg_10">
+   <path id="svg_11" fill="#9AA9B2" d="m414,236l0,46l6,0l-7,14l-7,-14l6,0l0,-46l2,0z"/>
+   <rect id="svg_12" rx="8" height="58" width="193" y="178.5" x="316.5" fill="#3AB881" stroke="#23AC70"/>
+   <text id="svg_13" dominant-baseline="middle" fill="#FFF" y="198.5" x="413">初始化</text>
+   <text id="svg_14" dominant-baseline="middle" fill="#FFF" y="217" x="413">事件 &amp; 生命周期</text>
+  </g>
+  <g id="svg_15">
+   <path id="svg_16" fill="#DB5B62" d="m233,253l0,14l-14,-7l14,-7z"/>
+   <line id="svg_17" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="260" x2="234" y1="260" x1="411"/>
+   <rect id="svg_18" rx="8" height="48" width="144" y="236" x="74" stroke-width="2" stroke="#DB5B62"/>
+   <text id="svg_19" dominant-baseline="middle" fill="#DB5B62" y="260.5" x="146">beforeCreate</text>
+  </g>
+  <g id="svg_20">
+   <path id="svg_21" fill="#9AA9B2" d="m414,354l0,46l6,0l-7,14l-7,-14l6,0l0,-46l2,0z"/>
+   <rect id="svg_22" rx="8" height="58" width="193" y="296.5" x="316.5" fill="#3AB881" stroke="#23AC70"/>
+   <text id="svg_23" dominant-baseline="middle" fill="#FFF" y="316.5" x="413">初始化</text>
+   <text id="svg_24" dominant-baseline="middle" fill="#FFF" y="335" x="413">注入 &amp; 响应式</text>
+  </g>
+  <g id="svg_25">
+   <path id="svg_26" fill="#DB5B62" d="m233,371l0,14l-14,-7l14,-7z"/>
+   <line id="svg_27" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="378" x2="234" y1="378" x1="411"/>
+   <rect id="svg_28" rx="8" height="48" width="144" y="354" x="74" stroke-width="2" stroke="#DB5B62"/>
+   <text id="svg_29" dominant-baseline="middle" fill="#DB5B62" y="378.5" x="146">created</text>
+  </g>
+  <g id="svg_30">
+   <path id="svg_31" fill="#9AA9B2" d="m272,467l0,52l6,0l-7,14l-7,-14l6,0l0,-54l286,0l0,54l6,0l-7,14l-7,-14l6,0l0,-52l-282,0z"/>
+   <polygon id="svg_32" fill="#FF8228" stroke="#F2781E" points="413,414.5 509,466 413,517.5 317,466 "/>
+   <text id="svg_33" dominant-baseline="middle" y="447.5" x="413" fill="#FFF">是否有</text>
+   <text id="svg_34" dominant-baseline="middle" y="466" x="413" fill="#FFF">“template”</text>
+   <text id="svg_35" dominant-baseline="middle" y="484.5" x="413" fill="#FFF">选项?</text>
+   <text id="svg_36" dominant-baseline="middle" text-anchor="end" y="480.5" x="258.5" fill="#8E9EA9">有</text>
+   <text id="svg_37" dominant-baseline="middle" text-anchor="start" y="480.5" x="567" fill="#8E9EA9">没有</text>
+  </g>
+  <g id="svg_38">
+   <path id="svg_39" fill="#9AA9B2" d="m270,591l2,0l0,44l282,0l0,-44l2,0l0,46l-142,0l0,54l6,0l-7,14l-7,-14l6,0l0,-54l-142,0l0,-46z"/>
+   <rect id="svg_40" rx="8" height="58" width="207" y="533.5" x="167.5" fill="#3AB881" stroke="#23AC70"/>
+   <text id="svg_41" dominant-baseline="middle" y="553.5" x="271" fill="#FFF">编译模板</text>
+   <text id="svg_42" dominant-baseline="middle" y="572" x="271" fill="#FFF">至渲染函数
+    <tspan id="svg_43" dominant-baseline="middle" fill="#F6DA72">*</tspan></text>
+   <g id="svg_44">
+    <rect id="svg_45" rx="8" height="58" width="207" y="533.5" x="451.5" fill="#3AB881" stroke="#23AC70"/>
+    <text id="svg_46" dominant-baseline="middle" y="553.5" x="555" fill="#FFF">编译 el的 innerHTML</text>
+    <text id="svg_47" dominant-baseline="middle" y="572" x="555" fill="#FFF">至 模板
+     <tspan id="svg_48" dominant-baseline="middle" fill="#F6DA72">*</tspan></text>
+   </g>
+  </g>
+  <g id="svg_49">
+   <path id="svg_50" fill="#DB5B62" d="m233,657l0,14l-14,-7l14,-7z"/>
+   <line id="svg_51" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="664" x2="234" y1="664" x1="411"/>
+   <rect id="svg_52" rx="8" height="48" width="144" y="640" x="74" stroke-width="2" stroke="#DB5B62"/>
+   <text id="svg_53" dominant-baseline="middle" fill="#DB5B62" y="664.5" x="146">beforeMount</text>
+  </g>
+  <g id="svg_54">
+   <path id="svg_55" fill="#9AA9B2" d="m414,763l0,77l6,0l-7,14l-7,-14l6,0l0,-77l2,0z"/>
+   <rect id="svg_56" rx="8" height="58" width="193" y="705.5" x="316.5" fill="#3AB881" stroke="#23AC70"/>
+   <text id="svg_57" dominant-baseline="middle" fill="#FFF" y="725.5" x="413">创建 app.$el</text>
+   <text id="svg_58" dominant-baseline="middle" fill="#FFF" y="744" x="413">并添加至 el</text>
+  </g>
+  <g id="svg_59">
+   <path id="svg_60" fill="#DB5B62" d="m233,795l0,14l-14,-7l14,-7z"/>
+   <line id="svg_61" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="802" x2="234" y1="802" x1="411"/>
+   <rect id="svg_62" rx="8" height="48" width="144" y="778" x="74" stroke-width="2" stroke="#DB5B62"/>
+   <text id="svg_63" dominant-baseline="middle" fill="#DB5B62" y="802.5" x="146">mounted</text>
+  </g>
+  <g id="svg_64">
+   <g id="svg_65" transform="rotate(140 651.4999999999999,802.3629760742189) ">
+    <path id="svg_66" fill="#DB5B62" d="m665.5,802.36298l0,14l-14,-7l14,-7z"/>
+    <line id="svg_67" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="809.36298" x2="666.5" y1="809.36298" x1="711.5"/>
+   </g>
+   <g id="svg_68">
+    <rect id="svg_69" rx="8" height="48" width="144" y="748" x="620" stroke-width="2" stroke="#DB5B62"/>
+    <text id="svg_70" dominant-baseline="middle" fill="#DB5B62" y="772.5" x="692">beforeUpdate</text>
+   </g>
+   <g id="svg_71" transform="rotate(220 642.5000000000002,1008.362976074219) ">
+    <path id="svg_72" fill="#DB5B62" d="m656.5,1008.36298l0,14l-14,-7l14,-7z"/>
+    <line id="svg_73" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="1015.36298" x2="657.5" y1="1015.36298" x1="702.5"/>
+   </g>
+   <g id="svg_74">
+    <rect id="svg_75" rx="8" height="48" width="144" y="1004" x="620" stroke-width="2" stroke="#DB5B62"/>
+    <text id="svg_76" dominant-baseline="middle" fill="#DB5B62" y="1028.5" x="692">updated</text>
+   </g>
+   <path id="svg_77" d="m577,819a95,95 0 1 1 -102,0" stroke-dashoffset="6" stroke-dasharray="4" stroke-width="2" stroke="#8999A4"/>
+   <g id="svg_78">
+    <rect id="svg_79" rx="8" height="77" width="141" y="860.5" x="539.5" fill="#3AB881" stroke="#23AC70"/>
+    <text id="svg_80" dominant-baseline="middle" fill="#FFF" y="880.5" x="610">虚拟 DOM</text>
+    <text id="svg_81" dominant-baseline="middle" fill="#FFF" y="899" x="610">重新渲染</text>
+    <text id="svg_82" dominant-baseline="middle" fill="#FFF" y="917.5" x="610">和更新</text>
+   </g>
+   <g id="svg_83">
+    <text id="svg_84" dominant-baseline="middle" fill="#8E9EA9" y="803" x="526">当数据发生</text>
+    <text id="svg_85" dominant-baseline="middle" fill="#8E9EA9" y="821.5" x="526">变化</text>
+   </g>
+  </g>
+  <g id="svg_86">
+   <circle id="svg_87" r="46.5" cy="901" cx="413" fill="#DB5860" stroke="#DC424C"/>
+   <text id="svg_88" dominant-baseline="middle" fill="#FFF" y="902" x="413">已挂载</text>
+   <path id="svg_89" d="m413,950l0,33" stroke-dasharray="3" stroke-width="2" stroke="#9AA9B2"/>
+  </g>
+  <g id="svg_90">
+   <text id="svg_91" dominant-baseline="middle" fill="#8E9EA9" y="1002" x="413">当</text>
+   <text id="svg_92" dominant-baseline="middle" fill="#8E9EA9" y="1020.5" x="413">app.
+    <tspan id="svg_93" dominant-baseline="middle" fill="#DB5B62">unmount</tspan>()</text>
+   <text id="svg_94" dominant-baseline="middle" fill="#8E9EA9" y="1039" x="411">被调用</text>
+   <path id="svg_95" d="m413,1054l0,51" stroke-dasharray="3" stroke-width="2" stroke="#9AA9B2"/>
+   <path id="svg_96" fill="#9AA9B2" d="m406,1106l7,14l7,-14l-14,0z"/>
+  </g>
+  <g id="svg_97">
+   <path id="svg_98" fill="#DB5B62" d="m233,1074l0,14l-14,-7l14,-7z"/>
+   <line id="svg_99" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="1081" x2="234" y1="1081" x1="411"/>
+   <rect id="svg_100" rx="8" height="48" width="144" y="1057" x="74" stroke-width="2" stroke="#DB5B62"/>
+   <text id="svg_101" dominant-baseline="middle" fill="#DB5B62" y="1081.5" x="146">beforeUnmount</text>
+  </g>
+  <g id="svg_102">
+   <path id="svg_103" fill="#DB5B62" d="m233,1168l0,14l-14,-7l14,-7z"/>
+   <line id="svg_104" stroke-dasharray="3" stroke-width="2" stroke="#DB5B62" y2="1175" x2="234" y1="1175" x1="411"/>
+   <rect id="svg_105" rx="8" height="48" width="144" y="1151" x="74" stroke-width="2" stroke="#DB5B62"/>
+   <text id="svg_106" dominant-baseline="middle" fill="#DB5B62" y="1175.5" x="146">unmounted</text>
+  </g>
+  <g id="svg_107">
+   <circle id="svg_108" r="53.5" cy="1174" cx="413" fill="#DB5860" stroke="#DC424C"/>
+   <text id="svg_109" dominant-baseline="middle" fill="#FFF" y="1175" x="413">已卸载</text>
+  </g>
+  <g id="svg_110">
+   <text id="svg_111" dominant-baseline="middle" fill="#848484" y="1299.5" x="413">* Template compilation is performed ahead-of-time if using</text>
+   <text id="svg_112" dominant-baseline="middle" fill="#848484" y="1318" x="413">a build step, e.g., with single-file components.</text>
+   <text id="svg_113" dominant-baseline="middle" fill="#848484" y="1336.5" x="413">Legend reset ioinn.cn https://github.com/bymori</text>
+  </g>
+ </g>
+</svg>
