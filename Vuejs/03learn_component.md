@@ -451,6 +451,8 @@
 
 #### 认识作用域插槽
 
+- https://v3.cn.vuejs.org/guide/component-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD
+
 - 但是有时候我们希望插槽**可以访问到子组件中的内容**是非常重要的：
 
   - 当一个组件被用来渲染一个`数组元素`时，我们`使用插槽`，并且希望`插槽中没有显示每项的内容`
@@ -531,3 +533,52 @@
   ```
 
   
+
+#### 切换组件案例
+
+- **比如我们现在想要实现了一个功能：**
+
+  - 点击一个tab-bar,切换不同的组件显示；
+
+    ![image-20211012174425228](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211012174425228.png)
+
+- 这个案例我们可以通过两种不同的实现思路来实现：
+
+  - `方式一`：通过v-if来判断，显示不同的组件；
+
+    ```vue
+    <template v-if="currentTab ==='home'">
+          <home></home>
+        </template>
+        <template v-else-if="currentTab ==='about'">
+          <about></about>
+        </template>
+        <template v-else>
+          <category></category>
+        </template>
+    ```
+
+    
+
+  - `方式二`：动态组件的方式；
+
+    - 动态组件是使用`component组件`，通过一个`特殊的attribute is`来实现：
+
+      ```vue
+      <button v-for="(item, index) in tabs"
+                  :key="index"
+                  @click="itemClick(item)"
+                  :class="{active:currentTab === item}">
+            {{item}}
+          </button>
+      
+      <component :is="currentTab"></component>
+      ```
+
+      
+
+    - **这个currentTab的值需要是什么内容呢？** 
+
+      - 可以是通过`component函数注册`的组件；
+      - 在一个`组件对象的components对象中注册的组件`；
+
