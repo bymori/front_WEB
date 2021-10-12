@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-12 17:45:48
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-12 18:05:35
+ * @LastEditTime: 2021-10-12 18:22:49
 -->
 <template>
   <div>
@@ -27,7 +27,11 @@
     </template> -->
 
     <!-- 方式二：动态组件的方式 -->
-    <component :is="currentTab"></component>
+    <!-- <component :is="currentTab"></component> -->
+    <component :is="currentTab"
+               name='ioinn'
+               :age='19'
+               @pageClick='pageClick'></component>
   </div>
 </template>
 
@@ -51,6 +55,9 @@ export default {
     itemClick (item) {
       console.log(item);
       this.currentTab = item
+    },
+    pageClick () {
+      console.log('pageClick点击了');
     }
   },
 }

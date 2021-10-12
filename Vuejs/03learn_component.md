@@ -582,3 +582,17 @@
       - 可以是通过`component函数注册`的组件；
       - 在一个`组件对象的components对象中注册的组件`；
 
+##### 如果是动态组件我们可以给它们传值和监听事件吗？
+
+- 也是一样的；
+
+- 只是我们需要将`属性和监听事件`放到component_上来使用；
+
+  ```vue
+  <component :is="currentTab"
+                 name='ioinn'
+                 :age='19'
+                 @pageClick='pageClick'></component>
+  ```
+
+  
