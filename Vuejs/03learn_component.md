@@ -1008,3 +1008,156 @@
 
   
 
+### 认识animate.css
+
+- 如果我们手动一 个个来编写这些动画，那么效率是比较低的，所以在开发中我们可能会引用一些**第三方库的动画库，比如animate.css**
+
+- **什么是animate.css呢？**
+
+  - **Animate.css** is a library of ready-to-use, cross-browser animations for use in your web projects. Great for emphasis, home pages,sliders, and attention-guiding hints.
+  - **Animate.css**是一个已经准备好的、跨平台的动画库为我们的web项目，对于强调、主页、滑动、注意力引导非常有用；
+
+- **如何使用Animate库呢？**
+
+  - 第一步：需要`安装animate.css`库；
+
+    ```bash
+    npm install animate.css
+    ```
+
+    
+
+  - 第二步：导入`animate.css`库的样式；
+
+    ```js
+    // main.js
+    import 'animate.css';
+    ```
+
+    
+
+  - 第三步：使用`animation动画或者 animate提供的类`；
+
+    - 用法一：直接使用animate库中定义的keyframes动画；
+      用法二：直接使用animate库提供给我们的类；
+
+      ```vue
+      //用法一
+      .ioh2-enter-active {
+        animation: bounceInUp 1s ease;
+      }
+      .ioh2-leave-active {
+        animation: bounceInUp 1s ease reverse;
+      }
+      
+      //用法二
+      <transition name="ioh2"
+                      enter-active-class="animate__animated animate__fadeInDown"
+                      leave-active-class="animate__animated animate__flipInY">
+            <h2 v-if="isShow">Hello</h2>
+          </transition>
+      ```
+
+      
+
+
+
+#### 自定义过渡class
+
+- 我们可以通过以下attribute来自定义过渡类名：
+  - enter-from-class
+  - enter-active-class
+  - enter-to-class
+  - leave-from-class
+  - leave-active-class
+  - leave-to-class
+- 他们的**优先级高于普通的类名**，这对于Vue的过渡系统和其他第三方CSS动画库，如 Animate.css 结合使用十分有用。
+
+
+
+### 认识gsap库
+
+- 某些情况下我们希望**通过JavaScript来实现一 些动画的效果**，这个时候我们可以选择使用**gsap库**来完成。
+
+- **什么是gsap呢？**
+
+  - GSAP是The GreenSock Animation Platform(GreenSock动画平台)的缩写；
+  - 它可以`通过Java Script为CSS属性、 SVG、Canvas等`设置动画，并且是浏览器兼容的；
+
+- **这个库应该如何使用呢？**
+
+  - 第一步：需要`安装gsap`库；
+
+    ```bash
+    npm install gsap
+    ```
+
+    
+
+  - 第二步：导入`gsap库`；
+
+    ```js
+    // typical import
+    import gsap from "gsap";
+    ```
+
+    
+
+  - 第三步：使用`对应的api`即可；
+
+
+
+### JavaScript钩子
+
+- https://v3.cn.vuejs.org/guide/transitions-enterleave.html#javascript-%E9%92%A9%E5%AD%90
+
+- 在使用动画之前，我们先来看一下transition组件给我们提供的Java Script钩子，这些钩子可以帮助：我们监听动画执行到什么阶段了。
+
+```html
+<transition
+  @before-enter="beforeEnter"
+  @enter="enter"
+  @after-enter="afterEnter"
+  @enter-cancelled="enterCancelled"
+  @before-leave="beforeLeave"
+  @leave="leave"
+  @after-leave="afterLeave"
+  @leave-cancelled="leaveCancelled"
+  :css="false"
+>
+  <!-- ... -->
+</transition>
+```
+
+- 当我们使用JavaS cript来执行过渡动画时，需要`进行done回调`，！！！否则它们将会被同步调用，过渡会立即完成。
+- 添加 ` :css="false"` ,也会让Vue会`跳过CSS的检测`，除了性能略高之外，这可以避免过渡过程中（CSS规则的影响。
+
+##### gsap库的使用
+
+```vue
+<transition @enter="enter"
+                @leave="leave" :css="false">
+      <h2 class="title"
+          v-if="isShow">Hello</h2>
+    </transition>
+
+enter (el, done) {
+      console.log("enter");
+      gsap.from(el, {
+        scale: 0,
+        x: 200,
+        onComplete: done
+      })
+    },
+    leave (el, done) {
+      console.log("leave");
+      gsap.to(el, {
+        scale: 0,
+        x: 200,
+        onComplete: done
+      })
+    },
+```
+
+
+
