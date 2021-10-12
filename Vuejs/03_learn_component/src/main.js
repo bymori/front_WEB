@@ -4,10 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-10-11 19:46:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-12 22:47:58
+ * @LastEditTime: 2021-10-12 23:00:44
  */
 import { createApp } from 'vue';
-import App from './11_动态组件的使用/App.vue';
+import App from './15_组件的v-model/App.vue';
 
 // import { sum } from './12_异步组件的使用/utils/math';
 // console.log(sum(5, 999));

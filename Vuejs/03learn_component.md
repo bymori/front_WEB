@@ -809,3 +809,6 @@
 
     
 
+#### 组件的v-model
+
+- [多个 v-model 绑定](https://v3.cn.vuejs.org/guide/component-custom-events.html#%E5%A4%9A%E4%B8%AA-v-model-%E7%BB%91%E5%AE%9A)
