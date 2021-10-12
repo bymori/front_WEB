@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-12 17:54:02
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-12 18:22:20
+ * @LastEditTime: 2021-10-12 19:49:46
 -->
 <template>
   <div @click="divClick">
@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'home',
   props: {
     name: {
       type: String,

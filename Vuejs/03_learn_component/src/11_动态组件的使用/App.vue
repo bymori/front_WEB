@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-12 17:45:48
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-12 18:22:49
+ * @LastEditTime: 2021-10-12 19:49:05
 -->
 <template>
   <div>
@@ -28,10 +28,18 @@
 
     <!-- 方式二：动态组件的方式 -->
     <!-- <component :is="currentTab"></component> -->
-    <component :is="currentTab"
+    <!-- <component :is="currentTab"
                name='ioinn'
                :age='19'
-               @pageClick='pageClick'></component>
+               @pageClick='pageClick'></component> -->
+    <!-- keep-alive -->
+    <keep-alive include="home,about">
+      <component :is="currentTab"
+                 name='ioinn'
+                 :age='19'
+                 @pageClick='pageClick'></component>
+    </keep-alive>
+
   </div>
 </template>
 

@@ -596,3 +596,40 @@
   ```
 
   
+
+### 认识keep-alive
+
+- 我们先对之前的案例中About组件进行改造：
+
+  - 在其中增加了一一个按钮，点击可以递增的功能；
+
+    ![image-20211012194007559](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211012194007559.png)
+
+- 比如我们将counter点到10，那么生切换到home再切换回来about时，**状态是否可以保持呢**？
+
+  - 答案是否定的；
+  - 这是因为默认情况下，我们在`切换组件后`，`about组件会被销毁掉`，再次回来时`会重新创建组件`；
+
+- 但是，在开发中某些情况我们希望继续保持组件的状态，而不是销毁掉，这个时候我们就可以**使用一个内置组件**：**keep-alive**
+
+
+
+#### keep-alive属性
+
+- **keep-alive有一些属性：**
+
+  - `include` - string|RegExp|Array. 只有名称匹配的组件会被缓
+    存；
+  - `exclude` - string|Reg Exp|Array. 任何名称匹配的组件都不
+    会被缓存；
+  - `max` - number|string. 最多可以缓存多少组件实例，一旦达
+    到这个数字，那么缓存组件中最近没有；被访问的实例会被销毁；
+
+- **include和exclude prop允许组件有条件地缓存：**
+
+  - 二者都可以用`逗号分隔字符串、正则表达式或一个数组`来表示；
+
+  - 匹配首先检查组件自身的`name选项`；
+
+    ![image-20211012195108421](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211012195108421.png)
+
