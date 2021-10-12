@@ -695,3 +695,73 @@
     https://v3.cn.vuejs.org/api/global-api.html#defineasynccomponent
 
     
+
+### 异步组件和Suspense
+
+- 注意：**目前 Suspense 显示的是一个实验性的特性，API随时可能会修改。**
+
+- **Suspense是一个内置的全局组件，该组件有两个插槽：**
+
+  - `default`:如果default可以显示，那么显示default的内容；
+
+  - `fallback` :如果default无法显示，那么会显示fallback插槽的内容；
+
+    ```vue
+    <suspense>
+          <template #default>
+            <async-category></async-category>
+          </template>
+          <template #fallback>
+            <loading></loading>
+          </template>
+        </suspense>
+    ```
+
+    
+
+### $refs的使用
+
+- 某些情况下，我们在组件中想要**直接获取到元素对象或者子组件实例**：
+  - 在Vue开发中我们是`不推荐进行DOM操作`的；
+  - 这个时候，我们可以给`元素或者组件绑定一个ref的attribute属性`；
+
+- **组件实例有一个$refs属性：**
+
+  - 它一个对象Object，持有`注册过ref attribute的所有DOM元素和组件实例`。
+
+    ```js
+    btnClick () {
+          // 访问元素
+          console.log(this.$refs.title);
+          console.log(this.$refs.title.innerHTML);
+          // 访问组件实例
+          console.log(this.$refs.navBar.msg);
+          //   调用组件实例的方法
+          this.$refs.navBar.sayHello()
+        }
+    ```
+
+    
+
+### `$parent和$root`
+
+- 我们可以通过$parent来访问父元素。
+
+- 也可以通过$root来实现，因为App是我们的根组件；
+
+  ```js
+  getParentAndRoot () {
+        // 访问父组件实例
+        console.log(this.$parent);
+        console.log(this.$parent.mm);
+        // 调用父组件 btnClick 方法
+        this.$parent.btnClick()
+  
+        // 访问根组件
+        console.log(this.$root);
+      }
+  ```
+
+  
+
+- 注意：在Vue 3中已经移除了$children的属性，所以不可以使用了。
