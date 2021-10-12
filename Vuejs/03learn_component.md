@@ -812,3 +812,16 @@
 #### 组件的v-model
 
 - [多个 v-model 绑定](https://v3.cn.vuejs.org/guide/component-custom-events.html#%E5%A4%9A%E4%B8%AA-v-model-%E7%BB%91%E5%AE%9A)
+
+
+
+
+
+## Vue3过渡&动画实现
+
+### 认识动画
+
+- 在开发中，我们想要给一个组件的显示和消失添加某种过渡动画，可以很好的增加用户体验：
+  - React框架本身并没有提供任何动画相关的API，所以在在React中使用过渡动画我们需要使用-一个第三方库react-transition-group;
+  - Vue中为我们提供一 些内置组件和对应的API来完成动画，利月驼们我们可以方便的实现过渡动画效果；
+
