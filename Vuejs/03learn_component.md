@@ -432,3 +432,102 @@
 
   
 
+### 渲染作用域
+
+- **在Vue中有渲染作用域的概念：**
+
+  - 父级模板里的所有内容都是`在父级作用域中编译`的；，
+  - 子模板里的所有内容都是`在子作用域中编译`的；
+
+- 如何理解这句话呢？我们来看一个案例：
+
+  - 在我们的案例中ChildCpn自然是可以让问自己作用域中的title内容的；
+
+  - 但是在App中，是访问不了ChildCpn中的内容的，因为它们是跨作用域的访问；
+
+    ![image-20211012164554645](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211012164554645.png)
+
+
+
+#### 认识作用域插槽
+
+- 但是有时候我们希望插槽**可以访问到子组件中的内容**是非常重要的：
+
+  - 当一个组件被用来渲染一个`数组元素`时，我们`使用插槽`，并且希望`插槽中没有显示每项的内容`
+  - 这个Vue给我们提供了`作用域插槽`
+
+- 我们来看下面的一个案例：
+
+  1. 在App.vue中定义好数据
+
+  2. 传递给ShowNames组件中
+
+  3. ShowNames组件中遍历names数据
+
+  4. 定义插槽的prop
+
+  5. 通过V-slot:default的方式获取到slot的props
+
+  6. 使用slotProps中的item和index
+
+     ![image-20211012172212151](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211012172212151.png)
+
+
+
+##### 独占默认插槽的缩写
+
+- 如果我们的插槽是默认插槽default，那么在使用的时候v-slot:default="slotProrps"可以简写为v-slot="slotProps"
+
+  ```vue
+  <show-names :names="names">
+        <template v-slot='soltProps'>
+          <button>{{soltProps.item}}--{{soltProps.index}}</button>
+        </template>
+      </show-names>
+  ```
+
+  
+
+- 并且如果我们的插槽只有默认插槽时，组件的标签可以被当做插槽的模板来使用，这样，我们就可以将v-slot直接用在组件上：
+
+  ```vue
+  <show-names :names="names"
+                  v-slot='soltProps'>
+        <strong>{{soltProps.item}}--{{soltProps.index}}</strong>
+      </show-names>
+  ```
+
+  
+
+##### 默认插槽和具名插槽混合
+
+- 但是，如果我们有默认插槽和具名插槽，那么按照完整的template来编写
+
+  ```vue
+  <show-names :names="names"
+                  v-slot='soltProps'>
+        <strong>{{soltProps.item}}--{{soltProps.index}}</strong>
+  
+        <template>
+          <h2>哈哈</h2>
+        </template>
+      </show-names>
+  ```
+
+  
+
+- 只要出现多个插槽，请始终为所有的插槽使用完整的基于<template>的语法
+
+  ```vue
+  <show-names :names="names">
+        <!-- <template v-slot:ioinn='soltProps'> -->
+        <template v-slot='soltProps'>
+          <div>{{soltProps.item}}--{{soltProps.index}}</div>
+        </template>
+      <template>
+          <h2>哈哈</h2>
+        </template>
+      </show-names>
+  ```
+
+  
