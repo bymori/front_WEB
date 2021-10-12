@@ -637,3 +637,61 @@
 
 ### Webpack的代码分包
 
+- **默认的打包过程：**
+
+  - 默认情况下，在构建整个组件树的过程中，因为组件和组件之间是`通过模块决化直接依赖`的，那么`webpack在打包时就会将组件模块打包到一起`(比如一个app.js文件中)；
+  - 这个时候随着`项目的不断庞大`，`app.js文件的内容过大`，会造成`首屏的渲染速度变慢`；
+
+- **打包时，代码的分包：**
+
+  - 所以，对于一些`不需要立即使用的组件`，我们可以`单独对它们进行拆分`，拆分成一些`小的代码块chunk.js;`
+  - 这些chunk.js会在需要时`从服务器加载下来`，并且`运行代码`，显示对应的内容；
+
+- **那么webpack中如何可以对代码进行分包呢？**
+
+  ![image-20211012201403952](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211012201403952.png)
+
+
+
+#### Vue中实现异步组件
+
+- 如果我们的项目过大了，对于**某些组件**我们希望**通过异步的方式来进行加载**（目的是可以对其进行分包处理），那么Vue中给我们提供了一个函数：**defineAsyncComponent**
+
+- *defineAsyncComponent 接受两种类型的参数：*
+
+  - `类型一`：工厂函数，该工厂函数需要返回一个Promise对象；
+
+    ```js
+    import { defineAsyncComponent } from 'vue'
+    const AsyncCategory = defineAsyncComponent(() => import('./AsyncCategory.vue'))
+    ```
+
+    
+
+  - `类型二`：接受一个对象类型，对异步函数进行配置；
+
+    ```js
+    import { defineAsyncComponent } from 'vue'
+    const AsyncCategory = defineAsyncComponent({
+      loader: () => import('./AsyncCategory.vue'),
+      // 加载过程中显示的组件
+      loadingComponent: Loading,
+      //   errorComponent //加载失败时显示的组件
+      //在显示 loadingComponent 之前的延迟 默认值 200(ms)
+      delay: 2000,
+      // 如果提供了timeout 并且加载组件的时间超过了设定值，将显示错误组件
+      // 默认值：Infinity 即永不超时，单位ms
+      // timeout: o,
+      // 定义组件是否可挂起 默认值：true
+      /*
+      * err  错误信息
+      * retry  函数，调用retry尝试重新加载
+      * * attempts  记录尝试的次数
+      */
+      onError: function (err, retry, attempts) { }
+    })
+    ```
+
+    https://v3.cn.vuejs.org/api/global-api.html#defineasynccomponent
+
+    
