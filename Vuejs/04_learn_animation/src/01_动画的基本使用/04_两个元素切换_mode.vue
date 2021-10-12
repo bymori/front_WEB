@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-12 23:58:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-13 01:15:38
+ * @LastEditTime: 2021-10-13 01:06:19
 -->
 <template>
   <div class="app">
@@ -13,22 +13,18 @@
     </div>
 
     <transition name="ioh2"
-                mode="out-in"
-                appear>
-      <component :is="isShow ? 'home' : 'about'"></component>
+                mode="out-in">
+      <h2 class="title"
+          v-if="isShow">hello</h2>
+      <h2 class="title"
+          v-else>沫沫</h2>
     </transition>
 
   </div>
 </template>
 
 <script>
-import Home from './pages/Home.vue'
-import About from './pages/About.vue'
 export default {
-  components: {
-    Home,
-    About
-  },
   data () {
     return {
       isShow: true

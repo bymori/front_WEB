@@ -819,6 +819,8 @@
 
 ## Vue3过渡&动画实现
 
+- [过渡 & 动画概述](https://v3.cn.vuejs.org/guide/transitions-overview.html)
+
 ### 认识动画
 
 - 在开发中，我们想要给一个组件的**显示和消失添加某种过渡动画**，可以很好的**增加用户体验**：
@@ -836,4 +838,173 @@
 - 没有动画的情况下，**整个内容的显示和隐藏会非常的生硬**：
 
   - 如果我们希望给`单元素或者组件实现过渡动画`，可以`使用transitiorn 内置组件`来完成动画；
+
+### Vue的transition动画
+
+- **Vue提供了transition的封装组件**，在下列情形中，可以给任何元素和组：件添加进入/离开过渡：
+
+  - 条件渲染 (使用 `v-if`)
+
+  - 条件展示 (使用 `v-show`)
+
+  - 动态组件
+
+  - 组件根节点
+
+    ```vue
+    <transition name="ioh2">
+          <h2 v-if="isShow">hello</h2>
+        </transition>
+    
+    <style scoped>
+    .ioh2-enter-from,
+    .ioh2-leave-to {
+      opacity: 0;
+    }
+    .ioh2-enter-to,
+    .ioh2-leave-from {
+      opacity: 1;
+    }
+    .ioh2-enter-active,
+    .ioh2-leave-active {
+      transition: opacity 1s ease;
+    }
+    </style>
+    ```
+
+    
+
+### Transition组件的原理
+
+- **我们会发现，Vue自动给h2元素添加了动画，这是什么原因呢？**
+- **当插入或删除包含在transition组件中的元素时，Vue将会做以下处理：**
+  1. 自动嗅探`目标元素是否应用了CSS过渡或者动画`，如果有，那么在`恰当的时机添加/删除CSS类名`
+  2. 如果transition组件提供了`JavaScript钩子函数`，这些钩子函数将在恰当的时机被调用；
+  3. 如果`没有找到JavaScript钩子并且也没有检测到CSS过渡/动画`，`DOM插入`、`删除操作将会立即执行`；
+- 过渡动画class
+  - **我们会发现上面提到了很多个class，事实上Vue就是帮助我们在这些class之间来回切换完成的动画**：
+  - `v-enter-from` :定义进入过渡的开始状态。在元素被插入之前生效，在元素被插入之后的下一帧移除。
+  - `v-enter-active`:定义进，入过渡生效时的状态。在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进，入过渡的过程时间，延迟和曲线函数。
+  - `v-enter-to`:定义进入过渡的结束状态。在元素被插入之后下一帧生效(与此同时v-enter-from被移除)，在过渡/动画完成之后移除。
+  - `v-leave-from` :定义离开过渡的开始状态。在离开过渡被触发时立刻生效，下-一帧被移除。
+  - `v-leave- active`:定义离开过渡生效时的状态。在整个离开过渡的阶段中应用，在离开过渡被触发时立刻生效，在过渡/动画完成之后移除。这个类可以被用来定义离开过渡的过程时间，延迟和曲线函数。
+  - `v-leave-to`:离开过渡的结束状态。在离开过渡被触发之后下一帧生效(与此同时v-leave-from被删除)，在过渡/动画完成之后移除。
+
+#### class添加的时机和命名规则
+
+![过渡class](https://gitee.com/bymori/pic-go-core/raw/master/img/transitions.svg)
+
+- **class的name命名规则如下**
+  - 如果我们使用的是一个没有name的transition，那么月有的class是以 v- 作为默认前缀；
+  - 如果我们添加了一个name属性，比如<transition name="ioh2">，那么所有的class会以 ioh2- 开头；
+
+
+
+#### 过渡css动画
+
+- 前面我们是**通过transition来实现的动画效果**，另外我们也**可以通过animation来实现**
+
+  ```vue
+  <transition name="ioh2">
+        <h2 class="title"
+            v-if="isShow">hello</h2>
+      </transition>
+  
+  <style scoped>
+  .ioh2-enter-active {
+    animation: bounce 1s ease;
+  }
+  
+  .ioh2-leave-active {
+    animation: bounce 1s ease reverse;
+  }
+  @keyframes bounce {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  </style>
+  ```
+
+  
+
+#### 同时设置过渡和动画
+
+- Vue为了知道过渡的完成，内部是在监听transitionend或animationend，到底使用哪一个取决于元素应用的CSS规则：
+
+  - 如果我们`只是使用了其中的一个`，那么`Vue能自动识别类型并设置监听`；
+
+- **但是如果我们同时使用了过渡和动画呢？**
+
+  - 并且在这个情况下可能某一个动画执行结束时，另外一个动画还没有结束；
+
+  - 在这种情况下，我们可以设置type属性为animation或者transition 来明确的告知Vue监听的类型；
+
+    ```vue
+    <transition name="ioh2"
+                    type="animation">
+          <h2 class="title"
+              v-if="isShow">hello</h2>
+        </transition>
+    ```
+
+    
+
+#### 显示的指定动画时间
+
+- 我们也可以显示的来**指定过渡的时间**，通过**duration属性**。
+
+- **duration可以设置两种类型的值**：
+
+  - `number类型`：同时设置进，入和离开的过渡时间；
+
+  - `Object类型`：分别设置进入和离开的过渡时间；
+
+    ```vue
+    <transition name="ioh2"
+                    type="animation"
+                	:duration="1000"
+                	// OR
+                    :duration="{enter:800,leave:100}">
+          <h2 class="title"
+              v-if="isShow">hello</h2>
+        </transition>
+    ```
+
+
+
+#### 过渡的模式mode
+
+- [多个元素的过渡](https://v3.cn.vuejs.org/guide/transitions-enterleave.html#%E5%A4%9A%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E8%BF%87%E6%B8%A1)
+
+- 我们来看当前的动画在两个元素之间切换的时候存在的问题： 
+
+  ![image-20211013010429206](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211013010429206.png)
+
+- 我们会发现 hello 和 沫沫 是同时存在的：
+
+  - 这是因为默认情况下`进入和离开动画`是同时发生的；
+  - 如果确实我们希望达到这个的效果，那么是没有问题；
+
+
+
+#### appear初次渲染
+
+- 默认情况下，首次渲染的时候是没有动画的，如果我们希望给他添加_上去动画，那么就可以增加另外一个属性 appear
+
+  ```vue
+  <transition name="ioh2"
+                  mode="out-in"
+                  appear>
+        <component :is="isShow ? 'home' : 'about'"></component>
+      </transition>
+  ```
+
+  
 

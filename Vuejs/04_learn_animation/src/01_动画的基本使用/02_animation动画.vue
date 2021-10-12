@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-12 23:58:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-13 01:15:38
+ * @LastEditTime: 2021-10-13 00:46:52
 -->
 <template>
   <div class="app">
@@ -12,23 +12,16 @@
       <button @click="isShow = !isShow">{{isShowBtn}}</button>
     </div>
 
-    <transition name="ioh2"
-                mode="out-in"
-                appear>
-      <component :is="isShow ? 'home' : 'about'"></component>
+    <transition name="ioh2">
+      <h2 class="title"
+          v-if="isShow">hello</h2>
     </transition>
 
   </div>
 </template>
 
 <script>
-import Home from './pages/Home.vue'
-import About from './pages/About.vue'
 export default {
-  components: {
-    Home,
-    About
-  },
   data () {
     return {
       isShow: true
@@ -54,14 +47,7 @@ export default {
 .ioh2-leave-active {
   animation: bounce 1s ease;
 } */
-.ioh2-enter-from,
-.ioh2-leave-to {
-  opacity: 0;
-}
-.ioh2-enter-active,
-.ioh2-leave-active {
-  transition: opacity 1s ease;
-}
+
 .ioh2-enter-active {
   animation: bounce 1s ease;
 }
