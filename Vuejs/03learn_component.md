@@ -1559,8 +1559,141 @@ enter (el, done) {
   - 创建一个响应式代理，它跟踪其自身 property 的响应性，但`不执行嵌套对象的深层响应式转换` (深层还是原生对象)。 
   
 - **shallowReadonly**
-
-  - 创建一个 proxy，使其自身的 property 为只读，但`不执行嵌套对象的深度只读转换`（深层还是可读、可写的）。
+- 创建一个 proxy，使其自身的 property 为只读，但`不执行嵌套对象的深度只读转换`（深层还是可读、可写的）。
 
 ### **toRefs**
+
+- 如果我们使用**ES6的解构语法**，对**reactive返回的对象进行解构获取值**，那么之后无论是**修改结构后的变量**，还是**修改reactive** **返回的state对象**，**数据都不再是响应式**的：
+
+  ```vue
+  const info = reactive({ name: 'ioinn', age: 19 })
+  let { name, age } = info
+  ```
+
+  
+
+- 那么有没有办法**让我们解构出来的属性是响应式**的呢？
+
+  - Vue为我们提供了一个`toRefs的函数`，可以将`reactive返回的对象中的属性都转成ref`； 
+
+  - 那么我们再次进行结构出来的 `name 和 age 本身都是 ref的`； 
+
+    ```vue
+    // 1.toRefs: 将reactive对象中的所有属性都转成ref, 建立链接
+    let { name, age } = toRefs(info)
+    ```
+
+    
+
+- 这种做法相当于已经在`state.name和ref.value之间建立了 链接`，`任何一个修改都会引起另外一个变化`；
+
+### **toRef**
+
+- 如果我们只希望转换一个**reactive对象中的属性为ref**, 那么可以**使用toRef的方法**：
+
+  ```vue
+  // 2.toRef: 对其中一个属性进行转换ref, 建立链接
+      let { name } = info;
+      let age = toRef(info, "age");
+  
+      const changeAge = () => {
+        age.value++;
+      }
+  ```
+
+
+
+#### **ref其他的API**
+
+- **unref**
+
+- 如果我们想要**获取一个ref引用中的value**，那么也可以**通过unref方法**： 
+  - `如果参数是一个 ref`，则`返回内部值，否则返回参数本身`； 
+
+  - 这是 `val = isRef(val) ? val.value : val` 的语法糖函数；
+
+- **isRef**
+
+  - 判断值`是否是一个ref对象`。 
+
+- **shallowRef**
+
+  - 创建一个`浅层的ref对象`； 
+
+- **triggerRef**
+
+  - `手动触发和 shallowRef 相关联的副作用`：
+
+    ```vue
+    const info = shallowRef({ name: "ioinn" })
+    
+        const changeInfo = () => {
+          info.value.name = "沫沫";
+          //手动触发
+          triggerRef(info);
+        }
+    ```
+
+    
+
+
+
+#### **customRef**
+
+- 创建一个**自定义的ref**，并**对其依赖项跟踪和更新触发**进行**显示控制**： 
+  - 它需要`一个工厂函数`，该`函数接受 track 和 trigger 函数`作为参数；
+
+  - 并且应该返回`一个带有 get 和 set 的对象`； 
+
+- **这里我们使用一个的案例：**
+
+  - 对`双向绑定的属性进行debounce(防抖)`的操作；
+
+    ```vue
+    <template>
+      <div>
+        <input v-model="message" />
+        <h2>{{message}}</h2>
+      </div>
+    </template>
+    
+    <script>
+    import debounceRef from './hook/useDebounceRef';
+    export default {
+      setup () {
+        const message = debounceRef("Hello World");
+    
+        return {
+          message
+        }
+      }
+    }
+    </script>
+    
+    // useDebounceRef
+    import { customRef } from 'vue';
+    // 自定义ref
+    export default function(value, delay = 300) {
+    let timer = null;
+    return customRef((track, trigger) => {
+    return {
+      get() {
+        track();
+        return value;
+      },
+      set(newValue) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          value = newValue;
+          trigger();
+        }, delay);
+      },
+    };
+    });
+    }
+    ```
+
+    
+
+### **computed**
 
