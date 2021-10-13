@@ -1198,3 +1198,62 @@ enter (el, done) {
 
 #### **Mixin的基本使用**
 
+![image-20211013150945494](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211013150945494.png)
+
+
+
+#### **Mixin的合并规则**
+
+- **如果Mixin对象中的选项和组件对象中的选项发生了冲突，那么Vue会如何操作呢？**
+  - 这里`分成不同的情况`来进行处理；
+
+- **情况一：如果是data函数的返回值对象**
+  - 返回值对象默认情况下会`进行合并`； 
+  
+  - 如果data返回值对象的属性发生了冲突，那么会`保留组件自身的数据`； 
+  
+- **情况二：如何生命周期钩子函数**
+
+  - 生命周期的钩子函数`会被合并到数组`中，都会被调用；
+
+- **情况三：值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。**
+- 比如都有`methods选项`，并且都定义了方法，那么`它们都会生效`； 
+  
+- 但是如果`对象的key相同`，那么`会取组件对象的键值对`；
+
+#### **全局混入Mixin**
+
+- **如果组件中的某些选项，是所有的组件都需要拥有的，那么这个时候我们可以使用`全局的mixin`：** 
+
+  - 全局的Mixin可以使用` 应用app的方法 mixin` 来完成注册；
+
+  - 一旦注册，那么`全局混入的选项将会影响每一个组件`；
+
+    ```js
+    const app = createApp(App);
+    
+    app.mixin({
+      data() {
+        return {};
+      },
+      methods: {},
+      created() {
+        console.log('全局的created生命周期');
+      },
+    });
+    
+    app.mount('#app');
+    ```
+
+    
+
+#### **extends**
+
+- 另外一个类似于Mixin的方式是**通过extends属性**： 
+
+  - 允许声明扩展另外一个组件，`类似于Mixins`；
+
+    ![image-20211013153338307](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211013153338307.png) 
+
+- 在开发中**extends用的非常少**，在Vue2中比较**推荐大家使用Mixin**，而在Vue3中**推荐使用Composition API**。
+
