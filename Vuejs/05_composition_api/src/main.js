@@ -4,10 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-10-13 14:57:37
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-13 22:50:22
+ * @LastEditTime: 2021-10-13 23:50:18
  */
 import { createApp } from 'vue';
-import App from './07_compositionAPI练习/App.vue';
+import App from './08_setup顶层编写方式/App.vue';
 
 const app = createApp(App);
 
