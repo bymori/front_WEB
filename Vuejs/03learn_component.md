@@ -1986,3 +1986,494 @@ enter (el, done) {
 
 ## **生命周期钩子**
 
+- 我们前面说过 setup 可以用来替代 data 、 methods 、 computed 、watch 等等这些选项，也可以替代 生命周期钩子。 
+
+- 那么setup中如何使用生命周期函数呢？
+
+  - 可以使用直接导入的 onX 函数注册生命周期钩子；
+
+    ```js
+     onMounted(() => {
+          console.log('app onMounted1');
+        })
+        onMounted(() => {
+          console.log('app onMounted2');
+        })
+        onUpdated(() => {
+          console.log('app onUpdated');
+        })
+        onUnmounted(() => {
+          console.log('app onUnmounted');
+        })
+    ```
+
+    | 选项式 API        | Hook inside `setup` |
+    | ----------------- | ------------------- |
+    | `beforeCreate`    | Not needed*         |
+    | `created`         | Not needed*         |
+    | `beforeMount`     | `onBeforeMount`     |
+    | `mounted`         | `onMounted`         |
+    | `beforeUpdate`    | `onBeforeUpdate`    |
+    | `updated`         | `onUpdated`         |
+    | `beforeUnmount`   | `onBeforeUnmount`   |
+    | `unmounted`       | `onUnmounted`       |
+    | `errorCaptured`   | `onErrorCaptured`   |
+    | `renderTracked`   | `onRenderTracked`   |
+    | `renderTriggered` | `onRenderTriggered` |
+    | `activated`       | `onActivated`       |
+    | `deactivated`     | `onDeactivated`     |
+
+- TIP
+
+> 因为 `setup` 是围绕 `beforeCreate` 和 `created` 生命周期钩子运行的，所以不需要显式地定义它们。换句话说，在这些钩子中编写的任何代码都应该直接在 `setup` 函数中编写。
+
+
+
+### **Provide函数**
+
+- 事实上我们之前还学习过Provide和Inject，Composition API也可以替代之前的 Provide 和 Inject 的选项。 
+
+- 我们可以通过 provide来提供数据：
+  - 可以通过 provide 方法来定义每个 Property； 
+
+  - provide可以传入两个参数：
+
+    - name：提供的属性名称； 
+
+    - value：提供的属性值
+
+      ```js
+      const name = 'ioinn'
+          let counter = 88
+      
+          provide("name", name)
+          provide("counter", counter)
+      ```
+
+### Inject函数
+
+- 在 后代组件 中可以通过 inject 来注入需要的属性和对应的值：
+  - 可以通过 inject 来注入需要的内容； 
+
+  - inject可以传入两个参数：
+
+    - 要 inject 的 property 的 name； 
+
+    - 默认值；
+
+      ```js
+      const name = inject('name', '默认值')
+          let counter = inject('counter')
+      ```
+
+      
+
+      #### **数据的响应式**
+
+- 为了增加 provide 值和 inject 值之间的响应性，我们可以在 provide 值时使用 ref 和 reactive。
+
+  ```js
+  const name = ref('ioinn')
+      let counter = ref(88)
+  
+      provide("name", name)
+      provide("counter", counter)
+  ```
+
+  
+
+#### **修改响应式Property**
+
+- 如果我们需要修改可响应的数据，那么最好是在数据提供的位置来修改：
+  - 我们可以将修改方法进行共享，在后代组件中进行调用；
+
+    ```js
+    provide("counter", counter)
+    
+    const increment = () => counter.value++;
+    ```
+
+    
+
+### compositionAPI-Hook练习
+
+#### **useCounter**
+
+计数器
+
+```js
+import { ref, computed } from 'vue';
+
+export default function() {
+  const counter = ref(0);
+  const doubleCounter = computed(() => counter.value * 2);
+
+  const increment = () => counter.value++;
+  const decrement = () => counter.value--;
+  return {
+    counter,
+    doubleCounter,
+    increment,
+    decrement,
+  };
+}
+```
+
+
+
+#### **useTitle**
+
+修改title的Hook：
+
+```js
+import { ref, watch } from 'vue';
+
+export default function(title = '默认的title') {
+  const titleRef = ref(title);
+
+  watch(
+    titleRef,
+    (newValue) => {
+      document.title = newValue;
+    },
+    {
+      immediate: true,
+    }
+  );
+
+  return titleRef;
+}
+```
+
+
+
+#### **useScrollPosition**
+
+监听界面滚动位置的Hook：
+
+```js
+import { ref } from 'vue';
+
+export default function() {
+  const scrollX = ref(0);
+  const scrollY = ref(0);
+
+  document.addEventListener('scroll', () => {
+    scrollX.value = window.scrollX.toFixed(0);
+    scrollY.value = window.scrollY.toFixed(0);
+  });
+
+  return {
+    scrollX,
+    scrollY,
+  };
+}
+```
+
+
+
+#### **useMousePosition**
+
+个监听鼠标位置的Hook：
+
+```js
+import { ref } from 'vue';
+
+export default function() {
+  const mouseX = ref(0);
+  const mouseY = ref(0);
+
+  window.addEventListener('mousemove', (event) => {
+    mouseX.value = event.pageX;
+    mouseY.value = event.pageY;
+  });
+
+  return { mouseX, mouseY };
+}
+```
+
+
+
+#### **useLocalStorage**
+
+使用 localStorage 存储和获取数据的Hook：
+
+```js
+import { ref, watch } from 'vue';
+
+export default function(key, value) {
+  const data = ref(value);
+
+  if (value) {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  } else {
+    data.value = JSON.parse(window.localStorage.getItem(key));
+  }
+
+  watch(data, (newValue) => {
+    window.localStorage.setItem(key, JSON.stringify(newValue));
+  });
+
+  return data;
+}
+
+// 一个参数: 取值
+// const data = useLocalStorage("name");
+
+// // 二个参数: 保存值
+// const data = useLocalStorage("name", "ioinn");
+// data.value = "momo";
+```
+
+
+
+
+
+### **认识h函数**
+
+- Vue推荐在绝大数情况下**使用模板**来创建你的HTML，然后一些特殊的场景，你真的需要**JavaScript的完全编程的****能力**，这个时候你可以使用 **渲染函数 ，它**比模板更接近编译器**； 
+  - 前面我们讲解过`VNode和VDOM`的改变：
+
+  - Vue在生成真实的DOM之前，会将`我们的节点转换成VNode`，而VNode组合在一起形成`一颗树结构`，就是`虚拟DOM（VDOM）`； 
+
+  - 事实上，我们之前编写的 template 中的HTML 最终也是`使用**渲染函数`**生成`对应的VNode`； 
+
+  - 那么，如果你想充分的利用JavaScript的编程能力，我们可以自己来`编写 createVNode 函数`，生成`对应的VNode`； 
+
+- 那么我们应该怎么来做呢？**使用 h()函数：**
+
+  - `h() 函数`是一个用于`创建 vnode 的一个函数`； 
+
+  - 其实更准备的命名是` createVNode() 函数`，但是为了简便在Vue将之`简化为 h() 函数`；
+
+#### **h()函数 如何使用呢？**
+
+-  **h()函数 如何使用呢？它接受三个参数：**
+
+  ```js
+  render() {
+    return h('h1', {}, 'Some title')
+  }
+  
+  ```
+
+  ##### 参数
+
+  接收三个参数：`type`，`props` 和 `children`
+
+-  #### type
+
+   - **类型：**`String | Object | Function`
+
+   - **详细：**
+
+     HTML 标签名、组件、异步组件或函数式组件。使用返回 null 的函数将渲染一个注释。此参数是必需的。
+
+-  #### props
+
+   - **类型：**`Object`
+
+   - **详细：**
+
+     一个对象，与我们将在模板中使用的 attribute、prop 和事件相对应。可选。
+
+-  #### children
+
+   - **类型：**`String | Array | Object`
+
+   - **详细：**
+
+     子代 VNode，使用 `h()` 生成，或者使用字符串来获取“文本 VNode”，或带有插槽的对象。可选。
+
+     ```js
+     h('div', {}, [
+       'Some text comes first.',
+       h('h1', 'A headline'),
+       h(MyComponent, {
+         someProp: 'foobar'
+       })
+     ])
+     ```
+
+     
+
+- **注意事项：**
+  - 如果没有props，那么通常可以将children作为第二个参数传入； 
+  - 如果会产生歧义，可以将null作为第二个参数传入，将children作为第三个参数传入；
+
+
+
+#### **h函数的基本使用**
+
+- **h函数可以在两个地方使用：**
+
+  - `render函数选项`中；
+
+    ```js
+    import { h } from 'vue';
+    
+      export default {
+        render() {
+          return h("h2", {class: "title"}, "Hello Render")
+        }
+      }
+    ```
+
+    
+
+  - `setup函数选项`中（setup本身需要是一个函数类型，函数再返回h函数创建的VNode）； 
+
+
+
+#### **jsx的babel配置**
+
+- 如果我们希望**在项目中使用jsx**，那么我们**需要添加对jsx的支持**： 
+  - jsx我们通常会`通过Babel来进行转换`（React编写的jsx就是通过babel转换的）；
+    - `vue/cli` -v 4.5.0 无需配置
+  - 对于Vue来说，我们只需要在`Babel中配置对应的插件`即可；
+
+- 安装**Babel支持Vue的jsx插件**： 
+
+  ```bash
+  npm install @vue/babel-plugin-jsx -D
+  ```
+
+  
+
+- 在**babel.config.js配置文件**中配置插件
+
+  ```js
+  module.exports presets: [
+  'evue/cli-plugin-babeL/preset'
+  plugins:[
+  "evue/babel-plugin-jsx"
+  ```
+
+  
+
+#### **jsx计数器案例**
+
+```js
+data () {
+    return {
+      counter: 0
+    }
+  },
+  render () {
+    const increment = () => this.counter++
+    const decrement = () => this.counter--
+
+    return (
+      <div>
+        <h2>当前计数：{this.counter}</h2>
+        <button onClick={increment}>+1</button>
+        <button onClick={decrement}>-1</button>
+      </div>
+    )
+  },
+```
+
+#### **jsx组件的使用**
+
+```vue
+// App.vue
+<script>
+import HelloWorld from './HelloWorld.vue';
+export default {
+  render () {
+    return (
+      <div>
+        <HelloWorld>
+          {{ default: props => <button>插槽位置的按钮</button> }}
+        </HelloWorld>
+      </div>
+    )
+  },
+}
+</script>
+
+// HelloWorld.vue
+<script>
+export default {
+  render () {
+    return (
+      <div>
+        <h2>HelloWorld</h2>
+        {this.$slots.default ? this.$slots.default() : <span>哈哈哈</span>}
+      </div>
+    )
+  }
+}
+</script>
+```
+
+
+
+## **认识自定义指令**
+
+- 在Vue的模板语法中我们学习过各种各样的指令：v-show、v-for、v-model等等，除了使用这些指令之外，**Vue****也允许我们来自定义自己的指令。**
+  - 注意：在Vue中，`代码的复用和抽象主要还是通过组件`； 
+
+  - 通常在某些情况下，你需要`对DOM元素进行底层操作`，这个时候就会用到`自定义指令`； 
+
+- **自定义指令分为两种：**
+
+  - `自定义局部指令`：组件中通过` directives 选项`，只能在当前组件中使用；
+
+  - `自定义全局指令`：app的 `directive 方法`，可以在任意组件中被使用；
+
+- **比如我们来做一个非常简单的案例：当某个元素挂载完成后可以自定获取焦点**
+
+  - 实现方式一：如果我们使`用默认的实现方式`； 
+
+  - 实现方式二：自定义一个 `v-focus 的局部指令`； 
+
+  - 实现方式三：自定义一个 `v-focus 的全局指令`；
+
+#### **实现方式一：聚焦的默认实现**
+
+
+
+#### **实现方式二：局部自定义指令**
+
+- 实现方式二：自定义一个 `v-focus 的局部指令`
+  - 这个`自定义指令`实现非常简单，我们只需要在`组件选项`中使用 `directives `即可； 
+  - 它是一个对象，在对象中编写我们`自定义指令的名称`（注意：这里不需要加v-）；
+  - 自定义指令有一个生命周期，是`在组件挂载后调用的 mounted`，我们可以在其中完成操作；
+
+#### **方式三：自定义全局指令**
+
+- 自定义一个**全局的v-focus指令**可以让我们在任何地方直接使用
+
+
+
+
+
+### **指令的生命周期**
+
+- **一个指令定义的对象，Vue提供了如下的几个钩子函数：**
+
+- `created`：在绑定元素的 attribute 或事件监听器被应用之前调用；
+
+- `beforeMount`：当指令第一次绑定到元素并且在挂载父组件之前调用；
+
+- `mounted`：在绑定元素的父组件被挂载后调用；
+
+- `beforeUpdate`：在更新包含组件的 VNode 之前调用；
+
+- `updated`：在包含组件的 VNode **及其子组件的 VNode** 更新后调用；
+
+- `beforeUnmount`：在卸载绑定元素的父组件之前调用；
+
+- `unmounted`：当指令与元素解除绑定且父组件已卸载时，只调用一次；
+
+
+
+### **指令的参数和修饰符**
+
+- 如果我们指令需要**接受一些参数或者修饰符**应该如何操作呢？
+  - info是参数的名称；
+  - aaa-bbb是修饰符的名称；
+  - 后面是传入的具体的值；
+
+- 在我们的生命周期中，我们可以**通过 bindings 获取到对应的内容**：
