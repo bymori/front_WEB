@@ -1257,3 +1257,310 @@ enter (el, done) {
 
 - 在开发中**extends用的非常少**，在Vue2中比较**推荐大家使用Mixin**，而在Vue3中**推荐使用Composition API**。
 
+### **Options API的弊端**
+
+- 在Vue2中，我们**编写组件的方式是Options API**： 
+
+  - Options API的一大特点就是在`对应的属性`中编写`对应的功能模块`； 
+
+  - 比如`data定义数据`、`methods中定义方法`、`computed中定义计算属性`、`watch中监听属性改变`，也包括`生命周期钩子`； 
+
+- **但是这种代码有一个很大的弊端：**
+
+  - 当我们`实现某一个功能`时，这个`功能对应的代码逻辑`会被`拆分到各个属性`中；
+
+  - 当我们`组件变得更大`、`更复杂`时`，逻辑关注点的列表`就会增长，那么`同一个功能的逻辑就会被拆分的很分散`； 
+
+  - 尤其对于那些一开始`没有编写这些组件的人`来说，这个组件的代码是`难以阅读和理解的`（阅读组件的其他人）；
+
+- **下面我们来看一个非常大的组件，其中的逻辑功能按照颜色进行了划分：**
+
+  - 这种`碎片化的代码`使用`理解和维护这个复杂的组件`变得异常困难，并且`隐藏了潜在的逻辑问题`； 
+
+  - 并且当我`们处理单个逻辑关注点`时，需要不断的`跳到相应的代码块`中；
+
+
+
+#### **大组件的逻辑分散**
+
+
+
+<center>
+    <img src="https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211013155750180.png"/>
+    <img src="https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211013155838114.png"/>
+</center>
+
+
+
+- 如果我们能将`同一个逻辑关注点相关的代码`收集`在一起`会更好。 
+
+- **这就是Composition API想要做的事情，以及可以帮助我们完成的事情。**
+
+- 也有人把Vue CompositionAPI简称为**VCA**。
+
+
+
+### **认识Composition API**
+
+- 那么既然知道Composition API想要帮助我们做什么事情，接下来看一下**到底是怎么做**呢？
+  - 为了开始使用Composition API，我们需要有一个可以实际使用它`（编写代码）的地方`； 
+
+  - 在Vue组件中，这个位置就是` setup 函数`； 
+
+- **setup其实就是组件的另外一个选项：**
+
+  - 只不过这个选项强大到我们可以`用它来替代之前所编写的大部分其他选项`； 
+
+  - 比如`methods、computed、watch、data、生命周期等`等； 
+
+- **接下来我们一起学习这个函数的使用：**
+- 函数的参数 
+  
+- 函数的返回值
+
+#### **setup函数的参数**
+
+- 我们先来研究一个setup函数的参数，它主要**有两个参数**： 
+  - 第一个参数：`props`
+
+  - 第二个参数：`context`
+
+- props非常好理解，它其实就是**父组件传递过来的属性**会被**放到props对象**中，我们在**setup中如果需要使用**，那么就可以直接**通过props参数获取：**
+
+    - 对于`定义props的类型`，我们还是`和之前的规则是一样的，在props选项中定义`； 
+
+    - 并且在`template中`依然是可以`正常去使用props中的属性`，比如message； 
+
+    - 如果我们`在setup函数中想要使用props`，那么`不可以通过 this 去获取`
+
+    - 因为props有直接`作为参数传递到setup函数`中，所以我们可以`直接通过参数`来使用即可；
+
+- 另外一个参数是context，我们也称之为是一个**SetupContext**，它里面**包含三个属性**： 
+
+  - `attrs`：所有的非prop的attribute； 
+
+  - `slots`：父组件传递过来的插槽（这个在以渲染函数返回时会有作用，后面会讲到）；
+
+  - `emit`：当我们组件内部需要发出事件时会用到emit（因为我们不能访问this，所以不可以通过 this.$emit发出事件）；
+
+##### **setup函数的返回值**
+
+- setup既然是一个函数，那么它也可以有**返回值**，**它的返回值用来做什么呢？**
+  - setup的返回值可以在`模板template中被使用`； 
+
+  - 也就是说我们可以`通过setup的返回值来替代data选项`； 
+
+- 甚至是我们可以**返回一个执行函数**来**代替在methods中定义的方法**： 
+
+- 但是，如果我们将 counter 在 increment 或者 decrement进行操作时，**是否可以实现界面的响应式呢？**
+
+  - 答案是`不可以`； 
+
+  - 这是因为对于一个`定义的变量`来说，默认情况下，`Vue并不会跟踪它的变化，来引起界面的响应式操作`；
+
+#### **setup不可以使用this**
+
+- **官方关于this有这样一段描述**
+
+  - 表达的含义是`this并没有指向当前组件实例`； 
+
+  - 并且`在setup被调用之前，data、computed、methods`等都没有被解析； 
+
+  - 所以`无法在setup中获取this`； 
+
+    ![image-20211013182223998](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211013182223998.png)
+
+### **Reactive API**
+
+- 如果想为在setup中定义的数据提供响应式的特性，那么我们可以**使用reactive的函数**： 
+
+  ```js
+  const state = reactive({
+        counter: 100
+      })
+  ```
+
+  
+
+- **那么这是什么原因呢？为什么就可以变成响应式的呢？**
+  
+  - 这是因为当我们`使用reactive函数处理我们的数据之后`，数据`再次被使用时`就会`进行依赖收集`； 
+  
+  - 当`数据发生改变时`，所有`收集到的依赖`都是`进行对应的响应式操作`（比如更新界面）；
+  
+  - 事实上，我们编写的`data选项`，也是在内部`交给了reactive函数`将其编程响应式对象的；
+
+### **Ref API**
+
+- reactive API对**传入的类型是有限制的**，它要求我们必须传入的是**一个对象或者数组类型**： 
+  - 如果我们传入一个`基本数据类型（String、Number、Boolean）会报一个警告`； 
+
+    ![image-20211013182437657](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211013182437657.png)
+
+- 这个时候Vue3给我们提供了**另外一个API：ref API**
+
+  - ref 会返回一个`可变的响应式对象`，该对象作为一个 **响应式的引用** 维护着它`内部的值`，这就是`ref名称的来源`； 
+
+  - 它内部的值是`在ref的 value 属性中`被维护的；
+
+- **这里有两个注意事项：**
+
+  - 在`模板中引入ref的值`时，Vue会`自动帮助我们进行解包`操作，所以我们`并不需要在模板中通过 ref.value` 的方式来使用；
+
+  - 但是在` setup 函数内部`，它依然是一个` ref引用`， 所以对其进行操作时，我们依然需要`使用 ref.value的方式`；
+
+#### **Ref自动解包**
+
+- **模板中的解包是浅层的解包**，如果我们的代码是下面的方式：
+
+  - 如果我们**将ref放到一个reactive的属性**当中，那么**在模板中使用时，它会自动解包**：
+
+    ```vue
+    <template>
+      <div>
+        Home Page
+        <h2>{{message}}</h2>
+    
+        <!-- 当我们在template模板中使用ref对象, 它会自动进行解包 -->
+        <h2>当前计数: {{counter}}</h2>
+        <button @click="increment">+1</button>
+    
+        <!-- ref的解包只能是一个浅层解包(info是一个普通的JavaScript对象) -->
+        <h2>当前计数: {{info.counter.value}}</h2>
+    
+        <!-- 当如果最外层包裹的是一个reactive可响应式对象, 那么内部的ref可以解包 -->
+        <h2>当前计数: {{reactiveInfo.counter}}</h2>
+    
+        <show-message :message="counter"></show-message>
+      </div>
+    </template>
+    
+    <script>
+    import { ref, reactive } from "vue";
+    export default {
+      props: {
+        message: {
+          type: String,
+          required: true
+        }
+      },
+      setup () {
+        // counter编程一个ref的可响应式的引用
+        // counter = 100;
+        let counter = ref(100)
+    
+        const info = {
+          counter
+        }
+    
+        const reactiveInfo = reactive({
+          counter
+        })
+    
+        // 局部函数
+        const increment = () => {
+          counter.value++;
+          console.log(counter.value);
+        }
+        return {
+          counter,
+          info,
+          reactiveInfo,
+          increment
+        }
+      },
+    }
+    </script>
+    ```
+
+
+
+### **认识readonly**
+
+- 我们通过**reactive或者ref可以获取到一个响应式的对象**，但是某些情况下，我们**传入给其他地方（组件）**的这个响应式对象希望**在另外一个地方（组件）被使用**，但是**不能被修改**，这个时候**如何防止这种情况的出现**呢？
+  - Vue3为我们提供了`readonly的方法`； 
+
+  - `readonly会返回原生对象的只读代理`（也就是它依然是一个Proxy，这是一个`proxy的set方法被劫持`，并且不能对其进行修改）；
+
+- **在开发中常见的readonly方法会传入三个类型的参数：**
+
+  - 类型一：`普通对象`； 
+
+  - 类型二：`reactive返回的对象`； 
+
+  - 类型三：`ref的对象`；
+
+#### **readonly的使用**
+
+- **在readonly的使用过程中，有如下规则：** 
+
+  - readonly`返回的对象都是不允许修改的`；
+
+  - 但是经过readonly处理的`原来的对象`是允许被修改的；
+
+    - 比如 const info = readonly(obj)，`info对象是不允许被修改`的；
+
+    - 当`obj被修改时`，`readonly返回的info对象`也会被修改；
+
+    - 但是我们`不能去修改readonly返回的对象info`； 
+
+  - 其实本质上就是`readonly返回的对象的setter方法被劫持`了而已；
+
+    ```js
+     setup () {
+        // 1.普通对象
+        const info1 = { name: "沫沫" };
+        const readonlyInfo1 = readonly(info1);
+    
+        // 2.响应式的对象reactive
+        const info2 = reactive({
+          name: "沫沫"
+        })
+        const readonlyInfo2 = readonly(info2);
+    
+        // 3.响应式的对象ref
+        const info3 = ref("沫沫");
+        const readonlyInfo3 = readonly(info3);
+    
+    
+        const updateState = () => {
+          readonlyInfo3.value = "ioinn"
+          info3.value = "ioinn";
+        }
+    
+        return {
+          updateState,
+        }
+      },
+    ```
+
+- **那么这个readonly有什么用呢？**
+
+  - 在我们传递给其他组件数据时，往往希望其他组件使用我们传递的内容，但是不允许它们修改时，就可以使用readonly了；
+
+#### **Reactive判断的API**
+
+- **isProxy**
+  - 检查对象`是否是由 reactive 或 readonly创建的 proxy`。 
+
+- **isReactive**
+
+  - 检查对象`是否是由 reactive创建的响应式代理`： 
+
+  - 如果`该代理是 readonly 创建的`，但`包裹了由 reactive 创建的另一个代理`，它也会返回 true； 
+
+- **isReadonly**
+  - 检查对象`是否是由 readonly 创建的只读代理`。 
+  
+- **toRaw**
+  - 返回 `reactive 或 readonly 代理的原始对象`（**不**建议保留对原始对象的持久引用。请谨慎使用）。
+  
+- **shallowReactive**
+  - 创建一个响应式代理，它跟踪其自身 property 的响应性，但`不执行嵌套对象的深层响应式转换` (深层还是原生对象)。 
+  
+- **shallowReadonly**
+
+  - 创建一个 proxy，使其自身的 property 为只读，但`不执行嵌套对象的深度只读转换`（深层还是可读、可写的）。
+
+### **toRefs**
+
