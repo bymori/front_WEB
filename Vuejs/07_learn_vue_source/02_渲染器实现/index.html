@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-14 17:14:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-14 17:20:23
+ * @LastEditTime: 2021-10-14 18:18:16
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +24,21 @@
         h('h2', null, '当前计数: 100'),
         h('button', { onClick: function () {} }, '+1'),
       ]); // vdom
+      console.log(vnode);
 
       // 2.通过mount函数, 将vnode挂载到div#app上
+      mount(vnode, document.querySelector('#app'));
 
       // 3.创建新的vnode
+      setTimeout(() => {
+        const vnode1 = h('div', { class: 'momo', id: 'aaa' }, [
+          h('h2', null, '呵呵呵'),
+          h('button', { onClick: function () {} }, '-1'),
+        ]);
+        
+        patch(vnode, vnode1);
+        console.log(vnode1);
+      }, 2000);
     </script>
   </body>
 </html>
