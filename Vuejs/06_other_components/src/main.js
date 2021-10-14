@@ -4,16 +4,21 @@
  * @Author: by_mori
  * @Date: 2021-10-14 00:40:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-14 15:12:25
+ * @LastEditTime: 2021-10-14 15:29:12
  */
 import { createApp } from 'vue';
 import App from './04_teleport内置组件/App.vue';
 
 import registerDirectives from './directives';
 
+import plugins_object from './plugins/plugins_object';
+import plugins_function from './plugins/plugins_function';
 const app = createApp(App);
 
 registerDirectives(app);
+
+app.use(plugins_object);
+app.use(plugins_function);
 
 // 自定义全局指令
 // app.directive('focus', {
