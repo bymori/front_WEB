@@ -4,10 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-10-14 00:40:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-14 13:10:07
+ * @LastEditTime: 2021-10-14 15:12:25
  */
 import { createApp } from 'vue';
-import App from './03_自定义指令/App.vue';
+import App from './04_teleport内置组件/App.vue';
 
 import registerDirectives from './directives';
 
