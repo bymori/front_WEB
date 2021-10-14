@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-14 13:08:48
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-14 13:18:31
+ * @LastEditTime: 2021-10-14 16:57:58
  */
 import dayjs from 'dayjs';
 
@@ -22,6 +22,7 @@ export default function(app) {
       if (textContent.length === 10) {
         timestamp = timestamp * 1000;
       }
+      console.log(timestamp);
       el.textContent = dayjs(timestamp).format(bindings.formatString);
     },
   });
