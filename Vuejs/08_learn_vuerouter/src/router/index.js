@@ -4,12 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-10-15 11:35:49
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 17:03:35
+ * @LastEditTime: 2021-10-15 17:28:19
  */
 import {
   createRouter,
-  createWebHashHistory,
   createWebHistory,
+  createWebHashHistory,
 } from 'vue-router';
 
 // import Home from '../pages/Home.vue';
@@ -21,7 +21,7 @@ const routes = [
   { path: '/', redirect: '/home' },
   {
     path: '/home',
-    home: 'home',
+    name: 'home',
     component: () =>
       import(/* webpackChunkName: "home-chunk" */ '../pages/Home.vue'),
     mate: {
@@ -73,18 +73,18 @@ const categoryRoute = {
 router.addRoute(categoryRoute);
 
 // 添加二级路由对象
-// router.addRoute('home', {
-//   path: '/moment',
-//   component: () => import('../pages/HomeMoment.vue'),
-// });
-
-router.addRoute({
-  path: '/home',
-  component: () => import('../pages/Home.vue'),
-  children: [
-    { path: 'moment', component: () => import('../pages/HomeMoment.vue') },
-  ],
+router.addRoute('home', {
+  path: 'moment',
+  component: () => import('../pages/HomeMoment.vue'),
 });
+
+// router.addRoute({
+//   path: '/home',
+//   component: () => import('../pages/Home.vue'),
+//   children: [
+//     { path: 'moment', component: () => import('../pages/HomeMoment.vue') },
+//   ],
+// });
 
 // 导航守卫beforeEach
 let counter = 0;
