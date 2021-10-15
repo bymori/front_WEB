@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-15 10:21:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 15:02:12
+ * @LastEditTime: 2021-10-15 15:22:30
 -->
 <template>
   <div id="app">
@@ -14,7 +14,18 @@
     <!-- props: isActive 是否当前处于活跃的状态 -->
     <!-- props: isExactActive 是否当前处于精确的活跃状态 -->
     <router-link to="/home"
-                 active-class="io-active">首页</router-link>
+                 v-slot='props'
+                 custom
+                 active-class="io-active">
+      <nav-bar title="首页" />
+      <button>{{props.href}}</button>
+      <button @click="props.navigate">点我进首页</button>
+      <!-- <p>{{props.route}}</p> -->
+      <p>{{props.isActive}}</p>
+      <p>{{props.isExactActive}}</p>
+
+    </router-link>
+    
     <router-link to="/about"
                  active-class="io-active">关于</router-link>
     <router-link to="/user/ioinn/id/111">用户</router-link>
@@ -28,7 +39,9 @@
 
 <script>
 import { useRouter } from "vue-router";
+import NavBar from './components/NavBar.vue';
 export default {
+  components: { NavBar },
   name: "app",
   methods: {
     // this.$router
