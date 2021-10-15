@@ -4,39 +4,79 @@
  * @Author: by_mori
  * @Date: 2021-10-15 18:44:56
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 23:22:58
+ * @LastEditTime: 2021-10-16 01:10:32
 -->
 <template>
   <div>
-    <h2>当前计数：{{$store.state.counter}}</h2>
     <hr>
-    <button @click="increment">+1</button>
-    <button @click="decrement">-1</button>
+    <h2>{{ homeCounter }}</h2>
+    <h2>{{ doubleHomeCounter }}</h2>
+    <!-- <h2>{{ doubleRootCounter }}</h2> -->
+    <button @click="increment">home+1</button>
+    <button @click="incrementAction">home+1</button>
     <hr>
   </div>
 </template>
 
 <script>
+// import { createNamespacedHelpers, mapState, mapGetters, mapMutations, mapActions } from "vuex";
+
+import { createNamespacedHelpers } from "vuex";
+
+import { useState, useGetters } from '../hook/index'
+
+const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpers("home")
 
 export default {
-  methods: {
-    increment () {
-      this.$store.dispatch("incrementAction", { count: 100 })
-    },
-    decrement () {
-      // 3.派发风格(对象类型)
-      this.$store.dispatch({
-        type: "decrementAction"
-      })
-    }
+  computed: {
+    // 1.写法一:
+    // ...mapState({
+    //   homeCounter: state => state.home.homeCounter
+    // }),
+    // ...mapGetters({
+    //   doubleHomeCounter: "home/doubleHomeCounter"
+    // })
+
+    // 2.写法二:
+    // ...mapState('home', ["homeCounter"]),
+    // ...mapGetters('home', ["doubleHomeCounter"]),
+
+    // 3.写法三:
+    // ...mapState(["homeCounter"]),
+    // ...mapGetters(["doubleHomeCounter"]),
   },
-  mounted () {
-    this.$store.dispatch("getHomeMultidata")
+  methods: {
+    // 1.写法一:
+    // ...mapMutations({
+    //   increment: "home/increment"
+    // }),
+    // ...mapActions({
+    //   incrementAction: "home/incrementAction"
+    // }),
+
+    // 2.写法二: 
+    // ...mapMutations('home', ["increment"]),
+    // ...mapActions('home', ["incrementAction"]),
+
+    // 3.写法三:
+    // ...mapMutations(["increment"]),
+    // ...mapActions(["incrementAction"]),
   },
   setup () {
+    //{homeCounter: function}
+    const state = useState('home', ["homeCounter"])
+    // const rootGetters = mapGetters(["doubleRootCounter"])
+    const getters = useGetters('home', ["doubleHomeCounter"])
+
+    const mutations = mapMutations(["increment"])
+    const actions = mapActions(["incrementAction"])
 
     return {
-
+      ...state,
+      ...getters,
+      //   ...rootGetters,
+      ...mutations,
+      ...actions
     }
   }
 }
