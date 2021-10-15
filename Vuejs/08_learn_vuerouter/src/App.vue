@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-15 10:21:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 14:05:34
+ * @LastEditTime: 2021-10-15 14:10:36
 -->
 <template>
   <div id="app">
@@ -15,7 +15,6 @@
     <!-- props: isExactActive 是否当前处于精确的活跃状态 -->
     <router-link to="/home"
                  active-class="io-active">首页</router-link>
-    <br>
     <router-link to="/about"
                  active-class="io-active">关于</router-link>
     <router-link to="/user/ioinn/id/111">用户</router-link>

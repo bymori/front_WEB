@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-15 11:35:49
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 14:05:10
+ * @LastEditTime: 2021-10-15 14:47:47
  */
 import {
   createRouter,
@@ -29,6 +29,11 @@ const routes = [
       age: 19,
       height: 1.86,
     },
+    children: [
+      { path: '', redirect: '/home/message' },
+      { path: 'message', component: () => import('../pages/HomeMessage.vue') },
+      { path: 'shops', component: () => import('../pages/HomeShops.vue') },
+    ],
   },
   {
     path: '/about',
@@ -40,6 +45,10 @@ const routes = [
     path: '/user/:username/id/:id',
     home: 'user',
     component: () => import('../pages/User.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)',
+    component: () => import('../pages/NotFound.vue'),
   },
 ];
 
