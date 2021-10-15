@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-15 11:35:49
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 14:47:47
+ * @LastEditTime: 2021-10-15 16:28:44
  */
 import {
   createRouter,
@@ -56,6 +56,29 @@ const routes = [
 const router = createRouter({
   routes,
   history: createWebHistory(),
+});
+
+// 动态添加路由
+const categoryRoute = {
+  path: '/category',
+  component: () => import('../pages/Category.vue'),
+};
+
+// 添加顶级路由对象
+router.addRoute(categoryRoute);
+
+// 添加二级路由对象
+// router.addRoute('home', {
+//   path: '/moment',
+//   component: () => import('../pages/HomeMoment.vue'),
+// });
+
+router.addRoute({
+  path: '/home',
+  component: () => import('../pages/Home.vue'),
+  children: [
+    { path: 'moment', component: () => import('../pages/HomeMoment.vue') },
+  ],
 });
 
 export default router;

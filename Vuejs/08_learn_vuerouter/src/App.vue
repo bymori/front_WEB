@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-15 10:21:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 15:34:49
+ * @LastEditTime: 2021-10-15 16:05:16
 -->
 <template>
   <div id="app">
@@ -29,10 +29,12 @@
     <router-link to="/about"
                  active-class="io-active">关于</router-link>
     <router-link to="/user/ioinn/id/111">用户</router-link>
+    <router-link to="/category">category</router-link>
 
     <button @click="jumpToAbout">关于</button>
     <button @click="forwardOneStep">前进一步</button>
 
+    <!-- <router-view v-slot="{Component}"> -->
     <router-view v-slot="props">
       <transition name='io'>
         <keep-alive>
