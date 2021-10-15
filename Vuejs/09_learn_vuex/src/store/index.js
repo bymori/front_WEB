@@ -4,9 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-10-15 18:14:00
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 21:38:12
+ * @LastEditTime: 2021-10-15 23:29:13
  */
 import { createStore } from 'vuex';
+import axios from 'axios';
 import { INCREMENT_N } from './mutation-types';
 
 const store = createStore({
@@ -68,7 +69,33 @@ const store = createStore({
     // 10 -> payload
     // {n: 10, name: "ioinn", age: 18} -> payload
     [INCREMENT_N](state, payload) {
+      console.log(payload);
       state.counter += payload.n;
+    },
+    addBannerData(state, payload) {
+      state.banners = payload;
+    },
+  },
+  actions: {
+    // 1.参数问题
+    incrementAction(context, payload) {
+      console.log(payload);
+      setTimeout(() => {
+        context.commit('increment');
+      }, 500);
+    },
+    // 2.context的其他属性
+    decrementAction(
+      // context,
+      { commit, dispatch, state, rootState, getters, rootGetters }
+    ) {
+      commit('decrement');
+      // console.log(context);
+    },
+    getHomeMultidata(context) {
+      axios.get('https://api.ioinn.cn/banner').then((res) => {
+        context.commit('addBannerData', res.data.banners);
+      });
     },
   },
 });
