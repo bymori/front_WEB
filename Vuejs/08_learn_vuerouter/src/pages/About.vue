@@ -4,11 +4,11 @@
  * @Author: by_mori
  * @Date: 2021-10-15 11:34:17
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 11:47:08
+ * @LastEditTime: 2021-10-15 14:58:30
 -->
 <template>
   <div>
-    <h2>About</h2>
+    <h2>About:{{$route.query.name}}-{{$route.query.age}}</h2>
     <ul>
       <li>About的内容1</li>
       <li>About的内容2</li>
