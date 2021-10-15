@@ -4,9 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-10-15 18:14:00
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 20:59:31
+ * @LastEditTime: 2021-10-15 21:38:12
  */
 import { createStore } from 'vuex';
+import { INCREMENT_N } from './mutation-types';
 
 const store = createStore({
   state() {
@@ -63,6 +64,11 @@ const store = createStore({
     },
     decrement(state) {
       state.counter--;
+    },
+    // 10 -> payload
+    // {n: 10, name: "ioinn", age: 18} -> payload
+    [INCREMENT_N](state, payload) {
+      state.counter += payload.n;
     },
   },
 });
