@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-15 10:21:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 15:22:30
+ * @LastEditTime: 2021-10-15 15:34:49
 -->
 <template>
   <div id="app">
@@ -25,7 +25,7 @@
       <p>{{props.isExactActive}}</p>
 
     </router-link>
-    
+
     <router-link to="/about"
                  active-class="io-active">关于</router-link>
     <router-link to="/user/ioinn/id/111">用户</router-link>
@@ -33,7 +33,13 @@
     <button @click="jumpToAbout">关于</button>
     <button @click="forwardOneStep">前进一步</button>
 
-    <router-view />
+    <router-view v-slot="props">
+      <transition name='io'>
+        <keep-alive>
+          <component :is="props.Component"></component>
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
