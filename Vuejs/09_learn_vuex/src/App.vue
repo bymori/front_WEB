@@ -4,20 +4,21 @@
  * @Author: by_mori
  * @Date: 2021-10-15 18:04:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 18:32:22
+ * @LastEditTime: 2021-10-15 19:05:55
 -->
 <template>
-  <h2>{{$store.state.rootCounter}}</h2>
+  <h2>{{$store.state.counter}}</h2>
+  <home />
   <button @click="increment">+1</button>
   <button @click="decrement">-1</button>
 </template>
 
 <script>
-
+import Home from "./pages/Home.vue"
 export default {
   name: 'App',
   components: {
-
+    Home
   },
   methods: {
     increment () {
