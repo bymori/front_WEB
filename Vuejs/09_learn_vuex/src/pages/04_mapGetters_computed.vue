@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-15 18:44:56
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-15 21:13:52
+ * @LastEditTime: 2021-10-15 21:07:10
 -->
 <template>
   <div>
@@ -13,21 +13,24 @@
     <hr>
     <!-- <h2>{{$store.getters.nameInfo}}</h2> -->
     <h2>{{nameInfo}}</h2>
-    <h2>{{ageInfo}}</h2>
-    <h2>{{heightInfo}}</h2>
+    <h2>{{sAgeInfo}}</h2>
+    <h2>{{sHeightInfo}}</h2>
   </div>
 </template>
 
 <script>
-import { useGetters } from '../hook/useGetters'
+import { mapGetters } from "vuex"
 
 export default {
-  setup () {
-    const storeGetters = useGetters(["nameInfo", "ageInfo", "heightInfo"])
-    return {
-      ...storeGetters
-    }
-  }
+  computed: {
+    ...mapGetters(['nameInfo']),
+    ...mapGetters({
+      sAgeInfo: 'ageInfo',
+      sHeightInfo: 'heightInfo'
+    })
+  },
+
+
 }
 </script>
 
