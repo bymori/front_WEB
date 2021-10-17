@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-17 16:59:17
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-17 17:07:29
+ * @LastEditTime: 2021-10-17 18:20:31
  */
 module.exports = {
   root: true,
@@ -24,6 +24,7 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    '@typescript-eslint/no-var-requires': 'off'
   }
 }
