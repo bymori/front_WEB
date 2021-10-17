@@ -4,12 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-10-17 16:59:17
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-17 17:15:18
+ * @LastEditTime: 2021-10-17 18:00:55
 -->
 <template>
   <div id="nav">
     <router-link to="/"> Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">Aboutoooooo</router-link>
   </div>
 
   <router-view />
