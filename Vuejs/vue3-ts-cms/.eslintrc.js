@@ -2,9 +2,9 @@
  * @Descripttion:
  * @version:
  * @Author: by_mori
- * @Date: 2021-10-17 14:35:25
+ * @Date: 2021-10-17 16:59:17
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-17 16:19:53
+ * @LastEditTime: 2021-10-17 17:07:29
  */
 module.exports = {
   root: true,
@@ -26,4 +26,4 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
-};
+}
