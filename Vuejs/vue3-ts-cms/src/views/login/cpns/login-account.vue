@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-17 20:01:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-18 22:23:49
+ * @LastEditTime: 2021-10-18 22:50:01
 -->
 <template>
   <div class="login-account">
@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
+import { useStore } from 'vuex'
 import { ElForm } from 'element-plus'
 import localCache from '@/utils/cache'
 
@@ -28,6 +29,8 @@ import { rules } from '../config/account-config'
 
 export default defineComponent({
   setup() {
+    const store = useStore()
+
     const account = reactive({
       name: localCache.getCache('name') ?? '',
       password: localCache.getCache('password') ?? ''
@@ -48,6 +51,7 @@ export default defineComponent({
             localCache.deleteCache('password')
           }
           // 2.开始进行登录验证
+          store.dispatch('login/accountLoginAction', { ...account })
         }
       })
     }
