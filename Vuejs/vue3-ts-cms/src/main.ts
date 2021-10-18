@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-17 20:01:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-18 20:12:19
+ * @LastEditTime: 2021-10-18 21:38:43
  */
 import { createApp } from 'vue'
 import { globalRegister } from './global'
@@ -61,7 +61,7 @@ ioRequest
     showLoading: false
   })
   .then((res) => {
-    // console.log(res.data)
+    console.log(res.data)
     // console.log(res.returnCode)
     // console.log(res.success)
   })

@@ -1,3 +1,11 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: by_mori
+ * @Date: 2021-10-17 20:01:28
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-18 22:12:29
+ */
 module.exports = {
   root: true,
   env: {
@@ -20,5 +28,8 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'prettier/prettier': 'error'
+    // 'space-before-blocks': 'off',
+    // 'no-multiple-empty-lines': 'off',
+    // 'space-infix-ops': 'off'
   }
 }

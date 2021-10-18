@@ -21,9 +21,9 @@
       <el-link type="primary">忘记密码</el-link>
     </div>
 
-    <el-button type="primary" class="login-btn" @click="handleLoginClick"
-      >立即登录</el-button
-    >
+    <el-button type="primary" class="login-btn" @click="handleLoginClick">
+      立即登录
+    </el-button>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ export default defineComponent({
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
 
     const handleLoginClick = () => {
-      accountRef.value?.loginAction()
+      accountRef.value?.loginAction(isKeepPassword.value)
     }
 
     return {
