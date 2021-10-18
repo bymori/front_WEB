@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-17 20:01:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-18 19:48:36
+ * @LastEditTime: 2021-10-18 20:58:12
  */
 // 编写好规则
 export const rules = {
@@ -29,7 +29,7 @@ export const rules = {
     {
       // pattern: /^[a-z0-9]{3,}$/,
       pattern:
-        /^\S*(?=\S{6,})(?=\S*\d)(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[!@#$%^&*? ])\S*$/,
+        /^\S*(?=\S{6,20})(?=\S*\d)(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[!@#$%^&*? ])\S*$/,
       message:
         '密码最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符',
       trigger: 'blur'
