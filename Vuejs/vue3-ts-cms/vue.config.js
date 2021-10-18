@@ -1,11 +1,3 @@
-/*
- * @Descripttion:
- * @version:
- * @Author: by_mori
- * @Date: 2021-10-17 18:19:19
- * @LastEditors: by_mori
- * @LastEditTime: 2021-10-17 18:19:20
- */
 const path = require('path')
 
 module.exports = {
