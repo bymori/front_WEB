@@ -4,12 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-10-19 23:18:08
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 23:27:30
+ * @LastEditTime: 2021-10-19 23:43:47
 -->
 <template>
   <header>
     <div class="l-content">
-      <el-button plain icon="el-icon-menu" size="mini"></el-button>
+      <el-button plain icon="el-icon-menu" size="mini" @click="handleMenu"></el-button>
       <h3 style="color:#fff">首页</h3>
     </div>
     <div class="r-content">
@@ -32,9 +32,35 @@ export default {
     return {
       userImg: require('@/assets/images/user.png')
     }
+  },
+  methods: {
+    handleMenu() {
+      this.$store.commit('collapseMenu')
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
+header {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.l-content {
+  display: flex;
+  align-items: center;
+  .el-button {
+    margin-right: 20px;
+  }
+}
+
+.r-content {
+  .user {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}
 </style>

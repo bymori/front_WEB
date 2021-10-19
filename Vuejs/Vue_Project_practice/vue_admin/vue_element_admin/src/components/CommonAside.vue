@@ -4,11 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-10-19 22:40:04
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 23:34:39
+ * @LastEditTime: 2021-10-19 23:48:36
 -->
 <template>
   <el-menu class="el-menu-vertical-demo" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-    <h3>通用后台管理系统</h3>
+    <h3 v-show="!isCollapse">通用后台管理系统</h3>
+    <h3 v-show="isCollapse">后台</h3>
     <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
       <i :class="'el-icon-' + item.icon"></i>
       <span slot="title">{{ item.label }}</span>
@@ -33,7 +34,7 @@
 export default {
   data() {
     return {
-      isCollapse: false, // 是否折叠
+      // isCollapse: false, // 是否折叠
       menu: [
         {
           path: '/',
@@ -97,10 +98,10 @@ export default {
     },
     hasChildren() {
       return this.menu.filter((item) => item.children)
+    },
+    isCollapse() {
+      return this.$store.state.tab.isCollapse
     }
-    // isCollapse() {
-    //   return this.$store.state.tab.isCollapse
-    // }
   }
 }
 </script>
@@ -117,6 +118,7 @@ export default {
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
+  // min-height: 400px;
+  height: 100vh;
 }
 </style>

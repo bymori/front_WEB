@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 21:18:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 23:19:09
+ * @LastEditTime: 2021-10-19 23:50:31
 -->
 <template>
   <el-container style="width:100%">
@@ -36,9 +36,12 @@ export default {
 
 <style lang="less" scoped>
 .el-header {
-  background: #000;
+  background: #333;
 }
 .el-main {
   padding-top: 0;
+}
+.el-aside {
+  height: 100vh;
 }
 </style>
