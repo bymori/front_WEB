@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 21:18:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 23:33:25
+ * @LastEditTime: 2021-10-20 00:09:10
  */
 import Vue from 'vue'
 
@@ -44,6 +44,7 @@ import {
   DatePicker,
   Dialog
 } from 'element-ui'
+import 'element-ui/lib/theme-chalk/display.css'
 
 import App from './App.vue'
 import './registerServiceWorker'

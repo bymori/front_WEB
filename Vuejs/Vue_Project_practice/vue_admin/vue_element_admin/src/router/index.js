@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 21:18:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 22:27:23
+ * @LastEditTime: 2021-10-19 23:56:12
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -16,7 +16,24 @@ const routes = [
   {
     path: '/',
     name: 'Main',
-    component: Main
+    component: Main,
+    children: [
+      {
+        path: '/',
+        name: 'home',
+        component: () => import('@/views/Home/Home.vue')
+      }
+      // {
+      //   path: '/mall',
+      //   name: 'mall',
+      //   component: () => import('@/views/Mall/Mall')
+      // },
+      // {
+      //   path: '/user',
+      //   name: 'user',
+      //   component: () => import('@/views/User/User')
+      // }
+    ]
   },
   {
     path: '/about',

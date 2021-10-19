@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 21:18:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 23:50:31
+ * @LastEditTime: 2021-10-19 23:53:02
 -->
 <template>
   <el-container style="width:100%">
@@ -15,7 +15,9 @@
       <el-header>
         <CommonHeaderVue></CommonHeaderVue>
       </el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
