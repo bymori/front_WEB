@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 23:55:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-20 16:30:11
+ * @LastEditTime: 2021-10-20 17:17:49
 -->
 <template>
   <el-row class="home" :getter="20">
@@ -45,10 +45,10 @@
       </el-card>
       <div class="graph">
         <el-card shadow="hover" style="height: 260px">
-
+          <div style="height: 240px" ref="userEchart"></div>
         </el-card>
         <el-card shadow="hover" style="height: 260px">
-
+          <div style="height: 240px" ref="videoEchart"></div>
         </el-card>
       </div>
     </el-col>
@@ -147,6 +147,53 @@ export default {
           ],
           color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80', '#8d98b3'],
           series: []
+        },
+        user: {
+          legend: {
+            // 图例文字颜色
+            textStyle: {
+              color: '#333'
+            }
+          },
+          grid: {
+            left: '20%'
+          },
+          // 提示框
+          tooltip: {
+            trigger: 'axis'
+          },
+          xAxis: {
+            type: 'category', // 类目轴
+            data: [],
+            axisLine: {
+              lineStyle: {
+                color: '#17b3a3'
+              }
+            },
+            axisLabel: {
+              // interval: 0,
+              color: '#333'
+            }
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLine: {
+                lineStyle: {
+                  color: '#17b3a3'
+                }
+              }
+            }
+          ],
+          color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80', '#8d98b3'],
+          series: []
+        },
+        video: {
+          tooltip: {
+            trigger: 'item'
+          },
+          color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80', '#8d98b3'],
+          series: []
         }
       }
     }
@@ -158,7 +205,6 @@ export default {
 
         // 折线图的展示
         const order = res.data.orderData
-        console.log(order.data[0])
         this.echartsData.order.xAxis.data = order.date
 
         const keyArray = Object.keys(order.data[0])
@@ -172,6 +218,30 @@ export default {
         const myEchartsOrder = echarts.init(this.$refs.echart)
         console.log(this.echartsData)
         myEchartsOrder.setOption(this.echartsData.order)
+
+        // 用户图
+        this.echartsData.user.xAxis.data = res.data.userData.map((item) => item.date)
+        this.echartsData.user.series.push({
+          name: '新增用户',
+          data: res.data.userData.map((item) => item.new),
+          type: 'bar'
+        })
+        this.echartsData.user.series.push({
+          name: '活跃用户',
+          data: res.data.userData.map((item) => item.active),
+          type: 'bar'
+        })
+
+        const myEchartsUser = echarts.init(this.$refs.userEchart)
+        myEchartsUser.setOption(this.echartsData.user)
+
+        // video
+        this.echartsData.video.series.push({
+          data: res.data.videoData,
+          type: 'pie'
+        })
+        const myEchartsVideo = echarts.init(this.$refs.videoEchart)
+        myEchartsVideo.setOption(this.echartsData.video)
       })
     }
   },
