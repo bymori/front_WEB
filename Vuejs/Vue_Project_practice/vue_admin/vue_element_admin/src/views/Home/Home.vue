@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 23:55:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-20 17:17:49
+ * @LastEditTime: 2021-10-20 17:43:27
 -->
 <template>
   <el-row class="home" :getter="20">
@@ -40,15 +40,17 @@
         </el-card>
       </div>
       <el-card shadow="hover" style="height: 280px">
-        <div style="height: 280px" ref="echart"></div>
-        <!-- <echart :chartData="echartData.order" style="height: 280px"></echart> -->
+        <!-- <div style="height: 280px" ref="echart"></div> -->
+        <echart :chartData="echartData.order" style="height: 280px"></echart>
       </el-card>
       <div class="graph">
         <el-card shadow="hover" style="height: 260px">
-          <div style="height: 240px" ref="userEchart"></div>
+          <!-- <div style="height: 240px" ref="userEchart"></div> -->
+          <echart :chartData="echartData.user" style="height: 240px"></echart>
         </el-card>
         <el-card shadow="hover" style="height: 260px">
-          <div style="height: 240px" ref="videoEchart"></div>
+          <!-- <div style="height: 240px" ref="videoEchart"></div> -->
+          <echart :chartData="echartData.video" style="height: 240px" :isAxisChart="false"></echart>
         </el-card>
       </div>
     </el-col>
@@ -57,8 +59,12 @@
 
 <script>
 import { getHome } from '../../api/data'
-import * as echarts from 'echarts'
+// import * as echarts from 'echarts'
+import Echart from '@/components/ECharts.vue'
 export default {
+  components: {
+    Echart
+  },
   data() {
     return {
       userImg: require('../../assets/images/user.png'),
@@ -195,6 +201,19 @@ export default {
           color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80', '#8d98b3'],
           series: []
         }
+      },
+      echartData: {
+        order: {
+          xData: [],
+          series: []
+        },
+        user: {
+          xData: [],
+          series: []
+        },
+        video: {
+          series: []
+        }
       }
     }
   },
@@ -205,43 +224,68 @@ export default {
 
         // 折线图的展示
         const order = res.data.orderData
-        this.echartsData.order.xAxis.data = order.date
+        // this.echartsData.order.xAxis.data = order.date
 
         const keyArray = Object.keys(order.data[0])
+        // keyArray.forEach((key) => {
+        //   this.echartsData.order.series.push({
+        //     name: key,
+        //     data: order.data.map((item) => item[key]),
+        //     type: 'line'
+        //   })
+        // })
+        // const myEchartsOrder = echarts.init(this.$refs.echart)
+        // console.log(this.echartsData)
+        // myEchartsOrder.setOption(this.echartsData.order)
+
+        // 传给组件的值
+        this.echartData.order.xData = order.date
         keyArray.forEach((key) => {
-          this.echartsData.order.series.push({
+          this.echartData.order.series.push({
             name: key,
             data: order.data.map((item) => item[key]),
             type: 'line'
           })
         })
-        const myEchartsOrder = echarts.init(this.$refs.echart)
-        console.log(this.echartsData)
-        myEchartsOrder.setOption(this.echartsData.order)
 
         // 用户图
-        this.echartsData.user.xAxis.data = res.data.userData.map((item) => item.date)
-        this.echartsData.user.series.push({
+        // this.echartsData.user.xAxis.data = res.data.userData.map((item) => item.date)
+        // this.echartsData.user.series.push({
+        //   name: '新增用户',
+        //   data: res.data.userData.map((item) => item.new),
+        //   type: 'bar'
+        // })
+        // this.echartsData.user.series.push({
+        //   name: '活跃用户',
+        //   data: res.data.userData.map((item) => item.active),
+        //   type: 'bar'
+        // })
+
+        // const myEchartsUser = echarts.init(this.$refs.userEchart)
+        // myEchartsUser.setOption(this.echartsData.user)
+        this.echartData.user.xData = res.data.userData.map((item) => item.date)
+        this.echartData.user.series.push({
           name: '新增用户',
           data: res.data.userData.map((item) => item.new),
           type: 'bar'
         })
-        this.echartsData.user.series.push({
+        this.echartData.user.series.push({
           name: '活跃用户',
           data: res.data.userData.map((item) => item.active),
           type: 'bar'
         })
 
-        const myEchartsUser = echarts.init(this.$refs.userEchart)
-        myEchartsUser.setOption(this.echartsData.user)
-
         // video
-        this.echartsData.video.series.push({
+        // this.echartsData.video.series.push({
+        //   data: res.data.videoData,
+        //   type: 'pie'
+        // })
+        // const myEchartsVideo = echarts.init(this.$refs.videoEchart)
+        // myEchartsVideo.setOption(this.echartsData.video)
+        this.echartData.video.series.push({
           data: res.data.videoData,
           type: 'pie'
         })
-        const myEchartsVideo = echarts.init(this.$refs.videoEchart)
-        myEchartsVideo.setOption(this.echartsData.video)
       })
     }
   },
