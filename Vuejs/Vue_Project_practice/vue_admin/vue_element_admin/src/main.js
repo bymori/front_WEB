@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 21:18:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-20 00:09:10
+ * @LastEditTime: 2021-10-20 14:56:40
  */
 import Vue from 'vue'
 
@@ -50,6 +50,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import http from 'axios'
 
 Vue.config.productionTip = false
 
@@ -84,6 +85,7 @@ Vue.use(CheckboxGroup)
 Vue.use(Checkbox)
 Vue.use(DatePicker)
 Vue.use(Dialog)
+Vue.prototype.$http = http
 
 new Vue({
   router,

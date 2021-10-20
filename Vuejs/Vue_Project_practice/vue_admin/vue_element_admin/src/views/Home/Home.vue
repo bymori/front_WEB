@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 23:55:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-20 00:16:13
+ * @LastEditTime: 2021-10-20 14:59:28
 -->
 <template>
   <el-row class="home" :getter="20">
@@ -13,7 +13,7 @@
         <div class="user">
           <img :src="userImg" />
           <div class="userinfo">
-            <p class="name ">Admin</p>
+            <p class="name">Admin</p>
             <p class="access">超级管理员</p>
           </div>
         </div>
@@ -22,8 +22,36 @@
           <p>上次登录地点：<span>南昌</span></p>
         </div>
       </el-card>
+      <el-card style="margin-top: 20px; height: 460px">
+        <el-table :data="tableData">
+          <el-table-column show-overflow-tooltip v-for="(val, key) in tableLabel" :key="key" :prop="key" :label="val">
+          </el-table-column>
+        </el-table>
+      </el-card>
     </el-col>
-    <el-col :span="16" style="margin-top: 20px">16</el-col>
+    <el-col :span="16" style="margin-top: 20px">
+      <div class="num">
+        <el-card shadow='header' v-for="item in countData" :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
+          <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }"></i>
+          <div class="detail">
+            <p class="num">￥{{ item.value }}</p>
+            <p class="txt">￥{{ item.name }}</p>
+          </div>
+        </el-card>
+      </div>
+      <el-card shadow="hover" style="height: 280px">
+        <div style="height: 280px" ref="echart"></div>
+        <!-- <echart :chartData="echartData.order" style="height: 280px"></echart> -->
+      </el-card>
+      <div class="graph">
+        <el-card shadow="hover" style="height: 260px">
+
+        </el-card>
+        <el-card shadow="hover" style="height: 260px">
+
+        </el-card>
+      </div>
+    </el-col>
   </el-row>
 </template>
 
@@ -31,8 +59,97 @@
 export default {
   data() {
     return {
-      userImg: require('../../assets/images/user.png')
+      userImg: require('../../assets/images/user.png'),
+      tableData: [
+        {
+          name: 'oppo',
+          todayBuy: 500000,
+          monthBuy: 350000,
+          totalBuy: 22000000
+        },
+        {
+          name: 'vivo',
+          todayBuy: 300,
+          monthBuy: 2200000,
+          totalBuy: 24000000
+        },
+        {
+          name: '苹果',
+          todayBuy: 800000,
+          monthBuy: 450000,
+          totalBuy: 65000000
+        },
+        {
+          name: '小米',
+          todayBuy: 1200,
+          monthBuy: 6500,
+          totalBuy: 45000
+        },
+        {
+          name: '三星',
+          todayBuy: 300,
+          monthBuy: 2000,
+          totalBuy: 34000
+        },
+        {
+          name: '魅族',
+          todayBuy: 350,
+          monthBuy: 3000,
+          totalBuy: 22000
+        }
+      ],
+      tableLabel: {
+        name: '课程',
+        todayBuy: '今日购买',
+        monthBuy: '本月购买',
+        totalBuy: '总购买'
+      },
+      countData: [
+        {
+          name: '今日支付订单',
+          value: 1234,
+          icon: 'success',
+          color: '#2ec7c9'
+        },
+        {
+          name: '今日收藏订单',
+          value: 210,
+          icon: 'star-on',
+          color: '#ffb980'
+        },
+        {
+          name: '今日未支付订单',
+          value: 1234,
+          icon: 's-goods',
+          color: '#5ab1ef'
+        },
+        {
+          name: '本月支付订单',
+          value: 1234,
+          icon: 'success',
+          color: '#2ec7c9'
+        },
+        {
+          name: '本月收藏订单',
+          value: 210,
+          icon: 'star-on',
+          color: '#ffb980'
+        },
+        {
+          name: '本月未支付订单',
+          value: 1234,
+          icon: 's-goods',
+          color: '#5ab1ef'
+        }
+      ]
     }
+  },
+  mounted() {
+    this.$http.get('/user?ID=12356').then((res) => {
+      console.log(res)
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 }
 </script>
