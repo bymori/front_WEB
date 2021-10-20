@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 23:55:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-20 15:42:17
+ * @LastEditTime: 2021-10-20 16:30:11
 -->
 <template>
   <el-row class="home" :getter="20">
@@ -57,6 +57,7 @@
 
 <script>
 import { getHome } from '../../api/data'
+import * as echarts from 'echarts'
 export default {
   data() {
     return {
@@ -105,13 +106,72 @@ export default {
           icon: 's-goods',
           color: '#5ab1ef'
         }
-      ]
+      ],
+      echartsData: {
+        order: {
+          legend: {
+            // 图例文字颜色
+            textStyle: {
+              color: '#333'
+            }
+          },
+          grid: {
+            left: '20%'
+          },
+          // 提示框
+          tooltip: {
+            trigger: 'axis'
+          },
+          xAxis: {
+            type: 'category', // 类目轴
+            data: [],
+            axisLine: {
+              lineStyle: {
+                color: '#17b3a3'
+              }
+            },
+            axisLabel: {
+              interval: 0,
+              color: '#333'
+            }
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLine: {
+                lineStyle: {
+                  color: '#17b3a3'
+                }
+              }
+            }
+          ],
+          color: ['#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80', '#8d98b3'],
+          series: []
+        }
+      }
     }
   },
   methods: {
     getTableData() {
       getHome().then((res) => {
         this.tableData = res.data.tableData
+
+        // 折线图的展示
+        const order = res.data.orderData
+        console.log(order.data[0])
+        this.echartsData.order.xAxis.data = order.date
+
+        const keyArray = Object.keys(order.data[0])
+        keyArray.forEach((key) => {
+          this.echartsData.order.series.push({
+            name: key,
+            data: order.data.map((item) => item[key]),
+            type: 'line'
+          })
+        })
+        const myEchartsOrder = echarts.init(this.$refs.echart)
+        console.log(this.echartsData)
+        myEchartsOrder.setOption(this.echartsData.order)
       })
     }
   },
