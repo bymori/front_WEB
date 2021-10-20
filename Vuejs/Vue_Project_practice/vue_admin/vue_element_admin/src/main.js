@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 21:18:36
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-20 14:56:40
+ * @LastEditTime: 2021-10-20 15:37:44
  */
 import Vue from 'vue'
 
@@ -86,6 +86,8 @@ Vue.use(Checkbox)
 Vue.use(DatePicker)
 Vue.use(Dialog)
 Vue.prototype.$http = http
+
+if (process.env.NODE_ENV === 'development') require('@/api/mock')
 
 new Vue({
   router,

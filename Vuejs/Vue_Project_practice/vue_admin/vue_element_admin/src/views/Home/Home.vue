@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-19 23:55:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-20 14:59:28
+ * @LastEditTime: 2021-10-20 15:42:17
 -->
 <template>
   <el-row class="home" :getter="20">
@@ -56,48 +56,12 @@
 </template>
 
 <script>
+import { getHome } from '../../api/data'
 export default {
   data() {
     return {
       userImg: require('../../assets/images/user.png'),
-      tableData: [
-        {
-          name: 'oppo',
-          todayBuy: 500000,
-          monthBuy: 350000,
-          totalBuy: 22000000
-        },
-        {
-          name: 'vivo',
-          todayBuy: 300,
-          monthBuy: 2200000,
-          totalBuy: 24000000
-        },
-        {
-          name: '苹果',
-          todayBuy: 800000,
-          monthBuy: 450000,
-          totalBuy: 65000000
-        },
-        {
-          name: '小米',
-          todayBuy: 1200,
-          monthBuy: 6500,
-          totalBuy: 45000
-        },
-        {
-          name: '三星',
-          todayBuy: 300,
-          monthBuy: 2000,
-          totalBuy: 34000
-        },
-        {
-          name: '魅族',
-          todayBuy: 350,
-          monthBuy: 3000,
-          totalBuy: 22000
-        }
-      ],
+      tableData: [],
       tableLabel: {
         name: '课程',
         todayBuy: '今日购买',
@@ -144,12 +108,15 @@ export default {
       ]
     }
   },
+  methods: {
+    getTableData() {
+      getHome().then((res) => {
+        this.tableData = res.data.tableData
+      })
+    }
+  },
   mounted() {
-    this.$http.get('/user?ID=12356').then((res) => {
-      console.log(res)
-    }).catch((error) => {
-      console.log(error)
-    })
+    this.getTableData()
   }
 }
 </script>
