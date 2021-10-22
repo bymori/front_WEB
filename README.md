@@ -14,5 +14,10 @@
 10. [Webpack](Webpack)
 11. [Vuejs](Vuejs)
 
-
 HTML->CSS-JS->ES6->node->AJAX->Promise->Axios->vue(React)框架
+
+
+
+## 网络知识
+
+- 网络工作原理 https://www.bilibili.com/video/BV1xJ41137Q3 
