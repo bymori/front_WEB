@@ -285,3 +285,6 @@ doc/*.txt    #会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
 ## VSCode中集成Git
 
 - [VSCode中的git使用篇](https://blog.csdn.net/weixin_38023551/article/details/105785223)
+
+- [gitee Git 大全](https://gitee.com/all-about-git)
+- [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_CN)
