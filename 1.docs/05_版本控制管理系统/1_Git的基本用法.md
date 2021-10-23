@@ -150,9 +150,11 @@ git config --global user.email johndoe@example.com  #邮箱
 
 Git本地有三个工作区域：`工作目录（Working Directory）`、`暂存区(Stage/Index)`、资`源库(Repository或Git Directory)`。
 
+[Git 的三个区域详解](https://blog.csdn.net/qq_46921028/article/details/114904431)
+
 如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。文件在这四个区域之间的转换关系如下：
 
-![git_区域1webp](https://gitee.com/bymori/pic-go-core/raw/master/img/git_区域1webp.webp)
+![image-20211023183420715](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211023183420715.png)
 
 - `Workspace`：工作区，就是你平时存放项目代码的地方
 - `Index / Stage`：暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息
@@ -186,6 +188,100 @@ git的工作流程一般是这样的：
 
 ### 创建工作目录与常用指令
 
+工作目录 (WorkSpace)一般就是你希望Git帮助你管理的文件夹，可以是你项目的目录，也可以是一个空目录，建议不要有中文。
+
+日常使用只要记住下图6个命令：
+
+![在这里插入图片描述](https://gitee.com/bymori/pic-go-core/raw/master/img/20210317070904631.png)
+
 ### 本地仓库搭建
 
+创建本地仓库的方法有两种：一种是创建全新的仓库，另一种是克隆远程仓库。
+
+1. 创建全新的仓库，需要用GIT管理的项目的根目录执行：
+
+   ```bash
+    # 在当前目录新建一个Git代码库
+    $ git init
+   ```
+
+2. 执行后可以看到，仅仅在项目目录多出了一个.git目录，关于版本等的所有信息都在这个目录里面。
+
 ### 克隆远程仓库
+
+1. 另一种方式是克隆远程目录，由于是将远程服务器上的仓库完全镜像一份至本地！
+
+   ```bash
+   # 克隆一个项目和它的整个代码历史(版本信息)
+   $ git clone [url]  *# https://gitee.com/bymori/front_WEB.git*
+   ```
+
+2. 去 gitee 或者 github 上克隆一个测试！
+
+## Git文件操作
+
+### 文件的四种状态
+
+版本控制就是对文件的版本控制，要对文件进行修改、提交等操作，首先要知道文件当前在什么状态，不然可能会提交了现在还不想提交的文件，或者要提交的文件没提交上。
+
+- **Untracked**: 未跟踪, 此文件在文件夹中, 但并没有加入到git库, 不参与版本控制. 通过`git add` 状态变为 `Staged`.
+- **Unmodify**: 文件已经入库, 未修改, 即版本库中的文件快照内容与文件夹中完全一致. 这种类型的文件有两种去处, 如果它被修改, 而变为`Modified`. 如果使用`git rm`移出版本库, 则成为`Untracked`文件
+- **Modified**: 文件已修改, 仅仅是修改, 并没有进行其他的操作. 这个文件也有两个去处, 通过`git add`可进入暂存`staged`状态, 使用`git checkout` 则丢弃修改过, 返回到`unmodify`状态, 这个`git checkout`即从库中取出文件, 覆盖当前修改 !
+- **Staged**: 暂存状态. 执行`git commit`则将修改同步到库中, 这时库中的文件和本地文件又变为一致, 文件为`Unmodify`状态. 执行`git reset HEAD filename`取消暂存, 文件状态为`Modified`
+
+### 查看文件状态
+
+上面说文件有4种状态，通过如下命令可以查看到文件的状态：
+
+```bash
+#查看指定文件状态
+git status [filename]
+
+#查看所有文件状态
+git status
+
+# git add .                  添加所有文件到暂存区
+# git commit -m "消息内容"    提交暂存区中的内容到本地仓库 -m 提交信息
+```
+
+### 忽略文件
+
+有些时候我们不想把某些文件纳入版本控制中，比如数据库文件，临时文件，设计文件等
+
+在主目录下建立".gitignore"文件，此文件有如下规则：
+
+1. 忽略文件中的空行或以井号（#）开始的行将会被忽略。
+2. 可以使用Linux通配符。例如：星号（*）代表任意多个字符，问号（？）代表一个字符，方括号（[abc]）代表可选字符范围，大括号（{string1,string2,...}）代表可选的字符串等。
+3. 如果名称的最前面有一个感叹号（!），表示例外规则，将不被忽略。
+4. 如果名称的最前面是一个路径分隔符（/），表示要忽略的文件在此目录下，而子目录中的文件不忽略。
+5. 如果名称的最后面是一个路径分隔符（/），表示要忽略的是此目录下该名称的子目录，而非文件（默认文件或目录都忽略）。
+
+```bash
+#为注释
+*.txt        #忽略所有 .txt结尾的文件,这样的话上传就不会被选中！
+!lib.txt     #但lib.txt除外
+/temp        #仅忽略项目根目录下的TODO文件,不包括其它目录temp
+build/       #忽略build/目录下的所有文件
+doc/*.txt    #会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+```
+
+## 使用码云
+
+> github 是有墙的，比较慢，在国内的话，我们一般使用 gitee ，公司中有时候会搭建自己的gitlab服务器
+
+1. 注册登录[码云](https://gitee.com/)，完善个人信息
+2. 设置本机绑定SSH公钥，实现免密码登录！(免密码登录，这一步挺重要的，码云是远程仓库，我们是平时工作在本地仓库！)
+
+    ```bash
+    # 进入 C:\Users\Administrator\.ssh 目录
+    # 生成公钥
+    ssh-keygen [-t rsa] #加密算法
+    ```
+
+3. 将公钥信息public key 添加到码云账户中即可！
+4. 使用码云创建一个自己的仓库！
+   选择开源后需添加许可证：开源是否可以随意转载，开源但是不能商业使用，不能转载，...  限制！
+
+## VSCode中集成Git
+
+- [VSCode中的git使用篇](https://blog.csdn.net/weixin_38023551/article/details/105785223)
