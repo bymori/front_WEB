@@ -1,0 +1,36 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-25 23:18:59
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-25 23:27:22
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深入理解数据的存储形式-堆栈</title>
+  </head>
+  <body>
+    <script>
+      //什么是栈:计算机为原始类型开辟的一 块内存空间 string number ...
+      //什么是堆：计算机为引用类型开辟的一块内存空间 object
+
+      var a = 'ioinn';
+      var b = a;
+      b = 'momo';
+      console.log(a, b); // ioinn momo
+
+      var c = { key: 1 };
+      var d = c;
+      d.key = 2;
+      console.log(c, d); // {key: 2} {key: 2}
+
+      // c d ['x00123','x00123'] -> {key: 2 }
+      // c d 'x00123' -> {key: 2 }  {key: 2 }
+    </script>
+  </body>
+</html>

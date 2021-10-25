@@ -1,0 +1,80 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-25 23:30:16
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-25 23:58:54
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深浅拷贝有哪些方式</title>
+  </head>
+  <body>
+    <script>
+      // 深拷贝与浅拷贝，简单来说
+      // 就是假如 B 复制了 A, 当修改 A 时, 看 B 是否会发生变化, 如果 B 也跟着变了, 说明这是 浅拷贝
+      // 如果 B 没变, 就是 深拷贝
+
+      // 遍历
+      var obj = {
+        a: 'hello',
+        b: {
+          a: 'world',
+          b: 111,
+        },
+        c: [11, 'ioinn', 'momo'],
+      };
+
+      // 浅拷贝
+      objCopy;
+      function simpleClone(objNew) {
+        var obj = {};
+        for (var i in objNew) {
+          obj[i] = objNew[i];
+        }
+        return obj;
+      }
+      var objCopy = simpleClone(obj);
+      //   objCopy.b.a = 'world111';
+      console.log(obj);
+      console.log(objCopy);
+
+      //   Object.create() 复制到原型上
+      var objCopyCreate = Object.create(obj);
+      objCopy.b.a = 'world111';
+      console.log(obj);
+      console.log(objCopyCreate);
+
+      // 深拷贝
+      function deepClone(startObj, endObj) {
+        var obj = endObj || {};
+        for (var i in startObj) {
+          if (typeof startObj[i] === 'object') {
+            obj[i] = startObj[i].constructor === Array ? [] : {};
+            deepClone(startObj[i], obj[i]);
+          } else {
+            obj[i] = startObj[i];
+          }
+        }
+        return obj;
+      }
+      var objCopy = deepClone(obj);
+      objCopy.b.a = 'world111';
+      objCopy.c[0] = '22';
+      console.log(obj); // "world" 11
+      console.log(objCopy); // "world111" "22"
+
+      // JSON.parse JSON.stringify
+      var objCopy = JSON.parse(JSON.stringify(obj)); // object -> string -> object
+      objCopy.b.a = 'world111';
+      objCopy.c[0] = '22';
+      console.log(obj); // "world" 11
+      console.log(objCopy); // "world111" "22"
+    </script>
+  </body>
+</html>
