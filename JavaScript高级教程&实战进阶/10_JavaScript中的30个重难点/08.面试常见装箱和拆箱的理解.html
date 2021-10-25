@@ -1,0 +1,57 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 01:32:08
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 01:50:42
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>面试常见装箱和拆箱的理解</title>
+  </head>
+  <body>
+    <script>
+      // 装箱: 把基本数据类型转化为对应的引用数据类型的操作
+      //   var num = 123;
+      //   var objNum = new Number(123);
+      //   console.log(typeof num); // number
+      //   console.log(typeof objNum); // object
+
+      // 拆箱: 将引用类型对象转换为对应的值类型对象
+      //  valueOf()
+      //   var objNum = new Number(123);
+      //   console.log(typeof objNum.valueOf(), objNum.valueOf()); // number 123
+
+      // js toPrimitive(input,type) input:传入的值  type:值类型
+      //  input是输入的值，type 是期望转换的类型，他可以是字符串，也可以是数字。
+      //  如果转换的类型是number，会执行以下步骤：
+      //  1. 如果input是原始值，直接返回这个值；
+      //  2. 否则，如果input是对象，调用input.valueOf()，如果结果是原始值，返回结果；
+      //  3. 否则，调用input.toString() 如果结果是原始值，返回结果；
+      //  4. 否则，抛出错误。
+
+      // valueOf(): input 原始类型的值  是否有原始类型的值 有: 返回  没有: 返回对象本身
+      // toString(): input 字符串转换  对象: [object type] type: 对象类型
+
+      // 面试题
+      //   console.log([] + []); // '' 空字符串  调用 toPrimitive(input,type)
+      //   console.log([].valueOf()); // []
+      //   console.log([].toString()); // '' + '' = ''
+
+      //   console.log([] + {}); // [object Object]
+      //   console.log([]); // []
+      //   console.log({}.valueOf()); // {}
+      //   console.log({}.toString()); // [object Object]
+
+      //   console.log({} + []); // [object Object] 或 0
+      //   console.log({} + []); // {} 可能会被识别成代码块
+      //   console.log(+[]); // 0
+      //   console.log(+''); // 0
+    </script>
+  </body>
+</html>

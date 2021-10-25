@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 01:02:32
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 01:19:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开发中如何优化for循环</title>
+  </head>
+  <body>
+    <script>
+      // for(){}
+      // 性能优化
+      for (var i = 0; i < arr.length; i++) {
+        // do something
+      }
+      for (var i = 0, len = arr.length; i < len; i++) {
+        // do something
+      }
+
+      // 算法
+      // 1 + 2 + 3 + 4 + ...... + 10000
+      for (var i = 1; i <= 10000; i++) {
+        // sum += i;
+      }
+      //   100(100+1)/2 = 5050
+      //   ((startNum + endNum) * endNum) / 2;
+
+      // leetCode 算法
+    </script>
+  </body>
+</html>

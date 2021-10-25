@@ -1,0 +1,42 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 00:28:04
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 01:00:40
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>运算符多的情况下需要注意哪些</title>
+  </head>
+  <body>
+    <script>
+      // 优先级 +-*/ && || () -= -- ++
+      // (1+2)(val || val2)
+
+      // js舍入误差
+      console.log(0.1 + 0.2); //0.30000000000000004
+      // js 采用 IEEE754 二进制浮点数算术标准 进行存储
+      // 0.1 -> 0.0001100110011001100110011001100110011001100110011001101
+      // 0.2 -> 0.001100110011001100110011001100110011001100110011001101
+      //   console.log((0.1).toString(2));
+      //   console.log((0.2).toString(2));
+      //   console.log((0.1 + 0.2).toString(2)); //0.0100110011001100110011001100110011001100110011001101
+
+      // 解决方案1
+      console.log(parseFloat((0.1 + 0.2).toFixed(2))); // 0.3
+
+      // 解决方案2
+      function add(num1, num2) {
+        m = Math.pow(10, 2);
+        return (num1 * m + num2 * m) / m;
+      }
+      console.log(add(0.1, 0.2));
+    </script>
+  </body>
+</html>

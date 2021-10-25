@@ -1,0 +1,51 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 00:07:42
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 00:24:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开发中常见数据类型转换有哪些坑</title>
+  </head>
+  <body>
+    <script>
+      // 特殊类型的隐式转换 NaN 0 undefined null '' -> 这五种类型会隐式转换为false  其他均为 true
+
+      var val = 0;
+      if (!val) {
+        // val 可能等于 NaN 0 undefined ...
+      } else {
+      }
+      var bool = Boolean(NaN);
+      console.log(bool); //false
+
+      // 逻辑运算符 && 和 || 在隐式转换下的情况
+      console.log(true && true); // true false
+      console.log(true || true); // false true
+      console.log(0 && 5); // 0 true true
+      console.log(0 || 5); // 5 false true
+      // if方式 耗能较大
+      var a = 8;
+      if (a === 0) {
+        console.log(a);
+      } else {
+        console.log(1);
+      }
+
+      // == 和 === 的区别
+      console.log(undefined == null); // true 对比值 会进行隐式转换 0 == 0
+      console.log(undefined === null); //false 对比 值 和 类型 不会进行隐式转换
+      // 尽量使用 === 避免因隐式转换带来的不必要的错误 因为这是不易排查的
+      if (a !== b) {
+        console.log();
+      }
+    </script>
+  </body>
+</html>
