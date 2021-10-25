@@ -1,0 +1,80 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-25 22:37:55
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-25 23:03:49
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // typeof返回值是一个字符串，该字符串说明运算数的类型
+      // 结果为number, boolean,string,function（函数），object(NULL,数组，对象），undefined
+
+      // instanceof 是用来判断 A 是否为 B 的实例对象，检测的是原型
+
+      console.log(typeof 123); // number
+      console.log(typeof true); // boolean
+      console.log(typeof 'ioinn'); // string
+      console.log(typeof undefined); // undefined
+
+      console.log(typeof null); // object
+      // 计算机typeof 返回的数据类型 机器码 01011:000 => object
+      // null 0000000...000 => object
+      // js bug
+
+      console.log(typeof []); // object // 引用类型
+      console.log(typeof new Date()); // object
+
+      console.log(typeof {}); // object
+      console.log(typeof function () {}); // function
+      console.log(typeof Array); // function  // 为什么不是object类型
+      // typeof 引用类型 object: object function
+      // object 定义一个[[call]]: function object
+
+      var str = 'ioinn';
+      console.log('--------');
+      console.log(str); // ioinn
+      console.log(typeof str); // string
+      console.log('--------');
+      var str1 = new String('ioinn'); // 实例化后的对象
+      console.log(str1); // {}
+      // key : value
+      // 0: "i"
+      // 1: "o"
+      // 2: "i"
+      // 3: "n"
+      // 4: "n"
+      console.log(typeof str1); // object
+
+      // typeof 少null 多function
+
+      console.log('********');
+      // instanceof检测 boolean: true false
+      // A instanceof B  A 是否是由 B 实例化出来的
+      console.log([] instanceof Array); // true
+      console.log({} instanceof Object); // true
+      console.log(new Date() instanceof Date); // true
+      function Person() {}
+      console.log(new Person() instanceof Person); // true
+
+      console.log([] instanceof Object); // true
+      console.log(new Date() instanceof Object); // true
+      console.log(new Person() instanceof Object); // true
+      //instanceof 原型链 A instanceof B true,B instanceof c true
+
+      if (typeof val !== undefined) {
+      }
+      console.log(Object.prototype.toString.call('1')); // [object String]
+      console.log(Object.prototype.toString.call([])); // [object Array]
+    </script>
+  </body>
+</html>
