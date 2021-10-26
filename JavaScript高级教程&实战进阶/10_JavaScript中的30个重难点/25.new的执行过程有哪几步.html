@@ -1,0 +1,45 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-27 02:45:51
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-27 02:50:45
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>new的执行过程有哪几步</title>
+  </head>
+  <body>
+    <script>
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      var p = new Person('沫沫', 18); // 实例化对象
+      console.log(p.name); // 沫沫
+
+      //new 的执行过程
+
+      //1 创建一个新对象
+      var obj = new Object(); // {}
+
+      //2 把obj的proto指向构造函数的prototype对象 实现继承
+      obj.__proto__ = Fn.prototype;
+
+      //3 将新创建的对象obj作为this的上下文
+      var result = Fn.call(obj);
+
+      //4 返回创建的对象obj（如果该函数没有返回对象，则返回this）
+      if (typeof result === 'object') {
+        return result; // func = result
+      } else {
+        return obj; // func = obj
+      }
+    </script>
+  </body>
+</html>

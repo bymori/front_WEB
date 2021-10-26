@@ -1,0 +1,67 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-27 02:09:25
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-27 02:23:33
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闭包的理解</title>
+  </head>
+  <body>
+    <script>
+      //  闭包(Closure):作用域
+      //    是引用了自由变量的函数这个被引用的自由变量将和这个函数一同存在，即使已经离开了
+      //    创造它的环境也不例外。所以，有另一种说法认为闭包是由函数和其相关的引用环境组合而成
+      //    实现信息的驻留（信息的保持，引用在，空间不销毁）
+
+      //简单的闭包
+      var Person = function () {
+        var count = 0; // 私有变量
+        return function getCount() {
+          console.log(count++); // ++ 前加取新值1，后加取旧值0
+        };
+      };
+
+      var p = Person();
+      p(); // 0
+      p(); // 1
+      p(); // 2
+      // 作用域 EC
+      // [[GEC,VO:{p:new Person,Person}],[EC,AO:{count3,}]]
+
+      // 闭包的应用
+      var buttons = [{ name: 'b1' }, { name: 'b2' }, { name: 'b3' }];
+      function bind() {
+        for (var i = 0; i < buttons.length; i++) {
+          (function (num) {
+            // 相当于 var num = i
+            buttons[i].fun = function () {
+              console.log(num);
+            };
+          })(i);
+        }
+      }
+      bind();
+      buttons[0].fun(); // 1
+      buttons[1].fun(); // 2
+      buttons[2].fun(); // 3
+
+      // 解决方法
+      (function (num) {
+        // 相当于 var num = i
+        buttons[i].fun = function () {
+          console.log(num);
+        };
+      })(i); // 这个是把 i 当作局部变量传入给 num , 保存了当前这个局部变量 形成闭包
+
+      // 闭包的缺点：闭包导致内存会驻留，如果是大量对象的闭包环境注意内存消耗
+    </script>
+  </body>
+</html>

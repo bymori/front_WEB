@@ -1,0 +1,76 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 23:41:06
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 23:59:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>常见函数的四种类型有哪些</title>
+  </head>
+  <body>
+    <script>
+      //匿名函数  定义没有任何变量引用的函数
+      // 匿名函数自调: 如果函数只执行一次
+      (function (a, b) {
+        console.log('a = ' + a);
+        console.log('b = ' + b);
+      })(1, 2);
+      // 总结：优点就是节约内存空间，调用前和调用后内存中不创建任何函数对象
+
+      //回调函数(callback)  如果一个函数作为'对象'交给其他函数使用
+      var arr = [15, 7, 66, 33, 26];
+      arr.sort(function (a, b) {
+        return a - b;
+      });
+      console.log(arr);
+      // 异步回调: AJAX
+      function getPrice(inputparams, callback) {
+        $.ajax({
+          url: ctx + '/xxx',
+          type: 'post',
+          data: { field: inputparams },
+          async: true,
+          success: function (data) {
+            result = data;
+            callback(result);
+          },
+        });
+      }
+
+      //递归函数  循环调用函数本身
+      var f = function (x) {
+        if (x === 2) {
+          return x;
+        } else {
+          return x * f(x - 1);
+        }
+      };
+      console.log(f(5));
+
+      // arguments.callee  注意: 在严格模式(use strict)下不支持使用
+      function ff(x) {
+        if (x === 1) {
+          return 1;
+        } else {
+          return x * arguments.callee(x - 1);
+        }
+      }
+      console.log(ff(6));
+
+      //构造函数 构造函数习惯上首字母大写
+      // 调用方式不一样  作用也不一样(构造函数用来创建实例对象)
+      // Person() 这个构造函数 Person既是函数名 也是这个对象的类名
+      function Person() {}
+      new Person(); // 构造函数
+
+      function Person() {} // 一般是封装的方法
+    </script>
+  </body>
+</html>

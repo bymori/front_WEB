@@ -1,0 +1,57 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-27 01:56:49
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-27 02:07:14
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开发中重载和多态的使用场景有哪些</title>
+  </head>
+  <body>
+    <script>
+      //  重载的概念：
+      //    在程序中可以定义相同名字，不同参数的形式的不同函数。
+      //    函数在调用的函数的时候，自动识别不同参数对应的函数，实现了相同函数名不同的函数调用
+      //    Javascript本身是没有重载的，但是可以通过arguments实现函数重载
+
+      // 多态: 同一个东西在不同情况下的表现不同状态：重写和重载
+
+      // function 正方形和长方形面积 x*x x*y
+      // function(x) function(x,y)
+
+      function React() {
+        // arguments:[x,y,z,...]  类数组
+
+        // 如果传入的是一个参数 那就返回正方形
+        if (arguments.length >= 1) {
+          this.width = arguments[0];
+          this.height = arguments[0];
+        }
+
+        // 如果传入的是两个参数 那就返回长方形
+        if (arguments.length > 1) {
+          this.width = arguments[0];
+          this.height = arguments[1];
+        }
+
+        // 覆盖原型上的 toString()
+        this.toString = function () {
+          return `width:${this.width} height:${this.height}`;
+        };
+      }
+
+      var r1 = new React(10);
+      console.log(r1.toString());
+
+      var r2 = new React(7, 30);
+      console.log(r2.toString());
+    </script>
+  </body>
+</html>

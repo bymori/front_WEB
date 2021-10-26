@@ -1,0 +1,94 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-27 02:52:54
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-27 03:11:42
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开发中使用this的坑有哪些</title>
+  </head>
+  <body>
+    <script>
+      // this用法
+      // 指代当前调用的这个对象：4种绑定，规则分别是：默认绑定、隐式绑定、显示绑定、new绑定。优先级从低到高
+
+      var man = {
+        name: '沫沫',
+        age: 19,
+        getName: function () {
+          console.log(this.name);
+        },
+        getAge: function () {
+          //   function a() {
+          //     // 局部函数
+          //     console.log(this + ' 1 ' + this.age); // [object Window] 1 undefined
+          //     // 局部函数的this指向 window
+          //   }
+          var self = this;
+          function a() {
+            // 局部函数
+            console.log(self + ' 1 ' + self.age); // [object Object] 1 19
+            // 通过 self 保留了 this 指向
+          }
+          a(); // window.a()
+          console.log(this + ' 2 ' + this.age); // [object Object] 2 19
+        },
+      };
+
+      man.getName(); // 沫沫
+      man.getAge();
+
+      // 误区
+      //   $('#btn').click(function () {
+      //     // this 是被点击的 #content
+      //     var self = this;
+      //     $('.content').each(function () {
+      //       // $('#btn')
+      //       // this 是 .content 循环中当前的对象
+      //       // this 让然是刚才被点击的 #content
+      //     });
+      //   });
+
+      // 改变this指向
+      // call apply bind
+      var name = '末日';
+      var obj = {
+        name: '沫沫',
+        getName: function () {
+          console.log(this.name);
+        },
+      };
+      obj.getName(); // 沫沫
+      var fn = obj.getName;
+      fn(); // 末日 window
+
+      var fn1 = obj.getName.bind(obj); // 把this的指向绑定给obj
+      fn1(); // 沫沫
+
+      // bind方法
+      Function.prototype.newBind = function (obj) {
+        var self = this;
+        return function () {
+          self.apply(obj);
+        };
+      };
+      var bname = 'Tom';
+      var o = {
+        bname: 'Jack',
+        get: function () {
+          console.log(this.bname);
+        },
+      };
+
+      var f = o.get.newBind(o);
+      f(); // Jack
+    </script>
+  </body>
+</html>

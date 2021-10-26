@@ -1,0 +1,51 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-27 02:27:29
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-27 02:42:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开发中call、apply、bind的使用场景区分</title>
+  </head>
+  <body>
+    <script>
+      //  Function对象call、apply、bind
+      //    1.apply（）方法调用一个函数，其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数。
+      //    apply:方法能劫持另外一个对象的方法，继承另外一个对象的属性。
+
+      //    Function.apply(obj,args)方法能接收两个参数
+      //    Function.call(obj,args) 只是参数形式的不同
+      //    obj: 这个对象将代替Function类里this对象
+      //    args: 这个是数组，它将作为参数传给 Function(args -> arguments)
+
+      // call apply的区别
+      // call: 单个的参数传入
+      // apply: 以数组的形式传入
+      var stu1 = {
+        name: '沫沫',
+        age: 18,
+        say: function (school, grade) {
+          console.log(`${this.name}今年${school}年级${grade}`);
+        },
+      };
+      var stu2 = {
+        name: '末日',
+      };
+      stu1.say.call(stu2, '青', '三'); // 末日今年青年级三
+      stu1.say.apply(stu2, ['北', '二']); // 末日今年北年级二
+
+      // 应用: 类数组转数组 slice function
+      //   var arr = Array.prototype.slice.apply(arguments);
+
+      // bind: 类似于call 但是与其不同的是 call 调用后可以立即执行，但是bind需要一个变量进行接收后再执行
+      //   var val = stu1.say.bind();
+    </script>
+  </body>
+</html>

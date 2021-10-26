@@ -1,0 +1,60 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-27 00:18:56
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-27 00:43:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深入理解作用域和作用域链</title>
+  </head>
+  <body>
+    <script>
+      //  作用域scope:一个变量的可用范围 {a:1}-{b:2}-{}... window
+      //  作用域链scope chain: 以当前作用域的scope属性为起点依次引用每个AO(Activation Object)对象，又叫执行期上下文,直到window结束，形成多级引用关系chain:
+      //  js作用域：ES5
+      //  两大类：全局作用域 js window  var a=1 全局 window.a
+      //    函数作用域 function(){} function(){}
+      //    作用域 只能向外访问
+
+      //  解释执行，在执行过程中，JavaScript 引擎是严格按着作用域机制(scope)来执行的，并且JavaScript的变量和函数作用域是在定义时决定的，而不是执行时决定的。JavaScript中的变量作用域在函数体内有效，无块作用域
+
+      // 作用域
+      //   function a() {
+      //     function b() {
+      //       var bb = 234;
+      //     }
+      //     var aa = 123;
+      //     b();
+      //   }
+      //   var glob = 100;
+      //   a();
+      //   console.log(b); //b is not defined
+      //   console.log(a); // a(){...}
+      //   arr.push();
+      // [[scope]] 中所存储执行期上下文对象的集合，这个集合呈链式连接，我们把这种链式连接叫作用域链
+      // 作用域链： [0,1] => [函数本身作用域,全局的]
+
+      var buttons = [{ name: 'b1' }, { name: 'b2' }, { name: 'b3' }];
+      function bind() {
+        for (var i = 0; i < buttons.length; i++) {
+          // i=3
+          buttons[i].fun = function () {
+            // alert(i);
+            console.log(i);
+          };
+        }
+      }
+      bind();
+      buttons[0].fun(); // 3
+      buttons[1].fun(); // 3
+      buttons[2].fun(); // 3
+    </script>
+  </body>
+</html>
