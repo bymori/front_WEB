@@ -1,0 +1,64 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 22:14:48
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 22:33:09
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三种事件绑定的异同</title>
+  </head>
+  <body>
+    <input type="button" value="html事件点击" onclick="fun()" />
+    <input type="button" value="dom0级事件" id="btn" />
+    <input type="button" value="dom2级事件" id="btn1" />
+    <script>
+      // 广义的javascript: ECMAScript+DOM+BOM ,DOM0 DOM1 DOM2
+      // 狭义的javascript：ECMAScript, ES6 ES5 ES3
+
+      // 1.html事件
+      function fun() {
+        alert('hello html');
+      }
+
+      //dom0级事件（事件绑定）
+      //通过js代码给元素onclick属性赋值
+      document.getElementById('btn').onclick = function () {
+        alert('DOM0级事件 1');
+      };
+      document.getElementById('btn').onclick = function () {
+        alert('DOM0级事件 2');
+      };
+
+      //  dem2级事件(事件监听)
+      // DOM.addEventListener(event,function[,useCapture])  //移除：removeEventListener
+      //    event: (必须) 事件名，支持所有DOM事件
+      //    function: (必须) 指定事件触发时执行的函数
+      //    useCapture: (可选) 指定事件是否在捕获或冒泡阶段执行
+      //        true 捕获
+      //        false 冒泡  默认为false
+      // IE8:DOM.attachEvent(event,function)
+      //    event: (必须) 事件类型，需加 "on" 例如: onclick
+      //    function: (必须) 指定事件触发时执行的函数
+
+      document.getElementById('btn1').addEventListener('click', fun2);
+      document.getElementById('btn1').addEventListener('click', fun3);
+      function fun2() {
+        alert('hello DOM2 1');
+      }
+      function fun3() {
+        alert('hello DOM2 2');
+      }
+      // 事件监听的优点：可以绑定多个事件，常规的事件绑定只执行最后绑定的事件
+      //    原因：js不支持事件重载，绑定事件相当于一个变量存储的是函数的地址，如果再绑定一个事件，相当于变量指向另一个函数的地址；事件监听相当于订阅发布者，改变了数据，触发了事件，订阅这个事件的函数被执行。
+
+      //总结：事件绑定相当于绑定到DOM的属性，重复绑定会覆盖。而事件监听相当于添加属性到DOM对象，多次监听，就会多次添加属性到DOM对象，所以都会触发，不会覆盖。
+    </script>
+  </body>
+</html>

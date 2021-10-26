@@ -1,0 +1,30 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 19:04:40
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 19:27:22
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date对象中getMonth()需要注意哪些点</title>
+  </head>
+  <body>
+    <script>
+      // 存储或者获取月份时需要注意是0-11
+      var now = new Date();
+      console.log(now.getTime()); // 1635246384407 1970 1 1 0 至今的一个毫秒数
+      console.log(now.getDay()); // 本周的第几天 1~7
+      console.log(now.getDate()); // 本月的第几号
+      console.log(now.getMonth() + 1); // 月份 0~11
+      // js 设计时参照java1.1 now.getMonth():0-11=>1-12
+
+      // 获取时间 now: 本地客户端
+    </script>
+  </body>
+</html>

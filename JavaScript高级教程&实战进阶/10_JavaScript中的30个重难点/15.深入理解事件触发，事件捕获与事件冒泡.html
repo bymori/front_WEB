@@ -1,0 +1,104 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 22:44:56
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 23:12:25
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深入理解事件触发，事件捕获与事件冒泡</title>
+    <style>
+      #demo {
+        height: 200px;
+        width: 200px;
+        background-color: rgb(180, 7, 7);
+      }
+      #demo1 {
+        height: 100px;
+        width: 100px;
+        background-color: rgb(7, 180, 7);
+      }
+      #demo2 {
+        height: 50px;
+        width: 50px;
+        background-color: rgb(7, 82, 180);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo">
+      div0
+      <div id="demo1">
+        div1
+        <div id="demo2">点击div2</div>
+      </div>
+    </div>
+
+    <ul id="demo3">
+      <li>111</li>
+      <li>222</li>
+      <li>333</li>
+    </ul>
+    <script>
+      // 什么是事件对象: 事件触发时自动创建的，封装了事件发生的元素和属性信息
+      var obj2 = document.getElementById('demo2');
+      obj2.addEventListener(
+        'click',
+        function (e) {
+          e.stopPropagation();
+          // IE8: window.event arguments[0]
+          var e = e || window.event;
+          console.log(e);
+          // IE8: e.srcElement
+          if (e.target.nodeName.toLowerCase() == 'div') {
+            alert(e.target.innerHTML);
+          }
+        },
+        false
+        // true 捕获  false 冒泡
+      );
+
+      //  事件的一个周期
+      //  事件捕获，事件对象的触发 冒泡触发
+      //  事件冒泡应用: 1.阻止冒泡 e.stopPropagation(); IE: e.cancelBubble = true
+      var obj = document.getElementById('demo');
+      obj.addEventListener(
+        'click',
+        function (e) {
+          alert('div0');
+        },
+        false
+      );
+      var obj1 = document.getElementById('demo1');
+      obj1.addEventListener(
+        'click',
+        function (e) {
+          alert('div1');
+        },
+        false
+      );
+
+      // 事件委托
+      var obj3 = document.getElementById('demo3');
+      obj3.addEventListener(
+        'click',
+        function (e) {
+          // IE8: window.event arguments[0]
+          var e = e || window.event;
+          console.log(e);
+          // IE8: e.srcElement
+          if (e.target.nodeName.toLowerCase() == 'li') {
+            alert(e.target.innerHTML);
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

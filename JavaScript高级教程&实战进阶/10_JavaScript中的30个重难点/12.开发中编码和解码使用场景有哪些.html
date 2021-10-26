@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开发中编码和解码使用场景有哪些</title>
+  </head>
+  <body>
+    <script>
+      //    js对文字进行编码涉及3个函数：escape,encodeURI,encodeURIComponent，
+      //    相应3个解码函数：unescape,decodeURI,decodeURIComponent
+
+      // 传递参数时需要使用encodeURIComponent，这样组合的url才不会被#等特殊字符截断。
+      // 进行url跳转时可以整体使用encodeURI
+      // js使用数据时可以使用escape
+      //    escape对0-255以外的unicode值进行编码时输出%u****格式，其它情况下escape，encodeURI，encodeURIComponent编码结果相同。
+      //    最多使用的应为encodeURIComponent，它是将中文、韩文等特殊字符转换成utf-8格式的url编码，所以如果给后台传递参数需要使用encodeURIComponent时需要后台解码对utf-8支持（form中的编码方式和当前页面编码方式相同）
+      //    escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
+      //    encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，0-9，a-z，A-Z
+      //    encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~，0-9，a-z，A-Z
+
+      // unescape 方法  从用 escape 方法编码的 String 对象中返回已解码的字符串。
+      // decodeURI 方法  返回一个已编码的统一资源标识符 (URI) 的非编码形式。
+      // decodeURIComponent 方法  返回统一资源标识符 (URI) 的一个已编码组件的非编码形式。
+      //    URIComponent 是一个完整的 URI 的一部分
+      var url = 'https://www.ioinn.cn?key=hello&name=张三&num=123';
+
+      //   console.log(escape(url)); // 冒号被转码了 // https%3A//www.ioinn.cn%3Fkey%3Dhello%26name%3D%u5F20%u4E09%26num%3D123
+      //   var es = escape(url);
+      //   console.log(unescape(es)); // 解码
+
+      //   encodeURI 和 decodeURI
+      //   console.log(encodeURI(url)); // https://www.ioinn.cn?key=hello&name=%E5%BC%A0%E4%B8%89&num=123
+      //   var ec = encodeURI(url);
+      //   console.log(decodeURI(ec)); // https://www.ioinn.cn?key=hello&name=张三&num=123
+
+      //   encodeURIComponent 和 decodeURIComponent
+      console.log(encodeURIComponent(url)); // https%3A%2F%2Fwww.ioinn.cn%3Fkey%3Dhello%26name%3D%E5%BC%A0%E4%B8%89%26num%3D123
+      var ecent = encodeURIComponent(url);
+      console.log(decodeURIComponent(ecent)); // https://www.ioinn.cn?key=hello&name=张三&num=123
+    </script>
+  </body>
+</html>

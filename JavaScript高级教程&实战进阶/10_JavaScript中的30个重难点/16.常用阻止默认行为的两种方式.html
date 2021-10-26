@@ -1,0 +1,39 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-26 23:15:02
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-26 23:28:00
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>常用阻止默认行为的两种方式</title>
+  </head>
+  <body>
+    <a href="https://ioinn.cn">io小栈</a>
+    <form action="https://ioinn.cn">
+      <input type="submit" value="提交" name="sub" id="submit" />
+    </form>
+    <script>
+      // 让链接不跳转 或 按钮不提交
+      //  常见默认行为：
+      //    a标签自动跳转
+      //    input表单自动提交
+      var a = document.querySelector('a');
+      var input = document.getElementById('submit');
+      input.onclick = function (e) {
+        e.preventDefault();
+        //阻止默认事件
+        //preventDefault()[dom标准写法(ie678不兼容)]
+        //ie678用 returnValue
+        //或者利用return false也能阻止默认行为, 但是后面的代码不再执行, 没有兼容问题(只限传统注册方式)
+        // return false;
+      };
+    </script>
+  </body>
+</html>
