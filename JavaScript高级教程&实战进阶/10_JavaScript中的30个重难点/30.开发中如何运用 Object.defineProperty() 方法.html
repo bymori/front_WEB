@@ -1,0 +1,70 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: by_mori
+ * @Date: 2021-10-27 16:15:39
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-10-27 16:31:46
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开发中如何运用 Object.defineProperty() 方法</title>
+  </head>
+  <body>
+    <script>
+      //Object.defineProperty()方法
+      //应用场景
+
+      //Object.defineProperty(obj,prop,descriptor)
+      //obj:需要定义属性的对象
+      //prop:需要定义的属性
+      //descriptor：属性的描述描述符
+      //返回值：返回此对象
+
+      var obj = {};
+      var descriptor = {
+        // 数据描述符
+        configurable: false, // 表示该属性能否通过delete删除，能否修改属性的特性或者能否修改访问器属性，默认为false。当且仅当该属性的configurable为true时， 才能实现上述行为
+        writable: false, // 表示该属性的值是否可写，默认为false。当且仅当属性的writable为true时，其值才能被赋值运算符改变
+        enumerable: false, // 表示该属性是否可以枚举，即可否通过for...in访问属性。默认为false
+        value: 'hello world', // 表示该属性的值。 可以是任何有效的JS值。默认为undefined
+
+        // 访问器描述符：数据描述符和访问器描述符不能同时使用
+        // get:在读取属性时调用的函数，默认值为undefined.
+        // set:在写入属性时调用的函数，默认值为undefined
+      };
+
+      Object.defineProperty(obj, 'ioinn', descriptor);
+      console.log(obj.ioinn); // hello world
+
+      // vue的响应式原理用到了它的get\set方法
+      function defineReactive(obj, key, val) {
+        // 在此作用域内存存在一个val变量 由于闭包的存在 它不会被销毁 会一直保存在内存里面
+        Object.defineProperty(obj, key, {
+          //   writable: true,
+          // 获取key上的值
+          get() {
+            console.log('get', key);
+            return val;
+          },
+          // 设置key值
+          set(newVal) {
+            if (newVal !== val) {
+              console.log('set', key);
+              val = newVal;
+            }
+          },
+        });
+      }
+      const obj1 = {};
+      defineReactive(obj1, 'foo', '123'); // 操作对象 obj1
+      obj1.foo; // 触发get函数 get foo
+      obj1.foo = '456'; // set foo  触发set函数 此时 newVal = 456 而 val由于闭包 还是123
+      console.log(obj1);
+    </script>
+  </body>
+</html>
