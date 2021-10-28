@@ -1,0 +1,132 @@
+/*  + 加法  */
+body {
+  // 纯数字
+  $add1: 1 + 2; // 3
+  $add2: 1 + 2px; // 3px
+  $add3: 1px + 2; // 3px
+  $add4: 1px + 2px; //3px
+  // $add5: 1px + 2rem; // 不兼容的单位：“rem”和“px” 无法通过编译
+
+  // 纯字符串
+  $add5: 'a' + 'b'; // "ab"
+  $add6: 'a' + b; // "ab"
+  $add7: a + 'b'; // ab
+  $add8: a + b; // ab
+
+  // 数字和字符串
+  $add9: 1 + a; // 1a
+  $adda: a + 1; // a1
+  $addb: '1' + a; // "1a"
+  $addc: 1 + 'a'; // "1a"
+  $addd: 'a' + 1; // "a1"
+  $adde: a + '1'; // a1
+  $addf: 1 + '1'; // "11"
+
+  /* 纯数字 */
+  width: $add1;
+  width: $add2;
+  width: $add3;
+  width: $add4;
+
+  /* 纯字符串 */
+  width: $add5;
+  width: $add6;
+  width: $add7;
+  width: $add8;
+
+  /* 数字和字符串 */
+  width: $add9;
+  width: $adda;
+  width: $addb;
+  width: $addc;
+  width: $addd;
+  width: $adde;
+  width: $addf;
+
+  //  总结：
+  //    a.纯数字：只要有单位，结果必有单位
+  //    b.纯字符串：第一个字符串有无引号决定结果是否有引号
+  //    c数字和字符串：第一位有引号，结果必为引号；第一位对应数字非数字且最后一位带有引号，则结果必为引号
+}
+
+/*  - 减法  */
+body {
+  $add1: 1 - 2; // -1
+  $add2: 1 - 2px; // -1px
+  $add3: 1px - 2; // -1px
+  $add4: 1px - 2px; //-1px
+
+  $sub1: a - 1; // a-1
+  $sub2: 1 - a; // 1-a
+  $sub3: 'a' - 1; // "a"-1
+  $sub4: a - '1'; // a-"1"
+
+  width: $add1;
+  width: $add2;
+  width: $add3;
+  width: $add4;
+  width: $sub1;
+  width: $sub2;
+  width: $sub3;
+  width: $sub4;
+
+  //  总结：
+  //    每个字段必须前部分为数字，且两个字段只能一个后部分是字符(因为此时后缀被当被单位看待了)。
+  //    只要其中一个值首位不为数字的，结果就按顺序去除空格后拼接起来
+}
+
+/*  * 乘法  */
+body {
+  $num1: 1 * 2; // 2
+  $mul2: 1 * 2px; // 2px
+  $num3: 1px * 2; // 2px
+  //   $num4: 2px * 2px; // 编译不通过  4px*px 不是有效的CSS值。
+
+  $num5: 1 * 2abc; // 2abc
+
+  width: $num1;
+  width: $mul2;
+  width: $num3;
+  //   width: $num4;
+  width: $num5;
+
+  //  总结：
+  //    每个字段必须前部分为数字，且两个字段只能一个后部分是字符(因为此时后缀被当被单位看待了)。其余编译不通过
+}
+
+/*  / 除法  */
+body {
+  $num1: 3 / 10; // 0.3
+  $num2: 3px / 10; // 0.3px
+
+  width: $num1;
+  width: $num2;
+
+  //  总结：
+  //    不会四舍五入，精确到小数点后5位
+  //    每个字段必须前部分为数字，且当前者只是单纯数字无单位时，后者(除数)后部分不能有字符。其余结果就按顺序去除空格后拼接起来。
+  //    (因为此时后缀被当被单位看待了)
+}
+
+/*  % 取余  */
+body {
+  $num1: 1 % 5; // 1
+  $mul2: 1 % 5px; // 1px
+  $num3: 3px % 10; // 3px
+  $num4: 2px % 5px; // 2px
+  $num5: 2rem % 5rem; // 2rem
+  $num6: 1 % 5abc; // 1abc
+  $num7: 1%5abc; // 1% 5abc
+
+  width: $num1;
+  width: $mul2;
+  width: $num3;
+  width: $num4;
+  width: $num5;
+  width: $num6;
+  width: $num7;
+
+  //  总结：
+  //    值与"%"之间必须要有空格，否则会被看做字符串
+  //    两个字段可以都带符号 但必须相同
+}

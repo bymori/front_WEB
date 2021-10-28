@@ -1,0 +1,18 @@
+$width: 800px;
+$pen-size: 2em;
+$color: red;
+
+#app {
+  height: $width;
+  font-size: $pen-size;
+}
+
+#foo {
+  $def-color: pink !global;
+  background-color: $color;
+  color: $def-color;
+}
+
+#bar {
+  width: $def-color;
+}

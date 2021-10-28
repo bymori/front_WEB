@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/*  + 加法  */
+body { /* 纯数字 */ width: 3; width: 3px; width: 3px; width: 3px; /* 纯字符串 */ width: "ab"; width: "ab"; width: ab; width: ab; /* 数字和字符串 */ width: 1a; width: a1; width: "1a"; width: "1a"; width: "a1"; width: a1; width: "11"; }
+
+/*  - 减法  */
+body { width: -1; width: -1px; width: -1px; width: -1px; width: a-1; width: 1-a; width: "a"-1; width: a-"1"; }
+
+/*  * 乘法  */
+body { width: 2; width: 2px; width: 2px; width: 2abc; }
+
+/*  / 除法  */
+body { width: 0.3; width: 0.3px; }
+
+/*  % 取余  */
+body { width: 1; width: 1px; width: 3px; width: 2px; width: 2rem; width: 1abc; width: 1% 5abc; }

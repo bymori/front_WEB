@@ -1,0 +1,11 @@
+body {
+  $a1: 1 > 2; // false
+  $a2: 1 < 2; // true
+  $a3: 1 >= 2; // false
+  $a4: 1 <= 2; // true
+
+  width: $a1;
+  width: $a2;
+  width: $a3;
+  width: $a4;
+}

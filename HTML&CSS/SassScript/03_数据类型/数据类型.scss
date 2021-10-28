@@ -1,0 +1,74 @@
+/*  1.字符串 (Strings)    */
+
+$name: 'ioinn';
+$container: 'top bottom';
+$what: heart;
+
+body {
+  color: $name;
+  color: $container;
+  color: $what;
+}
+
+// 注：在编译 CSS 文件时不会改变其类型。只有一种情况例外，使用 `#{}` (interpolation) 时，有引号字符串将被编译为无引号字符串，这样便于在 mixin 中引用选择器名
+
+/*  2.数字(Numbers)    */
+
+$width: 200px;
+$height: 120px;
+
+$o: 0.5;
+
+body {
+  width: $width;
+  height: $height;
+  opacity: $o;
+}
+// 注：单位会和数字当做一个整体，进行算数运算
+
+/*  3.空值(Null)    */
+$value: null;
+
+body {
+  width: $value;
+}
+// 注：由于它代表空，所以不能够使用它与任何类型进行算数运算
+
+/*  4.布尔型(Booleans)    */
+
+$a: true;
+$b: false;
+
+// 注：只有自身是false和null才会返回false，其他一切都将返回true
+
+/*  5.数组 (Lists)    */
+
+$list0: 1px 2px 5px 6px;
+$list1: 1px 2px, 5px 6px;
+$list2: (1px 2px) (5px 6px);
+
+/*  6.映射(Maps)    */
+
+// $map: (
+//   $key1: value1,
+//   $key2: value2,
+//   $key3: value3
+// )
+
+/*  7.颜色 (Colors)    */
+
+$color: rgba(#f3e1e1, 0.3);
+$color1: lighten($color, 15%);
+$color2: darken($color, 15%);
+$color3: saturate($color, 15%);
+$color4: desaturate($color, 15%);
+$color5: (green + red);
+
+body {
+  color: $color;
+  color: $color1;
+  color: $color2;
+  color: $color3;
+  color: $color4;
+  color: $color5;
+}

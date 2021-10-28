@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/*  1.字符串 (Strings)    */
+body {
+  color: "ioinn";
+  color: "top bottom";
+  color: heart;
+}
+
+/*  2.数字(Numbers)    */
+body {
+  width: 200px;
+  height: 120px;
+  opacity: 0.5;
+}
+
+/*  3.空值(Null)    */
+/*  4.布尔型(Booleans)    */
+/*  5.数组 (Lists)    */
+/*  6.映射(Maps)    */
+/*  7.颜色 (Colors)    */
+body {
+  color: rgba(243, 225, 225, 0.3);
+  color: rgba(255, 255, 255, 0.3);
+  color: rgba(221, 170, 170, 0.3);
+  color: rgba(246, 222, 222, 0.3);
+  color: rgba(240, 228, 228, 0.3);
+  color: #ff8000;
+}

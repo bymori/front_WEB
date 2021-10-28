@@ -1,0 +1,4 @@
+body {
+  $a: 1>0 and 0>=5; // false
+  width: $a;
+}

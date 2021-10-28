@@ -1,0 +1,7 @@
+body {
+  $a: 1 == 1px; // true
+  $b: 'a' == a; // true
+
+  width: $a;
+  width: $b;
+}

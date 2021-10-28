@@ -1,0 +1,16 @@
+/* 
+	hello
+	world!
+*/
+
+// compile scss files to css
+// it's ready to do it.
+$pink: #ffc0cb;
+html {
+  background-color: $pink;
+}
+
+$color: red;
+/*!
+	color: #{$color}.
+*/

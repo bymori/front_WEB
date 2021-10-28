@@ -1,0 +1,13 @@
+#app {
+  height: 800px;
+  font-size: 2em;
+}
+
+#foo {
+  background-color: red;
+  color: pink;
+}
+
+#bar {
+  width: pink;
+}
