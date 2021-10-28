@@ -1,0 +1,11 @@
+a {
+  color: yellow;
+}
+
+a:hover {
+  color: green;
+}
+
+a:active {
+  color: blank;
+}

@@ -1,0 +1,9 @@
+a {
+  color: yellow;
+  &:hover {
+    color: green;
+  }
+  &:active {
+    color: blank;
+  }
+}
