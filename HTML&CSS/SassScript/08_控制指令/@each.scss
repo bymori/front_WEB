@@ -1,0 +1,18 @@
+// $list: puma, sea-slug, egret, salamander;
+// // @each $animal in puma, sea-slug, egret, salamander {
+// @each $animal in $list {
+//   .#{$animal}-icon {
+//     background-image: url('/images/#{$animal}.png');
+//   }
+// }
+
+$list: (puma, black, default), (sea-slug, blue, pointer), (egret, white, move);
+
+@each $animal, $color, $cursor in $list {
+  // @each $animal, $color, $cursor in (puma, black, default), (sea-slug, blue, pointer), (egret, white, move) {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+    border: 2px solid $color;
+    cursor: $cursor;
+  }
+}
