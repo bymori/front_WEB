@@ -4,41 +4,34 @@
  * @Author: by_mori
  * @Date: 2021-10-29 21:27:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-29 22:07:48
+ * @LastEditTime: 2021-10-29 22:43:40
  */
 
-// 同步读取文件 readFileSync  getSyncMime
-
 const http = require('http');
-const fs = require('fs');
-const common = require('./module/common.js');
 const path = require('path');
+const routes = require('./module/routes');
 const url = require('url');
 
 http
   .createServer(function (req, res) {
-    //http://127.0.0.1:8081/login.html
-    //http://127.0.0.1:8081/index.html
+    //创建静态web服务
+    routes.static(req, res, 'static');
 
-    //1、获取地址
-    // let pathname = req.url;
-    let pathname = url.parse(req.url).pathname;
-    pathname = pathname == '/' ? '/index.html' : pathname;
+    //路由
+    let pathName = url.parse(req.url).pathname;
 
-    //可以获取后缀名path.extname()
-    let extname = path.extname(pathname);
-
-    //2、通过fs模块读取文件
-    if (pathname != '/favicon.ico') {
-      fs.readFile('./static' + pathname, (err, data) => {
-        if (err) {
-          res.writeHead(404, { 'Content-Type': 'text/html;charset="utf-8"' });
-          res.end('404这个页面不存在');
-        }
-        let mime = common.getSyncMime(extname);
-        res.writeHead(200, { 'Content-Type': '' + mime + ';charset="utf-8"' });
-        res.end(data);
-      });
+    if (pathName == '/login') {
+      res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
+      res.end('执行登录');
+    } else if (pathName == '/register') {
+      res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
+      res.end('执行注册');
+    } else if (pathName == '/admin') {
+      res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
+      res.end('处理后的业务逻辑');
+    } else {
+      res.writeHead(404, { 'Content-Type': 'text/html;charset="utf-8"' });
+      // res.end('404');
     }
   })
   .listen(8081);
