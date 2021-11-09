@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-09 01:49:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-09 02:00:05
+ * @LastEditTime: 2021-11-09 15:54:34
  */
 function ioCompose(...fns) {
   var length = fns.length;
