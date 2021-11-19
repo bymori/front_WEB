@@ -15,7 +15,6 @@
 - Docker Swarm
 - CI\CD Jenkins
 
-
 ## Docker概述
 
 ### Docker为什么出现？
@@ -35,14 +34,10 @@ Docker给以上的问题，提出了解决方案！
 
 ![image-20211007200022942](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211007200022942.png)
 
-
-
 Docker的思想就来自于集装箱！
 JRE -- 多个应用（端口冲突）--原来都是交叉的！
 隔离：Docker核心思想！打包装箱！每个箱子是互相隔离的。
 Docker通过隔离机制，可以将服务器利用到极致！
-
-
 
 ### Docker的历史
 
@@ -58,17 +53,13 @@ vm:linux centos原生镜像(一个电脑！) 隔离，需要开启多个虚拟�
 docker:隔离，镜像(最核心的环境4m + jdk + mysq1) 十分的小巧，运行镜像就可以了！小巧！几个MKB秒级启动！
 ```
 
-
-
 Docker是基于Go语言开发的！开源项目！
 
-官网：https://www.docker.com/
+官网：<https://www.docker.com/>
 
-文档地址：https://docs.docker.com/ 
+文档地址：<https://docs.docker.com/>
 
-仓库地址：https://hub.docker.com/  可以是用git命令
-
-
+仓库地址：<https://hub.docker.com/>  可以是用git命令
 
 ### Docker可以做什么
 
@@ -89,8 +80,6 @@ Docker是基于Go语言开发的！开源项目！
 - 容器内的应用直接运行在宿主机的内容，容器是没有自己的内核的，也没有虚拟我们的硬件，所以就轻便了
 - 每个容器间是互相隔离， 每个容器内都有一个属于自己的文件系统，互不影响。
 
-
-
 > DevOps (开发 运维)
 
 **应用更快速的交付和部署**
@@ -103,8 +92,6 @@ Docker:打包镜像发布测试，一键运行
 在容器化之后，我们的开发，测试环境都是高度一致的。
 **更高效的计算资源利用：**
 Docker是内核级别的虚拟化，可以再一个物理机上可以运行很多的容器实例！服务器的性能可以被压榨到极致。
-
-
 
 ## Docker安装
 
@@ -124,7 +111,74 @@ Docker利用容器技术，独立运行一 个或者一个组应用，通过镜�
 Docker Hub（默认是国外的）
 阿里云...华为..都有容器服务器(配置镜像加速！)
 
+### 安装Docker
 
+```shell
+# 系统内核是 3.10 以上
+[root@VM-20-17-centos /]# uname -r
+3.10.0-1160.31.1.el7.x86_64
 
-### Docker安装
+```
 
+```shell
+# 系统版本
+[root@VM-20-17-centos /]# cat etc/os-release
+
+NAME="CentOS Linux"
+VERSION="7 (Core)"
+ID="centos"
+ID_LIKE="rhel fedora"
+VERSION_ID="7"
+PRETTY_NAME="CentOS Linux 7 (Core)"
+ANSI_COLOR="0;31"
+CPE_NAME="cpe:/o:centos:centos:7"
+HOME_URL="https://www.centos.org/"
+BUG_REPORT_URL="https://bugs.centos.org/"
+
+CENTOS_MANTISBT_PROJECT="CentOS-7"
+CENTOS_MANTISBT_PROJECT_VERSION="7"
+REDHAT_SUPPORT_PRODUCT="centos"
+REDHAT_SUPPORT_PRODUCT_VERSION="7"
+
+```
+
+#### 安装
+
+```shell
+# 1. 卸载旧的版本
+yum remove docker \
+            docker-client \
+            docker-client-latest \
+            docker-common \
+            docker-latest \
+            docker-latest-logrotate \
+            docker-logrotate \
+            docker-engine
+
+# 2. 需要的 安装包
+yum install -y yum-utils
+
+# 3. 设置镜像的仓库
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo # 默认是国外地址 速度较慢
+
+yum-config-manager \
+    --add-repo \
+    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # 国内阿里云 镜像地址
+
+# 更新yum软件包索引
+yum makecache fast
+
+# 4. 安装 docker 
+yum install docker-ce docker-ce-cli containerd.io
+
+# 查看 版本
+docker version
+
+# 5. 启动
+systemctl start docker
+
+# 6. 运行 hello-world
+docker run hello-world
+```
