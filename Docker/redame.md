@@ -181,4 +181,162 @@ systemctl start docker
 
 # 6. 运行 hello-world
 docker run hello-world
+
+# 查看 docker 镜像
+docker images
 ```
+
+### 镜像加速器
+
+<https://l6zzdqxw.mirror.aliyuncs.com>
+
+```shell
+# 配置镜像加速器
+sudo mkdir -p /etc/docker
+
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://l6zzdqxw.mirror.aliyuncs.com"]
+}
+EOF
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart docker
+```
+
+## Docker的常用命令
+
+### 帮助命令
+
+```shell
+docker port      # 查看映射端口对应的容器内部源端口
+docker pause     # 暂停容器
+docker ps        # 猎户容器列表
+docker pull      # 从docker镜像源服务器拉取指定镜像或者库镜像
+docker push      # 推送指定镜像或者库镜像至docker源服务器
+docker restart   # 重启运行的容器
+docker rm        # 移除一个或多个容器
+docker rmi       # 移除一个或多个镜像 （无容器使用该镜像才可删除，否则需要删除相关容器才可继续或 -f 强制删除）
+docker run       # 创建一个新的容器并运行一个命令
+docker save      # 保存一个镜像为一个 tar 包【对应 load】
+docker search    # 在 docker hub 中搜索镜像
+docker start     # 启动容器
+docker stop      # 停止容器
+docker tag       # 给源中镜像打标签
+docker top       # 查看容器中运行的进程信息
+docker unpause   # 取消暂停容器
+docker version   # 查看 docker版本号
+docker info   # 显示 docker 系统信息 包括镜像和容器的数量
+docker wait      # 截取容器停止时的退出状态值
+docker 命令 --help # 万能命令
+```
+
+### 镜像命令
+
+**docker images** 查看所有本地主机上的镜像
+
+```shell
+[root@VM-20-17-centos /]# docker images
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+hello-world   latest    feb5d9fea6a5   8 weeks ago   13.3kB
+
+# 解释
+REPOSITORY  镜像的 仓库源
+TAG         镜像的 标签
+IMAGE ID    镜像的 ID
+CREATED     镜像的 创建时间
+SIZE        镜像的 大小
+
+# 可选项:
+  -a, --all             # 列出所有镜像
+  -q, --quiet           # 只显示镜像的id
+```
+
+**docker search** 搜索镜像
+
+```shell
+[root@VM-20-17-centos /]# docker search mysql
+NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+mysql                             MySQL is a widely used, open-source relation…   11707     [OK]       
+mariadb                           MariaDB Server is a high performing open sou…   4458      [OK]    
+
+# 可选项:
+  -f, --filter filter     根据提供的条件输出过滤
+      --format string   使用GO模板的精美打印搜索
+      --limit int       最大搜索结果数(默认值为25)
+      --no-trunc        不截断输出
+
+[root@VM-20-17-centos /] # docker search mysql --filter=STARS=3000
+NAME      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+mysql     MySQL is a widely used, open-source relation…   11707     [OK]       
+mariadb   MariaDB Server is a high performing open sou…   4458      [OK]  
+```
+
+**docker pull** 下载镜像
+
+```shell
+# 下载镜像 docker pull 镜像名[:tag]
+
+[root@VM-20-17-centos /]# docker pull mysql
+Using default tag: latest # 如果不写 tag 则默认下载最新版本 latest
+latest: Pulling from library/mysql
+a10c77af2613: Pull complete # 分层下载 docker images 的核心  联合文件系统
+b76a7eb51ffd: Pull complete 
+258223f927e4: Pull complete 
+2d2c75386df9: Pull complete 
+63e92e4046c9: Pull complete 
+f5845c731544: Pull complete 
+bd0401123a9b: Pull complete 
+3ef07ec35f1a: Pull complete 
+c93a31315089: Pull complete 
+3349ed800d44: Pull complete 
+6d01857ca4c1: Pull complete 
+4cc13890eda8: Pull complete 
+Digest: sha256:aeecae58035f3868bf4f00e5fc623630d8b438db9d05f4d8c6538deb14d4c31b # 签名
+Status: Downloaded newer image for mysql:latest
+docker.io/library/mysql:latest # 真实地址
+
+docker pull mysql
+# 等价于
+docker pull docker.io/library/mysql:latest
+
+# 指定版本下载
+docker pull mysql:5.7
+
+[root@VM-20-17-centos /]# docker pull mysql:5.7
+5.7: Pulling from library/mysql
+a10c77af2613: Already exists 
+b76a7eb51ffd: Already exists 
+258223f927e4: Already exists 
+2d2c75386df9: Already exists 
+63e92e4046c9: Already exists 
+f5845c731544: Already exists 
+bd0401123a9b: Already exists 
+2724b2da64fd: Pull complete 
+d10a7e9e325c: Pull complete 
+1c5fd9c3683d: Pull complete 
+2e35f83a12e9: Pull complete 
+Digest: sha256:7a3a7b7a29e6fbff433c339fc52245435fa2c308586481f2f92ab1df239d6a29
+Status: Downloaded newer image for mysql:5.7
+docker.io/library/mysql:5.7
+
+
+# 可选项:
+  -a, --all-tags                下载存储库中所有已标记的图像
+      --disable-content-trust   跳过映像验证(默认值为true)
+      --platform string         如果服务器支持多平台，则设置平台
+  -q, --quiet                   禁止详细输出
+
+```
+
+**docker rml** 删除镜像
+
+```shell
+# -f Force 表示强制删除
+[root@VM-20-17-centos /]# docker rmi -f 容器id # 删除指定的容器
+[root@VM-20-17-centos /]# docker rmi -f 容器id 容器id 容器id # 删除多个容器
+[root@VM-20-17-centos /]# docker rmi -f $(docker images -aq) # 删除全部的容器
+```
+
+### 容器命令
