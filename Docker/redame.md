@@ -765,3 +765,142 @@ unpause   Unpause all processes within a container                         #取�
 version   Show the Docker version information                              #查看容器版本号
 wait      Block until a container stops, then print its exit code          #截取容器停止时的退出状态值
 ```
+
+### 练习
+
+#### Docker安装Nginx
+
+1. 搜索镜像 search 建议去[docker搜索](https://hub.docker.com/), 可以看到帮助文档
+2. 下载镜像 pull
+3. 运行测试
+
+```shell
+[root@VM-20-17-centos /]# docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+nginx         latest    ea335eea17ab   3 days ago     141MB
+centos        latest    5d0da3dc9764   2 months ago   231MB
+
+# -d 后台运行
+# --name 给容器命名
+# -p 宿主机端口, 容器内部端口
+[root@VM-20-17-centos /]# docker run -d --name nginx01 -p 3344:80 nginx
+8bdda459160982d8c9638ddc82f2112e7b3f5a580c1abc9b817c379a24ae695c
+[root@VM-20-17-centos /]# docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+8bdda4591609   nginx     "/docker-entrypoint.…"   8 seconds ago   Up 7 seconds   0.0.0.0:3344->80/tcp, :::3344->80/tcp   nginx01
+[root@VM-20-17-centos /]# curl localhost:3344
+
+# 进入容器
+[root@VM-20-17-centos /]# docker exec -it nginx01 /bin/bash
+root@8bdda4591609:/# whereis nginx
+nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx
+root@8bdda4591609:/# cd /etc/nginx
+root@8bdda4591609:/etc/nginx# ls
+conf.d	fastcgi_params	mime.types  modules  nginx.conf  scgi_params  uwsgi_params
+```
+
+访问3344端口 即可看到 nginx 即为成功
+![3344](https://cdn.jsdelivr.net/gh/bymori/image-PicX@main/img/n7bpiscahf-1637464073949.png)
+
+#### Docker安装 tomcat
+
+官方的使用
+
+```shell
+docker run -it --rm tomcat:9.0
+
+# 之前启动都是后台, 停止了容器之后 容器还可以查到  ocker run -it --rm 一般用来测试, 用完即删
+
+# 下载再启动 
+docker pull tomcat:9.0
+
+# 启动运行
+docker run -d -p 3355:8080 --name tomcat01 tomcat
+
+# 测试访问端口是否正常运行
+
+# 进入容器 
+[root@VM-20-17-centos home]# docker exec -it tomcat01 /bin/bash
+
+# 问题
+#  1. linux命令少了
+#  2. 没有webapps
+#     阿里云镜像的原因, 默认是最小的镜像。 所有不必要的都剔除掉, 保证最小可运行的环境
+
+## 解决方法
+webapps同级目录下 有一个 webapps.dist文件夹 修改文件夹名字 或拷贝全部文件到 webapps 即可正常运行
+```
+
+#### 部署 es + kibana
+
+```shell
+# es 暴露的端口非常多！
+# es 十分的耗内存
+# es 的数据一般需要放置到安全目录！ 挂载
+
+#  --net somenetwork 网络配置
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e
+```
+
+### 可视化面板
+
+- portainer (先用这个)
+  
+  ```shell
+  docker run -d -p 8080:9000 \
+  --restart=always -v /var/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer
+  ```
+
+- Rancher (CI/CD 再用)
+
+#### 什么是 portainer
+
+Docker 图形化管理界面! 提供后台面板操作
+
+```shell
+docker run -d -p 8080:9000 \
+--restart=always -v /var/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer
+```
+
+访问域名端口进行测试 http://ip:8080/
+
+设置admin用户密码，需要输入两次相同的密码
+![portainer？](https://cdn.jsdelivr.net/gh/bymori/image-PicX@main/img/c4hqd0594x-1637498531129.png)
+
+## Docker 镜像
+
+## 容器数据卷
+
+### 安装 MySql
+
+```shell
+# 获取镜像 MySql 5.7 版本
+[root@VM-20-17-centos home]# docker pull mysql:5.7
+
+# 运行容器， 需要做数据挂载 ！！！ 
+#   安装启动 mysql需要配置密码 否则无法启动！！！
+# 官方实例
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=你的密码 -d mysql:tag
+
+# 启动mysql
+-d 后台运行
+-p 端口映射
+-v 环境配置
+--name 容器名字
+[root@VM-20-17-centos home]# docker run -d -p 3310:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v/home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+
+# 启动成功后， 可以再本地使用数据库工具测试一下
+```
+
+![mysql](https://cdn.jsdelivr.net/gh/bymori/image-PicX@main/img/is4atnkveo-1637505551966.png)
+
+### 具名和匿名挂载
+
+```shell
+# 匿名挂载
+
+```
+
+## DockerFile
+
+## Docker 网络
