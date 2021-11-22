@@ -897,10 +897,78 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=你的密码 -d mysql:tag
 ### 具名和匿名挂载
 
 ```shell
-# 匿名挂载
+## 语法
+#  匿名挂载 -v 容器内路径
+#  具名挂载 -v 卷名:容器内路径
 
+# 匿名挂载
+-v 容器内路径
+docker run -d -P --name nginx10 -v /ect/nginx nginx
+
+# 查看所有 volume 的情况
+[root@VM-20-17-centos home]# docker volume ls
+DRIVER    VOLUME NAME
+local     7df2b1f0c109e383a3f41162dd52922b9ed9ff9e7284b4f307e029c226b48629
+
+## 这里发现 这种就是匿名挂载。 再 -v 只写了容器内的路径， 没有写容器外的路径
+
+# 具名挂载
+[root@VM-20-17-centos home]# docker run -d -P --name nginx20 -v jum-nginx:/etc/nginx nginx
+1af9aabb6013dc07dab368599d15cd1b5d890c97023a5d44f3e56fcfcee533f6
+
+[root@VM-20-17-centos home]# docker volume ls
+DRIVER    VOLUME NAME
+local     7df2b1f0c109e383a3f41162dd52922b9ed9ff9e7284b4f307e029c226b48629
+local     jum-nginx
+
+# 通过 -v 卷名:容器内路径
+```
+
+查看一下这个卷
+
+```shell{1,7}
+[root@VM-20-17-centos home]# docker volume inspect jum-nginx
+[
+  {
+    "CreatedAt": "2021-11-21T23:09:20+08:00",
+    "Driver": "local",
+    "Labels": null,
+    "Mountpoint": "/var/lib/docker/volumes/jum-nginx/_data",
+    "Name": "jum-nginx",
+    "Options": null,
+    "Scope": "local"
+  }
+]
+```
+
+所有的docker容器内的卷，没有指定目录的情况下都是在`/var/lib/docker/volumes/xxxx/_data`
+
+我们通过具名挂载可以方便的找到我们的一个卷，大多数情况在使用的是`具名挂载`
+
+```shell
+# 如何确定是具名挂载还是匿名挂载，或者是指定路径挂载
+-v 容器内路径             # 匿名挂载 
+-v 卷名:容器内路径         # 具名挂载 
+-v /宿主机路径::容器内路径  # 指定路径挂载
+
+## 拓展内容
+# 通过 -v 容器内路径: ro rw 改变读写权限
+ro readonly  # 只读
+rw readwrite # 可读写
+
+# 一旦设置了容器权限， 容器对我们挂载出来的内容就有了限定
+docker run -d -P --name nginx20 -v jum-nginx:/etc/nginx:ro nginx
+docker run -d -P --name nginx20 -v jum-nginx:/etc/nginx:rw nginx
+
+# ro 只要看到ro 就说明这个路径只能通过宿主机来操作， 容器内部是无法操作的
 ```
 
 ## DockerFile
+
+DockerFile 就是用来构建docker镜像的构建文件 ！ 命令脚本
+
+```shell
+
+```
 
 ## Docker 网络
