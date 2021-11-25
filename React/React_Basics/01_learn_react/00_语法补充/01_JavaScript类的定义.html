@@ -1,0 +1,67 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-11-25 20:46:25
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-11-25 22:44:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript类的定义</title>
+  </head>
+  <body>
+    <script>
+      // ES5中如何定义类
+      //   function Person(name, age) {
+      //     this.name = name;
+      //     this.age = age;
+      //   }
+
+      //   Person.prototype.running = function () {
+      //     console.log(this.name, this.age, 'running');
+      //   };
+
+      //   var p = new Person('momo', 19);
+      //   console.log(p.name, p.age);
+      //   p.running();
+
+      // ES6中通过class创建类
+      class Person {
+        // 构造方法
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+
+        // 定义方法
+        running() {
+          console.log(this);
+          console.log(this.name, this.age, 'running');
+        }
+      }
+
+      const p = new Person('momo', 19);
+      console.log(p.name, p.age);
+      p.running();
+
+      // this绑定
+      let func = p.running;
+      //   func(); // undefined
+
+      var obj = {
+        name: 'mori',
+        age: 20,
+      };
+      //   func.call(obj); // mori 20 running
+
+      // 重新给func赋值
+      func = func.bind(obj);
+      func(); // mori 20 running
+    </script>
+  </body>
+</html>
