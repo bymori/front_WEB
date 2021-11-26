@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-11-25 23:20:11
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-11-25 23:21:19
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组的高阶函数</title>
+  </head>
+  <body>
+    <script>
+      const names = ['abc', 'cba', 'nba', 'mba'];
+      /**
+       * 回调函数有三个参数:
+       *  参数一: 执行时的对应元素
+       *  参数二: 对应的下标值
+       *  参数三: 完整的数组对象
+       */
+      const newNames = names.map((item, index, arr) => {
+        return item + '000';
+      });
+      console.log(newNames);
+
+      const newNames1 = names.forEach((item) => {
+        return item + '111';
+      });
+      console.log(newNames1);
+    </script>
+  </body>
+</html>
