@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-25 23:20:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-25 23:21:19
+ * @LastEditTime: 2021-11-26 22:01:36
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +32,20 @@
         return item + '111';
       });
       console.log(newNames1);
+
+      const nums = [110, 123, 50, 32, 55, 10, 8, 333];
+      const newNums = nums.filter((item, index, arr) => {
+        return item >= 50;
+      });
+      console.log(newNums);
+
+      const newNums2 = nums.filter((item) => {
+        // return item % 2 !== 0;
+        return item % 2 === 0;
+      });
+      console.log(newNums2);
+
+      console.log(nums.slice(-2));
     </script>
   </body>
 </html>
