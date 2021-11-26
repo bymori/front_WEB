@@ -1,0 +1,74 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-11-26 16:33:11
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-11-26 20:14:20
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11_jsx绑定属性</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div style="color: blue; font-size: 30px">body div</div>
+
+    <script src="../react/react.development.js"></script>
+    <script src="../react/react-dom.development.js"></script>
+    <script src="../react/babel.min.js"></script>
+
+    <script type="text/babel">
+      function getSizeImage(imgUrl, size) {
+        return imgUrl + `?param=${size}x${size}`;
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            title: '标题',
+            imgUrl:
+              'https://cdn.jsdelivr.net/gh/bymori/image-PicX@main/blog/image.69uvm447wr80.png',
+            link: 'https://blog.ioinn.cn/',
+            active: true,
+          };
+        }
+
+        render() {
+          const { title, imgUrl, link, active } = this.state;
+
+          return (
+            <div>
+              {/* 1.绑定普通属性 */}
+              <h2 title={title}>我是标题</h2>
+              <img src={getSizeImage(imgUrl, 150)} alt="图片显示错误" />
+              <a href={link} target="_blank">
+                io小栈
+              </a>
+
+              {/* 2.绑定class */}
+              <div className="box title">我是div元素</div>
+              <div className={'box title ' + (active ? 'active' : '')}>
+                我也是div元素
+              </div>
+              <label htmlFor=""></label>
+
+              {/* 3.绑定style */}
+              <div style={{ color: 'red', fontSize: '50px' }}>
+                我是div,绑定style属性
+              </div>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>
