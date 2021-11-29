@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-29 12:09:12
+ * @LastEditTime: 2021-11-29 14:54:26
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -22,6 +22,11 @@ import ReactDOM from 'react-dom';
 
 // import App from './04_组件通信案例/App.js';
 
-import App from './05_React实现slot/App.js';
+// import App from './05_React实现slot/App.js';
+
+// import App from './06_跨组件的通信/01_跨组件通信-props.js';
+// import App from './06_跨组件的通信/02_跨组件通信-context.js';
+// import App from './06_跨组件的通信/03_跨组件通信-context函数.js';
+import App from './06_跨组件的通信/04_跨组件通信-多个context.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
