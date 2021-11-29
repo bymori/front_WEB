@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-29 14:54:26
+ * @LastEditTime: 2021-11-29 19:06:39
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -27,6 +27,12 @@ import ReactDOM from 'react-dom';
 // import App from './06_跨组件的通信/01_跨组件通信-props.js';
 // import App from './06_跨组件的通信/02_跨组件通信-context.js';
 // import App from './06_跨组件的通信/03_跨组件通信-context函数.js';
-import App from './06_跨组件的通信/04_跨组件通信-多个context.js';
+// import App from './06_跨组件的通信/04_跨组件通信-多个context.js';
+
+// import App from './07_setState的使用/01_为什么使用setState.js';
+// import App from './07_setState的使用/02_setState是异步更新.js';
+// import App from './07_setState的使用/03_setState是同步更新.js';
+// import App from './07_setState的使用/04_setState数据的合并.js';
+import App from './07_setState的使用/05_setState本身的合并.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
