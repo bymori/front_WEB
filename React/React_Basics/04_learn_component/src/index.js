@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-29 19:06:39
+ * @LastEditTime: 2021-11-29 22:01:27
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -33,6 +33,12 @@ import ReactDOM from 'react-dom';
 // import App from './07_setState的使用/02_setState是异步更新.js';
 // import App from './07_setState的使用/03_setState是同步更新.js';
 // import App from './07_setState的使用/04_setState数据的合并.js';
-import App from './07_setState的使用/05_setState本身的合并.js';
+// import App from './07_setState的使用/05_setState本身的合并.js';
+
+// import App from './08_React性能优化/01_列表中keys的作用.js';
+// import App from './08_React性能优化/02_组件嵌套的render调用.js';
+// import App from './08_React性能优化/03_shouldComponentUpdate.js';
+// import App from './08_React性能优化/04_PureComponent.js';
+import App from './08_React性能优化/05_memo的使用.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
