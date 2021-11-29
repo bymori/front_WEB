@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-29 09:44:39
+ * @LastEditTime: 2021-11-29 11:37:38
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -18,6 +18,8 @@ import ReactDOM from 'react-dom';
 // import App from './03_组件间的通信/02_父传子通信-类组件.js';
 // import App from './03_组件间的通信/03_父传子通信-函数组件.js';
 // import App from './03_组件间的通信/04_父传子通信-属性验证.js';
-import App from './03_组件间的通信/05_子传父通信-函数传递.js';
+// import App from './03_组件间的通信/05_子传父通信-函数传递.js';
+
+import App from './04_组件通信案例/App.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
