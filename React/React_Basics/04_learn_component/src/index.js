@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-30 08:32:39
+ * @LastEditTime: 2021-11-30 21:41:27
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -42,6 +42,12 @@ import ReactDOM from 'react-dom';
 // import App from './08_React性能优化/05_memo的使用.js';
 
 // import App from './09_知识点补充/01_setState不可变的力量.js';
-import App from './09_知识点补充/02_全局事件传递.js';
+// import App from './09_知识点补充/02_全局事件传递.js';
+
+// import App from './10_受控和非受控组件/01_refs的使用.js';
+// import App from './10_受控和非受控组件/02_受控组件的基本使用.js';
+// import App from './10_受控和非受控组件/03_受控组件-select的使用.js';
+// import App from './10_受控和非受控组件/04_受控组件-多输入.js';
+import App from './10_受控和非受控组件/05_非受控组件的使用.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
