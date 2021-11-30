@@ -154,7 +154,7 @@ Git本地有三个工作区域：`工作目录（Working Directory）`、`暂存
 
 如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。文件在这四个区域之间的转换关系如下：
 
-![image-20211023183420715](https://gitee.com/bymori/pic-go-core/raw/master/img/image-20211023183420715.png)
+<img src="https://cdn.jsdelivr.net/gh/bymori/image-PicX/typora/image-20211130212211389.png" alt="image-20211023183420715" style="zoom: 25%;" />
 
 - `Workspace`：工作区，就是你平时存放项目代码的地方
 - `Index / Stage`：暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息
