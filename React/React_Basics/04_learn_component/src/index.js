@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-29 22:01:27
+ * @LastEditTime: 2021-11-30 08:32:39
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -39,6 +39,9 @@ import ReactDOM from 'react-dom';
 // import App from './08_React性能优化/02_组件嵌套的render调用.js';
 // import App from './08_React性能优化/03_shouldComponentUpdate.js';
 // import App from './08_React性能优化/04_PureComponent.js';
-import App from './08_React性能优化/05_memo的使用.js';
+// import App from './08_React性能优化/05_memo的使用.js';
+
+// import App from './09_知识点补充/01_setState不可变的力量.js';
+import App from './09_知识点补充/02_全局事件传递.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
