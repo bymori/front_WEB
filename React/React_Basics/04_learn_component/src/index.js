@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-30 21:41:27
+ * @LastEditTime: 2021-12-01 21:34:42
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -48,6 +48,13 @@ import ReactDOM from 'react-dom';
 // import App from './10_受控和非受控组件/02_受控组件的基本使用.js';
 // import App from './10_受控和非受控组件/03_受控组件-select的使用.js';
 // import App from './10_受控和非受控组件/04_受控组件-多输入.js';
-import App from './10_受控和非受控组件/05_非受控组件的使用.js';
+// import App from './10_受控和非受控组件/05_非受控组件的使用.js';
+
+// import App from './11_高阶组件的使用/01_高阶组件的定义方式.js';
+// ReactDOM.render(<App name="momo" />, document.getElementById('root'));
+
+// import App from './11_高阶组件的使用/02_高阶组件应用-增强props.js';
+// import App from './11_高阶组件的使用/03_高阶组件应用-增强props-默认.js';
+import App from './11_高阶组件的使用/04_高阶组件应用-增强props-改进.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
