@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-28 16:07:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-01 22:10:58
+ * @LastEditTime: 2021-12-01 22:26:20
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -58,6 +58,8 @@ import ReactDOM from 'react-dom';
 // import App from './11_高阶组件的使用/04_高阶组件应用-增强props-改进.js';
 // import App from './11_高阶组件的使用/05_高阶组件应用-登录鉴权操作.js';
 // import App from './11_高阶组件的使用/06_高阶组件应用-生命周期劫持-默认.js';
-import App from './11_高阶组件的使用/07_高阶组件应用-生命周期劫持-增强.js';
+// import App from './11_高阶组件的使用/07_高阶组件应用-生命周期劫持-增强.js';
+
+import App from './12_组件内容补充/01_ref的转发.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
