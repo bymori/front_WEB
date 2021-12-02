@@ -4,12 +4,13 @@
  * @Author: by_mori
  * @Date: 2021-12-02 22:04:11
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-02 22:05:06
+ * @LastEditTime: 2021-12-02 22:29:49
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './01_内联样式/App.js';
+// import App from './01_内联样式/App.js';
+import App from './02_普通的css/app';
 
 ReactDOM.render(
   <React.StrictMode>
