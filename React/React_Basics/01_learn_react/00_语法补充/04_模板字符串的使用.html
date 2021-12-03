@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-12-03 14:57:03
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-12-03 15:04:35
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.模板字符串的基本使用
+      const name = 'momo';
+      const age = 20;
+      const message = `my name is ${name}`;
+
+      // 2.标签模板字符串: 可以通过模板字符串的方式对一个函数进行调用
+
+      function test(...args) {
+        console.log(args);
+      }
+
+      test('aaa', 'ccc'); //  ['aaa', 'ccc']
+
+      test`aaaa`; //  ['aaaa']
+      test`my name is ${name}, age is ${age}`;
+
+      test`
+      font-size: 15px;
+      color: red;
+    `;
+    </script>
+  </body>
+</html>
