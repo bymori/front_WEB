@@ -4,9 +4,11 @@
  * @Author: by_mori
  * @Date: 2021-12-04 15:08:34
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-04 15:14:20
+ * @LastEditTime: 2021-12-04 15:29:47
  */
 const CracoLessPlugin = require('craco-less');
+const path = require('path');
+const resolve = (dir) => path.resolve(__dirname, dir);
 
 module.exports = {
   plugins: [
@@ -22,4 +24,10 @@ module.exports = {
       },
     },
   ],
+  webpack: {
+    alias: {
+      '@': resolve('src'),
+      components: resolve('src/components'),
+    },
+  },
 };
