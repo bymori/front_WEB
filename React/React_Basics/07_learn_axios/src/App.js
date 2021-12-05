@@ -4,11 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-04 21:26:20
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-05 10:40:50
+ * @LastEditTime: 2021-12-05 16:51:25
  */
 import React, { PureComponent } from 'react';
 
 import axios from 'axios';
+import request from './service/request';
 
 export default class App extends PureComponent {
   constructor(props) {
@@ -117,20 +118,77 @@ export default class App extends PureComponent {
     // 7. index.js  默认配置
     //
     // 8.创建新的实例
-    const instance1 = axios.create({
-      baseURL: 'http://ioinn.cn',
-      timeout: 5000,
-      headers: {},
-    });
+    // const instance1 = axios.create({
+    //   baseURL: 'http://ioinn.cn',
+    //   timeout: 5000,
+    //   headers: {},
+    // });
+    // const instance2 = axios.create({
+    //   baseURL: 'http://baidu.com',
+    //   timeout: 10000,
+    //   headers: {},
+    // });
+    //
+    // 9.请求和响应拦截
+    // 请求拦截
+    axios.interceptors.request.use(
+      (config) => {
+        // 1.发送网络请求时, 在界面的中间位置显示Loading的组件
 
-    const instance2 = axios.create({
-      baseURL: 'http://baidu.com',
-      timeout: 10000,
-      headers: {},
-    });
+        // 2.某一些请求要求用户必须携带token, 如果没有携带, 那么直接跳转到登录页面
+
+        // 3.params/data序列化的操作
+        console.log('请求被拦截');
+
+        return config;
+      },
+      (err) => {}
+    );
+
+    axios.interceptors.response.use(
+      (res) => {
+        return res.data;
+      },
+      (err) => {
+        if (err && err.response) {
+          switch (err.response.status) {
+            case 400:
+              console.log('请求错误');
+              break;
+            case 401:
+              console.log('未授权访问');
+              break;
+            default:
+              console.log('其他错误信息');
+          }
+        }
+        return err;
+      }
+    );
+
+    axios
+      .get('https://httpbin.org/get', {
+        params: {
+          name: 'momo',
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    request({
+      url: '/get',
+      params: {
+        name: 'mori',
+        age: 67,
+      },
+    }).then(console.log);
   }
 
   render() {
-    return <div>a</div>;
+    return <div>App</div>;
   }
 }
