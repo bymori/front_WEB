@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-05 19:18:52
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-05 22:03:57
+ * @LastEditTime: 2021-12-06 10:22:53
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,7 +12,5 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import 'antd/dist/antd.css';
-
-import './transition/CSSTransition.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));

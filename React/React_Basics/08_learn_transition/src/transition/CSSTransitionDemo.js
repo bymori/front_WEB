@@ -4,9 +4,11 @@
  * @Author: by_mori
  * @Date: 2021-12-05 21:03:32
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-05 23:14:20
+ * @LastEditTime: 2021-12-06 10:48:53
  */
 import React, { PureComponent } from 'react';
+
+import './CSSTransition.css';
 
 import { CSSTransition } from 'react-transition-group';
 
@@ -56,28 +58,28 @@ export default class CSSTransitionDemo extends PureComponent {
           appear
           onEnter={(el) => {
             this.setState({ loading: true });
-            console.log('开始进入');
+            console.log('1 开始进入');
           }}
-          onEntering={(el) => console.log('正在进入')}
+          onEntering={(el) => console.log('2 正在进入')}
           onEntered={(el) => {
             this.setState({ loading: false });
-            console.log('进入完成');
+            console.log('3 进入完成');
           }}
           onExit={(el) => {
             this.setState({ loading: true });
-            console.log('开始退出');
+            console.log('4 开始退出');
           }}
-          onExiting={(el) => console.log('退出状态')}
+          onExiting={(el) => console.log('5 退出状态')}
           onExited={(el) => {
             this.setState({ loading: false });
-            console.log('退出完成');
+            console.log('6 退出完成');
           }}>
           <Card
-            style={{ width: 300 }}
+            style={{ width: 300, margin: '0 auto' }}
             cover={
               <img
                 alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                src="https://cdn.jsdelivr.net/gh/bymori/image-PicX@main/blog/image.69uvm447wr80.png"
               />
             }
             actions={[
@@ -87,7 +89,7 @@ export default class CSSTransitionDemo extends PureComponent {
             ]}>
             <Meta
               avatar={
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                <Avatar src="https://cdn.jsdelivr.net/gh/bymori/image-PicX@main/blog/image.69uvm447wr80.png" />
               }
               title="Card title"
               description="This is the description"
