@@ -4,16 +4,20 @@
  * @Author: by_mori
  * @Date: 2021-12-06 11:19:01
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-06 12:21:17
+ * @LastEditTime: 2021-12-06 22:49:10
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import store from './store';
+
+import { StoreContext } from './utils/context';
+
 import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StoreContext.Provider value={store}>
     <App />
-  </React.StrictMode>,
+  </StoreContext.Provider>,
   document.getElementById('root')
 );
