@@ -6,7 +6,9 @@
   "dependencies": {
     "redux": "^4.1.2"
   },
+  "type": "module",
   "scripts": {
-    "start": "node --experimental-modules index.js"
+    "start": "node index.js",
+    "start2": "node --experimental-modules index.js"
   }
 }

@@ -4,59 +4,24 @@
  * @Author: by_mori
  * @Date: 2021-12-06 15:10:19
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-06 15:50:07
+ * @LastEditTime: 2021-12-06 16:38:58
  */
-// 1.导入redux(不能通过ES6的方式)
-// import / export 13.2.0开始支持
+import store from './store/index.js';
 
-// commonjs一种实现 -> nodejs
-const redux = require('redux');
+import {
+  addAction,
+  subAction,
+  incAction,
+  decAction,
+} from './store/actionCreators.js';
 
-// 定义 type 常量
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
-const ADD_NUMBER = 'ADD_NUMBER';
-const SUB_NUMBER = 'SUB_NUMBER';
-
-const initialState = {
-  counter: 0,
-};
-
-// reducer
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case INCREMENT:
-      return { ...state, counter: state.counter + 1 };
-    case DECREMENT:
-      return { ...state, counter: state.counter - 1 };
-    case ADD_NUMBER:
-      return { ...state, counter: state.counter + action.num };
-    case SUB_NUMBER:
-      return { ...state, counter: state.counter - action.num };
-
-    default:
-      return state;
-  }
-}
-
-// store(创建的时候需要传入一个reducer)
-const store = redux.createStore(reducer);
-
-// 订阅store的修改
 store.subscribe(() => {
-  console.log('counter:', store.getState().counter);
+  console.log(store.getState());
 });
 
-// actions
-const action1 = { type: INCREMENT };
-const action2 = { type: DECREMENT };
-
-const action3 = { type: ADD_NUMBER, num: 5 };
-const action4 = { type: SUB_NUMBER, num: 12 };
-
-// 派发action
-store.dispatch(action1);
-store.dispatch(action2);
-store.dispatch(action2);
-store.dispatch(action3);
-store.dispatch(action4);
+store.dispatch(addAction(10));
+store.dispatch(addAction(15));
+store.dispatch(subAction(8));
+store.dispatch(subAction(5));
+store.dispatch(incAction());
+store.dispatch(decAction());
