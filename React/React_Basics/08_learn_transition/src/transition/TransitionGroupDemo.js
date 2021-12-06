@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 10:51:55
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-06 11:02:30
+ * @LastEditTime: 2021-12-06 12:13:45
  */
 import React, { PureComponent } from 'react';
 
@@ -18,6 +18,7 @@ export default class TransitionGroupDemo extends PureComponent {
 
     this.state = {
       names: ['Sincere', 'Amie', 'momo'],
+      count: 0,
     };
   }
 
@@ -28,8 +29,11 @@ export default class TransitionGroupDemo extends PureComponent {
 
         {this.state.names.map((item, index) => {
           return (
-            <CSSTransition key={item + index} timeout={500} classNames="item">
-              <div>{item}</div>
+            <CSSTransition key={item} timeout={500} classNames="item">
+              <div>
+                {item}
+                <button onClick={(e) => this.removeItem(index)}>-</button>
+              </div>
             </CSSTransition>
           );
         })}
@@ -39,7 +43,14 @@ export default class TransitionGroupDemo extends PureComponent {
 
   addName() {
     this.setState({
-      names: [...this.state.names, 'mori'],
+      names: [...this.state.names, 'mori' + this.state.count++],
+    });
+  }
+
+  removeItem(index) {
+    // index indey indez
+    this.setState({
+      names: this.state.names.filter((item, indey) => index !== indey),
     });
   }
 }
