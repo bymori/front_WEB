@@ -4,16 +4,25 @@
  * @Author: by_mori
  * @Date: 2021-12-06 12:21:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-07 10:47:29
+ * @LastEditTime: 2021-12-07 16:31:23
  */
 import React, { PureComponent } from 'react';
 
+// 手动和redux联系
 // import Home from './pages/home';
 // import About from './pages/about';
+
+// 自定义的connect
 // import Home from './pages/home2';
 // import About from './pages/about2';
-import Home from './pages/home3';
-import About from './pages/about3';
+
+// react-redux-connect
+// import Home from './pages/home3';
+// import About from './pages/about3';
+
+// redux-thunk使用
+import Home from './pages/home4';
+import About from './pages/about4';
 
 export default class App extends PureComponent {
   render() {

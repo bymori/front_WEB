@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 16:36:34
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-07 11:10:10
+ * @LastEditTime: 2021-12-07 16:34:27
  */
 export const ADD_NUMBER = 'ADD_NUMBER';
 export const SUB_NUMBER = 'SUB_NUMBER';
@@ -14,3 +14,5 @@ export const DECREMENT = 'DECREMENT';
 // 轮播图和推荐数据
 export const CHANGE_BANNERS = 'CHANGE_BANNERS';
 export const CHANGE_RECOMMEND = 'CHANGE_RECOMMEND';
+
+export const FETCH_HOME_MULTIDATA = 'FETCH_HOME_MULTIDATA';

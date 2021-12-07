@@ -4,8 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-12-06 16:39:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-07 11:29:43
+ * @LastEditTime: 2021-12-07 18:49:40
  */
+import axios from 'axios';
+
 import {
   ADD_NUMBER,
   SUB_NUMBER,
@@ -13,6 +15,7 @@ import {
   DECREMENT,
   CHANGE_BANNERS,
   CHANGE_RECOMMEND,
+  FETCH_HOME_MULTIDATA,
 } from './constants.js';
 
 // 其他引用导入方式
@@ -64,3 +67,14 @@ export const changeRecommendAction = (recommends) => ({
   type: CHANGE_RECOMMEND,
   recommends,
 });
+
+// redux-thunk中定义的action函数
+export const getHomeMultidataAction = (dispatch) => {
+  axios({
+    url: 'http://123.207.32.32:8000/home/multidata',
+  }).then((res) => {
+    const data = res.data.data;
+    dispatch(changeBannersAction(data.banner.list));
+    dispatch(changeRecommendAction(data.recommend.list));
+  });
+};

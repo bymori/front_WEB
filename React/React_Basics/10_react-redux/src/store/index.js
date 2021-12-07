@@ -4,12 +4,18 @@
  * @Author: by_mori
  * @Date: 2021-12-06 16:08:24
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-06 19:30:30
+ * @LastEditTime: 2021-12-07 18:50:22
  */
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+
+import thunkMiddleware from 'redux-thunk';
 
 import reducer from './reducer.js';
 
-const store = createStore(reducer);
+// 应用一些中间件
+// 1.引入thunkMiddleware中间件(上面)
+
+const storeEnhancer = applyMiddleware(thunkMiddleware);
+const store = createStore(reducer, storeEnhancer);
 
 export default store;
