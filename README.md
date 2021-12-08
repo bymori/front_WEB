@@ -13,6 +13,7 @@
 9. [Axios](Axios)
 10. [Webpack](Webpack)
 11. [Vuejs](Vuejs)
+12. [React](React)
 
 HTML->CSS-JS->ES6->node->AJAX->Promise->Axios->vue(React)框架
 
