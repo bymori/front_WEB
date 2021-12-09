@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 12:21:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-07 16:31:23
+ * @LastEditTime: 2021-12-09 20:26:20
  */
 import React, { PureComponent } from 'react';
 
@@ -21,8 +21,11 @@ import React, { PureComponent } from 'react';
 // import About from './pages/about3';
 
 // redux-thunk使用
-import Home from './pages/home4';
+// import Home from './pages/home4';
 import About from './pages/about4';
+
+// redux-saga使用
+import Home from './pages/home5';
 
 export default class App extends PureComponent {
   render() {

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 16:39:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-07 18:49:40
+ * @LastEditTime: 2021-12-09 17:13:29
  */
 import axios from 'axios';
 
@@ -77,4 +77,9 @@ export const getHomeMultidataAction = (dispatch) => {
     dispatch(changeBannersAction(data.banner.list));
     dispatch(changeRecommendAction(data.recommend.list));
   });
+};
+
+// redux-saga拦截的action
+export const fetchHomeMultidataAction = {
+  type: FETCH_HOME_MULTIDATA,
 };
