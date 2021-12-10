@@ -4,10 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-12-10 15:32:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-10 20:59:02
+ * @LastEditTime: 2021-12-10 21:03:44
  */
 import React, { PureComponent } from 'react';
-import { NavLink, Route, Routes, Outlet } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 
 export function AboutHistory(props) {
   return <h2>企业成立于2000年, 拥有悠久的历史文化 </h2>;

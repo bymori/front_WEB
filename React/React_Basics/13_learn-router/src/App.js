@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-09 20:42:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-10 20:26:52
+ * @LastEditTime: 2021-12-10 21:02:53
  */
 import React, { PureComponent } from 'react';
 
@@ -18,6 +18,13 @@ import User from './pages/user';
 import './App.css';
 import NoMatch from './pages/noMatch';
 import Login from './pages/login';
+
+export function MyProfile(props) {
+  return <h2>MyProfile</h2>;
+}
+export function OthersProfile(props) {
+  return <h2>OthersProfile</h2>;
+}
 
 export default class App extends PureComponent {
   constructor(props) {
@@ -93,7 +100,10 @@ export default class App extends PureComponent {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about/*" element={<About />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />}>
+              <Route path=":id" element={<MyProfile />} />
+              <Route path="me" element={<OthersProfile />} />
+            </Route>
             <Route path="/user" element={<User />} />
             {/* <Route path="/:id" element={<User />} /> */}
             <Route path="/login" element={<Login />} />
