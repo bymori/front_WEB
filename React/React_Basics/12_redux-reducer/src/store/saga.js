@@ -4,14 +4,16 @@
  * @Author: by_mori
  * @Date: 2021-12-09 16:31:54
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-09 20:16:58
+ * @LastEditTime: 2021-12-10 10:16:05
  */
 import { takeEvery, put, all, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { FETCH_HOME_MULTIDATA, ADD_NUMBER } from './constants';
-
-import { changeBannersAction, changeRecommendAction } from './actionCreators';
+import { FETCH_HOME_MULTIDATA } from './home/constants';
+import {
+  changeBannersAction,
+  changeRecommendAction,
+} from './home/actionCreators';
 
 function* fetchHomeMultidata(action) {
   const res = yield axios.get('http://123.207.32.32:8000/home/multidata');

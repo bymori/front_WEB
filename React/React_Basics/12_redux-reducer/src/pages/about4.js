@@ -4,14 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-12-06 18:42:08
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-07 16:30:37
+ * @LastEditTime: 2021-12-10 10:15:23
  */
 import React from 'react';
 
 // import { connect } from '../utils/connect';
 import { connect } from 'react-redux';
 
-import { decAction, subAction } from '../store/actionCreators';
+import { decAction, subAction } from '../store/counter/actionCreators';
 
 function About(props) {
   return (
@@ -41,9 +41,9 @@ function About(props) {
 
 const mapStateToProps = (state) => {
   return {
-    counter: state.counter,
-    banners: state.banners,
-    recommends: state.recommends,
+    counter: state.counterInfo.counter,
+    banners: state.homeInfo.banners,
+    recommends: state.homeInfo.recommends,
   };
 };
 const mapDispatchToProps = (dispatch) => {
