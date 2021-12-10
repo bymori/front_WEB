@@ -1,0 +1,44 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-12-10 12:19:20
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-12-10 12:20:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>07_监听hash的改变</title>
+  </head>
+  <body>
+    <div id="app">
+      <a href="#/home">首页</a>
+      <a href="#/about">关于</a>
+
+      <div class="router-view"></div>
+    </div>
+
+    <script>
+      // 获取router-view的DOM
+      const routerViewEl = document.getElementsByClassName('router-view')[0];
+
+      // 监听URL的改变
+      window.addEventListener('hashchange', () => {
+        switch (location.hash) {
+          case '#/home':
+            routerViewEl.innerHTML = '首页';
+            break;
+          case '#/about':
+            routerViewEl.innerHTML = '关于';
+            break;
+          default:
+            routerViewEl.innerHTML = '';
+        }
+      });
+    </script>
+  </body>
+</html>
