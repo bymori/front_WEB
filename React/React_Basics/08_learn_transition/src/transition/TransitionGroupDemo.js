@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 10:51:55
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-06 12:13:45
+ * @LastEditTime: 2021-12-10 11:49:09
  */
 import React, { PureComponent } from 'react';
 
@@ -24,20 +24,21 @@ export default class TransitionGroupDemo extends PureComponent {
 
   render() {
     return (
-      <TransitionGroup>
+      <div>
         <button onClick={(e) => this.addName()}>+name</button>
-
-        {this.state.names.map((item, index) => {
-          return (
-            <CSSTransition key={item} timeout={500} classNames="item">
-              <div>
-                {item}
-                <button onClick={(e) => this.removeItem(index)}>-</button>
-              </div>
-            </CSSTransition>
-          );
-        })}
-      </TransitionGroup>
+        <TransitionGroup>
+          {this.state.names.map((item, index) => {
+            return (
+              <CSSTransition key={item} timeout={500} classNames="item">
+                <div>
+                  {item}
+                  <button onClick={(e) => this.removeItem(index)}>-</button>
+                </div>
+              </CSSTransition>
+            );
+          })}
+        </TransitionGroup>
+      </div>
     );
   }
 
