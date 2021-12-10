@@ -92,7 +92,7 @@ export default class App extends PureComponent {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about/*" element={<About />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/user" element={<User />} />
             {/* <Route path="/:id" element={<User />} /> */}
