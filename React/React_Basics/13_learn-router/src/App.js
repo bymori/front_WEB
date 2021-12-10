@@ -4,11 +4,18 @@
  * @Author: by_mori
  * @Date: 2021-12-09 20:42:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-10 21:02:53
+ * @LastEditTime: 2021-12-10 22:08:59
  */
 import React, { PureComponent } from 'react';
 
-import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Link,
+  NavLink,
+  Route,
+  Routes,
+  useNavigate,
+} from 'react-router-dom';
 
 import Home from './pages/home';
 import About from './pages/about';
@@ -18,12 +25,21 @@ import User from './pages/user';
 import './App.css';
 import NoMatch from './pages/noMatch';
 import Login from './pages/login';
+import Product from './pages/Product';
 
 export function MyProfile(props) {
   return <h2>MyProfile</h2>;
 }
 export function OthersProfile(props) {
   return <h2>OthersProfile</h2>;
+}
+
+function Merchandise() {
+  let navigate = useNavigate();
+  function handleClick() {
+    navigate('/product');
+  }
+  return <button onClick={handleClick}>商品</button>;
 }
 
 export default class App extends PureComponent {
@@ -92,6 +108,15 @@ export default class App extends PureComponent {
             用户
           </NavLink>
 
+          <Merchandise />
+
+          {/* <button
+            onClick={(e) => {
+              useNavigate('/product');
+            }}>
+            商品
+          </button> */}
+
           {/* Error: A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>. */}
           {/* https://blog.csdn.net/weixin_40906515/article/details/104957712 */}
 
@@ -105,6 +130,7 @@ export default class App extends PureComponent {
               <Route path="me" element={<OthersProfile />} />
             </Route>
             <Route path="/user" element={<User />} />
+            <Route path="/product" element={<Product />} />
             {/* <Route path="/:id" element={<User />} /> */}
             <Route path="/login" element={<Login />} />
 
