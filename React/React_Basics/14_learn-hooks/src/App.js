@@ -4,12 +4,20 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-11 18:12:07
+ * @LastEditTime: 2021-12-11 20:02:19
  */
-import React, { PureComponent } from 'react';
+import React from 'react';
 
-export default class App extends PureComponent {
-  render() {
-    return <div>learn-hooks</div>;
-  }
+import CounterClass from './01_体验hooks/01_counter-class';
+import CounterHook from './01_体验hooks/02_counter-hook';
+import CounterHook2 from './01_体验hooks/03_counter-hook';
+
+export default function App() {
+  return (
+    <div>
+      <CounterClass />
+      <CounterHook />
+      <CounterHook2 />
+    </div>
+  );
 }
