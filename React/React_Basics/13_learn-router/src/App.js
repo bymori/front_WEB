@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-09 20:42:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-11 11:20:16
+ * @LastEditTime: 2021-12-11 12:43:22
  */
 import React, { PureComponent } from 'react';
 
@@ -27,6 +27,7 @@ import NoMatch from './pages/noMatch';
 import Login from './pages/login';
 import Product from './pages/Product';
 import Detail from './pages/detail';
+import Detail2 from './pages/detail2';
 
 export function MyProfile(props) {
   return <h2>MyProfile</h2>;
@@ -59,6 +60,7 @@ export default class App extends PureComponent {
   render() {
     const activeClassName = ({ isActive }) => (isActive ? 'link-active' : '');
     const id = '123';
+    const info = { name: 'momo', age: 19, height: 1.79 };
 
     return (
       <div>
@@ -109,8 +111,13 @@ export default class App extends PureComponent {
           <NavLink to="/user" className={activeClassName}>
             用户
           </NavLink>
-          <NavLink to="/detail/:id" className={activeClassName}>
+          {/* <NavLink to="/detail/:id" className={activeClassName}> */}
+          <NavLink to={`/detail/${id}`} className={activeClassName}>
             详情
+          </NavLink>
+          {/* https://segmentfault.com/q/1010000040994344 参数传递 */}
+          <NavLink to={`/detail2?name=momo&age=19`} className={activeClassName}>
+            详情2
           </NavLink>
 
           <Merchandise />
@@ -137,6 +144,7 @@ export default class App extends PureComponent {
             <Route path="/user" element={<User />} />
             <Route path="/product" element={<Product />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/detail2" element={<Detail2 />} />
             {/* <Route path="/:id" element={<User />} /> */}
             <Route path="/login" element={<Login />} />
 

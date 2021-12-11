@@ -4,15 +4,15 @@
  * @Author: by_mori
  * @Date: 2021-12-11 11:06:04
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-11 11:43:50
+ * @LastEditTime: 2021-12-11 12:24:56
  */
 import React, { PureComponent } from 'react';
 import { useParams } from 'react-router-dom';
 
 function ProfilePage() {
-  let { id } = useParams();
-  console.log(id);
-  return <>{id}</>;
+  let params = useParams();
+  console.log(params);
+  return <>{params.id}</>;
 }
 
 export default class Detail extends PureComponent {
