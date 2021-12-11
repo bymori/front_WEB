@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-09 20:42:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-10 22:08:59
+ * @LastEditTime: 2021-12-11 11:20:16
  */
 import React, { PureComponent } from 'react';
 
@@ -26,6 +26,7 @@ import './App.css';
 import NoMatch from './pages/noMatch';
 import Login from './pages/login';
 import Product from './pages/Product';
+import Detail from './pages/detail';
 
 export function MyProfile(props) {
   return <h2>MyProfile</h2>;
@@ -57,6 +58,7 @@ export default class App extends PureComponent {
 
   render() {
     const activeClassName = ({ isActive }) => (isActive ? 'link-active' : '');
+    const id = '123';
 
     return (
       <div>
@@ -107,6 +109,9 @@ export default class App extends PureComponent {
           <NavLink to="/user" className={activeClassName}>
             用户
           </NavLink>
+          <NavLink to="/detail/:id" className={activeClassName}>
+            详情
+          </NavLink>
 
           <Merchandise />
 
@@ -131,6 +136,7 @@ export default class App extends PureComponent {
             </Route>
             <Route path="/user" element={<User />} />
             <Route path="/product" element={<Product />} />
+            <Route path="/detail/:id" element={<Detail />} />
             {/* <Route path="/:id" element={<User />} /> */}
             <Route path="/login" element={<Login />} />
 
