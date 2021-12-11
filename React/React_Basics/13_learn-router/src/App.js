@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-09 20:42:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-11 12:43:22
+ * @LastEditTime: 2021-12-11 15:28:16
  */
 import React, { PureComponent } from 'react';
 
@@ -21,13 +21,14 @@ import Home from './pages/home';
 import About from './pages/about';
 import Profile from './pages/profile';
 import User from './pages/user';
-
-import './App.css';
 import NoMatch from './pages/noMatch';
 import Login from './pages/login';
 import Product from './pages/Product';
 import Detail from './pages/detail';
 import Detail2 from './pages/detail2';
+import Detail3 from './pages/detail3';
+
+import './App.css';
 
 export function MyProfile(props) {
   return <h2>MyProfile</h2>;
@@ -120,6 +121,16 @@ export default class App extends PureComponent {
             详情2
           </NavLink>
 
+          <NavLink
+            to={{
+              pathname: '/detail3',
+              search: 'name=abc',
+              state: { a: 's' },
+            }}
+            className={activeClassName}>
+            详情3
+          </NavLink>
+
           <Merchandise />
 
           {/* <button
@@ -134,6 +145,7 @@ export default class App extends PureComponent {
 
           {/* https://reactrouter.com/docs/en/v6/upgrading/v5#remove-redirects-inside-switch 在这里有特殊的含义。仅当没有其他路由匹配时，它才会匹配。"*" */}
 
+          {/* 定义路径和组件之间的映射关系 */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about/*" element={<About />} />
@@ -145,6 +157,7 @@ export default class App extends PureComponent {
             <Route path="/product" element={<Product />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/detail2" element={<Detail2 />} />
+            <Route path="/detail3" element={<Detail3 />} />
             {/* <Route path="/:id" element={<User />} /> */}
             <Route path="/login" element={<Login />} />
 
