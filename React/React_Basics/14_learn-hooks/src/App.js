@@ -4,9 +4,9 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-11 22:34:41
+ * @LastEditTime: 2021-12-11 22:52:40
  */
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 
 // import CounterClass from './01_体验hooks/01_counter-class';
 // import CounterHook from './01_体验hooks/02_counter-hook';
@@ -19,6 +19,11 @@ import ClassCounterTitleChange from './03_useEffect使用/01_class实现title的
 import HookCounterChangeTitle from './03_useEffect使用/02_useEffect的hook实现title的修改';
 import EffectHookCancelDemo from './03_useEffect使用/03_useEffect模拟订阅和取消订阅';
 import MultiEffectHookDemo from './03_useEffect使用/04_多useEffect一起使用';
+
+import ContextHookDemo from './04_useContext使用/useContext的使用';
+
+export const UserContext = createContext();
+export const ThemeContext = createContext();
 
 export default function App() {
   const [show, setShow] = useState(true);
@@ -39,7 +44,14 @@ export default function App() {
       {/* <HookCounterChangeTitle /> */}
       {/* {show && <EffectHookCancelDemo />}
       <button onClick={(e) => setShow(!show)}>切换</button> */}
-      <MultiEffectHookDemo />
+      {/* <MultiEffectHookDemo /> */}
+
+      {/* 04_useContext使用 */}
+      <UserContext.Provider value={{ name: 'momo', age: 19 }}>
+        <ThemeContext.Provider value={{ fontSize: '30px', color: 'red' }}>
+          <ContextHookDemo />
+        </ThemeContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }
