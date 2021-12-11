@@ -4,9 +4,13 @@
  * @Author: by_mori
  * @Date: 2021-12-09 20:42:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-11 15:28:16
+ * @LastEditTime: 2021-12-11 16:02:12
  */
 import React, { PureComponent } from 'react';
+
+// import { renderRoutes } from 'react-router-config';
+
+import routes from './router';
 
 import {
   BrowserRouter,
@@ -15,6 +19,7 @@ import {
   Route,
   Routes,
   useNavigate,
+  useRoutes,
 } from 'react-router-dom';
 
 import Home from './pages/home';
@@ -30,12 +35,12 @@ import Detail3 from './pages/detail3';
 
 import './App.css';
 
-export function MyProfile(props) {
-  return <h2>MyProfile</h2>;
-}
-export function OthersProfile(props) {
-  return <h2>OthersProfile</h2>;
-}
+// export function MyProfile(props) {
+//   return <h2>MyProfile</h2>;
+// }
+// export function OthersProfile(props) {
+//   return <h2>OthersProfile</h2>;
+// }
 
 function Merchandise() {
   let navigate = useNavigate();
@@ -43,6 +48,11 @@ function Merchandise() {
     navigate('/product');
   }
   return <button onClick={handleClick}>商品</button>;
+}
+
+function CustomRoutes() {
+  let element = useRoutes(routes);
+  return element;
 }
 
 export default class App extends PureComponent {
@@ -146,7 +156,7 @@ export default class App extends PureComponent {
           {/* https://reactrouter.com/docs/en/v6/upgrading/v5#remove-redirects-inside-switch 在这里有特殊的含义。仅当没有其他路由匹配时，它才会匹配。"*" */}
 
           {/* 定义路径和组件之间的映射关系 */}
-          <Routes>
+          {/* <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about/*" element={<About />} />
             <Route path="/profile" element={<Profile />}>
@@ -157,13 +167,17 @@ export default class App extends PureComponent {
             <Route path="/product" element={<Product />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/detail2" element={<Detail2 />} />
-            <Route path="/detail3" element={<Detail3 />} />
-            {/* <Route path="/:id" element={<User />} /> */}
-            <Route path="/login" element={<Login />} />
+            <Route path="/detail3" element={<Detail3 />} /> */}
+          {/* <Route path="/:id" element={<User />} /> */}
+          {/* <Route path="/login" element={<Login />} /> */}
 
-            {/* https://reactrouter.com/docs/en/v6/getting-started/tutorial#adding-a-no-match-route */}
-            <Route path="*" element={<NoMatch />} />
-          </Routes>
+          {/* https://reactrouter.com/docs/en/v6/getting-started/tutorial#adding-a-no-match-route */}
+          {/* <Route path="*" element={<NoMatch />} />
+          </Routes> */}
+
+          {/* {renderRoutes(routes)} */}
+          <CustomRoutes />
+          {/* 使用useRoutes */}
         </BrowserRouter>
       </div>
     );

@@ -4,10 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-12-10 15:32:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-10 21:58:09
+ * @LastEditTime: 2021-12-11 16:42:54
  */
 import React, { PureComponent } from 'react';
-import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import { NavLink, Route, Routes, useNavigate, Outlet } from 'react-router-dom';
 
 export function AboutHistory(props) {
   return <h2>企业成立于2000年, 拥有悠久的历史文化 </h2>;
@@ -41,7 +41,7 @@ function JumpToJoin() {
 
 export default class About extends PureComponent {
   render() {
-    console.log(this.props.route);
+    // console.log(this.props.route);
 
     const activeClassName = ({ isActive }) => (isActive ? 'about-active' : '');
 
@@ -57,14 +57,18 @@ export default class About extends PureComponent {
           联系我们
         </NavLink>
         <JumpToJoin />
+
         {/* <button onClick={(e) => this.jumpToJoin()}>加入我们</button> */}
 
-        <Routes>
+        {/* <Routes>
           <Route path="history" element={<AboutHistory />} />
           <Route path="culture" element={<AboutCulture />} />
           <Route path="contact" element={<AboutContact />} />
           <Route path="join" element={<AboutJoin />} />
-        </Routes>
+        </Routes> */}
+
+        {/* <Navigate to="history" /> */}
+        <Outlet />
       </div>
     );
   }
