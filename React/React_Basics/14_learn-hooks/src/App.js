@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 20:38:32
+ * @LastEditTime: 2021-12-12 21:07:11
  */
 import React, { useState, createContext } from 'react';
 
@@ -43,6 +43,7 @@ import LayoutEffectCounterDemo from './10_useLayoutEffect/02_useLayoutEffect的c
 import CustomLifeHookDemo01 from './11_自定义Hook/01_认识自定义Hook';
 import CustomContextShareHook from './11_自定义Hook/02_自定义Hook练习-Context共享';
 import CustomScrollPositionHook from './11_自定义Hook/03_自定义Hook练习-获取滚动位置';
+import CustomDataStoreHook from './11_自定义Hook/04_自定义Hook练习-localStorage存储';
 
 export const UserContext = createContext();
 export const ThemeContext = createContext();
@@ -111,7 +112,8 @@ export default function App() {
         </TokenContext.Provider>
       </UserContext.Provider> */}
 
-      <CustomScrollPositionHook />
+      {/* <CustomScrollPositionHook /> */}
+      <CustomDataStoreHook />
     </div>
   );
 }
