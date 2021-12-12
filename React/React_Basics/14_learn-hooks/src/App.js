@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 17:19:37
+ * @LastEditTime: 2021-12-12 20:04:10
  */
 import React, { useState, createContext } from 'react';
 
@@ -40,8 +40,13 @@ import UseImperativeHandleHookDemo from './09_useImperativeHandle/02_useImperati
 import EffectCounterDemo from './10_useLayoutEffect/01_useEffect的count修改';
 import LayoutEffectCounterDemo from './10_useLayoutEffect/02_useLayoutEffect的count修改';
 
+import CustomLifeHookDemo01 from './11_自定义Hook/01_认识自定义Hook';
+import CustomContextShareHook from './11_自定义Hook/02_自定义Hook练习-Context共享';
+
 export const UserContext = createContext();
 export const ThemeContext = createContext();
+
+export const TokenContext = createContext();
 
 export default function App() {
   const [show, setShow] = useState(true);
@@ -92,8 +97,18 @@ export default function App() {
       {/* <UseImperativeHandleHookDemo /> */}
 
       {/* 10_useLayoutEffect */}
-      <EffectCounterDemo />
-      <LayoutEffectCounterDemo />
+      {/* <EffectCounterDemo /> */}
+      {/* <LayoutEffectCounterDemo /> */}
+
+      {/* 11_自定义Hook */}
+      {/* {show && <CustomLifeHookDemo01 />}
+      <button onClick={(e) => setShow(!show)}>切换</button> */}
+
+      <UserContext.Provider value={{ name: 'momo', age: 19 }}>
+        <TokenContext.Provider value="ioinn">
+          <CustomContextShareHook />
+        </TokenContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }
