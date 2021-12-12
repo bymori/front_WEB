@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 20:04:10
+ * @LastEditTime: 2021-12-12 20:38:32
  */
 import React, { useState, createContext } from 'react';
 
@@ -42,6 +42,7 @@ import LayoutEffectCounterDemo from './10_useLayoutEffect/02_useLayoutEffect的c
 
 import CustomLifeHookDemo01 from './11_自定义Hook/01_认识自定义Hook';
 import CustomContextShareHook from './11_自定义Hook/02_自定义Hook练习-Context共享';
+import CustomScrollPositionHook from './11_自定义Hook/03_自定义Hook练习-获取滚动位置';
 
 export const UserContext = createContext();
 export const ThemeContext = createContext();
@@ -104,11 +105,13 @@ export default function App() {
       {/* {show && <CustomLifeHookDemo01 />}
       <button onClick={(e) => setShow(!show)}>切换</button> */}
 
-      <UserContext.Provider value={{ name: 'momo', age: 19 }}>
+      {/* <UserContext.Provider value={{ name: 'momo', age: 19 }}>
         <TokenContext.Provider value="ioinn">
           <CustomContextShareHook />
         </TokenContext.Provider>
-      </UserContext.Provider>
+      </UserContext.Provider> */}
+
+      <CustomScrollPositionHook />
     </div>
   );
 }
