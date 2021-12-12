@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 15:53:04
+ * @LastEditTime: 2021-12-12 16:44:59
  */
 import React, { useState, createContext } from 'react';
 
@@ -33,6 +33,9 @@ import MemoHookDemo02 from './07_useMemo使用/02_useMemo传入子组件应用�
 
 // import RefHookDemo01 from './08_useRef/01_useRef引用DOM';
 import RefHookDemo02 from './08_useRef/02_useRef引用其他数据';
+
+import ForwardRefDemo from './09_useImperativeHandle/01_回顾forwardRef的用法';
+import UseImperativeHandleHookDemo from './09_useImperativeHandle/02_useImperativeHandle用法';
 
 export const UserContext = createContext();
 export const ThemeContext = createContext();
@@ -79,7 +82,11 @@ export default function App() {
 
       {/* 08_useRef使用 */}
       {/* <RefHookDemo01 /> */}
-      <RefHookDemo02 />
+      {/* <RefHookDemo02 /> */}
+
+      {/* 09_useImperativeHandle */}
+      {/* <ForwardRefDemo /> */}
+      <UseImperativeHandleHookDemo />
     </div>
   );
 }
