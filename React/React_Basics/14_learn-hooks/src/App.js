@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 09:57:56
+ * @LastEditTime: 2021-12-12 11:21:36
  */
 import React, { useState, createContext } from 'react';
 
@@ -24,6 +24,12 @@ import ContextHookDemo from './04_useContext使用/useContext的使用';
 
 import Home from './05_useReducer使用/home';
 import Profile from './05_useReducer使用/profile';
+
+import CallbackHookDemo01 from './06_useCallback使用/01_useCallback不能进行的性能优化';
+import CallbackHookDemo02 from './06_useCallback使用/02_useCallback进行的性能优化';
+
+import MemoHookDemo01 from './07_useMemo使用/01_useMemo复杂计算的应用';
+import MemoHookDemo02 from './07_useMemo使用/02_useMemo传入子组件应用类型';
 
 export const UserContext = createContext();
 export const ThemeContext = createContext();
@@ -57,8 +63,16 @@ export default function App() {
       </UserContext.Provider> */}
 
       {/* 05_useReducer使用 */}
-      <Home />
-      <Profile />
+      {/* <Home /> */}
+      {/* <Profile /> */}
+
+      {/* 06_useCallback使用 */}
+      {/* <CallbackHookDemo01 /> */}
+      {/* <CallbackHookDemo02 /> */}
+
+      {/* 07_useMemo使用 */}
+      {/* <MemoHookDemo01 /> */}
+      <MemoHookDemo02 />
     </div>
   );
 }
