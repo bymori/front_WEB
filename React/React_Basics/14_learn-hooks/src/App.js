@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 11:21:36
+ * @LastEditTime: 2021-12-12 15:53:04
  */
 import React, { useState, createContext } from 'react';
 
@@ -30,6 +30,9 @@ import CallbackHookDemo02 from './06_useCallback使用/02_useCallback进行的�
 
 import MemoHookDemo01 from './07_useMemo使用/01_useMemo复杂计算的应用';
 import MemoHookDemo02 from './07_useMemo使用/02_useMemo传入子组件应用类型';
+
+// import RefHookDemo01 from './08_useRef/01_useRef引用DOM';
+import RefHookDemo02 from './08_useRef/02_useRef引用其他数据';
 
 export const UserContext = createContext();
 export const ThemeContext = createContext();
@@ -72,7 +75,11 @@ export default function App() {
 
       {/* 07_useMemo使用 */}
       {/* <MemoHookDemo01 /> */}
-      <MemoHookDemo02 />
+      {/* <MemoHookDemo02 /> */}
+
+      {/* 08_useRef使用 */}
+      {/* <RefHookDemo01 /> */}
+      <RefHookDemo02 />
     </div>
   );
 }
