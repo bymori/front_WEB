@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-11 22:52:40
+ * @LastEditTime: 2021-12-12 09:57:56
  */
 import React, { useState, createContext } from 'react';
 
@@ -21,6 +21,9 @@ import EffectHookCancelDemo from './03_useEffect使用/03_useEffect模拟订阅�
 import MultiEffectHookDemo from './03_useEffect使用/04_多useEffect一起使用';
 
 import ContextHookDemo from './04_useContext使用/useContext的使用';
+
+import Home from './05_useReducer使用/home';
+import Profile from './05_useReducer使用/profile';
 
 export const UserContext = createContext();
 export const ThemeContext = createContext();
@@ -47,11 +50,15 @@ export default function App() {
       {/* <MultiEffectHookDemo /> */}
 
       {/* 04_useContext使用 */}
-      <UserContext.Provider value={{ name: 'momo', age: 19 }}>
+      {/* <UserContext.Provider value={{ name: 'momo', age: 19 }}>
         <ThemeContext.Provider value={{ fontSize: '30px', color: 'red' }}>
           <ContextHookDemo />
         </ThemeContext.Provider>
-      </UserContext.Provider>
+      </UserContext.Provider> */}
+
+      {/* 05_useReducer使用 */}
+      <Home />
+      <Profile />
     </div>
   );
 }
