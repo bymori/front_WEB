@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-11 18:11:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 16:44:59
+ * @LastEditTime: 2021-12-12 17:19:37
  */
 import React, { useState, createContext } from 'react';
 
@@ -36,6 +36,9 @@ import RefHookDemo02 from './08_useRef/02_useRef引用其他数据';
 
 import ForwardRefDemo from './09_useImperativeHandle/01_回顾forwardRef的用法';
 import UseImperativeHandleHookDemo from './09_useImperativeHandle/02_useImperativeHandle用法';
+
+import EffectCounterDemo from './10_useLayoutEffect/01_useEffect的count修改';
+import LayoutEffectCounterDemo from './10_useLayoutEffect/02_useLayoutEffect的count修改';
 
 export const UserContext = createContext();
 export const ThemeContext = createContext();
@@ -86,7 +89,11 @@ export default function App() {
 
       {/* 09_useImperativeHandle */}
       {/* <ForwardRefDemo /> */}
-      <UseImperativeHandleHookDemo />
+      {/* <UseImperativeHandleHookDemo /> */}
+
+      {/* 10_useLayoutEffect */}
+      <EffectCounterDemo />
+      <LayoutEffectCounterDemo />
     </div>
   );
 }
