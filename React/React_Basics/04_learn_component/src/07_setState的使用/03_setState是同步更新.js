@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-11-29 16:20:07
  * @LastEditors: by_mori
- * @LastEditTime: 2021-11-29 18:30:08
+ * @LastEditTime: 2021-12-13 21:04:53
  */
 import React, { Component } from 'react';
 
@@ -28,6 +28,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    // 情况二: 原生DOM事件
     document.getElementById('btn').addEventListener('click', (e) => {
       this.setState({
         message: '哈喽 沫沫 2',
@@ -47,7 +48,7 @@ export default class App extends Component {
       this.setState({
         message: '哈喽 沫沫',
       });
-      console.log(this.state.message);
+      console.log(this.state.message); // 哈喽 沫沫
     }, 0);
   }
 }
