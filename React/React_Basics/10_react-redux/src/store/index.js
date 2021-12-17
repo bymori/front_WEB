@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 16:08:24
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-09 16:33:17
+ * @LastEditTime: 2021-12-16 16:02:29
  */
 import { createStore, applyMiddleware, compose } from 'redux';
 
@@ -14,7 +14,7 @@ import createSagaMiddleware from 'redux-saga';
 import saga from './saga';
 import reducer from './reducer.js';
 
-// composeEnhancers函数
+// composeEnhancers函数 用于REDUX_DEVTOOLS 调试相关
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true }) || compose;
 

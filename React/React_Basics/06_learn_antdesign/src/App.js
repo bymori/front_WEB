@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-03 16:54:31
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-04 15:27:39
+ * @LastEditTime: 2021-12-14 22:05:33
  */
 import React, { PureComponent } from 'react';
 
@@ -15,12 +15,15 @@ import moment from 'moment';
 
 import IOHomeRecommend from './components/home/childCpns/home-recommend';
 
+import Aa from './React中添加class多种方式';
+
 export default class App extends PureComponent {
   render() {
     const loadings = true;
 
     return (
       <>
+        <Aa />
         <IOHomeRecommend />
         <Button type="primary" loading>
           Loading

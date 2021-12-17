@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-12 12:04:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 15:49:53
+ * @LastEditTime: 2021-12-17 22:04:53
  */
 import React, { useRef } from 'react';
 
@@ -19,6 +19,8 @@ function TestCpn2(props) {
 }
 
 export default function RefHookDemo01() {
+  // const refContainer = useRef(initialValue);
+
   const titleRef = useRef();
   const inputRef = useRef();
 

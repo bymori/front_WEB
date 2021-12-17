@@ -4,12 +4,16 @@
  * @Author: by_mori
  * @Date: 2021-12-12 10:00:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 11:37:41
+ * @LastEditTime: 2021-12-17 21:55:35
  */
 import React, { useState, useCallback, useMemo } from 'react';
 
 export default function CallbackHookDemo01() {
   const [count, setCount] = useState(0);
+
+  // const memoizedCallback = useCallback(() => {
+  //   doSomething(a, b);
+  // }, [a, b]);
 
   const increment1 = () => {
     console.log('执行increment1函数');

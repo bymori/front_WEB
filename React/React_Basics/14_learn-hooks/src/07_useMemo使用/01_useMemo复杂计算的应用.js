@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-12 10:39:13
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 10:57:52
+ * @LastEditTime: 2021-12-17 22:00:19
  */
 import React, { useState, useMemo } from 'react';
 
@@ -21,6 +21,8 @@ function calcNumber(count) {
 export default function MemoHookDemo01() {
   const [count, setCount] = useState(10);
   const [show, setShow] = useState(true);
+
+  // const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
   //   const total = calcNumber(count);
   const total = useMemo(() => {

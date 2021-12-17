@@ -4,12 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-12 11:00:56
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-12 11:27:28
+ * @LastEditTime: 2021-12-17 22:02:09
  */
 import React, { memo, useState, useMemo } from 'react';
 
 const IOInfo = memo((props) => {
-  console.log('HYInfo重新渲染');
+  console.log('IOInfo重新渲染');
 
   return (
     <h2>

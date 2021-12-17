@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-03 16:54:31
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-03 22:52:02
+ * @LastEditTime: 2021-12-14 22:04:15
  */
 import React, { PureComponent } from 'react';
 
@@ -34,9 +34,8 @@ export default class App extends PureComponent {
           我是标题3
         </h2>
         <hr />
-
         {/* 通过classnames库添加class */}
-        <h2 className="foo bar active title">我是标题4</h2>
+        <h2 className="foo bar active title">我是标题4</h2> {/* */}
         <h2 className={classNames('foo', 'bar', 'active', 'title')}>
           我是标题5
         </h2>

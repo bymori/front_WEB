@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 15:10:19
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-06 16:38:58
+ * @LastEditTime: 2021-12-15 21:36:24
  */
 import store from './store/index.js';
 
@@ -25,3 +25,11 @@ store.dispatch(subAction(8));
 store.dispatch(subAction(5));
 store.dispatch(incAction());
 store.dispatch(decAction());
+
+const initialState = {
+  friends: [
+    { name: 'Judah', age: 22 },
+    { name: 'momo', age: 46 },
+    { name: 'Ellsworth', age: 15 },
+  ],
+};
