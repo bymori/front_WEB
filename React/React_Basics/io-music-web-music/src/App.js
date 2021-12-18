@@ -4,10 +4,29 @@
  * @Author: by_mori
  * @Date: 2021-12-18 14:43:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-18 14:43:46
+ * @LastEditTime: 2021-12-18 23:25:33
  */
 import React, { memo } from 'react';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
+
+import routes from './router';
+
+import IOAppHeader from 'components/app-header';
+import IOAppFooter from 'components/app-footer';
+
+function CustomRoutes() {
+  let element = useRoutes(routes);
+  return element;
+}
 
 export default memo(function App() {
-  return <div>a</div>;
+  return (
+    <div>
+      <IOAppHeader />
+      <BrowserRouter>
+        <CustomRoutes />
+      </BrowserRouter>
+      <IOAppFooter />
+    </div>
+  );
 });
