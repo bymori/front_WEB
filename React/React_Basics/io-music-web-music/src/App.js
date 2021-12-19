@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 14:43:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-18 23:25:33
+ * @LastEditTime: 2021-12-19 15:41:48
  */
 import React, { memo } from 'react';
 import { BrowserRouter, useRoutes } from 'react-router-dom';
@@ -21,12 +21,10 @@ function CustomRoutes() {
 
 export default memo(function App() {
   return (
-    <div>
+    <BrowserRouter>
       <IOAppHeader />
-      <BrowserRouter>
-        <CustomRoutes />
-      </BrowserRouter>
+      <CustomRoutes />
       <IOAppFooter />
-    </div>
+    </BrowserRouter>
   );
 });
