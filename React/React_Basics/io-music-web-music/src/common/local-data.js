@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-20 14:03:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-20 17:16:00
+ * @LastEditTime: 2021-12-20 22:46:39
  */
 export const headerLinks = [
   {
@@ -30,5 +30,46 @@ export const headerLinks = [
   {
     title: '下载客户端',
     link: 'https://music.163.com/#/download',
+  },
+];
+
+export const footerLinks = [
+  {
+    title: '服务条款',
+    link: '#',
+  },
+  {
+    title: '隐私政策',
+    link: '#',
+  },
+  {
+    title: '儿童隐私政策',
+    link: '#',
+  },
+  {
+    title: '版权投诉指引',
+    link: '#',
+  },
+  {
+    title: '意见反馈',
+    link: '#',
+  },
+];
+
+export const footerImages = [
+  {
+    link: 'https://web-amped.music.163.com/',
+  },
+  {
+    link: 'https://music.163.com/st/userbasic#/auth',
+  },
+  {
+    link: 'https://music.163.com/recruit',
+  },
+  {
+    link: 'https://music.163.com/web/reward',
+  },
+  {
+    link: 'https://music.163.com/uservideo#/plan',
   },
 ];

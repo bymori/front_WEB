@@ -1,4 +1,5 @@
 @import '~normalize.css';
+@import '~antd/dist/antd.css';
 
 /* 全局样式 */
 body,
