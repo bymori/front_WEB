@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-19 22:06:24
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-19 22:25:07
+ * @LastEditTime: 2021-12-20 19:41:21
  */
 import styled from 'styled-components';
 
@@ -48,6 +48,7 @@ export const HeaderLeft = styled.div`
         display: block;
         padding: 0 20px;
         color: #ccc;
+        text-decoration: none;
       }
 
       :last-of-type a {
