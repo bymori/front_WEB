@@ -4,12 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-20 14:03:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-20 22:46:39
+ * @LastEditTime: 2021-12-21 11:42:42
  */
 export const headerLinks = [
   {
     title: '发现音乐',
-    link: '/',
+    link: '/discover',
   },
   {
     title: '我的音乐',

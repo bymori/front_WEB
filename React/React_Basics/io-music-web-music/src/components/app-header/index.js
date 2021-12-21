@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 22:59:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-20 20:26:04
+ * @LastEditTime: 2021-12-20 22:52:11
  */
 import React, { memo } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -39,9 +39,8 @@ export default memo(function IOAppHeader() {
           {/* <a href="/" className="logo sprite_01">
             // 网易云音乐 使用 NavLink 解决 点击a标签时 在 / 页面跳转会刷新
           </a> */}
-          <NavLink to="/" className="logo sprite_01">
-            网易云音乐
-          </NavLink>
+          <NavLink to="/" className="logo sprite_01" />
+
           <div className="select-list">
             {headerLinks.map((item, index) => {
               return (

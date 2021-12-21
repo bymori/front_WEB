@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-19 22:06:24
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-20 19:41:21
+ * @LastEditTime: 2021-12-20 22:54:02
  */
 import styled from 'styled-components';
 
@@ -36,6 +36,7 @@ export const HeaderLeft = styled.div`
     height: 69px;
     background-position: 0 0;
     text-indent: -9999px;
+    /* text-indent 文字显示到其他地方*/
   }
 
   .select-list {
