@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 14:51:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 20:38:14
+ * @LastEditTime: 2021-12-21 21:09:57
  */
 import React, { memo, useEffect } from 'react';
 
@@ -14,9 +14,12 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 function IORecommend() {
   // 组件和redux关联： 获取数据和进行操作
-  const { topBanners } = useSelector((state) => ({
-    topBanners: state.recommend.topBanners,
-  }));
+  const { topBanners } = useSelector(
+    (state) => ({
+      topBanners: state.recommend.topBanners,
+    }),
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 

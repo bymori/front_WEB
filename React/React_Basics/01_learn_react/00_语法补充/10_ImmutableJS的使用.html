@@ -1,0 +1,65 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-12-21 21:18:45
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-12-21 21:37:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10_ImmutableJS的使用</title>
+  </head>
+  <body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/immutable/4.0.0-rc.14/immutable.min.js"></script>
+
+    <script>
+      const im = Immutable;
+
+      // Map 的使用
+      // const info = {
+      //   name: 'Carmela',
+      //   age: 30,
+      //   friend: {
+      //     name: 'Bernardo',
+      //     age: 25,
+      //   },
+      // };
+
+      // const infoIM = im.Map(info);
+
+      // const obj = infoIM;
+      // const infoIM2 = infoIM.set('name', 'momo');
+
+      // console.log(obj.get('name'));
+      // console.log(infoIM2.get('name'));
+
+      // List的使用
+      // const names = ['abc', 'cba', 'nba'];
+      // // const arr = names;
+      // // names[0] = 'mori';
+      // // console.log(arr);
+
+      // const namesIM = im.List(names);
+      // const arrIM = namesIM.set(0, 'momo');
+      // console.log(namesIM.get(0));
+      // console.log(arrIM.get(0));
+
+      const info = {
+        name: 'Carmela',
+        age: 30,
+        friend: {
+          name: 'Bernardo',
+          age: 25,
+        },
+      };
+      // const infoIM = im.Map(info); // Map浅层 {name: 'Bernardo', age: 25}
+      const infoIM = im.fromJS(info); // 深层转化 t {size: 2, _root: Ce, __ownerID: undefined, __hash: undefined, __altered: false}
+      console.log(infoIM.get('friend'));
+    </script>
+  </body>
+</html>

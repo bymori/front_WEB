@@ -1,0 +1,34 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-12-21 21:13:41
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-12-21 21:22:32
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09_数据的可变引起的问题</title>
+  </head>
+  <body>
+    <script>
+      // JavaScript: ImmutableJS
+      // Immutable 是为 JavaScript 实现的不可变数据集合，用以提升效率并简化复杂度。
+      const info = {
+        name: 'momo',
+        age: 19,
+      };
+
+      //   const obj = info; // obj.name = Price
+      const obj = { ...info }; // obj.name = momo
+
+      info.name = 'Price';
+
+      console.log(obj.name); // name
+    </script>
+  </body>
+</html>
