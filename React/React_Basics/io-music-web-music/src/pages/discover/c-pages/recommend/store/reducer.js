@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 19:00:41
+ * @LastEditTime: 2021-12-21 20:22:51
  */
 import * as actionTypes from './constants';
 
@@ -17,7 +17,7 @@ const defaultState = {
 function reducer(state = defaultState, action) {
   switch (action.type) {
     case actionTypes.CHANGE_TOP_BANNERS:
-      return { ...state, topBanners: [] };
+      return { ...state, topBanners: action.topBanners };
     default:
       return state;
   }
