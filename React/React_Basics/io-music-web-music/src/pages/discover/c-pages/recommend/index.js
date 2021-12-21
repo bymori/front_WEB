@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 14:51:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 21:09:57
+ * @LastEditTime: 2021-12-21 22:14:41
  */
 import React, { memo, useEffect } from 'react';
 
@@ -16,7 +16,9 @@ function IORecommend() {
   // 组件和redux关联： 获取数据和进行操作
   const { topBanners } = useSelector(
     (state) => ({
-      topBanners: state.recommend.topBanners,
+      // topBanners: state.recommend.topBanners,
+      // topBanners: state.get('recommend').get('topBanners'),
+      topBanners: state.getIn(['recommend', 'topBanners']),
     }),
     shallowEqual
   );

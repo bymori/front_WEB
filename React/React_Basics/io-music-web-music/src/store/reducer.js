@@ -6,7 +6,8 @@
  * @LastEditors: by_mori
  * @LastEditTime: 2021-12-21 19:03:32
  */
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
 import { reducer as recommendReducer } from 'c-pages/recommend/store';
 

@@ -4,20 +4,22 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 20:22:51
+ * @LastEditTime: 2021-12-21 22:01:27
  */
+import { Map } from 'immutable';
+
 import * as actionTypes from './constants';
 
-const defaultState = {
+const defaultState = Map({
   topBanners: [],
   hotRecommends: [],
   newAlbums: [],
-};
+});
 
 function reducer(state = defaultState, action) {
   switch (action.type) {
     case actionTypes.CHANGE_TOP_BANNERS:
-      return { ...state, topBanners: action.topBanners };
+      return state.set('topBanners', action.topBanners);
     default:
       return state;
   }
