@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-06 12:21:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-09 20:26:20
+ * @LastEditTime: 2021-12-21 20:53:24
  */
 import React, { PureComponent } from 'react';
 
@@ -22,7 +22,10 @@ import React, { PureComponent } from 'react';
 
 // redux-thunk使用
 // import Home from './pages/home4';
-import About from './pages/about4';
+// import About from './pages/about4';
+
+// redux-thunk hooks
+import About from './pages/about5';
 
 // redux-saga使用
 import Home from './pages/home5';
