@@ -4,12 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-12-18 14:43:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-19 15:41:48
+ * @LastEditTime: 2021-12-21 18:46:06
  */
 import React, { memo } from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 
 import routes from './router';
+import store from './store';
 
 import IOAppHeader from 'components/app-header';
 import IOAppFooter from 'components/app-footer';
@@ -21,10 +23,12 @@ function CustomRoutes() {
 
 export default memo(function App() {
   return (
-    <BrowserRouter>
-      <IOAppHeader />
-      <CustomRoutes />
-      <IOAppFooter />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <IOAppHeader />
+        <CustomRoutes />
+        <IOAppFooter />
+      </BrowserRouter>
+    </Provider>
   );
 });

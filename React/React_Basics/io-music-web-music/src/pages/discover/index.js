@@ -4,9 +4,9 @@
  * @Author: by_mori
  * @Date: 2021-12-18 23:18:12
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 12:26:40
+ * @LastEditTime: 2021-12-21 16:46:29
  */
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import { discoverMenu } from '@/common/local-data';
 
@@ -14,7 +14,17 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 import { DiscoverWrapper, TopMenu } from './style';
 
+import request from '@/services/request';
+
 export default memo(function IODiscover() {
+  useEffect(() => {
+    request({
+      url: '/banner',
+    }).then((res) => {
+      console.log(res);
+    });
+  }, []);
+
   return (
     <DiscoverWrapper>
       <div className="top">

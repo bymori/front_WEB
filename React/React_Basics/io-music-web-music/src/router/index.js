@@ -4,16 +4,18 @@
  * @Author: by_mori
  * @Date: 2021-12-18 23:08:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 15:05:32
+ * @LastEditTime: 2021-12-21 15:12:11
  */
 
 import IODiscover from 'page/discover';
-import IORecommend from 'page/discover/c-pages/recommend';
-import IORanking from 'page/discover/c-pages/ranking';
-import IOSongs from 'page/discover/c-pages/songs';
-import IODjradio from 'page/discover/c-pages/djradio';
-import IOArtist from 'page/discover/c-pages/artist';
-import IOAlbum from 'page/discover/c-pages/album';
+
+// c-pages  /discover/*
+import IORecommend from 'c-pages/recommend';
+import IORanking from 'c-pages/ranking';
+import IOSongs from 'c-pages/songs';
+import IODjradio from 'c-pages/djradio';
+import IOArtist from 'c-pages/artist';
+import IOAlbum from 'c-pages/album';
 
 import IOPlayer from 'page/player';
 import IOMine from 'page/mine';

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 22:08:34
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-18 23:24:54
+ * @LastEditTime: 2021-12-21 15:10:57
  */
 const path = require('path');
 
@@ -17,6 +17,7 @@ module.exports = {
       '@': resolve('src'),
       components: resolve('src/components'),
       page: resolve('src/pages'),
+      'c-pages': resolve('src/pages/discover/c-pages'),
     },
   },
 };
