@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 16:33:02
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 21:53:30
+ * @LastEditTime: 2021-12-22 22:10:57
  */
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
@@ -14,6 +14,7 @@ import { getHotRecommendAction } from '../../store/actionCreators';
 
 import IOThemeHeaderRCM from '@/components/theme-header-rcm';
 
+import IOSongsCover from '@/components/songs-cover';
 import { HotRecommendWrapper } from './style';
 
 export default memo(function IOHotRecommend() {
@@ -42,7 +43,8 @@ export default memo(function IOHotRecommend() {
       />
       <div className="recommend-list">
         {hotRecommends.map((item, index) => {
-          return <div key={item.id}>{item.name}</div>;
+          // return <div key={item.id}>{item.name}</div>;
+          return <IOSongsCover key={item.id} info={item} />;
         })}
       </div>
     </HotRecommendWrapper>
