@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 16:39:02
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 19:31:28
+ * @LastEditTime: 2021-12-22 19:36:27
  */
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.div`
   height: 31px;
   border-bottom: 2px solid #c10d0c;
   padding: 0 10px 0px 34px;
-  background-position: -225px -156px;
+  background-position: -225px -160px;
 
   display: flex;
   justify-content: space-between;

@@ -4,15 +4,15 @@
  * @Author: by_mori
  * @Date: 2021-12-22 16:38:57
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 19:22:46
+ * @LastEditTime: 2021-12-22 21:10:23
  */
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { HeaderWrapper } from './style';
 
-export default memo(function IOThemeHeaderRCM(props) {
-  const { title, keywords } = props;
+const IOThemeHeaderRCM = memo(function (props) {
+  const { title, keywords, moreLink } = props;
 
   return (
     <HeaderWrapper className="sprite_02">
@@ -32,7 +32,7 @@ export default memo(function IOThemeHeaderRCM(props) {
         </div>
       </div>
       <div className="right">
-        <a href="todo" className="s-fc3">
+        <a href={moreLink} className="s-fc3">
           更多
         </a>
         <i className="icon sprite_02"></i>
@@ -40,3 +40,15 @@ export default memo(function IOThemeHeaderRCM(props) {
     </HeaderWrapper>
   );
 });
+
+IOThemeHeaderRCM.propTypes = {
+  title: PropTypes.string.isRequired,
+  keywords: PropTypes.array,
+};
+
+IOThemeHeaderRCM.defaultProps = {
+  keywords: [],
+  moreLink: '/todo',
+};
+
+export default IOThemeHeaderRCM;
