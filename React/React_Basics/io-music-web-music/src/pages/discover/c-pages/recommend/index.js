@@ -4,36 +4,25 @@
  * @Author: by_mori
  * @Date: 2021-12-21 14:51:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 22:14:41
+ * @LastEditTime: 2021-12-22 15:21:02
  */
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 
-import { getTopBannerAction } from './store/actionCreators';
+import IOTopBanner from './c-cpns/top-banner';
 
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import {
+  RecommendWrapper,
+  Content,
+  RecommendLeft,
+  RecommendRight,
+} from './style';
 
 function IORecommend() {
-  // 组件和redux关联： 获取数据和进行操作
-  const { topBanners } = useSelector(
-    (state) => ({
-      // topBanners: state.recommend.topBanners,
-      // topBanners: state.get('recommend').get('topBanners'),
-      topBanners: state.getIn(['recommend', 'topBanners']),
-    }),
-    shallowEqual
-  );
-
-  const dispatch = useDispatch();
-
-  // 发送网络请求
-  useEffect(() => {
-    dispatch(getTopBannerAction());
-  }, [dispatch]);
-
   return (
-    <div>
-      <h2>IORecommend:{topBanners.length}</h2>
-    </div>
+    <RecommendWrapper>
+      <IOTopBanner />
+      <h2>IORecommend:</h2>
+    </RecommendWrapper>
   );
 }
 
