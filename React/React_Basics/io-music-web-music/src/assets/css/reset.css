@@ -74,3 +74,12 @@ button {
 .sprite_player {
   background: url(../img/playbar_sprite.png) no-repeat 0 9999px;
 }
+
+/* 文字颜色 */
+.s-fc3 {
+  color: #666;
+}
+.s-fc3:hover {
+  color: #7b7b7b;
+  text-decoration: underline;
+}

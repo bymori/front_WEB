@@ -4,11 +4,13 @@
  * @Author: by_mori
  * @Date: 2021-12-21 14:51:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 15:21:02
+ * @LastEditTime: 2021-12-22 16:35:10
  */
 import React, { memo } from 'react';
 
 import IOTopBanner from './c-cpns/top-banner';
+import IOHotRecommend from './c-cpns/hot-recommend';
+import IOUserLogin from './c-cpns/user-login';
 
 import {
   RecommendWrapper,
@@ -21,7 +23,14 @@ function IORecommend() {
   return (
     <RecommendWrapper>
       <IOTopBanner />
-      <h2>IORecommend:</h2>
+      <Content className="wrap-v2">
+        <RecommendLeft>
+          <IOHotRecommend />
+        </RecommendLeft>
+        <RecommendRight>
+          <IOUserLogin />
+        </RecommendRight>
+      </Content>
     </RecommendWrapper>
   );
 }
