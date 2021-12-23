@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 15:12:42
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 16:19:41
+ * @LastEditTime: 2021-12-23 23:22:45
  */
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ export const BannerWrapper = styled.div`
   background: url(${(props) => props.bgImage}) center center/6000px;
 
   .banner {
-    height: 270px;
+    height: 285px;
     background-color: red;
 
     display: flex;
@@ -25,9 +25,10 @@ export const BannerLeft = styled.div`
 
   .banner-item {
     overflow: hidden;
-    height: 270px;
+    height: 285px;
     .image {
       width: 100%;
+      height: 100%;
     }
   }
 `;
@@ -37,7 +38,7 @@ export const BannerRight = styled.a.attrs({
   target: '_blank',
 })`
   width: 254px;
-  height: 270px;
+  height: 285px;
   background: url(${require('@/assets/img/download.png')});
 `;
 
