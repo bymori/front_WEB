@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 15:12:42
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 23:22:45
+ * @LastEditTime: 2021-12-23 23:31:50
  */
 import styled from 'styled-components';
 
@@ -34,7 +34,7 @@ export const BannerLeft = styled.div`
 `;
 
 export const BannerRight = styled.a.attrs({
-  href: '#',
+  href: '/download',
   target: '_blank',
 })`
   width: 254px;

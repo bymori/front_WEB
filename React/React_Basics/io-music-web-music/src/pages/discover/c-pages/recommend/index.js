@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 14:51:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 19:47:59
+ * @LastEditTime: 2021-12-23 23:36:23
  */
 import React, { memo } from 'react';
 
@@ -13,6 +13,8 @@ import IOHotRecommend from './c-cpns/hot-recommend';
 import IONewAlbum from './c-cpns/new-album';
 import IORecommendRanking from './c-cpns/recommend-ranking';
 import IOUserLogin from './c-cpns/user-login';
+import IOSettleSinger from './c-cpns/settle-singer';
+import IOHotAnchor from './c-cpns/hot-anchor';
 
 import {
   RecommendWrapper,
@@ -33,6 +35,8 @@ function IORecommend() {
         </RecommendLeft>
         <RecommendRight>
           <IOUserLogin />
+          <IOSettleSinger />
+          <IOHotAnchor />
         </RecommendRight>
       </Content>
     </RecommendWrapper>
