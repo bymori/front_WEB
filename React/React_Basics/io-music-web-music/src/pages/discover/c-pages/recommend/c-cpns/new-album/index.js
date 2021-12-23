@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 19:45:18
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 16:12:16
+ * @LastEditTime: 2021-12-23 16:53:50
  */
 import React, { memo, useEffect, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
@@ -13,7 +13,8 @@ import { getNewAlbumAction } from '../../store/actionCreators';
 
 import { Carousel } from 'antd';
 
-import HYThemeHeaderRCM from '@/components/theme-header-rcm';
+import IOAlbumCover from '@/components/album-cover';
+import IOThemeHeaderRCM from '@/components/theme-header-rcm';
 import { AlbumWrapper } from './style';
 
 export default memo(function IONewAlbum() {
@@ -39,19 +40,27 @@ export default memo(function IONewAlbum() {
 
   return (
     <AlbumWrapper>
-      <HYThemeHeaderRCM title="新碟上架" />
+      <IOThemeHeaderRCM title="新碟上架" />
       <div className="content">
         <button
           className="arrow arrow-left sprite_02"
           onClick={(e) => pageRef.current.prev()}></button>
 
         <div className="album">
-          <Carousel dots={false} ref={pageRef} autoplay effect="fade">
+          <Carousel dots={false} ref={pageRef} autoplay>
             {[0, 1, 2].map((item) => {
               return (
                 <div key={item} className="page">
                   {newAlbums.slice(item * 4, (item + 1) * 4).map((iten) => {
-                    return <div>{iten.name}</div>;
+                    return (
+                      <IOAlbumCover
+                        key={iten.id}
+                        info={iten}
+                        size={100}
+                        width={118}
+                        bgp="-570px"
+                      />
+                    );
                   })}
                 </div>
               );
