@@ -4,11 +4,15 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 21:49:52
+ * @LastEditTime: 2021-12-23 14:24:03
  */
 import * as actionTypes from './constants';
 
-import { getTopBanners, getHotRecommends } from '@/services/recommend';
+import {
+  getTopBanners,
+  getHotRecommends,
+  getNewAlbums,
+} from '@/services/recommend';
 
 const changeTopBannerAction = (res) => ({
   type: actionTypes.CHANGE_TOP_BANNERS,
@@ -18,6 +22,11 @@ const changeTopBannerAction = (res) => ({
 const changeHotRecommendAction = (res) => ({
   type: actionTypes.CHANGE_HOT_RECOMMEND,
   hotRecommends: res.result,
+});
+
+const changeNewAlbumAction = (res) => ({
+  type: actionTypes.CHANGE_NEW_ALBUM,
+  newAlbums: res.albums,
 });
 
 export const getTopBannerAction = () => {
@@ -32,6 +41,15 @@ export const getHotRecommendAction = (limit) => {
   return (dispatch) => {
     getHotRecommends(limit).then((res) => {
       dispatch(changeHotRecommendAction(res));
+    });
+  };
+};
+
+export const getNewAlbumAction = () => {
+  return (dispatch) => {
+    getNewAlbums().then((res) => {
+      // const albums = res.albums;
+      dispatch(changeNewAlbumAction(res));
     });
   };
 };

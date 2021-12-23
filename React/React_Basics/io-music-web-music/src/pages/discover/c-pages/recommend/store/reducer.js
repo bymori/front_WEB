@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 21:35:02
+ * @LastEditTime: 2021-12-23 13:41:35
  */
 import { Map } from 'immutable';
 
@@ -22,6 +22,8 @@ function reducer(state = defaultState, action) {
       return state.set('topBanners', action.topBanners);
     case actionTypes.CHANGE_HOT_RECOMMEND:
       return state.set('hotRecommends', action.hotRecommends);
+    case actionTypes.CHANGE_NEW_ALBUM:
+      return state.set('newAlbums', action.newAlbums);
     default:
       return state;
   }

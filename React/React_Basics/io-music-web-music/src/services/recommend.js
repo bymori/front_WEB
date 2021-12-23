@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 20:07:39
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 21:31:47
+ * @LastEditTime: 2021-12-23 14:00:28
  */
 import request from './request';
 
@@ -23,12 +23,9 @@ export function getHotRecommends(limit) {
   });
 }
 
-export function getNewAlbums(limit) {
+export function getNewAlbums() {
   return request({
-    url: '/top/album',
-    params: {
-      limit,
-    },
+    url: '/album/newest',
   });
 }
 
