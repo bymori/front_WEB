@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 14:24:03
+ * @LastEditTime: 2021-12-23 19:28:36
  */
 import * as actionTypes from './constants';
 
@@ -12,6 +12,7 @@ import {
   getTopBanners,
   getHotRecommends,
   getNewAlbums,
+  getTopList,
 } from '@/services/recommend';
 
 const changeTopBannerAction = (res) => ({
@@ -27,6 +28,19 @@ const changeHotRecommendAction = (res) => ({
 const changeNewAlbumAction = (res) => ({
   type: actionTypes.CHANGE_NEW_ALBUM,
   newAlbums: res.albums,
+});
+
+const changeUpRankingAction = (res) => ({
+  type: actionTypes.CHANGE_UP_RANKING,
+  upRanking: res.playlist,
+});
+const changeNewRankingAction = (res) => ({
+  type: actionTypes.CHANGE_NEW_RANKING,
+  newRanking: res.playlist,
+});
+const changeOriginRankingAction = (res) => ({
+  type: actionTypes.CHANGE_ORIGIN_RANKING,
+  originRanking: res.playlist,
 });
 
 export const getTopBannerAction = () => {
@@ -50,6 +64,26 @@ export const getNewAlbumAction = () => {
     getNewAlbums().then((res) => {
       // const albums = res.albums;
       dispatch(changeNewAlbumAction(res));
+    });
+  };
+};
+
+export const getTopListAction = (idx) => {
+  return (dispatch) => {
+    getTopList(idx).then((res) => {
+      switch (idx) {
+        case 19723756: // 飙升榜
+          dispatch(changeUpRankingAction(res));
+          break;
+        case 3779629: // 新歌榜
+          dispatch(changeNewRankingAction(res));
+          break;
+        case 2884035: // 原创榜
+          dispatch(changeOriginRankingAction(res));
+          break;
+
+        default:
+      }
     });
   };
 };

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 20:07:39
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 14:00:28
+ * @LastEditTime: 2021-12-23 19:09:15
  */
 import request from './request';
 
@@ -29,11 +29,11 @@ export function getNewAlbums() {
   });
 }
 
-export function getTopList(idx) {
+export function getTopList(id) {
   return request({
-    url: '/top/list',
+    url: '/playlist/detail',
     params: {
-      idx,
+      id,
     },
   });
 }

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 22:01:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 22:35:56
+ * @LastEditTime: 2021-12-23 19:10:03
  */
 import React, { memo } from 'react';
 
@@ -29,11 +29,11 @@ export default memo(function IOSongsCover(props) {
           </div>
         </div>
       </div>
-      <div className="cover-bottom text-nowrap">{info.name}</div>
+      <div className="cover-bottom text-M-nowrap">{info.name}</div>
       {/* todo 上面div换成a标签 */}
-      <div className="cover-source text-nowrap">
-        by {info.copywriter || info.creator.nickname}
-      </div>
+      {/* <div className="cover-source text-nowrap"> */}
+      {/* by {info.copywriter || info.creator.nickname} */}
+      {/* </div> */}
     </SongsCoverWrapper>
   );
 });

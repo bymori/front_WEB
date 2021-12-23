@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 13:41:35
+ * @LastEditTime: 2021-12-23 19:28:21
  */
 import { Map } from 'immutable';
 
@@ -14,6 +14,10 @@ const defaultState = Map({
   topBanners: [],
   hotRecommends: [],
   newAlbums: [],
+
+  upRanking: {},
+  newRanking: {},
+  originRanking: {},
 });
 
 function reducer(state = defaultState, action) {
@@ -24,6 +28,13 @@ function reducer(state = defaultState, action) {
       return state.set('hotRecommends', action.hotRecommends);
     case actionTypes.CHANGE_NEW_ALBUM:
       return state.set('newAlbums', action.newAlbums);
+
+    case actionTypes.CHANGE_UP_RANKING:
+      return state.set('upRanking', action.upRanking);
+    case actionTypes.CHANGE_NEW_RANKING:
+      return state.set('newRanking', action.newRanking);
+    case actionTypes.CHANGE_ORIGIN_RANKING:
+      return state.set('originRanking', action.originRanking);
     default:
       return state;
   }
