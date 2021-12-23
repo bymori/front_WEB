@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 19:28:36
+ * @LastEditTime: 2021-12-23 19:52:55
  */
 import * as actionTypes from './constants';
 
@@ -68,10 +68,10 @@ export const getNewAlbumAction = () => {
   };
 };
 
-export const getTopListAction = (idx) => {
+export const getTopListAction = (id) => {
   return (dispatch) => {
-    getTopList(idx).then((res) => {
-      switch (idx) {
+    getTopList(id).then((res) => {
+      switch (id) {
         case 19723756: // 飙升榜
           dispatch(changeUpRankingAction(res));
           break;
@@ -81,7 +81,6 @@ export const getTopListAction = (idx) => {
         case 2884035: // 原创榜
           dispatch(changeOriginRankingAction(res));
           break;
-
         default:
       }
     });

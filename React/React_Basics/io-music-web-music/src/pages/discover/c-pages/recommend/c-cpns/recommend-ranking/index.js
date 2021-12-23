@@ -4,13 +4,15 @@
  * @Author: by_mori
  * @Date: 2021-12-22 19:45:18
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 19:28:52
+ * @LastEditTime: 2021-12-23 21:19:39
  */
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { getTopListAction } from '../../store/actionCreators';
 // import { getTopList } from '@/services/recommend';
+
+import IOTopRanking from '@/components/top-ranking';
 
 import IOThemeHeaderRCM from '@/components/theme-header-rcm';
 import { RankingWrapper } from './style';
@@ -48,6 +50,11 @@ export default memo(function IORecommendRanking() {
   return (
     <RankingWrapper>
       <IOThemeHeaderRCM title="榜单" />
+      <div className="tops">
+        <IOTopRanking info={upRanking} />
+        <IOTopRanking info={newRanking} />
+        <IOTopRanking info={originRanking} />
+      </div>
     </RankingWrapper>
   );
 });
