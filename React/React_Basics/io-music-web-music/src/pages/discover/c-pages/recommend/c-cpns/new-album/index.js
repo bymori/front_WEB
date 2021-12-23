@@ -4,12 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-12-22 19:45:18
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 14:30:54
+ * @LastEditTime: 2021-12-23 16:12:16
  */
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { getNewAlbumAction } from '../../store/actionCreators';
+
+import { Carousel } from 'antd';
 
 import HYThemeHeaderRCM from '@/components/theme-header-rcm';
 import { AlbumWrapper } from './style';
@@ -25,6 +27,8 @@ export default memo(function IONewAlbum() {
 
   const dispatch = useDispatch();
 
+  const pageRef = useRef();
+
   useEffect(() => {
     // getNewAlbums().then((res) => {
     //   setAlbums(res.albums);
@@ -36,9 +40,29 @@ export default memo(function IONewAlbum() {
   return (
     <AlbumWrapper>
       <HYThemeHeaderRCM title="新碟上架" />
-      {newAlbums.map((item, index) => {
-        return <div>{item.name}</div>;
-      })}
+      <div className="content">
+        <button
+          className="arrow arrow-left sprite_02"
+          onClick={(e) => pageRef.current.prev()}></button>
+
+        <div className="album">
+          <Carousel dots={false} ref={pageRef} autoplay effect="fade">
+            {[0, 1, 2].map((item) => {
+              return (
+                <div key={item} className="page">
+                  {newAlbums.slice(item * 4, (item + 1) * 4).map((iten) => {
+                    return <div>{iten.name}</div>;
+                  })}
+                </div>
+              );
+            })}
+          </Carousel>
+        </div>
+
+        <button
+          className="arrow arrow-right sprite_02"
+          onClick={(e) => pageRef.current.next()}></button>
+      </div>
     </AlbumWrapper>
   );
 });

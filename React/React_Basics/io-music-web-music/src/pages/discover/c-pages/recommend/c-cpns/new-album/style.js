@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 19:45:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-22 19:49:32
+ * @LastEditTime: 2021-12-23 15:54:22
  */
 import styled from 'styled-components';
 
@@ -23,14 +23,21 @@ export const AlbumWrapper = styled.div`
       width: 25px;
       height: 25px;
       cursor: pointer;
+      border-width: 0px;
     }
 
     .arrow-left {
       background-position: -260px -75px;
+      &:hover {
+        background-position: -280px -75px;
+      }
     }
 
     .arrow-right {
       background-position: -300px -75px;
+      &:hover {
+        background-position: -320px -75px;
+      }
     }
 
     .album {
