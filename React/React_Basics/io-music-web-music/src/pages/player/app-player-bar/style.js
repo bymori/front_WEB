@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:34:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 14:34:16
+ * @LastEditTime: 2021-12-24 23:07:02
  */
 import styled from 'styled-components';
 
@@ -159,6 +159,8 @@ export const Operator = styled.div`
   }
 
   .right {
+    display: flex;
+    align-items: center;
     width: 126px;
     padding-left: 13px;
     background-position: -147px -248px;
@@ -197,6 +199,9 @@ export const Operator = styled.div`
     }
 
     .playlist {
+      padding-left: 18px;
+      text-align: center;
+      color: #666;
       width: 59px;
       background-position: -42px -68px;
       &:hover {

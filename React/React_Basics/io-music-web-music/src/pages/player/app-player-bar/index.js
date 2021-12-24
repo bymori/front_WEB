@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 22:44:59
+ * @LastEditTime: 2021-12-24 23:04:32
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,9 +28,10 @@ export default memo(function IOAppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // redux hook
-  const { currentSong, sequence } = useSelector((state) => ({
+  const { currentSong, sequence, playList } = useSelector((state) => ({
     currentSong: state.getIn(['player', 'currentSong']),
     sequence: state.getIn(['player', 'sequence']),
+    playList: state.getIn(['player', 'playList']),
   }));
 
   const dispatch = useDispatch();
@@ -165,7 +166,9 @@ export default memo(function IOAppPlayerBar() {
             <button
               className="sprite_player btn loop"
               onClick={(e) => changeSequence()}></button>
-            <button className="sprite_player btn playlist"></button>
+            <button className="sprite_player btn playlist">
+              {playList.length}
+            </button>
           </div>
         </Operator>
       </div>
