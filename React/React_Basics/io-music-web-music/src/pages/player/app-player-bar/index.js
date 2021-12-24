@@ -4,14 +4,31 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 14:25:35
+ * @LastEditTime: 2021-12-24 15:10:47
  */
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { getSizeImage } from '@/utils/format-utils';
+
+import { getSongDetailAction } from '../store/actionCreators';
 import { Slider } from 'antd';
 import { PlayerBarWrapper, Control, PlayInfo, Operator } from './style';
 
 export default memo(function IOAppPlayerBar() {
+  const { currentSong } = useSelector((state) => ({
+    currentSong: state.getIn(['player', 'currentSong']),
+  }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSongDetailAction(468517654));
+  }, [dispatch]);
+
+  // other handle
+  const picUrl = (currentSong.al && currentSong.al.picUrl) || '';
+
   return (
     <PlayerBarWrapper className="sprite_player">
       <div className="content  wrap-v2">
@@ -23,10 +40,7 @@ export default memo(function IOAppPlayerBar() {
         <PlayInfo>
           <div className="image">
             <a href="/">
-              <img
-                src="https://p2.music.126.net/yZN047VYz7selK4LCsi1Zg==/109951164681443868.jpg?param=34y34"
-                alt=""
-              />
+              <img src={getSizeImage(picUrl, 35)} alt="" />
             </a>
           </div>
           <div className="info">
