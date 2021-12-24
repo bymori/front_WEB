@@ -4,11 +4,13 @@
  * @Author: by_mori
  * @Date: 2021-12-23 21:18:32
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 22:57:55
+ * @LastEditTime: 2021-12-24 22:12:01
  */
 import React, { memo } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { getSizeImage } from '@/utils/format-utils';
+import { getSongDetailAction } from '@/pages/player/store';
 
 import { TopRankingWrapper } from './style';
 
@@ -16,6 +18,14 @@ export default memo(function IOTopRanking(props) {
   // props and state
   const { info } = props;
   const { tracks = [] } = info;
+
+  // redux hooks
+  const dispatch = useDispatch();
+
+  // other handle
+  const playMusic = (item) => {
+    dispatch(getSongDetailAction(item.id));
+  };
 
   return (
     <TopRankingWrapper>
@@ -42,7 +52,10 @@ export default memo(function IOTopRanking(props) {
               <div className="info">
                 <span className="name text-nowrap">{item.name}</span>
                 <div className="operate">
-                  <button className="btn sprite_02 play" title="播放"></button>
+                  <button
+                    className="btn sprite_02 play"
+                    title="播放"
+                    onClick={(e) => playMusic(item)}></button>
                   <button
                     className="btn sprite_icon2 addTo"
                     title="添加到播放列表"></button>

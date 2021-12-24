@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 22:05:30
+ * @LastEditTime: 2021-12-24 22:38:21
  */
 
 import { getSongDetail } from '@/services/player';
@@ -24,6 +24,12 @@ const changePlayListAction = (playList) => ({
 const changeCurrentSongIndexAction = (index) => ({
   type: actionTypes.CHANGE_CURRENT_SONG_INDEX,
   index,
+});
+
+// 对外暴露的action
+export const changeSequenceAction = (sequence) => ({
+  type: actionTypes.CHANGE_SEQUENCE,
+  sequence,
 });
 
 export const getSongDetailAction = (ids) => {

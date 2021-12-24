@@ -4,12 +4,15 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 20:22:36
+ * @LastEditTime: 2021-12-24 22:44:59
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getSongDetailAction } from '../store/actionCreators';
+import {
+  getSongDetailAction,
+  changeSequenceAction,
+} from '../store/actionCreators';
 
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils';
 import { NavLink } from 'react-router-dom';
@@ -25,8 +28,9 @@ export default memo(function IOAppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // redux hook
-  const { currentSong } = useSelector((state) => ({
+  const { currentSong, sequence } = useSelector((state) => ({
     currentSong: state.getIn(['player', 'currentSong']),
+    sequence: state.getIn(['player', 'sequence']),
   }));
 
   const dispatch = useDispatch();
@@ -66,6 +70,14 @@ export default memo(function IOAppPlayerBar() {
       setCurrentTime(e.target.currentTime * 1000);
       setProgress((currentTime / duration) * 100);
     }
+  };
+
+  const changeSequence = () => {
+    let currentSequence = sequence + 1;
+    if (currentSequence > 2) {
+      currentSequence = 0;
+    }
+    dispatch(changeSequenceAction(currentSequence));
   };
 
   const sliderChange = useCallback(
@@ -143,14 +155,16 @@ export default memo(function IOAppPlayerBar() {
             </div>
           </div>
         </PlayInfo>
-        <Operator>
+        <Operator sequence={sequence}>
           <div className="left">
             <button className="sprite_player btn favor"></button>
             <button className="sprite_player btn share"></button>
           </div>
           <div className="right sprite_player">
             <button className="sprite_player btn volume"></button>
-            <button className="sprite_player btn loop"></button>
+            <button
+              className="sprite_player btn loop"
+              onClick={(e) => changeSequence()}></button>
             <button className="sprite_player btn playlist"></button>
           </div>
         </Operator>
