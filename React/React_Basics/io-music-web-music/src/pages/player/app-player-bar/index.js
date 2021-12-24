@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 17:20:40
+ * @LastEditTime: 2021-12-24 19:05:19
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,6 +20,7 @@ export default memo(function IOAppPlayerBar() {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // redux hook
   const { currentSong } = useSelector((state) => ({
@@ -28,10 +29,16 @@ export default memo(function IOAppPlayerBar() {
 
   const dispatch = useDispatch();
 
+  // other hooks
   const audioRef = useRef();
+
   useEffect(() => {
     dispatch(getSongDetailAction(468517654));
   }, [dispatch]);
+
+  useEffect(() => {
+    audioRef.current.src = getPlaySong(currentSong.id);
+  }, [currentSong]);
 
   // other handle
   const picUrl = (currentSong.al && currentSong.al.picUrl) || '';
@@ -43,14 +50,18 @@ export default memo(function IOAppPlayerBar() {
 
   // handle function
   const playMusic = useCallback(() => {
-    audioRef.current.src = getPlaySong(currentSong.id);
-    audioRef.current.play();
-  });
+    // audioRef.current.src = getPlaySong(currentSong.id);
+    // audioRef.current.play();
+
+    isPlaying ? audioRef.current.pause() : audioRef.current.play();
+    setIsPlaying(!isPlaying);
+  }, [isPlaying]);
 
   const timeUpdate = (e) => {
     // const currentTime = e.target.currentTime;
-    setCurrentTime(e.target.currentTime * 1000);
+
     if (!isChanging) {
+      setCurrentTime(e.target.currentTime * 1000);
       setProgress((currentTime / duration) * 100);
     }
   };
@@ -71,8 +82,12 @@ export default memo(function IOAppPlayerBar() {
       audioRef.current.currentTime = currentTime;
       setCurrentTime(currentTime * 1000);
       setIsChanging(false);
+
+      if (!isPlaying) {
+        playMusic();
+      }
     },
-    [duration]
+    [duration, isPlaying, playMusic]
   );
 
   //   function formatter(value) {
@@ -86,7 +101,7 @@ export default memo(function IOAppPlayerBar() {
   return (
     <PlayerBarWrapper className="sprite_player">
       <div className="content  wrap-v2">
-        <Control>
+        <Control isPlaying={isPlaying}>
           <button className="sprite_player prev"></button>
           <button
             className="sprite_player play"
