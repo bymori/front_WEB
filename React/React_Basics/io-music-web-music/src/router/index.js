@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 23:08:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-21 15:12:11
+ * @LastEditTime: 2021-12-24 20:06:04
  */
 
 import IODiscover from 'page/discover';
@@ -16,8 +16,8 @@ import IOSongs from 'c-pages/songs';
 import IODjradio from 'c-pages/djradio';
 import IOArtist from 'c-pages/artist';
 import IOAlbum from 'c-pages/album';
-
 import IOPlayer from 'page/player';
+
 import IOMine from 'page/mine';
 import IOFriend from 'page/friend';
 import IONoMatch from 'page/NoMatch';
@@ -38,15 +38,12 @@ const routes = [
       { path: 'djradio', element: <IODjradio /> },
       { path: 'artist', element: <IOArtist /> },
       { path: 'album', element: <IOAlbum /> },
+      { path: 'player', element: <IOPlayer /> },
     ],
   },
   {
     path: '/mine',
     element: <IOMine />,
-  },
-  {
-    path: '/player',
-    element: <IOPlayer />,
   },
   {
     path: '/friend',

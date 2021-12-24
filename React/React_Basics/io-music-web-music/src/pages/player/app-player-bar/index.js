@@ -4,14 +4,16 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 19:05:19
+ * @LastEditTime: 2021-12-24 20:22:36
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils';
-
 import { getSongDetailAction } from '../store/actionCreators';
+
+import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils';
+import { NavLink } from 'react-router-dom';
+
 import { Slider } from 'antd';
 import { PlayerBarWrapper, Control, PlayInfo, Operator } from './style';
 
@@ -106,13 +108,14 @@ export default memo(function IOAppPlayerBar() {
           <button
             className="sprite_player play"
             onClick={(e) => playMusic()}></button>
+          {/* todo 音乐是否可用 /check/music?id=1317486046 */}
           <button className="sprite_player next"></button>
         </Control>
         <PlayInfo>
           <div className="image">
-            <a href="/">
+            <NavLink to="/discover/player">
               <img src={getSizeImage(picUrl, 35)} alt="" />
-            </a>
+            </NavLink>
           </div>
           <div className="info">
             <div className="song">
