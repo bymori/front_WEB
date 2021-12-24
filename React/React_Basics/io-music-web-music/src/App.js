@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 14:43:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 13:38:47
+ * @LastEditTime: 2021-12-24 13:33:39
  */
 import React, { memo } from 'react';
 import { Provider } from 'react-redux';
@@ -15,6 +15,8 @@ import store from './store';
 
 import IOAppHeader from 'components/app-header';
 import IOAppFooter from 'components/app-footer';
+
+import IOAppPlayerBar from './pages/player/app-player-bar';
 
 function CustomRoutes() {
   let element = useRoutes(routes);
@@ -28,6 +30,7 @@ export default memo(function App() {
         <IOAppHeader />
         <CustomRoutes />
         <IOAppFooter />
+        <IOAppPlayerBar />
       </BrowserRouter>
     </Provider>
   );
