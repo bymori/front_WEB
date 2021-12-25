@@ -4,11 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-25 21:30:34
+ * @LastEditTime: 2021-12-25 22:32:22
  */
 
-import { getSongDetail } from '@/services/player';
+import { getSongDetail, getLyric } from '@/services/player';
 import { getRandomNumber } from '@/utils/math-utils';
+import { parseLyric } from '@/utils/parse-lyric';
 
 import * as actionTypes from './constants';
 
@@ -62,6 +63,9 @@ export const changeCurrentIndexAndSongAction = (tag) => {
     const currentSong = playList[currentSongIndex];
     dispatch(changeCurrentSongAction(currentSong));
     dispatch(changeCurrentSongIndexAction(currentSongIndex));
+
+    // 请求歌词
+    dispatch(getLyricAction(currentSong.id));
   };
 };
 
@@ -94,7 +98,20 @@ export const getSongDetailAction = (ids) => {
         dispatch(changePlayListAction(newPlayList));
         dispatch(changeCurrentSongIndexAction(newPlayList.length - 1));
         dispatch(changeCurrentSongAction(song));
+
+        // 3.请求歌词
+        dispatch(getLyricAction(song.id));
       });
     }
+  };
+};
+
+export const getLyricAction = (id) => {
+  return (dispatch) => {
+    getLyric(id).then((res) => {
+      const lyric = res.lrc.lyric;
+      const lyricList = parseLyric(lyric);
+      console.log(lyricList);
+    });
   };
 };

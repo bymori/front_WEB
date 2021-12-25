@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-22 19:45:18
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 16:55:10
+ * @LastEditTime: 2021-12-25 22:15:59
  */
 import React, { memo, useEffect, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
@@ -21,7 +21,7 @@ export default memo(function IONewAlbum() {
   // redux hooks
   const { newAlbums } = useSelector(
     (state) => ({
-      newAlbums: state.getIn(['recommend', 'newAlbums']),
+      newAlbums: state.getIn(['recommend', 'newAlbums']) || [], // 解决从undefined中slice数据 待测试 --
     }),
     shallowEqual
   );
