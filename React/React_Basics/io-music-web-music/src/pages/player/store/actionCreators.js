@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-25 22:32:22
+ * @LastEditTime: 2021-12-25 23:08:21
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
@@ -26,6 +26,11 @@ const changePlayListAction = (playList) => ({
 const changeCurrentSongIndexAction = (index) => ({
   type: actionTypes.CHANGE_CURRENT_SONG_INDEX,
   index,
+});
+
+const changLyricListAction = (lyricList) => ({
+  type: actionTypes.CHANGE_LYRIC_LIST,
+  lyricList,
 });
 
 // 对外暴露的action
@@ -111,7 +116,7 @@ export const getLyricAction = (id) => {
     getLyric(id).then((res) => {
       const lyric = res.lrc.lyric;
       const lyricList = parseLyric(lyric);
-      console.log(lyricList);
+      dispatch(changLyricListAction(lyricList));
     });
   };
 };

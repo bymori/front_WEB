@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:53
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 22:37:10
+ * @LastEditTime: 2021-12-25 23:07:08
  */
 import { Map } from 'immutable';
 
@@ -15,6 +15,7 @@ const defaultState = Map({
   currentSongIndex: 0,
   currentSong: {},
   sequence: 0, // 0 循环 1 随机 2 单曲
+  lyricList: [], // 歌词
 });
 
 function reducer(state = defaultState, action) {
@@ -27,6 +28,8 @@ function reducer(state = defaultState, action) {
       return state.set('currentSongIndex', action.index);
     case actionTypes.CHANGE_SEQUENCE:
       return state.set('sequence', action.sequence);
+    case actionTypes.CHANGE_LYRIC_LIST:
+      return state.set('lyricList', action.lyricList);
     default:
       return state;
   }
