@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:34:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 23:07:02
+ * @LastEditTime: 2021-12-25 21:44:23
  */
 import styled from 'styled-components';
 
@@ -37,6 +37,7 @@ export const Control = styled.div`
   .next {
     width: 28px;
     height: 28px;
+    cursor: pointer;
   }
 
   .prev {
@@ -50,6 +51,7 @@ export const Control = styled.div`
     width: 36px;
     height: 36px;
     margin: 0 8px;
+    cursor: pointer;
     background-position: 0 ${(props) => (props.isPlaying ? '-165px' : '-204px')};
 
     &:hover {

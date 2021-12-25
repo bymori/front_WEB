@@ -4,10 +4,11 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 22:38:21
+ * @LastEditTime: 2021-12-25 21:30:34
  */
 
 import { getSongDetail } from '@/services/player';
+import { getRandomNumber } from '@/utils/math-utils';
 
 import * as actionTypes from './constants';
 
@@ -31,6 +32,38 @@ export const changeSequenceAction = (sequence) => ({
   type: actionTypes.CHANGE_SEQUENCE,
   sequence,
 });
+
+export const changeCurrentIndexAndSongAction = (tag) => {
+  return (dispatch, getState) => {
+    const sequence = getState().getIn(['player', 'sequence']);
+    const playList = getState().getIn(['player', 'playList']);
+    let currentSongIndex = getState().getIn(['player', 'currentSongIndex']);
+
+    switch (sequence) {
+      case 1: // 随机播放
+        let randomIndex = getRandomNumber(playList.length);
+        console.log(randomIndex, currentSongIndex, '1');
+        while (randomIndex === currentSongIndex) {
+          console.log(randomIndex, currentSongIndex, '2');
+          randomIndex = getRandomNumber(playList.length);
+          console.log(randomIndex, currentSongIndex, '3');
+        }
+        currentSongIndex = randomIndex;
+        break;
+
+      default:
+        // 顺序播放
+        currentSongIndex += tag;
+        if (currentSongIndex >= playList.length) currentSongIndex = 0;
+        if (currentSongIndex < 0) currentSongIndex = playList.length - 1;
+        break;
+    }
+
+    const currentSong = playList[currentSongIndex];
+    dispatch(changeCurrentSongAction(currentSong));
+    dispatch(changeCurrentSongIndexAction(currentSongIndex));
+  };
+};
 
 export const getSongDetailAction = (ids) => {
   return (dispatch, getState) => {

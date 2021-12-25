@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 23:04:32
+ * @LastEditTime: 2021-12-25 21:39:02
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getSongDetailAction,
   changeSequenceAction,
+  changeCurrentIndexAndSongAction,
 } from '../store/actionCreators';
 
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils';
@@ -45,6 +46,15 @@ export default memo(function IOAppPlayerBar() {
 
   useEffect(() => {
     audioRef.current.src = getPlaySong(currentSong.id);
+
+    audioRef.current
+      .play()
+      .then((res) => {
+        setIsPlaying(true);
+      })
+      .catch((err) => {
+        setIsPlaying(false);
+      });
   }, [currentSong]);
 
   // other handle
@@ -79,6 +89,11 @@ export default memo(function IOAppPlayerBar() {
       currentSequence = 0;
     }
     dispatch(changeSequenceAction(currentSequence));
+  };
+
+  const changeMusic = (tag) => {
+    dispatch(changeCurrentIndexAndSongAction(tag));
+    // todo 如果播放列表只有一首音乐 点击上下一曲 开始播放音乐
   };
 
   const sliderChange = useCallback(
@@ -117,12 +132,16 @@ export default memo(function IOAppPlayerBar() {
     <PlayerBarWrapper className="sprite_player">
       <div className="content  wrap-v2">
         <Control isPlaying={isPlaying}>
-          <button className="sprite_player prev"></button>
+          <button
+            className="sprite_player prev"
+            onClick={(e) => changeMusic(-1)}></button>
           <button
             className="sprite_player play"
             onClick={(e) => playMusic()}></button>
           {/* todo 音乐是否可用 /check/music?id=1317486046 */}
-          <button className="sprite_player next"></button>
+          <button
+            className="sprite_player next"
+            onClick={(e) => changeMusic(1)}></button>
         </Control>
         <PlayInfo>
           <div className="image">
