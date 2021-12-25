@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-25 21:39:02
+ * @LastEditTime: 2021-12-25 22:02:45
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -94,6 +94,17 @@ export default memo(function IOAppPlayerBar() {
   const changeMusic = (tag) => {
     dispatch(changeCurrentIndexAndSongAction(tag));
     // todo 如果播放列表只有一首音乐 点击上下一曲 开始播放音乐
+  };
+
+  const handleMusicEnded = () => {
+    // 音乐播放完毕后 执行操作
+    if (sequence === 2) {
+      // 单曲循环
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    } else {
+      dispatch(changeCurrentIndexAndSongAction(1));
+    }
   };
 
   const sliderChange = useCallback(
@@ -194,7 +205,7 @@ export default memo(function IOAppPlayerBar() {
       <audio
         ref={audioRef}
         onTimeUpdate={(e) => timeUpdate(e)}
-        // onEnded={(e) => handleMusicEnded()}
+        onEnded={(e) => handleMusicEnded()}
       />
     </PlayerBarWrapper>
   );
