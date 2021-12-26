@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-23 21:18:32
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-24 22:12:01
+ * @LastEditTime: 2021-12-26 11:38:28
  */
 import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
@@ -16,7 +16,7 @@ import { TopRankingWrapper } from './style';
 
 export default memo(function IOTopRanking(props) {
   // props and state
-  const { info } = props;
+  const { info = [] } = props; // todo 待测试 Cannot read properties of undefined (reading 'tracks')
   const { tracks = [] } = info;
 
   // redux hooks

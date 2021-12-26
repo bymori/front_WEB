@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-25 22:02:45
+ * @LastEditTime: 2021-12-26 11:54:36
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,11 +29,14 @@ export default memo(function IOAppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // redux hook
-  const { currentSong, sequence, playList } = useSelector((state) => ({
-    currentSong: state.getIn(['player', 'currentSong']),
-    sequence: state.getIn(['player', 'sequence']),
-    playList: state.getIn(['player', 'playList']),
-  }));
+  const { currentSong, sequence, playList, lyricList } = useSelector(
+    (state) => ({
+      currentSong: state.getIn(['player', 'currentSong']),
+      sequence: state.getIn(['player', 'sequence']),
+      playList: state.getIn(['player', 'playList']),
+      lyricList: state.getIn(['player', 'lyricList']),
+    })
+  );
 
   const dispatch = useDispatch();
 
@@ -75,12 +78,22 @@ export default memo(function IOAppPlayerBar() {
   }, [isPlaying]);
 
   const timeUpdate = (e) => {
-    // const currentTime = e.target.currentTime;
+    const currentTime = e.target.currentTime;
 
     if (!isChanging) {
-      setCurrentTime(e.target.currentTime * 1000);
-      setProgress((currentTime / duration) * 100);
+      setCurrentTime(currentTime * 1000);
+      setProgress(((currentTime * 1000) / duration) * 100);
     }
+
+    // 获取当前的歌词
+    let i = 0;
+    for (; i < lyricList.length; i++) {
+      let lyricItem = lyricList[i];
+      if (currentTime * 1000 < lyricItem.time) {
+        break;
+      }
+    }
+    console.log(lyricList[i - 1]); // 打印当前正在播放的歌词
   };
 
   const changeSequence = () => {
