@@ -4,9 +4,9 @@
  * @Author: by_mori
  * @Date: 2021-12-18 14:43:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 11:35:00
+ * @LastEditTime: 2021-12-26 15:27:03
  */
-import React, { memo } from 'react';
+import React, { memo, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 
@@ -28,7 +28,12 @@ export default memo(function App() {
     <Provider store={store}>
       <BrowserRouter>
         <IOAppHeader />
-        <CustomRoutes />
+
+        {/* 用Suspense包裹动态导入的组件， 并设置属性 */}
+        <Suspense fallback={<div>正在加载中..</div>}>
+          <CustomRoutes />
+        </Suspense>
+
         <IOAppFooter />
         <IOAppPlayerBar />
       </BrowserRouter>

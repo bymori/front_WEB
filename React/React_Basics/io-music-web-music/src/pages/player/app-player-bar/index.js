@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 12:23:18
+ * @LastEditTime: 2021-12-26 15:02:59
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -235,6 +235,7 @@ export default memo(function IOAppPlayerBar() {
         ref={audioRef}
         onTimeUpdate={(e) => timeUpdate(e)}
         onEnded={(e) => handleMusicEnded()}
+        // todo 增加音量调节控制
       />
     </PlayerBarWrapper>
   );
