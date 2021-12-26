@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 11:54:36
+ * @LastEditTime: 2021-12-26 12:23:18
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,12 +13,13 @@ import {
   getSongDetailAction,
   changeSequenceAction,
   changeCurrentIndexAndSongAction,
+  changeCurrentLyricIndexAction,
 } from '../store/actionCreators';
 
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils';
 import { NavLink } from 'react-router-dom';
 
-import { Slider } from 'antd';
+import { Slider, message } from 'antd';
 import { PlayerBarWrapper, Control, PlayInfo, Operator } from './style';
 
 export default memo(function IOAppPlayerBar() {
@@ -29,14 +30,14 @@ export default memo(function IOAppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // redux hook
-  const { currentSong, sequence, playList, lyricList } = useSelector(
-    (state) => ({
+  const { currentSong, sequence, playList, lyricList, currentLyricIndex } =
+    useSelector((state) => ({
       currentSong: state.getIn(['player', 'currentSong']),
       sequence: state.getIn(['player', 'sequence']),
       playList: state.getIn(['player', 'playList']),
       lyricList: state.getIn(['player', 'lyricList']),
-    })
-  );
+      currentLyricIndex: state.getIn(['player', 'currentLyricIndex']),
+    }));
 
   const dispatch = useDispatch();
 
@@ -93,7 +94,22 @@ export default memo(function IOAppPlayerBar() {
         break;
       }
     }
-    console.log(lyricList[i - 1]); // 打印当前正在播放的歌词
+    // console.log(lyricList[i - 1]); // 打印当前正在播放的歌词
+
+    if (currentLyricIndex !== i - 1) {
+      dispatch(changeCurrentLyricIndexAction(i - 1));
+      // console.log(lyricList[i - 1].content);
+      const content = lyricList[i - 1] && lyricList[i - 1].content;
+
+      if (content !== '') {
+        message.open({
+          key: 'lyric',
+          content: content,
+          duration: 0,
+          className: 'lyric-class',
+        });
+      }
+    }
   };
 
   const changeSequence = () => {

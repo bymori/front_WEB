@@ -93,3 +93,13 @@ button {
   color: #7b7b7b;
   text-decoration: underline;
 }
+
+/* Message全局提示 */
+.lyric-class .ant-message-notice-content {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}

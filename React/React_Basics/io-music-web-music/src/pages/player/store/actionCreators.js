@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-25 23:08:21
+ * @LastEditTime: 2021-12-26 11:58:05
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
@@ -37,6 +37,11 @@ const changLyricListAction = (lyricList) => ({
 export const changeSequenceAction = (sequence) => ({
   type: actionTypes.CHANGE_SEQUENCE,
   sequence,
+});
+
+export const changeCurrentLyricIndexAction = (index) => ({
+  type: actionTypes.CHANGE_CURRENT_LYRIC_INDEX,
+  index,
 });
 
 export const changeCurrentIndexAndSongAction = (tag) => {
