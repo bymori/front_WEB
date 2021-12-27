@@ -4,17 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-27 15:32:55
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-27 15:59:53
+ * @LastEditTime: 2021-12-27 16:06:46
  */
 import React, { memo } from 'react';
 
-import { ProfileWrapper } from './style';
+import Layout from './layout';
 
 export default memo(function ProfileInfo() {
-  return (
-    <ProfileWrapper>
-      <h2>ProfileInfo</h2>
-      <span>我的名字: ProfileInfo</span>
-    </ProfileWrapper>
-  );
+  return <Layout></Layout>;
 });
