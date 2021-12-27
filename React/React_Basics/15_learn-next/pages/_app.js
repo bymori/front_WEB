@@ -4,9 +4,10 @@
  * @Author: by_mori
  * @Date: 2021-12-27 12:04:01
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-27 13:20:43
+ * @LastEditTime: 2021-12-27 15:34:04
  */
 import '../styles/globals.css';
+import '../styles/app.css';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }) {
         <h2>Header</h2>
         <Link href="/">首页 </Link>
         <Link href="/about"> 关于</Link>
+        <Link href="/profile"> profile</Link>
         <hr />
       </header>
 
