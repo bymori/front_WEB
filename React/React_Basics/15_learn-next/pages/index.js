@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-27 12:04:01
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-27 16:35:03
+ * @LastEditTime: 2021-12-27 16:54:58
  */
 
 import Image from 'next/image';
@@ -14,8 +14,11 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
 import Router from 'next/router';
+import axios from 'axios';
 
-export default function Home() {
+const Home = function (props) {
+  const { name, banners, recommends } = props;
+
   const recommendItemClick = (item) => {
     Router.push({
       pathname: '/recommend',
@@ -44,6 +47,30 @@ export default function Home() {
           </div>
         );
       })}
+      <h2>name: {name}</h2>
+      <h2>轮播图数据:</h2>
+      <ul>
+        {banners.map((item, index) => {
+          return <li key={item.acm}>{item.title}</li>;
+        })}
+      </ul>
+      <ul>
+        {recommends.map((item, index) => {
+          return <li key={item.acm}>{item.title}</li>;
+        })}
+      </ul>
     </div>
   );
-}
+};
+
+Home.getInitialProps = async (props) => {
+  const res = await axios({ url: 'http://123.207.32.32:8000/home/multidata' });
+
+  return {
+    name: 'momo',
+    banners: res.data.data.banner.list,
+    recommends: res.data.data.recommend.list,
+  };
+};
+
+export default Home;
