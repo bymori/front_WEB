@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-28 16:53:33
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 19:38:59
+ * @LastEditTime: 2021-12-28 20:57:00
  */
 import React, { memo } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
@@ -32,7 +32,7 @@ export default memo(function IORankingHeader() {
   return (
     <RankingHeaderWrapper>
       <div className="image">
-        <img src={topInfo.coverImgUrl} alt="" />
+        <img src={topInfo && topInfo.coverImgUrl} alt="" />
         <span className="image_cover">封面</span>
       </div>
       <div className="info">
@@ -42,6 +42,7 @@ export default memo(function IORankingHeader() {
           <div>最近更新：{formatMonthDay(topInfo.updateTime)}</div>
           <div className="update-f">
             （{topList[currentIndex] && topList[currentIndex].updateFrequency}）
+            {/* 更新时间 todo playList playlist.updateTime 字符串 需要进行处理 */}
           </div>
         </div>
         <IOSongOperationBar
@@ -49,6 +50,7 @@ export default memo(function IORankingHeader() {
           shareTitle={`(${topInfo.shareCount})`}
           downloadTitle="下载"
           commentTitle={`(${topInfo.commentCount})`}
+          //   todo 收藏状态 可用/不可用
         />
       </div>
     </RankingHeaderWrapper>

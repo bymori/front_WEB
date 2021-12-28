@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 14:51:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 16:52:58
+ * @LastEditTime: 2021-12-28 19:53:07
  */
 import React, { useEffect, memo } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,6 +13,7 @@ import { getTops } from './store/actionCreators';
 
 import IOTopRanking from './c-cpns/top-ranking';
 import IORankingHeader from './c-cpns/ranking-header';
+import IORankingList from './c-cpns/ranking-list';
 
 import { RankingWrapper, RankingLeft, RankingRight } from './style';
 
@@ -32,6 +33,7 @@ export default memo(function IORanking() {
       </RankingLeft>
       <RankingRight>
         <IORankingHeader />
+        <IORankingList />
       </RankingRight>
     </RankingWrapper>
   );
