@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 14:43:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 21:23:31
+ * @LastEditTime: 2021-12-28 15:31:13
  */
 import React, { memo, Suspense } from 'react';
 import { Provider } from 'react-redux';
@@ -40,5 +40,3 @@ export default memo(function App() {
     </Provider>
   );
 });
-
-// 30 0.49

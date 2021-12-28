@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 15:02:59
+ * @LastEditTime: 2021-12-28 15:53:57
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,7 +45,8 @@ export default memo(function IOAppPlayerBar() {
   const audioRef = useRef();
 
   useEffect(() => {
-    dispatch(getSongDetailAction(468517654));
+    // dispatch(getSongDetailAction(468517654));
+    // dispatch(getSongDetailAction());
   }, [dispatch]);
 
   useEffect(() => {
@@ -62,7 +63,9 @@ export default memo(function IOAppPlayerBar() {
   }, [currentSong]);
 
   // other handle
-  const picUrl = (currentSong.al && currentSong.al.picUrl) || '';
+  const picUrl =
+    (currentSong.al && currentSong.al.picUrl) ||
+    'http://s4.music.126.net/style/web2/img/default/default_album.jpg';
   const singerName = (currentSong.ar && currentSong.ar[0].name) || '未知歌手';
   const duration = currentSong.dt || 0;
   const showDuration = formatDate(duration, 'mm:ss');
@@ -191,7 +194,9 @@ export default memo(function IOAppPlayerBar() {
           </div>
           <div className="info">
             <div className="song">
-              <span className="song-name">{currentSong.name}</span>
+              <span className="song-name">
+                {currentSong.name || '未知歌曲'}
+              </span>
               <a href="/" className="singer-name">
                 {singerName}
               </a>

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:34:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-25 21:44:23
+ * @LastEditTime: 2021-12-28 15:52:38
  */
 import styled from 'styled-components';
 
@@ -74,9 +74,11 @@ export const PlayInfo = styled.div`
   align-items: center;
 
   .image {
-    width: 34px;
-    height: 34px;
     border-radius: 5px;
+    img {
+      width: 34px;
+      height: 34px;
+    }
   }
 
   .info {
