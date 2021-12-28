@@ -4,12 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-12-28 16:53:33
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 19:26:19
+ * @LastEditTime: 2021-12-28 19:38:59
  */
 import React, { memo } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 
 import { formatMonthDay } from '@/utils/format-utils';
+
+import IOSongOperationBar from '@/components/song-operation-bar';
 
 import { RankingHeaderWrapper } from './style';
 
@@ -39,9 +41,15 @@ export default memo(function IORankingHeader() {
           <i className="clock sprite_icon2"></i>
           <div>最近更新：{formatMonthDay(topInfo.updateTime)}</div>
           <div className="update-f">
-            （{topList[currentIndex].updateFrequency}）
+            （{topList[currentIndex] && topList[currentIndex].updateFrequency}）
           </div>
         </div>
+        <IOSongOperationBar
+          favorTitle={`(${topInfo.subscribedCount})`}
+          shareTitle={`(${topInfo.shareCount})`}
+          downloadTitle="下载"
+          commentTitle={`(${topInfo.commentCount})`}
+        />
       </div>
     </RankingHeaderWrapper>
   );

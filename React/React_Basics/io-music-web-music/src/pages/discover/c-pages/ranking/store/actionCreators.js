@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-28 16:11:47
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 17:01:29
+ * @LastEditTime: 2021-12-28 19:29:21
  */
 import * as actionTypes from './constants';
 
@@ -29,7 +29,6 @@ export const getTops = () => {
   return (dispatch) => {
     getTopList().then((res) => {
       dispatch(changeTopListAction(res));
-      console.log(res);
     });
   };
 };
