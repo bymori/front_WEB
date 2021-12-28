@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-28 19:52:05
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 21:44:11
+ * @LastEditTime: 2021-12-28 22:12:50
  */
 import styled from 'styled-components';
 
@@ -85,6 +85,15 @@ export const RankingListWrapper = styled.div`
             width: 17px;
             height: 17px;
             background-position: 0 -103px;
+
+            &:hover {
+              background-position: 0 -128px;
+            }
+          }
+          .first {
+            width: 17px;
+            height: 17px;
+            background-position: -20px -128px;
           }
 
           .name {

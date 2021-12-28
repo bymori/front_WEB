@@ -4,9 +4,9 @@
  * @Author: by_mori
  * @Date: 2021-12-28 19:51:56
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 21:54:04
+ * @LastEditTime: 2021-12-28 22:14:16
  */
-import React, { memo, Fragment } from 'react';
+import React, { memo } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import { getSizeImage, formatMinuteSecond } from '@/utils/format-utils';
 
@@ -46,13 +46,16 @@ export default memo(function IORankingList() {
                       <span className="new sprite_icon2"></span>
                     </div>
                   </td>
-                  <td className="aa">
+                  <td>
                     <div className="song-name">
                       {index < 3 ? (
                         <img src={getSizeImage(item.al.picUrl, 50)} alt="" />
                       ) : null}
-                      <span className="play sprite_table"></span>
-                      <span className="name text-nowrap">
+                      <span
+                        className={
+                          ' sprite_table ' + (!index ? 'first' : 'play')
+                        }></span>
+                      <span className="name text-nowrap" title={item.name}>
                         {item.name}
                         {/* {item.alia != false ? (
                           <span className="alia text-nowrap">-{item.alia}</span>
@@ -65,7 +68,7 @@ export default memo(function IORankingList() {
                     </div>
                   </td>
                   <td>{formatMinuteSecond(item.dt)}</td>
-                  <td>{item.ar[0].name}</td>
+                  <td title={item.ar[0].name}>{item.ar[0].name}</td>
                   {/* todo 展示全部 ar.name */}
                 </tr>
               );
