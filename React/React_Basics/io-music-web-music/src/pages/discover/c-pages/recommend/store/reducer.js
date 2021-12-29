@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 19:28:21
+ * @LastEditTime: 2021-12-29 23:00:36
  */
 import { Map } from 'immutable';
 
@@ -13,6 +13,7 @@ import * as actionTypes from './constants';
 const defaultState = Map({
   topBanners: [],
   hotRecommends: [],
+  hotRecommendsList: {},
   newAlbums: [],
 
   upRanking: {},
@@ -26,6 +27,8 @@ function reducer(state = defaultState, action) {
       return state.set('topBanners', action.topBanners);
     case actionTypes.CHANGE_HOT_RECOMMEND:
       return state.set('hotRecommends', action.hotRecommends);
+    case actionTypes.CHANGE_HOT_RECOMMEND_LIST:
+      return state.set('hotRecommendsList', action.hotRecommendsList);
     case actionTypes.CHANGE_NEW_ALBUM:
       return state.set('newAlbums', action.newAlbums);
 

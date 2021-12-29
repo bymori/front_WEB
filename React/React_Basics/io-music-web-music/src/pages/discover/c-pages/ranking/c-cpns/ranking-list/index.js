@@ -4,10 +4,13 @@
  * @Author: by_mori
  * @Date: 2021-12-28 19:51:56
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 22:14:16
+ * @LastEditTime: 2021-12-28 22:28:52
  */
 import React, { memo } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+
+import { getSongDetailAction } from '@/pages/player/store';
+
 import { getSizeImage, formatMinuteSecond } from '@/utils/format-utils';
 
 import IOThemeHeaderSong from '@/components/theme-header-song';
@@ -22,6 +25,13 @@ export default memo(function IORankingList() {
     shallowEqual
   );
   const tracks = state.playList.tracks || [];
+
+  // redux hooks
+  const dispatch = useDispatch();
+
+  const playMusic = (item) => {
+    dispatch(getSongDetailAction(item.id));
+  };
 
   return (
     <RankingListWrapper>
@@ -54,7 +64,8 @@ export default memo(function IORankingList() {
                       <span
                         className={
                           ' sprite_table ' + (!index ? 'first' : 'play')
-                        }></span>
+                        }
+                        onClick={(e) => playMusic(item)}></span>
                       <span className="name text-nowrap" title={item.name}>
                         {item.name}
                         {/* {item.alia != false ? (
@@ -68,8 +79,13 @@ export default memo(function IORankingList() {
                     </div>
                   </td>
                   <td>{formatMinuteSecond(item.dt)}</td>
-                  <td title={item.ar[0].name}>{item.ar[0].name}</td>
-                  {/* todo 展示全部 ar.name */}
+                  {/* <td title={item.ar[0].name}>{item.ar[0].name}</td> */}
+                  <td>
+                    {item.ar.map((iten) => {
+                      return <span>{iten.name} </span>;
+                    })}
+                  </td>
+                  {/* todo√ 展示全部 ar.name */}
                 </tr>
               );
             })}

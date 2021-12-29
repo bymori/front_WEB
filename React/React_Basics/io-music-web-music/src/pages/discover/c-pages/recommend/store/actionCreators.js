@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 19:52:55
+ * @LastEditTime: 2021-12-29 23:05:19
  */
 import * as actionTypes from './constants';
 
@@ -24,6 +24,10 @@ const changeHotRecommendAction = (res) => ({
   type: actionTypes.CHANGE_HOT_RECOMMEND,
   hotRecommends: res.result,
 });
+const changeHotRecommendsListAction = (res) => ({
+  type: actionTypes.CHANGE_HOT_RECOMMEND_LIST,
+  hotRecommendsList: res.playlist.tracks,
+});
 
 const changeNewAlbumAction = (res) => ({
   type: actionTypes.CHANGE_NEW_ALBUM,
@@ -38,6 +42,7 @@ const changeNewRankingAction = (res) => ({
   type: actionTypes.CHANGE_NEW_RANKING,
   newRanking: res.playlist,
 });
+
 const changeOriginRankingAction = (res) => ({
   type: actionTypes.CHANGE_ORIGIN_RANKING,
   originRanking: res.playlist,
@@ -55,6 +60,14 @@ export const getHotRecommendAction = (limit) => {
   return (dispatch) => {
     getHotRecommends(limit).then((res) => {
       dispatch(changeHotRecommendAction(res));
+    });
+  };
+};
+
+export const getTopListActions = (id) => {
+  return (dispatch) => {
+    getTopList(id).then((res) => {
+      dispatch(changeHotRecommendsListAction(res));
     });
   };
 };

@@ -4,10 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:45
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-23 19:20:36
+ * @LastEditTime: 2021-12-29 22:39:55
  */
 export const CHANGE_TOP_BANNERS = 'recommend/CHANGE_TOP_BANNERS';
 export const CHANGE_HOT_RECOMMEND = 'recommend/CHANGE_HOT_RECOMMEND';
+export const CHANGE_HOT_RECOMMEND_LIST = 'recommend/CHANGE_HOT_RECOMMEND_LIST';
+
 export const CHANGE_NEW_ALBUM = 'recommend/CHANGE_NEW_ALBUM';
 
 export const CHANGE_UP_RANKING = 'recommend/CHANGE_UP_RANKING';
