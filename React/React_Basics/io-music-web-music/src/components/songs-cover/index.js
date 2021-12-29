@@ -4,13 +4,16 @@
  * @Author: by_mori
  * @Date: 2021-12-22 22:01:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-29 23:16:39
+ * @LastEditTime: 2021-12-29 23:41:38
  */
 import React, { memo, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { getTopListActions } from '../../pages/discover/c-pages/recommend/store/actionCreators';
-import { getSongDetailAction } from '@/pages/player/store';
+import {
+  getSongDetailAction,
+  getSongDetailActions,
+} from '@/pages/player/store';
 
 import { getCount, getSizeImage } from '@/utils/format-utils';
 
@@ -40,6 +43,13 @@ export default memo(function IOSongsCover(props) {
     [dispatch, hotRecommendsList]
   );
 
+  const playMusics = useCallback(
+    (id) => {
+      dispatch(getSongDetailActions(id));
+    },
+    [dispatch]
+  );
+
   return (
     <SongsCoverWrapper title={info.name}>
       <div className="cover-top">
@@ -59,7 +69,13 @@ export default memo(function IOSongsCover(props) {
           </div>
         </div>
       </div>
-      <div className="cover-bottom text-M-nowrap">{info.name}</div>
+      <div
+        className="cover-bottom text-M-nowrap"
+        onClick={() => {
+          playMusics(info.id);
+        }}>
+        {info.name}
+      </div>
       {/* todo 上面div换成a标签 */}
       {/* <div className="cover-source text-nowrap"> */}
       {/* by {info.copywriter || info.creator.nickname} */}

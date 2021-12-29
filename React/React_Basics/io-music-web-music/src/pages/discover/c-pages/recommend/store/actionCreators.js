@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-21 18:51:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-29 23:05:19
+ * @LastEditTime: 2021-12-29 23:34:34
  */
 import * as actionTypes from './constants';
 
@@ -24,7 +24,9 @@ const changeHotRecommendAction = (res) => ({
   type: actionTypes.CHANGE_HOT_RECOMMEND,
   hotRecommends: res.result,
 });
-const changeHotRecommendsListAction = (res) => ({
+
+// 对外暴露
+export const changeHotRecommendsListAction = (res) => ({
   type: actionTypes.CHANGE_HOT_RECOMMEND_LIST,
   hotRecommendsList: res.playlist.tracks,
 });

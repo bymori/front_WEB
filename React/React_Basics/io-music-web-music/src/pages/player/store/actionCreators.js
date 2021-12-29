@@ -4,13 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 11:58:05
+ * @LastEditTime: 2021-12-29 23:43:06
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
 import { getRandomNumber } from '@/utils/math-utils';
 import { parseLyric } from '@/utils/parse-lyric';
 
+import { getTopListActions } from '../../discover/c-pages/recommend/store/actionCreators';
 import * as actionTypes from './constants';
 
 const changeCurrentSongAction = (currentSong) => ({
@@ -123,5 +124,12 @@ export const getLyricAction = (id) => {
       const lyricList = parseLyric(lyric);
       dispatch(changLyricListAction(lyricList));
     });
+  };
+};
+
+export const getSongDetailActions = (id) => {
+  return (dispatch, getState) => {
+    console.log(id);
+    dispatch(getTopListActions(id));
   };
 };
