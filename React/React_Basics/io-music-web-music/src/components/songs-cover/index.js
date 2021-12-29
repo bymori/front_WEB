@@ -4,14 +4,13 @@
  * @Author: by_mori
  * @Date: 2021-12-22 22:01:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-29 23:03:47
+ * @LastEditTime: 2021-12-29 23:16:39
  */
 import React, { memo, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
-import { getSongDetailAction } from '@/pages/player/store';
 import { getTopListActions } from '../../pages/discover/c-pages/recommend/store/actionCreators';
-import { getTopList } from '@/services/recommend';
+import { getSongDetailAction } from '@/pages/player/store';
 
 import { getCount, getSizeImage } from '@/utils/format-utils';
 
@@ -21,28 +20,25 @@ export default memo(function IOSongsCover(props) {
   const { info } = props;
 
   // redux hook
-  const { playList, hotRecommendsList } = useSelector((state) => ({
-    playList: state.getIn(['player', 'playList']),
-    hotRecommendsList: state.getIn(['recommend', 'hotRecommendsList']),
-  }));
+  const { hotRecommendsList } = useSelector(
+    (state) => ({
+      hotRecommendsList: state.getIn(['recommend', 'hotRecommendsList']),
+    }),
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 
-  const playMusic = useCallback((id) => {
-    console.log(id);
-    dispatch(getTopListActions(id));
+  const playMusic = useCallback(
+    (id) => {
+      console.log(id);
+      dispatch(getTopListActions(id));
 
-    // dispatch(getTopListActions(id));
-    // getTopList(id).then((res) => {
-    //   // console.log(res.playlist.trackIds);
-    //   console.log(res.playlist.tracks);
-    //   res.playlist.tracks.map((item) => {
-    //     // setTimeout(dispatch(getSongDetailAction(item.id)), 0);
-
-    //   });
-    //   //
-    // });
-  }, []);
+      console.log(hotRecommendsList[0].name);
+      dispatch(getSongDetailAction(hotRecommendsList[0].id));
+    },
+    [dispatch, hotRecommendsList]
+  );
 
   return (
     <SongsCoverWrapper title={info.name}>
