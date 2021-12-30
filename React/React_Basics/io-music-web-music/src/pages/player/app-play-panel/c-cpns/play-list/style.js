@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-30 08:44:19
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 15:10:45
+ * @LastEditTime: 2021-12-30 22:46:13
  */
 import styled from 'styled-components';
 
@@ -43,6 +43,11 @@ export const PlayListWrapper = styled.div`
       .operate {
         display: block;
       }
+    }
+
+    .left {
+      // 增加宽度修复 播放列表 鼠标移入上去 和 hover的icon产生冲突
+      width: 256px;
     }
 
     .operate {

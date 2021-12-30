@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 22:30:42
+ * @LastEditTime: 2021-12-30 22:39:28
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
@@ -138,7 +138,7 @@ export const getSongDetailActions = (id) => {
     //  未登录状态只能获取不完整的歌单,登录后是完整的
     // todo 切换歌单时 提示会替换当前歌单
     getTopList(id).then((res) => {
-      console.log(res.playlist.tracks);
+      // console.log(res.playlist.tracks);
       dispatch(changePlayListAction(res.playlist.tracks)); //获取数据存储到redux player.playList中
       dispatch(changeCurrentSongIndexAction(0)); // 切换歌单后 始终播放第一首
       dispatch(changeCurrentIndexAndSongAction(0)); // 开始播放音乐

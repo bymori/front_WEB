@@ -4,13 +4,16 @@
  * @Author: by_mori
  * @Date: 2021-12-23 21:18:32
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 11:38:28
+ * @LastEditTime: 2021-12-30 22:40:21
  */
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { getSizeImage } from '@/utils/format-utils';
-import { getSongDetailAction } from '@/pages/player/store';
+import {
+  getSongDetailAction,
+  getSongDetailActions,
+} from '@/pages/player/store';
 
 import { TopRankingWrapper } from './style';
 
@@ -19,6 +22,8 @@ export default memo(function IOTopRanking(props) {
   const { info = [] } = props; // todo 待测试 Cannot read properties of undefined (reading 'tracks')
   const { tracks = [] } = info;
 
+  console.log();
+
   // redux hooks
   const dispatch = useDispatch();
 
@@ -26,6 +31,13 @@ export default memo(function IOTopRanking(props) {
   const playMusic = (item) => {
     dispatch(getSongDetailAction(item.id));
   };
+
+  const playMusics = useCallback(
+    (id) => {
+      dispatch(getSongDetailActions(id));
+    },
+    [dispatch]
+  );
 
   return (
     <TopRankingWrapper>
@@ -39,8 +51,13 @@ export default memo(function IOTopRanking(props) {
         <div className="info">
           <a href="/todo">{info.name}</a>
           <div>
-            <button className="btn play sprite_02"></button>
-            <button className="btn favor sprite_02"></button>
+            <button
+              className="btn play sprite_02"
+              onClick={() => {
+                playMusics(info.id);
+              }}
+              title="播放"></button>
+            <button className="btn favor sprite_02" title="收藏"></button>
           </div>
         </div>
       </div>

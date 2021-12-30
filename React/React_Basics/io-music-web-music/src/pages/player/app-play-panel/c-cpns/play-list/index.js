@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-30 08:44:14
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 15:09:30
+ * @LastEditTime: 2021-12-30 22:41:26
  */
 import React, { memo } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
@@ -72,7 +72,7 @@ export default memo(function IOPlayList() {
                 active: currentSongIndex === index,
               })}
               onClick={(e) => playMusic(item.id)}>
-              <div className="left">{item.name}</div>
+              <div className="left text-nowrap">{item.name}</div>
               <div className="operate">
                 <button
                   className="btn sprite_playlist like"
