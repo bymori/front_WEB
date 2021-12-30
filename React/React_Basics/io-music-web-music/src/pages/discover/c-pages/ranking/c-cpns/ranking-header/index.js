@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-28 16:53:33
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 20:57:00
+ * @LastEditTime: 2021-12-30 22:59:44
  */
 import React, { memo } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
@@ -46,6 +46,7 @@ export default memo(function IORankingHeader() {
           </div>
         </div>
         <IOSongOperationBar
+          detailId={topInfo.id}
           favorTitle={`(${topInfo.subscribedCount})`}
           shareTitle={`(${topInfo.shareCount})`}
           downloadTitle="下载"

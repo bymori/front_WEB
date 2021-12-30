@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-28 19:29:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 19:29:51
+ * @LastEditTime: 2021-12-30 23:05:58
  */
 import styled from 'styled-components';
 
@@ -16,6 +16,7 @@ export const OperationBarWrapper = styled.div`
     display: flex;
     align-items: center;
     margin-right: 5px;
+    cursor: pointer;
 
     .play-icon {
       display: inline-block;
