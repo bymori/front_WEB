@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 13:32:51
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 15:53:57
+ * @LastEditTime: 2021-12-30 08:19:25
  */
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,8 @@ import {
   changeCurrentIndexAndSongAction,
   changeCurrentLyricIndexAction,
 } from '../store/actionCreators';
+
+import IOAppPlayPanel from '../app-play-panel';
 
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils';
 import { NavLink } from 'react-router-dom';
@@ -28,6 +30,7 @@ export default memo(function IOAppPlayerBar() {
   const [progress, setProgress] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showPanel, setShowPanel] = useState(false);
 
   // redux hook
   const { currentSong, sequence, playList, lyricList, currentLyricIndex } =
@@ -230,7 +233,9 @@ export default memo(function IOAppPlayerBar() {
             <button
               className="sprite_player btn loop"
               onClick={(e) => changeSequence()}></button>
-            <button className="sprite_player btn playlist">
+            <button
+              className="sprite_player btn playlist"
+              onClick={(e) => setShowPanel(!showPanel)}>
               {playList.length}
             </button>
           </div>
@@ -242,6 +247,7 @@ export default memo(function IOAppPlayerBar() {
         onEnded={(e) => handleMusicEnded()}
         // todo 增加音量调节控制
       />
+      {showPanel && <IOAppPlayPanel />}
     </PlayerBarWrapper>
   );
 });

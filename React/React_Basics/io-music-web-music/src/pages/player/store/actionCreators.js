@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-29 23:43:06
+ * @LastEditTime: 2021-12-29 23:57:44
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
@@ -131,5 +131,18 @@ export const getSongDetailActions = (id) => {
   return (dispatch, getState) => {
     console.log(id);
     dispatch(getTopListActions(id));
+
+    const hotRecommendsList = getState().getIn([
+      'recommend',
+      'hotRecommendsList',
+    ]);
+
+    console.log(...hotRecommendsList);
+
+    // dispatch(changeCurrentSongIndexAction(hotRecommendsList.length - 1));
+    //  dispatch(changeCurrentSongAction(song));
+
+    //  // 3.请求歌词
+    //  dispatch(getLyricAction(song.id));
   };
 };
