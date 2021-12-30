@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-29 23:57:44
+ * @LastEditTime: 2021-12-30 14:09:21
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
@@ -93,6 +93,8 @@ export const getSongDetailAction = (ids) => {
       dispatch(changeCurrentSongIndexAction(songIndex));
       song = playList[songIndex];
       dispatch(changeCurrentSongAction(song));
+      // 3.请求歌词
+      dispatch(getLyricAction(song.id));
     } else {
       // 没有找到歌曲
 

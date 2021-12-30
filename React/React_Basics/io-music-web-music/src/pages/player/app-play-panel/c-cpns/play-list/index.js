@@ -4,11 +4,13 @@
  * @Author: by_mori
  * @Date: 2021-12-30 08:44:14
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 11:20:50
+ * @LastEditTime: 2021-12-30 14:04:51
  */
 import React, { memo } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import classNames from 'classnames';
+
+import { getSongDetailAction } from '@/pages/player/store';
 
 import { formatMinuteSecond } from '@/utils/format-utils';
 
@@ -25,6 +27,14 @@ export default memo(function IOPlayList() {
     }),
     shallowEqual
   );
+
+  // redux hooks
+  const dispatch = useDispatch();
+
+  // other handle
+  const playMusic = (id) => {
+    dispatch(getSongDetailAction(id));
+  };
 
   const ContainerHeight = 400;
 
@@ -56,11 +66,29 @@ export default memo(function IOPlayList() {
         >
           {(item, index) => (
             <List.Item
+              // todo√ 点击播放当前歌曲
               key={item.id}
               className={classNames('play-item', {
                 active: currentSongIndex === index,
-              })}>
+              })}
+              onClick={(e) => playMusic(item.id)}>
               <div className="left">{item.name}</div>
+              <div className="operate">
+                <button
+                  className="btn sprite_playlist like"
+                  title="收藏"></button>
+                <button
+                  className="btn sprite_playlist share"
+                  title="分享"></button>
+                <button
+                  className="btn sprite_playlist download"
+                  title="下载"></button>
+                <button
+                  className="btn sprite_playlist delete"
+                  title="删除"
+                  // onClick={(e) => playMusic(item)}
+                ></button>
+              </div>
               <div className="right">
                 <span className="singer">{item.ar[0].name}</span>
                 <span className="duration">{formatMinuteSecond(item.dt)}</span>

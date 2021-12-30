@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-30 08:44:19
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 10:26:41
+ * @LastEditTime: 2021-12-30 13:59:39
  */
 import styled from 'styled-components';
 
@@ -34,6 +34,62 @@ export const PlayListWrapper = styled.div`
         width: 10px;
         height: 13px;
         background: url(${require('@/assets/img/playlist_sprite.png')}) -182px 0;
+      }
+    }
+    &:hover {
+      color: #fff;
+      background-color: #000;
+      .operate {
+        display: block;
+      }
+    }
+
+    .operate {
+      display: flex;
+      align-items: center;
+      display: none;
+      width: 100px;
+      /* margin-left: auto;
+      margin-right: 8px;
+      margin-top: 5px; */
+
+      margin: 5px 8px 0 auto;
+
+      .btn {
+        height: 16px;
+        margin-left: 8px;
+        border-width: 0px;
+        cursor: pointer;
+      }
+
+      .like {
+        width: 16px;
+        background-position: -24px -0;
+        &:hover {
+          background-position: -24px -20px;
+        }
+      }
+
+      .share {
+        width: 14px;
+        background-position: 0 0;
+        &:hover {
+          background-position: 0 -20px;
+        }
+      }
+      .download {
+        width: 14px;
+        background-position: -57px -50px;
+        &:hover {
+          background-position: -80px -50px;
+        }
+      }
+      .delete {
+        width: 13px;
+        background-position: -51px 0;
+        &:hover {
+          background-position: -51px -20px;
+        }
       }
     }
 
