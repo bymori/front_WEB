@@ -4,14 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-12-22 22:01:23
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-29 23:41:38
+ * @LastEditTime: 2021-12-30 22:13:23
  */
 import React, { memo, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
-import { getTopListActions } from '../../pages/discover/c-pages/recommend/store/actionCreators';
+// import { getTopListActions } from '../../pages/discover/c-pages/recommend/store/actionCreators';
 import {
-  getSongDetailAction,
+  // getSongDetailAction,
   getSongDetailActions,
 } from '@/pages/player/store';
 
@@ -22,26 +22,26 @@ import { SongsCoverWrapper } from './style';
 export default memo(function IOSongsCover(props) {
   const { info } = props;
 
-  // redux hook
-  const { hotRecommendsList } = useSelector(
-    (state) => ({
-      hotRecommendsList: state.getIn(['recommend', 'hotRecommendsList']),
-    }),
-    shallowEqual
-  );
+  // // redux hook
+  // const { hotRecommendsList } = useSelector(
+  //   (state) => ({
+  //     hotRecommendsList: state.getIn(['recommend', 'hotRecommendsList']),
+  //   }),
+  //   shallowEqual
+  // );
 
   const dispatch = useDispatch();
 
-  const playMusic = useCallback(
-    (id) => {
-      console.log(id);
-      dispatch(getTopListActions(id));
+  // const playMusic = useCallback(
+  //   (id) => {
+  //     console.log(id);
+  //     dispatch(getTopListActions(id));
 
-      console.log(hotRecommendsList[0].name);
-      dispatch(getSongDetailAction(hotRecommendsList[0].id));
-    },
-    [dispatch, hotRecommendsList]
-  );
+  //     console.log(hotRecommendsList[0].name);
+  //     dispatch(getSongDetailAction(hotRecommendsList[0].id));
+  //   },
+  //   [dispatch, hotRecommendsList]
+  // );
 
   const playMusics = useCallback(
     (id) => {
@@ -64,18 +64,12 @@ export default memo(function IOSongsCover(props) {
               className="sprite_icon play"
               title="播放"
               onClick={() => {
-                playMusic(info.id);
+                playMusics(info.id);
               }}></i>
           </div>
         </div>
       </div>
-      <div
-        className="cover-bottom text-M-nowrap"
-        onClick={() => {
-          playMusics(info.id);
-        }}>
-        {info.name}
-      </div>
+      <div className="cover-bottom text-M-nowrap">{info.name}</div>
       {/* todo 上面div换成a标签 */}
       {/* <div className="cover-source text-nowrap"> */}
       {/* by {info.copywriter || info.creator.nickname} */}

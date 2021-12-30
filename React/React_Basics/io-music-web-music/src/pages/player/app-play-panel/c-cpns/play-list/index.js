@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-30 08:44:14
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 14:04:51
+ * @LastEditTime: 2021-12-30 15:09:30
  */
 import React, { memo } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
@@ -85,12 +85,15 @@ export default memo(function IOPlayList() {
                   title="下载"></button>
                 <button
                   className="btn sprite_playlist delete"
-                  title="删除"
-                  // onClick={(e) => playMusic(item)}
-                ></button>
+                  title="删除"></button>
               </div>
               <div className="right">
-                <span className="singer">{item.ar[0].name}</span>
+                <span className="singer text-nowrap" title={item.ar[0].name}>
+                  {/* {item.ar[0].name} */}
+                  {item.ar.map((iten) => {
+                    return <span>{iten.name} </span>;
+                  })}
+                </span>
                 <span className="duration">{formatMinuteSecond(item.dt)}</span>
                 <span className="sprite_playlist link"></span>
               </div>

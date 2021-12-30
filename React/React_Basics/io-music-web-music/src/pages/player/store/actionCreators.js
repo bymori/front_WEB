@@ -4,14 +4,17 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 14:09:21
+ * @LastEditTime: 2021-12-30 22:30:42
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
 import { getRandomNumber } from '@/utils/math-utils';
 import { parseLyric } from '@/utils/parse-lyric';
 
-import { getTopListActions } from '../../discover/c-pages/recommend/store/actionCreators';
+// import { getTopListActions } from '../../discover/c-pages/recommend/store/actionCreators';
+
+import { getTopList } from '@/services/recommend';
+
 import * as actionTypes from './constants';
 
 const changeCurrentSongAction = (currentSong) => ({
@@ -130,21 +133,15 @@ export const getLyricAction = (id) => {
 };
 
 export const getSongDetailActions = (id) => {
-  return (dispatch, getState) => {
-    console.log(id);
-    dispatch(getTopListActions(id));
-
-    const hotRecommendsList = getState().getIn([
-      'recommend',
-      'hotRecommendsList',
-    ]);
-
-    console.log(...hotRecommendsList);
-
-    // dispatch(changeCurrentSongIndexAction(hotRecommendsList.length - 1));
-    //  dispatch(changeCurrentSongAction(song));
-
-    //  // 3.请求歌词
-    //  dispatch(getLyricAction(song.id));
+  return (dispatch) => {
+    // 传入 歌单 id 调用/playlist/detail获取tracks
+    //  未登录状态只能获取不完整的歌单,登录后是完整的
+    // todo 切换歌单时 提示会替换当前歌单
+    getTopList(id).then((res) => {
+      console.log(res.playlist.tracks);
+      dispatch(changePlayListAction(res.playlist.tracks)); //获取数据存储到redux player.playList中
+      dispatch(changeCurrentSongIndexAction(0)); // 切换歌单后 始终播放第一首
+      dispatch(changeCurrentIndexAndSongAction(0)); // 开始播放音乐
+    });
   };
 };

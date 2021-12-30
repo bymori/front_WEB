@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-30 08:44:19
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 13:59:39
+ * @LastEditTime: 2021-12-30 15:10:45
  */
 import styled from 'styled-components';
 
@@ -22,6 +22,7 @@ export const PlayListWrapper = styled.div`
     height: 28px;
     line-height: 28px;
     color: #ccc;
+    cursor: pointer;
 
     &.active {
       color: #fff;

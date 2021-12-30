@@ -4,16 +4,16 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:53
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 11:56:19
+ * @LastEditTime: 2021-12-30 22:15:27
  */
 import { Map } from 'immutable';
 
 import * as actionTypes from './constants';
 
 const defaultState = Map({
-  playList: [],
-  currentSongIndex: 0,
-  currentSong: {},
+  playList: [], // 存储歌单列表
+  currentSongIndex: 0, // 当前第 * 条歌曲
+  currentSong: {}, // 当前歌曲
   sequence: 0, // 0 循环 1 随机 2 单曲
   lyricList: [], // 歌词
   currentLyricIndex: 0, // 当前第*条歌词
