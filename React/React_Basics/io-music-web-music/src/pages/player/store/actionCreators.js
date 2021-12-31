@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-31 12:01:04
+ * @LastEditTime: 2021-12-31 13:50:00
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
@@ -152,10 +152,26 @@ export const addToPlaylist = (id) => {
     const playList = getState().getIn(['player', 'playList']);
     const newPlayList = [...playList];
 
+    //  去重函数 传入需要去重的数组 判断 item.id 去重
+    let PlaylistWeight = (PlayList) => {
+      let map = new Map();
+      for (let item of PlayList) {
+        if (!map.has(item.id)) {
+          map.set(item.id, item);
+        }
+      }
+      return [...map.values()];
+    };
+
     getTopList(id).then((res) => {
       newPlayList.push(...res.playlist.tracks);
-      dispatch(changePlayListAction(newPlayList));
+
+      let WeightPlayList = PlaylistWeight(newPlayList); // 返回去重后的数组
+
+      dispatch(changePlayListAction(WeightPlayList));
       // 将最新请求到的歌曲添加到播放列表中;
+
+      // todo√ 歌曲 检测 去重
     });
   };
 };

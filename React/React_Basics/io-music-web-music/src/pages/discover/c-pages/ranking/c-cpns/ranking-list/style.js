@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-28 19:52:05
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 22:12:50
+ * @LastEditTime: 2021-12-31 12:35:15
  */
 import styled from 'styled-components';
 
@@ -75,6 +75,7 @@ export const RankingListWrapper = styled.div`
         .song-name {
           display: flex;
           align-items: center;
+          width: 216px;
           img {
             width: 50px;
             height: 50px;
