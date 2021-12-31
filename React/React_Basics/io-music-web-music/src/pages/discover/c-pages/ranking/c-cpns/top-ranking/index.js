@@ -4,10 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-28 16:03:52
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-28 19:15:16
+ * @LastEditTime: 2021-12-31 14:01:15
  */
 import React, { memo, useEffect } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+
+import classNames from 'classnames';
 
 import { changeCurrentIndex, getRanking } from '../../store/actionCreators';
 
@@ -54,7 +56,7 @@ export default memo(function IOTopRanking() {
           <div key={item.id}>
             {header}
             <div
-              className="item"
+              className={classNames('item', { active: index === currentIndex })}
               title={item.description}
               onClick={(e) => handleItemClick(index)}>
               <img src={item.coverImgUrl} alt="" />

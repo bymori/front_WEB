@@ -4,10 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-23 21:18:32
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 22:40:21
+ * @LastEditTime: 2021-12-31 13:58:26
  */
 import React, { memo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+
+import { NavLink } from 'react-router-dom';
 
 import { getSizeImage } from '@/utils/format-utils';
 import {
@@ -84,7 +86,9 @@ export default memo(function IOTopRanking(props) {
         })}
       </div>
       <div className="footer">
-        <a href="/todo">查看全部 &gt;</a>
+        <NavLink to="/discover/ranking">
+          <span>查看全部 &gt;</span>
+        </NavLink>
       </div>
     </TopRankingWrapper>
   );

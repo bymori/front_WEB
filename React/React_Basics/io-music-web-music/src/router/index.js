@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 23:08:15
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-26 15:22:40
+ * @LastEditTime: 2021-12-31 14:21:52
  */
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -21,6 +21,8 @@ const IOAlbum = lazy(() => import('c-pages/album'));
 const IOPlayer = lazy(() => import('page/player'));
 
 const IOMine = lazy(() => import('page/mine'));
+const IOLogin = lazy(() => import('page/mine/c-pages/login'));
+
 const IOFriend = lazy(() => import('page/friend'));
 const IONoMatch = lazy(() => import('page/NoMatch'));
 
@@ -57,6 +59,7 @@ const routes = [
   {
     path: '/mine',
     element: <IOMine />,
+    children: [{ path: 'login', element: <IOLogin /> }],
   },
   {
     path: '/friend',
