@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-24 14:38:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-30 22:39:28
+ * @LastEditTime: 2021-12-31 12:01:04
  */
 
 import { getSongDetail, getLyric } from '@/services/player';
@@ -142,6 +142,20 @@ export const getSongDetailActions = (id) => {
       dispatch(changePlayListAction(res.playlist.tracks)); //获取数据存储到redux player.playList中
       dispatch(changeCurrentSongIndexAction(0)); // 切换歌单后 始终播放第一首
       dispatch(changeCurrentIndexAndSongAction(0)); // 开始播放音乐
+    });
+  };
+};
+
+export const addToPlaylist = (id) => {
+  return (dispatch, getState) => {
+    // 在redux中 拿到其他文件中存储的数据
+    const playList = getState().getIn(['player', 'playList']);
+    const newPlayList = [...playList];
+
+    getTopList(id).then((res) => {
+      newPlayList.push(...res.playlist.tracks);
+      dispatch(changePlayListAction(newPlayList));
+      // 将最新请求到的歌曲添加到播放列表中;
     });
   };
 };
