@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-28 19:28:44
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-31 11:38:37
+ * @LastEditTime: 2021-12-31 12:02:18
  */
 
 import React, { memo, useCallback } from 'react';
@@ -55,7 +55,7 @@ export default memo(function IOSongOperationBar(props) {
             addPlayMusics(detailId);
           }}>
           +
-          {/* todo 添加到播放列表函数 当前当前歌曲添加到列表 不进行播放 保留之前歌曲 需要进行去重操作 */}
+          {/* todo√ 添加到播放列表函数 当前当前歌曲添加到列表 不进行播放 保留之前歌曲 需要进行去重操作 */}
         </span>
       </span>
       <a href="/abc" className="item sprite_button">
