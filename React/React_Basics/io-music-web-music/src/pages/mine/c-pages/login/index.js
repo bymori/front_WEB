@@ -4,17 +4,17 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:16:17
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-31 21:50:48
+ * @LastEditTime: 2021-12-31 22:16:26
  */
 import React, { memo, useRef } from 'react';
 
 import { getLogin, getLoginCode } from '@/services/user';
 
-import { Form, Input, Button, Checkbox, Select, Row, Col } from 'antd';
+import { Form, Input, Button, Checkbox, Select, Row, Col, Layout } from 'antd';
 
 export default memo(function IOLogin() {
   const { Option } = Select;
-
+  const { Header, Footer, Sider, Content } = Layout;
   const phoneRef = useRef();
 
   const onFinish = (values) => {
@@ -54,75 +54,83 @@ export default memo(function IOLogin() {
   );
 
   return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-        prefix: '86',
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off">
-      <Form.Item
-        name="phone"
-        label="Phone Number"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your phone number!',
-          },
-        ]}>
-        <Input
-          ref={phoneRef}
-          addonBefore={prefixSelector}
-          style={{
-            width: '100%',
-          }}
-        />
-      </Form.Item>
+    <div>
+      <Layout>
+        <Header>Header</Header>
+        <Content>Content</Content>
+        <Footer>Footer</Footer>
+      </Layout>
 
-      <Form.Item
-        label="Captcha"
-        extra="We must make sure that your are a human.">
-        <Row gutter={8}>
-          <Col span={12}>
-            <Form.Item
-              name="captcha"
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input the captcha you got!',
-                },
-              ]}>
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Button>Get captcha</Button>
-          </Col>
-        </Row>
-      </Form.Item>
-
-      <Form.Item
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
         wrapperCol={{
-          offset: 8,
           span: 16,
-        }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
+        }}
+        initialValues={{
+          remember: true,
+          prefix: '86',
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off">
+        <Form.Item
+          name="phone"
+          label="Phone Number"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your phone number!',
+            },
+          ]}>
+          <Input
+            ref={phoneRef}
+            addonBefore={prefixSelector}
+            style={{
+              width: '100%',
+            }}
+          />
+        </Form.Item>
 
-        <Button htmlType="button" onClick={onReset}>
-          发送验证码
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item
+          label="Captcha"
+          extra="We must make sure that your are a human.">
+          <Row gutter={8}>
+            <Col span={12}>
+              <Form.Item
+                name="captcha"
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input the captcha you got!',
+                  },
+                ]}>
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Button>Get captcha</Button>
+            </Col>
+          </Row>
+        </Form.Item>
+
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+
+          <Button htmlType="button" onClick={onReset}>
+            发送验证码
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 });

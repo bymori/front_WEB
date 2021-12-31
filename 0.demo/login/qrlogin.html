@@ -1,0 +1,93 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-12-31 22:39:26
+ * @LastEditors: by_mori
+ * @LastEditTime: 2021-12-31 22:51:35
+-->
+
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>二维码登录</title>
+  </head>
+
+  <body>
+    <img id="qrImg" />
+    <div id="info" class="info"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js
+    "></script>
+    <script>
+      // 3. 二维码检测扫码状态接口
+      // 轮询此接口可获取二维码扫码状态,
+      //    800 为二维码过期
+      //    801 为等待扫码
+      //    802 为待确认
+      //    803 为授权登录成功(803 状态码下会返回 cookies)
+
+      async function checkStatus(key) {
+        const res = await axios({
+          url: `/login/qr/check?key=${key}&timerstamp=${Date.now()}`,
+          withCredentials: true, //关键
+        });
+        return res.data;
+      }
+      async function getLoginStatus() {
+        const res = await axios({
+          url: `/login/status?timerstamp=${Date.now()}`,
+          withCredentials: true, //关键
+        });
+        document.querySelector('#info').innerText = JSON.stringify(
+          res.data,
+          null,
+          2
+        );
+      }
+
+      async function login() {
+        let timer;
+        let timestamp = Date.now();
+        this.getLoginStatus();
+
+        // 1. 二维码 key 生成接口 返回 data.unikey 为下一步的 key
+        const res = await axios({
+          url: `/login/qr/key?timerstamp=${Date.now()}`,
+          withCredentials: true, //关键
+        });
+        const key = res.data.data.unikey; // 获取到key
+
+        // 2. 二维码生成接口 调用此接口传入上一个接口生成的 key 可生成二维码图片的 base64 和二维码信息,可使用 base64 展示图片,或者使用二维码信息内容自行使用第三方二维码生成库渲染二维码
+        const res2 = await axios({
+          url: `/login/qr/create?key=${key}&qrimg=true&timerstamp=${Date.now()}`,
+          withCredentials: true, //关键
+        });
+        document.querySelector('#qrImg').src = res2.data.data.qrimg; // base64 信息
+
+        // 每三秒查询一次二维码状态
+        timer = setInterval(async () => {
+          const statusRes = await this.checkStatus(key);
+          if (statusRes.code === 800) {
+            alert('二维码已过期,请重新获取');
+            clearInterval(timer);
+          }
+          if (statusRes.code === 803) {
+            // 这一步会返回cookie
+            clearInterval(timer);
+            alert('授权登录成功');
+            await this.getLoginStatus();
+          }
+        }, 3000);
+      }
+
+      login();
+    </script>
+    <style>
+      .info {
+        white-space: pre;
+      }
+    </style>
+  </body>
+</html>
