@@ -54,7 +54,7 @@
     react-color "2.19.3"
     swr "1.1.0"
 
-"@ant-design/pro-form@1.52.5":
+"@ant-design/pro-form@1.52.5", "@ant-design/pro-form@^1.52.5":
   version "1.52.5"
   resolved "https://registry.npmjs.org/@ant-design/pro-form/-/pro-form-1.52.5.tgz#64e74214d32ddb94c52c18b38ddb971f831f295b"
   integrity sha512-pDIf2t54xEdBF7cZ/XWdFPPlYEIfN9Kux439WDLU0Pko8AJWgu/CuNoLFLA3XFpmKZu38CD4xhoxwBrtYfbswg==

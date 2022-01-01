@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 22:39:26
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-31 22:51:35
+ * @LastEditTime: 2021-12-31 22:57:31
 -->
 
 <!DOCTYPE html>
@@ -35,6 +35,9 @@
         });
         return res.data;
       }
+
+      // 获取登录状态
+      // 登录成功则返回用户相关信息
       async function getLoginStatus() {
         const res = await axios({
           url: `/login/status?timerstamp=${Date.now()}`,
@@ -83,6 +86,8 @@
       }
 
       login();
+
+      //   调用此接口 , 可退出登录 ip/logout
     </script>
     <style>
       .info {
