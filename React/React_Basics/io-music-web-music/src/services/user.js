@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:56:29
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 16:59:28
+ * @LastEditTime: 2022-01-01 21:28:14
  */
 import request from './request';
 
@@ -60,5 +60,12 @@ export function getLoginStatus() {
   return request({
     url: `/login/status?timerstamp=${Date.now()}`,
     withCredentials: true, //关键
+  });
+}
+
+// 退出登录
+export function getLogout() {
+  return request({
+    url: `/logout`,
   });
 }

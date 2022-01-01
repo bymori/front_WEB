@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:16:17
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 19:11:30
+ * @LastEditTime: 2022-01-01 21:39:45
  */
 import React, { memo, useState, useEffect, useRef } from 'react';
 
@@ -28,10 +28,14 @@ import {
   loginQrCreate,
   checkStatus,
   getLoginStatus,
+  getLogout,
 } from '@/services/user';
+
 import { LoginWrapper } from './style';
 
 import { message, Tabs, Space } from 'antd';
+
+import localStorage from 'localStorage';
 
 const iconStyles = {
   marginLeft: '16px',
@@ -47,7 +51,11 @@ export default memo(function IOLogin() {
 
   async function getLoginStatu() {
     const res = await getLoginStatus();
-    console.log(res.data);
+
+    // 将用户的信息存储至本地
+    localStorage.setItem('userInfo', JSON.stringify(res.data));
+
+    console.log('getLoginStatu:', res.data);
   }
 
   const loginQRCode = useEffect(() => {
@@ -80,13 +88,13 @@ export default memo(function IOLogin() {
         // 802 为待确认
         // 803 为授权登录成功(803 状态码下会返回 cookies)
         if (statusRes.code === 800) {
-          alert('二维码已过期,请重新获取');
+          console.log('二维码已过期,请重新获取');
           clearInterval(timer);
         }
         if (statusRes.code === 803) {
           // 这一步会返回cookie
           clearInterval(timer);
-          alert('授权登录成功');
+          console.log('授权登录成功');
           getLoginStatu();
         }
       }, 3000);
@@ -204,6 +212,12 @@ export default memo(function IOLogin() {
             <div class="qrcode">
               <img ref={qrcodeRef} alt="" />
             </div>
+            <button
+              onClick={() => {
+                console.log(JSON.parse(localStorage.getItem('userInfo')));
+              }}>
+              退出
+            </button>
           </>
         )}
         <div
