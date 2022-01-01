@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:56:29
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-31 21:54:24
+ * @LastEditTime: 2022-01-01 16:59:28
  */
 import request from './request';
 
@@ -25,5 +25,40 @@ export function getLoginCode(phone) {
     params: {
       phone,
     },
+  });
+}
+
+//  二维码 key 生成接口
+export function loginQrKey(timerstamp) {
+  return request({
+    url: '/login/qr/key',
+    params: {
+      timerstamp,
+    },
+    withCredentials: true, //关键
+  });
+}
+
+// 二维码生成接口
+export function loginQrCreate(key, timerstamp) {
+  return request({
+    url: `/login/qr/create?key=${key}&qrimg=true&timerstamp=${timerstamp}`,
+    withCredentials: true, //关键
+  });
+}
+
+//  二维码检测扫码状态接口
+export function checkStatus(key) {
+  return request({
+    url: `/login/qr/check?key=${key}&timerstamp=${Date.now()}`,
+    withCredentials: true, //关键
+  });
+}
+
+//  获取登录状态
+export function getLoginStatus() {
+  return request({
+    url: `/login/status?timerstamp=${Date.now()}`,
+    withCredentials: true, //关键
   });
 }

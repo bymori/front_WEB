@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-01 11:09:31
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 11:39:09
+ * @LastEditTime: 2022-01-01 16:44:18
  */
 import styled from 'styled-components';
 
@@ -65,7 +65,7 @@ export const LoginWrapper = styled.div`
         height: 138px;
         box-shadow: 0px 0px 1px 1px rgba(28, 28, 32, 0.05),
           0px 8px 24px rgba(28, 28, 32, 0.12);
-        padding: 8px;
+        padding: 3px;
         border-radius: 10px;
         margin: auto;
 
