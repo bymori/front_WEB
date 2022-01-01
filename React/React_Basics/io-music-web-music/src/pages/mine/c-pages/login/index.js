@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:16:17
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 21:39:45
+ * @LastEditTime: 2022-01-01 22:44:17
  */
 import React, { memo, useState, useEffect, useRef } from 'react';
 
@@ -28,6 +28,7 @@ import {
   loginQrCreate,
   checkStatus,
   getLoginStatus,
+  getUserDetail,
   getLogout,
 } from '@/services/user';
 
@@ -51,11 +52,14 @@ export default memo(function IOLogin() {
 
   async function getLoginStatu() {
     const res = await getLoginStatus();
+    const UserDetail = await getUserDetail(res.data.profile.userId);
 
     // 将用户的信息存储至本地
     localStorage.setItem('userInfo', JSON.stringify(res.data));
+    localStorage.setItem('userDetail', JSON.stringify(UserDetail));
 
-    console.log('getLoginStatu:', res.data);
+    // console.log('getLoginStatu:', res.data);
+    // console.log('UserDetail:', UserDetail);
   }
 
   const loginQRCode = useEffect(() => {

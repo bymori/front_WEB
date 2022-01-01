@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:56:29
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 21:28:14
+ * @LastEditTime: 2022-01-01 22:38:28
  */
 import request from './request';
 
@@ -67,5 +67,15 @@ export function getLoginStatus() {
 export function getLogout() {
   return request({
     url: `/logout`,
+  });
+}
+
+// 获取用户详情
+export function getUserDetail(uid) {
+  return request({
+    url: `/user/detail`,
+    params: {
+      uid,
+    },
   });
 }
