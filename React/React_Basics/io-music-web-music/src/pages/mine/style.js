@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:13:06
  * @LastEditors: by_mori
- * @LastEditTime: 2021-12-31 14:13:07
+ * @LastEditTime: 2022-01-02 15:15:11
  */
 import styled from 'styled-components';
 
@@ -28,6 +28,12 @@ export const MineWrapper = styled.div`
         left: 482px;
         top: 302px;
         text-indent: -9999px;
+      }
+    }
+
+    .userDetail {
+      img {
+        width: 100%;
       }
     }
   }

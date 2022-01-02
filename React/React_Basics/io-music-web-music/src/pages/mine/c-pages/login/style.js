@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-01 11:09:31
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 16:44:18
+ * @LastEditTime: 2022-01-02 12:46:37
  */
 import styled from 'styled-components';
 
@@ -60,17 +60,63 @@ export const LoginWrapper = styled.div`
       width: 328px;
       margin: 0 auto;
 
-      .qrcode {
-        width: 138px;
-        height: 138px;
-        box-shadow: 0px 0px 1px 1px rgba(28, 28, 32, 0.05),
-          0px 8px 24px rgba(28, 28, 32, 0.12);
-        padding: 3px;
-        border-radius: 10px;
-        margin: auto;
+      .qrcode-login {
+        position: relative;
+        /* width: 480px; */
 
-        img {
-          width: 100%;
+        .qrcode-box {
+          width: 140px;
+          height: 140px;
+          margin: 0 auto;
+          background: #ddd;
+          position: relative;
+
+          .qrcode {
+            width: 138px;
+            height: 138px;
+            box-shadow: 0px 0px 1px 1px rgba(28, 28, 32, 0.05),
+              0px 8px 24px rgba(28, 28, 32, 0.12);
+            padding: 3px;
+            border-radius: 10px;
+            margin: auto;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .status {
+            position: absolute;
+            z-index: 20;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: hsla(0, 0%, 100%, 0.8);
+
+            .overdue {
+              border-radius: 3px;
+              background: url(${require('@/assets/img/Refresh.png')}) 8px 3px
+                no-repeat #fff;
+              box-shadow: 0 3px 10px rgb(0 0 0 / 50%);
+              cursor: pointer;
+              margin: 40px auto;
+              width: 60px;
+              padding: 40px 0 5px;
+              color: #0594c7;
+              text-align: center;
+            }
+
+            .success {
+              background: url(${require('@/assets/img/loginSuccess.png')})
+                no-repeat;
+              border-radius: 3px;
+              cursor: pointer;
+              margin: 40px auto;
+              width: 70px;
+              padding: 60px 5px 8px;
+            }
+          }
         }
       }
 

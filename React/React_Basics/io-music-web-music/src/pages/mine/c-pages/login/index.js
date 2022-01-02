@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:16:17
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 22:44:17
+ * @LastEditTime: 2022-01-02 15:01:38
  */
 import React, { memo, useState, useEffect, useRef } from 'react';
 
@@ -48,6 +48,7 @@ const iconStyles = {
 
 export default memo(function IOLogin() {
   const [loginType, setLoginType] = useState('phone');
+  const [statusRess, setStatusRes] = useState('');
   const qrcodeRef = useRef();
 
   async function getLoginStatu() {
@@ -91,14 +92,28 @@ export default memo(function IOLogin() {
         // 801 为等待扫码
         // 802 为待确认
         // 803 为授权登录成功(803 状态码下会返回 cookies)
+        // setStatusRes(statusRes.code);
+        // console.log(statusRess);
+
         if (statusRes.code === 800) {
-          console.log('二维码已过期,请重新获取');
+          console.log('二维码不存在或已过期');
           clearInterval(timer);
+        }
+        if (statusRes.code === 801) {
+          console.log('等待扫码');
+        }
+        if (statusRes.code === 802) {
+          console.log('授权中');
+          //  这一步 可以获取到头像 用户名
+          // clearInterval(timer);
         }
         if (statusRes.code === 803) {
           // 这一步会返回cookie
           clearInterval(timer);
           console.log('授权登录成功');
+          // 将用户的cookie存储至本地
+          localStorage.setItem('userCookie', JSON.stringify(statusRes.cookie));
+
           getLoginStatu();
         }
       }, 3000);
@@ -212,17 +227,35 @@ export default memo(function IOLogin() {
           </>
         )}
         {loginType === 'qrcode' && (
-          <>
-            <div class="qrcode">
-              <img ref={qrcodeRef} alt="" />
+          <div className="qrcode-login">
+            <div className="qrcode-box">
+              <div className="qrcode">
+                <img ref={qrcodeRef} alt="" />
+              </div>
+
+              {/* {statusRess === '802' ? (
+                <div className="status">
+                  <div className="success"></div>
+                </div>
+              ) : (
+                <div></div>
+              )} */}
+
+              {/* {statusRess === '800' ? (
+                <div className="status">
+                  <div className="overdue">点击刷新</div>
+                </div>
+              ) : (
+                <div></div>
+              )} */}
             </div>
-            <button
+            {/* <button
               onClick={() => {
-                console.log(JSON.parse(localStorage.getItem('userInfo')));
+                console.log(statusRess);
               }}>
-              退出
-            </button>
-          </>
+              aaa
+            </button> */}
+          </div>
         )}
         <div
           style={{
