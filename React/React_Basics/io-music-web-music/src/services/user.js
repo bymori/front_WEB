@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:56:29
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-01 22:38:28
+ * @LastEditTime: 2022-01-02 21:18:12
  */
 import request from './request';
 
@@ -76,6 +76,26 @@ export function getUserDetail(uid) {
     url: `/user/detail`,
     params: {
       uid,
+    },
+  });
+}
+
+// 喜欢音乐列表 传入用户 id, 可获取已喜欢音乐 id 列表(id 数组)
+export function getLikeList(uid) {
+  return request({
+    url: `/likelist`,
+    params: {
+      uid,
+    },
+  });
+}
+
+// 获取歌曲详情
+export function getSongDetail(ids) {
+  return request({
+    url: `/song/detail`,
+    params: {
+      ids,
     },
   });
 }

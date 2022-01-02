@@ -4,10 +4,12 @@
  * @Author: by_mori
  * @Date: 2021-12-18 23:18:47
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-02 19:39:54
+ * @LastEditTime: 2022-01-02 21:26:35
  */
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+
+import { getLikeList, getSongDetail } from '@/services/user';
 
 import localStorage from 'localStorage';
 
@@ -26,11 +28,28 @@ export default memo(function IOMine() {
   // } else {
   //   <Outlet />;
   // }
+  const a = [
+    1425882815, 417859631, 1374056687, 1901371647, 1297750769, 436514312,
+    145586, 1840192925, 574919767, 151985, 64471, 569200213, 1317486046,
+    468517654, 1345312401,
+  ];
 
-  console.log(userDetail);
+  useEffect(() => {
+    async function login() {
+      // const likelist = await getLikeList(userDetail.userPoint.userId);
+      // console.log(likelist); // 获取到的结果 使用 toString() 方法 转换 传递给 getSongDetail 获取歌曲列表即可
+      // console.log(a.toString());
+      // const SongDetail = await getSongDetail(a.toString());
+      // console.log(SongDetail);
+    }
+
+    login();
+  });
+
+  console.log(userDetail.userPoint.userId);
   return (
     <MineWrapper>
-      <div div className="content wrap-v2">
+      <div className="content wrap-v2">
         {userDetail ? (
           <div className="userDetail">
             <h1 className="userHeader">
