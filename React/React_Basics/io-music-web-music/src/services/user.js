@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-31 14:56:29
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-02 21:18:12
+ * @LastEditTime: 2022-01-02 22:19:57
  */
 import request from './request';
 
@@ -80,6 +80,17 @@ export function getUserDetail(uid) {
   });
 }
 
+// 获取用户歌单 登录后调用此接口 , 传入用户 id, 可以获取用户歌单
+// 通过 playlist[*].creator.userId 判断是否等于uid 如果是 就是创建的歌单 否则 收藏的歌单
+export function getUserPlaylist(uid) {
+  return request({
+    url: `/user/playlist`,
+    params: {
+      uid,
+    },
+  });
+}
+
 // 喜欢音乐列表 传入用户 id, 可获取已喜欢音乐 id 列表(id 数组)
 export function getLikeList(uid) {
   return request({
@@ -99,3 +110,9 @@ export function getSongDetail(ids) {
     },
   });
 }
+
+//  todo
+// 热门歌手 /top/artists 随机获取几个展示
+// 歌单分类 /playlist/catlist categories分类 sub[0].category
+// 精品歌单标签列表 /playlist/highquality/tags
+// 获取精品歌单 /top/playlist/highquality

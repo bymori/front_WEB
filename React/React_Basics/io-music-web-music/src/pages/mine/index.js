@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 23:18:47
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-02 21:26:35
+ * @LastEditTime: 2022-01-03 19:23:59
  */
 import React, { memo, useEffect } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
@@ -36,11 +36,11 @@ export default memo(function IOMine() {
 
   useEffect(() => {
     async function login() {
-      // const likelist = await getLikeList(userDetail.userPoint.userId);
-      // console.log(likelist); // 获取到的结果 使用 toString() 方法 转换 传递给 getSongDetail 获取歌曲列表即可
-      // console.log(a.toString());
-      // const SongDetail = await getSongDetail(a.toString());
-      // console.log(SongDetail);
+      const likelist = await getLikeList(userDetail.userPoint.userId);
+      // console.log(likelist.ids.toString()); // 获取到的结果 使用 toString() 方法 转换 传递给 getSongDetail 获取歌曲列表即可
+
+      const SongDetail = await getSongDetail(likelist.ids.toString());
+      console.log(SongDetail);
     }
 
     login();
