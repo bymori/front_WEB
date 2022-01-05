@@ -1,6 +1,6 @@
 # 学习前端记录
 
-### 详细路径
+## 详细路径
 
 1. [HTML&CSS](HTML&CSS)
 2. [JavaScript基础&实战](JavaScript基础&实战)
@@ -14,12 +14,13 @@
 10. [Webpack](Webpack)
 11. [Vuejs](Vuejs)
 12. [React](React)
+13. [Canvas](Canvas)
+14. [Docker](Docker)
+15. [ECharts](ECharts)
+16. [ESLint](ESLint)
+17. [Mobile_web](Mobile_web)
 
-HTML->CSS-JS->ES6->node->AJAX->Promise->Axios->vue(React)框架
-
-
-
-
+HTML&CSS --> JavaScript --> Mobile_web --> ES6 --> Nodejs --> Ajax --> jQuery --> Promise --> Axios --> Webpack --> ESLint --> Vuejs --> React -->  --> Canvas --> ECharts
 
 ## 网络知识
 
