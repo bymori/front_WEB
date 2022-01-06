@@ -87,33 +87,6 @@ export default memo(function IOMine() {
                       </div>
                     </div>
                   </div>
-                  <div className="list">
-                    <img src={userDetail.profile.avatarUrl} alt="" />
-                    <div className="title-and-artist">
-                      <div className="container">
-                        <div className="title">吃突发</div>
-                        <div className="artist">吃土蕃 吃突发</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="list">
-                    <img src={userDetail.profile.avatarUrl} alt="" />
-                    <div className="title-and-artist">
-                      <div className="container">
-                        <div className="title">吃突发</div>
-                        <div className="artist">吃土蕃 吃突发</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="list">
-                    <img src={userDetail.profile.avatarUrl} alt="" />
-                    <div className="title-and-artist">
-                      <div className="container">
-                        <div className="title">吃突发</div>
-                        <div className="artist">吃土蕃 吃突发</div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
