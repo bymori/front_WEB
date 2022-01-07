@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-12-18 23:18:47
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-03 19:23:59
+ * @LastEditTime: 2022-01-07 20:07:43
  */
 import React, { memo, useEffect } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
@@ -28,11 +28,6 @@ export default memo(function IOMine() {
   // } else {
   //   <Outlet />;
   // }
-  const a = [
-    1425882815, 417859631, 1374056687, 1901371647, 1297750769, 436514312,
-    145586, 1840192925, 574919767, 151985, 64471, 569200213, 1317486046,
-    468517654, 1345312401,
-  ];
 
   useEffect(() => {
     async function login() {
