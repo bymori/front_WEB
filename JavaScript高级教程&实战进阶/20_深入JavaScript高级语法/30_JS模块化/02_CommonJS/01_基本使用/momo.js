@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-08 22:07:46
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-08 22:33:15
+ * @LastEditTime: 2022-01-08 23:19:29
  */
 const name = 'momo';
 const age = 19;
@@ -23,4 +23,4 @@ module.exports = {
   sum,
 };
 
-// 2. export
+// 2. exports
