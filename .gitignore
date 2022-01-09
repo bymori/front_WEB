@@ -1,4 +1,5 @@
 # Editor directories and files
+**/node_modules
 .vscode
 /ES6/ES6/ES6_module/node_modules
 Vuejs/10_learn_typescript/12_TypeScript其他内容补充/node_modules
