@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-12 23:00:30
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-12 23:39:30
+ * @LastEditTime: 2022-01-09 19:57:52
 -->
 <template>
   <div>
@@ -23,6 +23,7 @@
              v-model:title="title"></moinput>
     <h2>{{msg}}</h2>
     <h2>{{title}}</h2>
+    <button :disabled="count<=0">按钮</button>
   </div>
 </template>
 
@@ -35,7 +36,8 @@ export default {
   data () {
     return {
       msg: 'hello ioinn',
-      title: '嘿嘿'
+      title: '嘿嘿',
+      count:5
     }
   },
 }

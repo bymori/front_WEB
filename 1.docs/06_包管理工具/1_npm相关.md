@@ -17,14 +17,15 @@ npm本身也是基于Node.js开发的软件
 ### NPM的使用
 
 - `npm -v`   通过查看版本，看npm是否安装成功
-- `npm install <Module Name>`      使用 npm 命令安装模块
-- `npm install <Module Name> -g`   可以直接在命令行里使用
+- `npm install <Module Name>`  安装项目到项目目录下，不会将模块依赖写入`devDependencies`或`dependencies`
+- `npm install <Module Name> -g`   `-g`的意思是将模块安装到全局，具体安装到磁盘哪个位置，要看 `npm config prefix`的位置
 - `npm list -g`  查看所有全局安装的模块
 - `npm list vue` 查看某个模块的版本号
 - `npm -g install npm@5.9.1`  （@后跟版本号）这样我们就可以更新npm版本
-- `npm install -save moduleName`         # -save 在package文件的dependencies节点写入依赖。
-- `npm install -save-dev moduleName`  # -save-dev 在package文件的devDependencies节点写入依赖dependencies：运行时的依赖，发布后，即生产环境下还需要用的模块
-- devDependencies：开发时的依赖。里面的模块是开发时用的，发布时用不到它,比如项目中使用的 gulp ，压缩css、js的模块。这些模块在我们的项目部署后是不需要的
+- `npm install -save moduleName`        `-save`的意思是将模块安装到项目目录下，并在`package`文件的`dependencies`节点写入依赖
+  - `dependencies`：运行时的依赖，发布后，即生产环境下还需要用的模块
+- `npm install -save-dev moduleName`  `-save-dev`的意思是将模块安装到项目目录下，并在`package`文件的`devDependencies`节点写入依赖
+  - `devDependencies`：开发时的依赖。里面的模块是开发时用的，发布时用不到它,比如项目中使用的 gulp ，压缩css、js的模块。这些模块在我们的项目部署后是不需要的
 
 #### npm 镜像的设置与查看
 
@@ -182,13 +183,13 @@ yarn add --optional/-O
 yarn add --exact/-E   # 安装包的精确版本。例如yarn add foo@1.2.3会接受1.9.1版，但是yarn add foo@1.2.3 --exact只会接受1.2.3版
 yarn add --tilde/-T   #安装包的次要版本里的最新版。例如yarn add foo@1.2.3 --tilde会接受1.2.9，但不接受1.3.0
 
-发布包  yarn publish
-移除一个包  yarn remove <packageName>     会自动更新package.json和yarn.lock
-更新一个依赖  yarn upgrade 用于更新包到基于规范范围的最新版本
-运行脚本  yarn run 用来执行在 package.json 中 scripts 属性下定义的脚本
-显示某个包的信息 yarn info <packageName> 可以用来查看某个模块的最新版本信息
+yarn publish # 发布包 注意 如果修改了npm镜像源 发布时需要切换回官方源
+yarn remove <packageName>  # 移除一个包  会自动更新package.json和yarn.lock
+yarn upgrade # 更新一个依赖   用于更新包到基于规范范围的最新版本
+yarn run # 运行脚本  用来执行在 package.json 中 scripts 属性下定义的脚本
+yarn info <packageName> # 显示某个包的信息 可以用来查看某个模块的最新版本信息
 
-缓存  yarn cache
+yarn cache # 缓存
 yarn cache list       # 列出已缓存的每个包 
 yarn cache dir   # 返回 全局缓存位置
 yarn cache clean  # 清除缓存
@@ -197,7 +198,7 @@ yarn cache clean  # 清除缓存
 ### yarn与npm的语法不同
 
 |                      yarn | npm                              |
-| ------------------------: | -------------------------------- |
+| ------------------------: | :------------------------------- |
 |                 yarn init | npm init                         |
 |                      yarn | npm install                      |
 | yarn global add xxx@x.x.x | npm install xxx@x.x.x -g         |
@@ -209,5 +210,7 @@ yarn cache clean  # 清除缓存
 #### 其他文章
 
 [yarn —— Nodejs包新管理工具](https://segmentfault.com/a/1190000007189426)
+
 [yarn基础介绍](https://segmentfault.com/a/1190000022084808)
+
 [yarn的使用及与npm的对比](https://segmentfault.com/a/1190000016807080)
