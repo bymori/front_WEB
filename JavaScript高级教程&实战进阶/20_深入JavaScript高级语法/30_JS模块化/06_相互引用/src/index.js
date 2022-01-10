@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-09 23:52:18
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-10 00:07:57
+ * @LastEditTime: 2022-01-10 11:02:25
  */
 // ES module导入 cjs导出 通过webpack打包可以运行
 // import { name, age } from './foo';
