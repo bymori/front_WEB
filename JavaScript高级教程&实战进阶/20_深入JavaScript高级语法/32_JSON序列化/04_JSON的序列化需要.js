@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-10 22:40:17
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-10 22:41:36
+ * @LastEditTime: 2022-01-10 23:27:28
  */
 const obj = {
   name: 'momo',
@@ -21,6 +21,7 @@ const objString = JSON.stringify(obj);
 // 将对象数据存储localStorage
 localStorage.setItem('obj', objString);
 
+// 读取 localStorage
 const jsonString = localStorage.getItem('obj');
 
 // 将JSON格式的字符串转回对象
