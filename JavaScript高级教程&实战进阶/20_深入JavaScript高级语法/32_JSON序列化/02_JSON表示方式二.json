@@ -1,0 +1,8 @@
+{
+  "name": "momo",
+  "age": 18,
+  "friend": {
+    "name": "mori"
+  },
+  "hobbies": ["篮球", "足球"]
+}
