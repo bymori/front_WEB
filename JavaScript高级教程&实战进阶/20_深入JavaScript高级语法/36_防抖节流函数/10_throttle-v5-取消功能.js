@@ -2,9 +2,9 @@
  * @Descripttion: io小栈 —— ioinn.cn
  * @version: 0.0.1
  * @Author: by_mori
- * @Date: 2022-01-12 22:42:04
+ * @Date: 2022-01-12 23:40:09
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-12 23:31:43
+ * @LastEditTime: 2022-01-12 23:42:24
  */
 function throttle(fn, interval, options = { leading: true, trailing: false }) {
   const { leading, trailing } = options;
@@ -13,7 +13,7 @@ function throttle(fn, interval, options = { leading: true, trailing: false }) {
   let timer = null;
 
   // 2.事件触发时, 真正执行的函数
-  const _throttle = function () {
+  const _throttle = function (...args) {
     // 2.1.获取当前事件触发时的时间
     const nowTime = new Date().getTime();
     if (!lastTime && !leading) lastTime = nowTime;
@@ -27,7 +27,7 @@ function throttle(fn, interval, options = { leading: true, trailing: false }) {
       }
 
       // 2.3.真正触发函数
-      fn();
+      fn.apply(this, args);
 
       // 2.4.保留上次触发的时间
       lastTime = nowTime;
@@ -38,9 +38,16 @@ function throttle(fn, interval, options = { leading: true, trailing: false }) {
       timer = setTimeout(() => {
         timer = null;
         lastTime = !leading ? 0 : new Date().getTime();
-        fn();
+        fn.apply(this, args);
       }, remainTime);
     }
+  };
+
+  // 封装取消功能
+  _throttle.cancel = function () {
+    if (timer) clearTimeout(timer);
+    timer = null;
+    lastTime = 0;
   };
 
   return _throttle;

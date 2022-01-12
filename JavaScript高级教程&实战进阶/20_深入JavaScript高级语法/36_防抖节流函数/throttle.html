@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-12 21:10:57
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-12 23:18:14
+ * @LastEditTime: 2022-01-13 00:02:50
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,10 @@
 
     <!-- <script src="./06_throttle-v1-基本实现.js"></script> -->
     <!-- <script src="./07_throttle-v2-leading实现.js"></script> -->
-    <script src="./08_throttle-v3-traling实现.js"></script>
+    <!-- <script src="./08_throttle-v3-traling实现.js"></script> -->
+    <!-- <script src="./09_throttle-v4-this-参数.js"></script> -->
+    <!-- <script src="./10_throttle-v5-取消功能.js"></script> -->
+    <script src="./11_throttle-v6-函数返回值.js"></script>
 
     <script>
       const inputEl = document.querySelector('input');
@@ -36,12 +39,48 @@
 
       // 节流处理
       //   inputEl.oninput = _.throttle(inputChange, 2000);
+
       //   inputEl.oninput = throttle(inputChange, 2000); // 06
+
       //   inputEl.oninput = throttle(inputChange, 2000, { leading: false });// 07
-      inputEl.oninput = throttle(inputChange, 2000, {
+
+      //   inputEl.oninput = throttle(inputChange, 2000, {
+      //     leading: false,
+      //     trailing: true,
+      //   }); // 08
+
+      //   inputEl.oninput = throttle(inputChange, 2000, {
+      //     leading: false,
+      //     trailing: true,
+      //   }); // 09
+
+      //   const throttleChange = throttle(inputChange, 2000, {
+      //     leading: false,
+      //     trailing: true,
+      //   }); // 10
+      //   inputEl.oninput = throttleChange;
+
+      const throttleChange = throttle(inputChange, 2000, {
         leading: false,
         trailing: true,
-      }); // 08
+        resultCallback: function (res) {
+          console.log('resultCallback:', res);
+        },
+      }); // 11
+
+      const tempCallback = (...args) => {
+        throttleChange.apply(inputEl, args).then((res) => {
+          console.log('Promise:', res);
+        });
+      }; // 11
+
+      inputEl.oninput = tempCallback;
+
+      // 取消功能
+      const cancelBtn = document.querySelector('#cancel');
+      cancelBtn.onclick = function () {
+        throttleChange.cancel();
+      }; // 10
     </script>
   </body>
 </html>
