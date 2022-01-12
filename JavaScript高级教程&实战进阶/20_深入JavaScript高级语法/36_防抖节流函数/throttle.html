@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2022-01-12 21:10:57
+ * @LastEditors: by_mori
+ * @LastEditTime: 2022-01-12 21:55:31
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>throttle</title>
+  </head>
+  <body>
+    <input type="text" />
+    <button id="cancel">取消</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+
+    <script src="./06_throttle-v1-基本实现.js"></script>
+
+    <script>
+      const inputEl = document.querySelector('input');
+      let counter = 0;
+
+      const inputChange = function (event) {
+        console.log(`发送了第${++counter}次网络请求`, this, event);
+
+        return 'momo';
+      };
+
+      // 节流处理
+      //   inputEl.oninput = _.throttle(inputChange, 2000);
+      inputEl.oninput = throttle(inputChange, 2000);
+    </script>
+  </body>
+</html>
