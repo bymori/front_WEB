@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
+    "axios": "^0.24.0",
     "unplugin-vue-components": "^0.17.11",
     "vue": "^3.2.25"
   },
