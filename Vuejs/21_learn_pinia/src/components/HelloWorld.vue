@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-21 14:27:16
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-21 16:33:11
+ * @LastEditTime: 2022-01-21 16:51:00
 -->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
@@ -53,6 +53,10 @@ const handleChangeState = () => {
 <p>{{mainStore.count}}</p>
 <p>{{mainStore.foo}}</p>
 <p>{{mainStore.arr}}</p>
+<p>{{mainStore.count10}}</p>
+<p>{{mainStore.count10}}</p>
+<p>{{mainStore.count10}}</p>
+
 
 <hr>
 <h2>直接解构 mainStore #一次性数据</h2>

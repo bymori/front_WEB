@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-21 14:35:48
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-21 16:43:44
+ * @LastEditTime: 2022-01-21 16:56:36
  */
 import { defineStore } from 'pinia';
 
@@ -28,7 +28,20 @@ export const useMainState = defineStore('main', {
   /**
    * 类似于组件的 computed, 用来封装计算属性, 有缓存的功能
    */
-  getters: {},
+  getters: {
+    // 函数就收一个可选参数: state 状态对象
+    count10(state) {
+      console.log('count10 调用了');
+      return state.count + 10;
+      //   return this.count + 10;
+    },
+
+    // 如果在 getters 中使用了 this 则必须手动指定返回值的类型, 否则类型无法推导出来
+    count11(): number {
+      console.log('count11 调用了');
+      return this.count + 10;
+    },
+  },
 
   /**
    * 类似于组件的 methods, 封装业务逻辑, 修改 state
