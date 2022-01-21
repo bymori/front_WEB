@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-21 14:35:48
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-21 14:55:47
+ * @LastEditTime: 2022-01-21 16:43:44
  */
 import { defineStore } from 'pinia';
 
@@ -20,11 +20,35 @@ export const useMainState = defineStore('main', {
   state: () => {
     return {
       count: 100,
+      foo: 'ioinn',
+      arr: [1, 2, 3],
     };
   },
 
+  /**
+   * 类似于组件的 computed, 用来封装计算属性, 有缓存的功能
+   */
   getters: {},
-  actions: {},
+
+  /**
+   * 类似于组件的 methods, 封装业务逻辑, 修改 state
+   */
+  actions: {
+    // 注意不能使用箭头函数函数 action
+    //  因为箭头函数不绑定this 就会去向上查找this
+    changeState(num: number) {
+      this.count += num;
+      this.foo = 'momo';
+      this.arr.push(4);
+
+      // this.$patch({})
+      // this.$patch(state => {})
+
+      // $patch 和 普通多次修改的区别在原理上的区别是什么, 按理说多次修改也是批量提交
+      //  this.count += num; 这种方式 每修改一个就要更新一次视图 如上 就发生三次
+      //  $patch 则是全部修改完成后再统一修改视图 提高性能
+    },
+  },
 });
 
 // 2. 使用容器中的 state
