@@ -4,10 +4,11 @@
  * @Author: by_mori
  * @Date: 2022-01-21 17:31:41
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-21 19:38:15
+ * @LastEditTime: 2022-01-21 20:54:23
  */
+import { toNumber } from '@vue/shared';
 import { defineStore } from 'pinia';
-import { IProduct } from '../api/shop';
+import { buyProducts, IProduct } from '../api/shop';
 
 import { useProductsStore } from './products';
 
@@ -20,10 +21,31 @@ export const useCartStore = defineStore('cat', {
   state: () => {
     return {
       cartProducts: [] as CarProduct[], // 购物车商品列表
+      checkoutStatus: null as null | string,
     };
   },
 
-  getters: {},
+  getters: {
+    totalPrice(state) {
+      return state.cartProducts.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    },
+    FormattingPrice() {
+      console.log(this.totalPrice);
+
+      var number = toNumber(this.totalPrice);
+
+      //  这里如果直接写上 this.totalPrice.toLocaleString([locales[,options]]) 会出现错误 需要用 toNumber 进行包裹
+      return number.toLocaleString('zh', {
+        style: 'currency',
+        currency: 'CNY',
+        minimumFractionDigits: 2, // 默认小数位数为 2
+        // 数字时 默认会进行四舍五入
+        // 更多参数 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
+      });
+    },
+  },
 
   actions: {
     addProductToCart(product: IProduct) {
@@ -52,6 +74,17 @@ export const useCartStore = defineStore('cat', {
       // 更新商品库存
       const productsStore = useProductsStore();
       productsStore.decrementProduct(product);
+    },
+
+    async checkout() {
+      const ret = await buyProducts();
+      console.log('结算中');
+
+      this.checkoutStatus = ret ? '成功' : '失败';
+
+      if (ret) {
+        this.cartProducts = [];
+      }
     },
   },
 });
