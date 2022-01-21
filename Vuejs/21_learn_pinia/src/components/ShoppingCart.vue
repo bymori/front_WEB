@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-21 17:03:57
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-21 20:53:36
+ * @LastEditTime: 2022-01-21 21:06:03
 -->
 <template>
     <div class="cart">
@@ -24,7 +24,9 @@
         <p v-show="!!cartStore.cartProducts.length">
             <button @click="cartStore.checkout">结算</button>
         </p>
-        <p v-show="cartStore.checkoutStatus">结算{{ cartStore.checkoutStatus }}</p>
+        <p
+            v-show="cartStore.checkoutStatus && !cartStore.cartProducts.length"
+        >结算{{ cartStore.checkoutStatus }}</p>
     </div>
 </template>
 <script setup lang="ts">

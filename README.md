@@ -16,6 +16,7 @@
 10. [Webpack](Webpack)
 11. [Vuejs](Vuejs)
     1. [TypeScript](Vuejs/10_learn_typescript)
+    2. [Pinia项目Demo](Vuejs/21_learn_pinia)
 12. [React](React)
     1. [io-music-web-music](React/React_Basics/io-music-web-music)
 13. [Canvas](Canvas)
