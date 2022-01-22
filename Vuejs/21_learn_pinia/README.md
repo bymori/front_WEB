@@ -1281,3 +1281,5 @@ export default myPlugin
 ```
 
 注意: 以上示例使用的是`TypeScript`，如果您使用的是`.js`文件，则必须删除类型注释`PiniaPluginContext`和`Plugin`以及它们的导入
+
+测试 actions
