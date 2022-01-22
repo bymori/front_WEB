@@ -1282,4 +1282,134 @@ export default myPlugin
 
 注意: 以上示例使用的是`TypeScript`，如果您使用的是`.js`文件，则必须删除类型注释`PiniaPluginContext`和`Plugin`以及它们的导入
 
-测试 actions
+## Pinia 实战案例
+
+### 需求说明
+
+- 商品列表
+  - 展示商品列表
+  - 添加到购物车
+- 购物车
+  - 展示购物车商品列表
+  - 展示总价格
+  - 订单结算
+  - 展示结算状态
+
+### 创建并启动项目
+
+```shell
+yarn create vite
+
+? Project name: » vite-project
+√ Select a framework: » vue
+√ Select a variant: » vue-ts
+
+Scaffolding project in ...
+
+Done. Now run:
+
+  cd vite-project
+  yarn
+  yarn dev
+```
+
+### 构造 页面模板
+
+```vue
+<!-- src/App.vue  -->
+<template>
+  <h1>Pinia - 购物车示例</h1>
+
+  <hr />
+  <h2>商品列表</h2>
+  <ProductList />
+  <hr />
+  <ShoppingCart />
+</template>
+
+<script setup lang="ts">
+import ProductList from './components/ProductList.vue'
+import ShoppingCart from './components/ShoppingCart.vue'
+</script>
+
+<style></style>
+```
+
+```vue
+<!-- src/components/ProductList.vue -->
+<template>
+  <ul>
+    <li>
+      商品名称 - 商品价格
+      <br />
+      <button>添加到购物车</button>
+    </li>
+    <li>
+      商品名称 - 商品价格
+      <br />
+      <button>添加到购物车</button>
+    </li>
+    <li>
+      商品名称 - 商品价格
+      <br />
+      <button>添加到购物车</button>
+    </li>
+  </ul>
+</template>
+<script setup lang="ts">
+</script>
+```
+
+```vue
+<!-- src/components/ShoppingCart.vue  -->
+<template>
+  <div class="cart">
+    <h2>你的购物车</h2>
+    <p>
+      <i>请添加一些商品到购物车.</i>
+    </p>
+    <ul>
+      <li>商品名称 - 商品价格 x 商品数量</li>
+      <li>商品名称 - 商品价格 x 商品数量</li>
+      <li>商品名称 - 商品价格 x 商品数量</li>
+    </ul>
+    <p>商品总价: xxx</p>
+    <p>
+      <button>结算</button>
+    </p>
+    <p>结算成功 / 失败</p>
+  </div>
+</template>
+<script setup lang="ts">
+</script> 
+```
+
+### 定义数据接口
+
+```js
+/**
+ * Mocking client-server processing
+ */
+export interface IProduct {
+  id: number;
+  title: string;
+  price: number; // 价格
+  inventory: number; // 商品库存
+}
+const _products: IProduct[] = [
+  { id: 1, title: 'iPad 4 Mini', price: 500.01, inventory: 2 },
+  { id: 2, title: 'H&M T-Shirt White', price: 10.99, inventory: 10 },
+  { id: 3, title: 'Charli XCX - Sucker CD', price: 19.99, inventory: 5 },
+];
+export const getProducts = async () => {
+  await wait(100);
+  return _products;
+};
+export const buyProducts = async () => {
+  await wait(100);
+  return Math.random() > 0.5;
+};
+async function wait(delay: number) {
+  return new Promise((resolve) => setTimeout(resolve, delay));
+}
+```
