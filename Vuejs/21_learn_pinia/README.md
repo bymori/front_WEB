@@ -703,3 +703,581 @@ export default {
   },
 }
 ```
+
+### 与 Options API 一起使用
+
+您可以使用与上一节`state`中使用的相同的`mapState()`函数来映射到`getter`：
+
+```js
+import { mapState } from 'pinia'
+
+export default {
+  computed: {
+    // 提供对组件内部的 this.doubleCounter 的访问
+    // 与从 store.counter 读取相同的
+    ...mapState(useStore, ['doubleCount'])
+    // 与上面相同，但将其注册为this.myOwnName
+    ...mapState(useStore, {
+      myOwnName: 'doubleCounter',
+      // 您还可以编写访问 store 的函数
+      double: store => store.doubleCount,
+    }),
+  },
+}
+```
+
+## Actions
+
+`Actions` 等同于组件中的 `methods`。它们可以用`fineStore()`中的`Actions`属性定义，非常适合定义业务逻辑
+
+```js
+export const useStore = defineStore('main', {
+  state: () => ({
+    counter: 0,
+  }),
+  actions: {
+    increment() {
+      this.counter++
+    },
+    randomizeCounter() {
+      this.counter = Math.round(100 * Math.random())
+    },
+  },
+})
+```
+
+与`getter`一样，`actions`通过完全输入(和自动完成✨)支持来访问整个`store`实例。与它们不同的是，`actions`可以是异步的，您可以在它们内部`await`任何API调用，甚至其他`actions`！
+
+下面是一个使用`Mande`的示例。请注意,您使用的库并不重要，只要您得到`Promise`，您甚至可以使用原生`fetch`函数(仅限浏览器)：
+
+```js
+import { mande } from 'mande'
+
+const api = mande('/api/users')
+
+export const useUsers = defineStore('users', {
+  state: () => ({
+    userData: null,
+    // ...
+  }),
+
+  actions: {
+    async registerUser(login, password) {
+      try {
+        this.userData = await api.post({ login, password })
+        showTooltip(`Welcome back ${this.userData.name}!`)
+      } catch (error) {
+        showTooltip(error)
+        // 让表单组件显示错误
+        return error
+      }
+    },
+  },
+})
+```
+
+您还可以完全自由地设置您想要的任何参数并返回任何内容。调用`actions`时，一切都会自动推断出来！
+
+调用`Actions`的方式与`methods`类似：
+
+```js
+export default defineComponent({
+  setup() {
+    const main = useMainStore()
+    // 将 action 作为 store 的方法调用
+    main.randomizeCounter()
+
+    return {}
+  },
+})
+```
+
+### 访问其它容器的 actions
+
+要使用其他`store`，您可以在`action`内部直接使用它：
+
+```js
+import { useAuthStore } from './auth-store'
+
+export const useSettingsStore = defineStore('settings', {
+  state: () => ({
+    // ...
+  }),
+  actions: {
+    async fetchUserPreferences(preferences) {
+      const auth = useAuthStore()
+      if (auth.isAuthenticated) {
+        this.preferences = await fetchPreferences()
+      } else {
+        throw new Error('User must be 通过身份验证')
+      }
+    },
+  },
+})
+```
+
+### 和 setup() 一起使用
+
+您可以直接调用任何`action`作为`store`的方法：
+
+```js
+export default {
+  setup() {
+    const store = useStore()
+
+    store.randomizeCounter()
+  },
+}
+```
+
+### 和 Options API 一起使用
+
+如果您没有使用composition API，而使用的是Computed、Methods等 则可以使用 `mapActions()` 助手将 `actions` 属性映射为组件中的方法：
+
+```js
+import { mapActions } from 'pinia'
+
+export default {
+  methods: {
+    // 提供对组件内的this.increase()的访问
+    // 等同于 store.increment()
+    ...mapActions(useStore, ['increment'])
+    // 同上 但将其注册为 this.myOwnName()
+    ...mapActions(useStore, { myOwnName: 'doubleCounter' }),
+  },
+}
+```
+
+### 订阅 actions
+
+可以使用`Store.$onAction()`观察`action`及其结果。传递给它的回调在`action`本身之前执行。在处理 `Promise` 之后并允许您更改`action`的返回值。`onError`允许您停止错误传播。这些对于在运行时跟踪错误非常有用，类似于Vue文档中的这个技巧。 [跟踪运行时错误](https://v3.cn.vuejs.org/guide/tooling/deployment.html#%E8%B7%9F%E8%B8%AA%E8%BF%90%E8%A1%8C%E6%97%B6%E9%94%99%E8%AF%AF)
+
+下面是一个在运行`action`之前和成功/失败操作之后记录日志的示例。
+
+```js
+const unsubscribe = someStore.$onAction(
+  ({
+    name, //  action的名称
+    store, // store实例，与`omeStore`相同
+    args, // 传递给 action 的参数数组
+    after, // action 返回或 resolves 的钩子
+    onError, // action 引发或 rejects 的钩子
+  }) => {
+    // 特定action调用的共享变量
+    const startTime = Date.now()
+    // 这将在执行对`store`的 action 之前触发
+    console.log(`Start "${name}" with params [${args.join(', ')}].`)
+
+    // 如果 action 成功并在其完全运行之后，将触发此action
+    // 它等待任何返回的 promised
+    after((result) => {
+      console.log(
+        `Finished "${name}" after ${
+          Date.now() - startTime
+        }ms.\nResult: ${result}.`
+      )
+    })
+
+    // 如果 action 抛出或返回拒绝的 promise ，则会触发此操作
+    onError((error) => {
+      console.warn(
+        `Failed "${name}" after ${Date.now() - startTime}ms.\nError: ${error}.`
+      )
+    })
+  }
+)
+
+// 手动删除监听器
+unsubscribe()
+```
+
+默认情况下，`action`订阅绑定到添加它们的组件(如果存储在组件的`setup()`中)。这意味着，当卸载组件时，它们将被自动删除。如果要在卸载组件后保留它们，请将`true`作为第二个参数传递，以将`action`订阅从当前组件分离：
+
+```js
+export default {
+  setup() {
+    const someStore = useSomeStore()
+
+    // 卸载组件后将保留此订阅
+    someStore.$onAction(callback, true)
+
+    // ...
+  },
+}
+```
+
+## Plugins
+
+由于API级别较低，`Pinia stores` 可以完全扩展。以下是您可以执行的操作列表：
+
+- 将新属性添加到`stores`
+- 定义`stores`时添加新选项
+- 向`stores`添加新方法
+- 包装现有方法
+- 更改甚至取消`actions`
+- 实现本地存储等副作用
+- 仅适用于特定`stores`
+
+使用`pinia.use()`将插件添加到`pinia`实例。最简单的示例是通过返回一个对象向所有Store添加一个静态属性
+
+```js
+import { createPinia } from 'pinia'
+
+// 向安装此插件后创建的每个 store 添加名为`Secret`的属性
+// 此文件可能位于不同的文件中
+function SecretPiniaPlugin() {
+  return { secret: 'the cake is a lie' }
+}
+
+const pinia = createPinia()
+// 将插件交给 pinia
+pinia.use(SecretPiniaPlugin)
+
+// 在另一个文件中使用
+const store = useStore()
+store.secret // 'the cake is a lie'
+```
+
+这对于添加全局对象(如 `router`、`modal`, 或 `toast` )很有用。
+
+### Plugins 引言
+
+Pinia插件是一个函数，它可以选择性地返回要添加到`store`的属性。它需要一个可选参数，即上下文：
+
+```js
+export function myPiniaPlugin(context) {
+  context.pinia // 使用`createPinia()`创建的Pinia
+  context.app // 当前使用`createApp()`创建的应用(仅限Vue 3)
+  context.store // plugin store 的规模正在扩大
+  context.options // 定义存储的Options对象传递给`fineStore()`
+  // ...
+}
+```
+
+然后使用`pinia.use()`将此函数传递给`pinia`：
+
+```js
+pinia.use(myPiniaPlugin)
+```
+
+插件只应用于在`Pinia`传递给应用程序之后创建的`store`，否则它们将不会被应用。
+
+### 扩展 Store
+
+您只需在 plugin 中返回属性的一个对象，即可将属性添加到每个store ：
+
+```js
+pinia.use(() => ({ hello: 'world' }))
+```
+
+您也可以直接在`store`上设置该属性，但**如果可能，请使用 return 的版本，以便DevTools可以自动跟踪它们：**
+
+```js
+pinia.use(({ store }) => {
+  store.hello = 'world'
+})
+```
+
+plugin 返回的任何属性都将由`DevTools`自动跟踪，因此，为了使`hello`在`DevTools`中可见，请确保仅当您想要在`DevTools`中调试它时，仅在开发模式下将其添加到`store._customProperties`
+
+```js
+// 从上面的示例可以看出
+pinia.use(({ store }) => {
+  store.hello = 'world'
+  // 一定要让你的打包程序处理好这件事。默认情况下，webpack和 vite 应该这样做
+  if (process.env.NODE_ENV === 'development') {
+    // 添加您在 store 上设置的任何密钥
+    store._customProperties.add('hello')
+  }
+})
+```
+
+请注意，每个`store`都用[`reactive`](https://v3.cn.vuejs.org/api/basic-reactivity.html#reactive)包装，自动展开任何`Ref`(`ref()`、`Computed()`，...)
+
+```js
+const sharedRef = ref('shared')
+pinia.use(({ store }) => {
+  // 每个store都有其各自的'hello`属性
+  store.hello = ref('secret')
+  // 它会自动展开
+  store.hello // 'secret'
+
+// 所有stores都共享`shared`属性值
+  store.shared = sharedRef
+  store.shared // 'shared'
+})
+```
+
+这就是您可以在没有`.value`的情况下访问所有计算属性的原因，也是它们具有响应式的原因。
+
+### 添加新的 state
+
+如果要将新的`state`属性添加到`store`或要在 `hydration` 过程中使用的属性，则必须将其添加到两个位置：
+
+- 在 store 上，以便您可以使用 `store.myState` 访问它
+- 在 `store.$state`上，这样它就可以在DevTools中使用，**并且在SSR期间被序列化**
+
+请注意，这允许您共享`ref`或`computed`
+
+```js
+const globalSecret = ref('secret')
+pinia.use(({ store }) => {
+  // 'secret' 在所有 stores 之间共享
+  store.$state.secret = globalSecret
+  store.secret = globalSecret
+  // 它会自动展开
+  store.secret // 'secret'
+
+  const hasError = ref(false)
+  store.$state.hasError = hasError
+  // 必须始终设置此选项
+  store.hasError = toRef(store.$state, 'hasError')
+
+  // 在这种情况下，最好不要返回`hasError`
+  // 因为它将显示在DevTools的`state`部分中
+  // 无论如何，如果我们返回它，DevTools会显示它两次
+})
+```
+
+**WARNING**:
+
+如果您使用的是`Vue 2`，`Pinia`将受到与Vue相同的`reactivity`警告。在创建新的状态属性(如`Secret`和`hasError`)时，您将需要使用`@VUE/Compostion-API`中的 `Set`
+
+```js
+import { set } from '@vue/composition-api'
+pinia.use(({ store }) => {
+  if (!store.$state.hasOwnProperty('hello')) {
+    const secretRef = ref('secret')
+    // 如果数据要在SSR期间使用，您应该
+    // 在`$state`属性上设置它，以便将其序列化
+    // 在 hydration 过程中被吸收
+    set(store.$state, 'secret', secretRef)
+    // 也可以直接在 store 上设置，这样您就可以访问它
+    // 两种方式都有: `store.$state.secret` / `store.secret`
+    set(store, 'secret', secretRef)
+    store.secret // 'secret'
+  }
+})
+```
+
+### 添加新的外部属性
+
+当添加外部属性、来自其他库的类实例，或者仅仅是非`reactive`的东西时，您应该在将对象传递给`pinia`之前用`markRaw()`对其进行包装。以下是将`router`添加到每个`store`的示例
+
+```js
+import { markRaw } from 'vue'
+// 根据您的router所在位置调整此设置
+import { router } from './router'
+
+pinia.use(({ store }) => {
+  store.router = markRaw(router)
+})
+```
+
+### 在插件内部调用 `$subscribe`
+
+您也可以在插件中使用 [`store.$subscribe`](#订阅state) 和[`store.$onAction`](#订阅-actions)
+
+```js
+pinia.use(({ store }) => {
+  store.$subscribe(() => {
+    // 对 store 更改做出反应
+  })
+  store.$onAction(() => {
+    // 对store actions 做出反应
+  })
+})
+```
+
+### 添加新选项
+
+可以在定义`stores`时创建新的选项，以便以后从插件使用它们。例如，您可以创建一个`debounce`选项，允许您对任何 `action` 进行 `debounce`
+
+```js
+defineStore('search', {
+  actions: {
+    searchContacts() {
+      // ...
+    },
+  },
+
+  // 这将在稍后由插件读取
+  debounce: {
+    // debounce the action searchContacts by 300ms
+    searchContacts: 300,
+  },
+})
+```
+
+然后，插件可以读取该选项来包装 `actions` 并替换原始`actions`
+
+```js
+// 使用任何 debounce 的库
+import debounce from 'lodash/debunce'
+
+pinia.use(({ options, store }) => {
+  if (options.debounce) {
+    // 我们正在用新的 actions 覆盖于 actions 之上。
+    return Object.keys(options.debounce).reduce((debouncedActions, action) => {
+      debouncedActions[action] = debounce(
+        store[action],
+        options.debounce[action]
+      )
+      return debouncedActions
+    }, {})
+  }
+})
+```
+
+请注意，使用`setup`语法时，自定义选项作为第三个参数传递
+
+```js
+defineStore(
+  'search',
+  () => {
+    // ...
+  },
+  {
+    // 这将在稍后由插件读取
+    debounce: {
+      // debounce the action searchContacts by 300ms
+      searchContacts: 300,
+    },
+  }
+)
+```
+
+### TypeScript 支持
+
+上面显示的所有内容都可以通过键入支持来完成，因此您永远不需要使用 `any` 或 `@ts-ignore`
+
+#### Typing plugins
+
+`Pinia`插件的类型如下所示：
+
+```ts
+import { PiniaPluginContext } from 'pinia'
+
+export function myPiniaPlugin(context: PiniaPluginContext) {
+  // ...
+}
+```
+
+#### 录入新的store属性
+
+向`stores`添加新属性时，还应该扩展`PiniaCustomProperties`接口
+
+```ts
+import 'pinia'
+
+declare module 'pinia' {
+  export interface PiniaCustomProperties {
+    // 通过使用setter，我们可以同时允许 strings 和 refs
+    set hello(value: string | Ref<string>)
+    get hello(): string
+
+    // 您也可以定义更简单的值
+    simpleNumber: number
+  }
+}
+```
+
+然后可以安全地写入和读取：
+
+```ts
+pinia.use(({ store }) => {
+  store.hello = 'Hola'
+  store.hello = ref('Hola')
+
+  store.number = Math.random()
+  // @ts-expect-error: we haven't typed this correctly
+  store.number = ref(Math.random())
+})
+```
+
+`PiniaCustomProperties`是一种泛型类型，允许您引用`store`的属性。设想以下示例，其中我们将初始选项复制为`$options`(这仅适用于选项 `store` )
+
+```ts
+pinia.use(({ options }) => ({ $options: options }))
+```
+
+我们可以通过使用`PiniaCustomProperties`的4种泛型类型来正确键入：
+
+```ts
+import 'pinia'
+
+declare module 'pinia' {
+  export interface PiniaCustomProperties<Id, S, G, A> {
+    $options: {
+      id: Id
+      state?: () => S
+      getters?: G
+      actions?: A
+    }
+  }
+}
+```
+
+**!TIP** 在泛型中扩展类型时，它们的命名必须与源代码中的完全相同。`ID`不能命名为`id`或`I`，`S`不能命名为`State`。以下是每个字母的含义：
+
+- S: State
+- G: Getters
+- A: Actions
+- SS: Setup Store / Store
+
+#### 新 state 的类型
+
+当添加新的`state`属性(同时添加到`store`和`store.$state`)时，您需要将类型添加到`PiniaCustomStateProperties`。与`PiniaCustomProperties`不同，它只接收通用的`State`
+
+```ts
+import 'pinia'
+
+declare module 'pinia' {
+  export interface PiniaCustomStateProperties<S> {
+    hello: string
+  }
+}
+```
+
+#### 创建新的 creation 选项
+
+在为`fineStore()`创建新选项时，您应该扩展`DefineStoreOptionsBase`。与`PiniaCustomProperties`不同，它只公开两个泛型：`State`和`Store`类型，允许您限制可以定义的内容。例如，您可以使用操作的名称：
+
+```ts
+import 'pinia'
+
+declare module 'pinia' {
+  export interface DefineStoreOptionsBase<S, Store> {
+    // 允许为任何 actions 定义 number of ms
+    debounce?: Partial<Record<keyof StoreActions<Store>, number>>
+  }
+}
+```
+
+**!TIP** 还有一个`StoreGetters`类型用于从`Store`类型提取`getter`。也只能通过分别扩展类型`DefineStoreOptions`和`DefineSetupStoreOptions`来扩展`setup` `stores` 或选项`stores`的选项
+
+### Nuxt.js
+
+当与`Nuxt`一起使用`Pinia`时，首先您必须创建一个`Nuxt`插件。这将为您提供对`Pinia`实例的访问权限：
+
+```ts
+// plugins/myPiniaPlugin.js
+import { PiniaPluginContext } from 'pinia'
+import { Plugin } from '@nuxt/types'
+
+function MyPiniaPlugin({ store }: PiniaPluginContext) {
+  store.$subscribe((mutation) => {
+    // 对`store`更改做出反应
+    console.log(`[🍍 ${mutation.storeId}]: ${mutation.type}.`)
+  })
+
+  return { creationTime: new Date() }
+}
+
+const myPlugin: Plugin = ({ pinia }) {
+  pinia.use(MyPiniaPlugin);
+}
+export default myPlugin
+```
+
+注意: 以上示例使用的是`TypeScript`，如果您使用的是`.js`文件，则必须删除类型注释`PiniaPluginContext`和`Plugin`以及它们的导入
