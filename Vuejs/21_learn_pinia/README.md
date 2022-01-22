@@ -19,7 +19,6 @@
 
 `Pinia`最初作为一个实验 在2019年11月左右重新设计`Vue`的`Store`使用`Compostion API`会是什么样子。 从那时起，最初基本原理都是一样的，但是`Pinia`同时适用于Vue 2和Vue 3，并且不需要您使用 `composition API`。 除了初始化安装和 SSR 配置之外，两者的 API 都是相同的, 官方文档中主要针对 Vue 3 进行说明，必要的时候会提供 Vue 2 的注释，以便Vue 2和Vue 3用户可以阅读！
 
-
 ### 为什么要用Pinia呢？
 
 Pinia是一个Vue的状态管理工具, 它允许您`跨组件/页面`共享状态。如果您熟悉`Composition API`，你可以认为你已经可以简单的使用`export const state = reactive({})`。这对于一个单页应用是正确的，但是如果您的程序是在服务器端运行的`则会使您的应用程序面临安全漏洞`。但是，即使是在小型的单页面应用程序中，您也可以从使用Pinia中获益良多：
@@ -132,7 +131,7 @@ export const useCounterStore = defineStore('counter', () => {
 })
 ```
 
-如果您仍然不熟悉 `setup()` 和 `Composition API`，那也别担心，`Pania` 也支持类似`Vuex` 的**单一状态树**。您以
+如果您仍然不熟悉 `setup()` 和 `Composition API`，那也别担心，`Pinia` 也支持类似`Vuex` 的**单一状态树**。您以
 相同的方式`Store`，但随后使用 `mapStores()` , `mapState()`, 或 `mapActions()` ：
 
 ```js
@@ -223,7 +222,7 @@ export const todos = defineStore('todos', {
 
 ### Pinia vs Vuex
 
-`Pinia` 试图尽可能贴近 `Vuex` 的设计理念。它的设计是为了 Vuex 下一次迭代的提案，并且取得了成功，因为我们目前有一个针对 `Vuex5` 的开放式 RFC，其 API 与Pinia 使用的 API 非常相似。请注意，Pinia 的作者 (`Eduardo`) 是 Vue.js 核心团队的一员，并积极参与 Router 和 Vuex 等 API 的设计。我个人对这个项目的意图是重新设计使用全局 `Store` 的体验，同时保持 `Vue` 平易近人的哲学。我让 `Pania` 的 API 与 Vuex一样接近，因为它不断向前发展，使人们可以轻松地迁移到 Vuex，甚至在未来融合这两个项目（在Vuex下）。
+`Pinia` 试图尽可能贴近 `Vuex` 的设计理念。它的设计是为了 Vuex 下一次迭代的提案，并且取得了成功，因为我们目前有一个针对 `Vuex5` 的开放式 RFC，其 API 与Pinia 使用的 API 非常相似。请注意，Pinia 的作者 (`Eduardo`) 是 Vue.js 核心团队的一员，并积极参与 Router 和 Vuex 等 API 的设计。我个人对这个项目的意图是重新设计使用全局 `Store` 的体验，同时保持 `Vue` 平易近人的哲学。我让 `Pinia` 的 API 与 Vuex一样接近，因为它不断向前发展，使人们可以轻松地迁移到 Vuex，甚至在未来融合这两个项目（在Vuex下）。
 
 #### 与Vuex 3.x/4.x的比较
 
@@ -278,7 +277,7 @@ new Vue({
 })
 ```
 
-这也将添加 devtools 支持。在 Vue 3 中，仍然不支持 time travel 和编辑等一些功能，因为 vue-devtools 还没有公开必要的 API，但是 devtools 有更多的功能，并且开发人员的整体体验要好得多。在Vue 2 中，`Pania` 使用 Vuex 的现有接口（因此不能与它一起使用）。
+这也将添加 devtools 支持。在 Vue 3 中，仍然不支持 time travel 和编辑等一些功能，因为 vue-devtools 还没有公开必要的 API，但是 devtools 有更多的功能，并且开发人员的整体体验要好得多。在Vue 2 中，`Pinia` 使用 Vuex 的现有接口（因此不能与它一起使用）。
 
 ### 定义和使用 Store
 
