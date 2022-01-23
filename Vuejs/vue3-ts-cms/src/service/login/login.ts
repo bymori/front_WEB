@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-18 23:18:21
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 00:04:05
+ * @LastEditTime: 2022-01-23 15:36:02
  */
 import ioRequest from '../index'
 import { IAccount, IDataType, ILoginResult } from './type'

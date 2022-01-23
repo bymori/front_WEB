@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-18 22:36:31
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 00:56:00
+ * @LastEditTime: 2022-01-23 15:17:45
  */
 import { Module } from 'vuex'
 
@@ -28,6 +28,8 @@ const loginModule: Module<ILoginState, IRootState> = {
   getters: {},
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
+      console.log('执行accountLoginAction', payload)
+
       // 1.实现登录逻辑
       const loginResult = await accountLoginRequest(payload)
       console.log('aa', loginResult)

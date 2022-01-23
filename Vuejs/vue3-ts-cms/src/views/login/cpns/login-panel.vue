@@ -1,16 +1,24 @@
+<!--
+ * @Descripttion: io小栈 —— ioinn.cn
+ * @version: 0.0.1
+ * @Author: by_mori
+ * @Date: 2021-10-17 20:01:28
+ * @LastEditors: by_mori
+ * @LastEditTime: 2022-01-23 14:58:09
+-->
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
     <el-tabs type="border-card" stretch v-model="currentTab">
       <el-tab-pane name="account">
         <template #label>
-          <span><i class="el-icon-user-solid"></i> 账号登录</span>
+          <span> <i class="el-icon-user-solid"></i> 账号登录 </span>
         </template>
         <login-account ref="accountRef" />
       </el-tab-pane>
       <el-tab-pane name="phone">
         <template #label>
-          <span><i class="el-icon-mobile-phone"></i> 手机登录</span>
+          <span> <i class="el-icon-mobile-phone"></i> 手机登录 </span>
         </template>
         <login-phone ref="phoneRef" />
       </el-tab-pane>
@@ -21,9 +29,9 @@
       <el-link type="primary">忘记密码</el-link>
     </div>
 
-    <el-button type="primary" class="login-btn" @click="handleLoginClick">
-      立即登录
-    </el-button>
+    <el-button type="primary" class="login-btn" @click="handleLoginClick"
+      >立即登录</el-button
+    >
   </div>
 </template>
 

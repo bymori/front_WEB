@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-17 20:01:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-18 22:50:01
+ * @LastEditTime: 2022-01-23 15:02:08
 -->
 <template>
   <div class="login-account">
@@ -40,6 +40,8 @@ export default defineComponent({
 
     const loginAction = (isKeepPassword: boolean) => {
       formRef.value?.validate((valid) => {
+        console.log(account)
+
         if (valid) {
           // 1.判断是否需要记住密码
           if (isKeepPassword) {

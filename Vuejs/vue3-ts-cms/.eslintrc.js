@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-17 20:01:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-18 23:22:23
+ * @LastEditTime: 2022-01-23 14:54:11
  */
 module.exports = {
   root: true,
@@ -27,7 +27,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off'
   }
 }

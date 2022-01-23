@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-10-17 20:01:28
  * @LastEditors: by_mori
- * @LastEditTime: 2021-10-19 00:53:49
+ * @LastEditTime: 2022-01-23 14:49:25
  */
 const path = require('path')
 
@@ -13,15 +13,15 @@ module.exports = {
   outputDir: './build',
   // target: 'http://152.136.185.210:4000',
   // target: 'http://152.107.173.210:2000',
-  publicPath: './',
+  // publicPath: './',
   devServer: {
     proxy: {
-      '/api': {
+      '^/api': {
         target: 'http://152.136.185.210:4000',
-        changeOrigin: true,
         pathRewrite: {
           '^/api': ''
-        }
+        },
+        changeOrigin: true
       }
     }
   },
