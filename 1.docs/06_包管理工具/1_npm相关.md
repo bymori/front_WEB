@@ -34,12 +34,19 @@ npm本身也是基于Node.js开发的软件
 ```shell
  npm config set registry https://registry.npm.taobao.org --global
  npm config set disturl https://npm.taobao.org/dist --global
+ 
+ # 淘宝NPM 镜像地址更换为 
+ npm config set registry https://registry.npmmirror.com --global
+ npm config set disturl https://npmmirror.com/dist --global
 ```
 
 设置当前地址（设置为默认地址）
 
 ```shell
  npm config set registry https://registry.npmjs.org/
+
+ # 淘宝域名更换为 registry.npmmirror.com 
+ npm config set registry https://registry.npmmirror.com/
 ```
 
 查看镜像的配置结果
