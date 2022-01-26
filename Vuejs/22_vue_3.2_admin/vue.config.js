@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 15:05:03
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 20:33:39
+ * @LastEditTime: 2022-01-26 22:19:19
  */
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
@@ -85,6 +85,17 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      }
+    }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `
+          @import "@/styles/variables.scss";  // scss文件地址
+          @import "@/styles/mixin.scss";     // scss文件地址
+        `
+        // prependData 或 prependData:   // 8版本用prependData:
       }
     }
   }
