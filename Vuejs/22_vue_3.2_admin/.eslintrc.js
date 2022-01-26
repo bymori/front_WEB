@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 11:39:21
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 13:53:03
+ * @LastEditTime: 2022-01-26 15:09:05
  */
 module.exports = {
   root: true,
@@ -20,6 +20,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     indent: 0,
     'space-before-function-paren': 0,
-    beforeStatementContinuationChars: 'always'
+    beforeStatementContinuationChars: 0
   }
 };
