@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 16:16:44
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 19:51:41
+ * @LastEditTime: 2022-01-26 20:50:33
 -->
 
 <template>
@@ -25,7 +25,7 @@
         <el-input v-model="form.password"></el-input>
         <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" @click="changeType"></svg-icon>
       </el-form-item>
-      <el-button type="primary" round class="login-button" @click="submitForm(formRef)">登录</el-button>
+      <el-button type="primary" round class="login-button" @click="submitForm(formRef, form)">登录</el-button>
     </el-form>
   </div>
 </template>
