@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 16:16:44
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 19:21:52
+ * @LastEditTime: 2022-01-26 19:34:38
 -->
 
 <template>
@@ -14,16 +14,16 @@
         <h3 class="title">用户登录</h3>
       </div>
       <el-form-item>
-        <el-icon :size="size" class="svg-container">
+        <!-- <el-icon :size="size" class="svg-container">
           <avatar />
-        </el-icon>
+        </el-icon>-->
+        <svg-icon icon="user" class="svg-container"></svg-icon>
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-icon :size="size" class="svg-container">
-          <avatar />
-        </el-icon>
+        <svg-icon icon="password" class="svg-container"></svg-icon>
         <el-input v-model="form.password"></el-input>
+        <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" @click="changeType"></svg-icon>
       </el-form-item>
       <el-button type="primary" round class="login-button">登录</el-button>
     </el-form>
@@ -32,7 +32,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Avatar } from '@element-plus/icons-vue'
+// import { Avatar } from '@element-plus/icons-vue'
 const form = ref({
   name: ''
 })
