@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 16:16:44
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 20:50:33
+ * @LastEditTime: 2022-01-26 20:57:45
 -->
 
 <template>
@@ -22,7 +22,7 @@
       </el-form-item>
       <el-form-item prop="password">
         <svg-icon icon="password" class="svg-container"></svg-icon>
-        <el-input v-model="form.password"></el-input>
+        <el-input v-model="form.password" :type="passwordType"></el-input>
         <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" @click="changeType"></svg-icon>
       </el-form-item>
       <el-button type="primary" round class="login-button" @click="submitForm(formRef, form)">登录</el-button>
@@ -37,8 +37,8 @@ import { ref } from 'vue'
 import { submitForm } from '@/utils'
 
 const form = ref({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '123456'
 })
 
 const rules = ref({
@@ -59,6 +59,16 @@ const rules = ref({
 })
 
 const formRef = ref(null)
+
+const passwordType = ref('password')
+const changeType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>

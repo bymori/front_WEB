@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 19:48:58
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 20:48:12
+ * @LastEditTime: 2022-01-26 20:58:26
  */
 
 import { login } from '@/api/login'
@@ -14,7 +14,8 @@ export const submitForm = (formEl, form) => {
   formEl.validate(async (valid) => {
     if (valid) {
       // console.log('submit!')
-      await login(form)
+      const res = await login(form)
+      console.log(res)
     } else {
       console.log('error submit!')
       return false
