@@ -6,6 +6,7 @@ yarn install
 ```
 
 ### 创建项目
+
 ```shell
 vue create 22_vue_3.2_admin
 
@@ -31,5 +32,50 @@ vue create 22_vue_3.2_admin
 yarn add  axios vue@3.2.8 vue-router@4.0.11 vuex@4.0.2
 ```
 
+### 代码格式提交规范
 
+在Vscode插件中安装`prettier`
 
+在根目录下创建`.prettierrc`配置文件
+
+```json
+{
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none"
+}
+```
+
+在配置下`.eslintrc.js`里的`rules` 新增 一段 为了解决`eslint`与`prettier`冲突
+
+```js
+rules: {
+  ...,
+  indent: 0,
+  'space-before-function-paren': 0
+}
+```
+
+## git代码提交规范
+
+1.安装commitizen和cz-customizable
+
+```shell
+yarn add commitizen cz-customizable -D
+```
+
+2.在package.json中进行新增
+
+```js
+"config": {
+  "commitizen": {
+    "path": "node_modules/cz-customizable"
+  }
+}
+```
+
+### 创建项目
+
+```shell
+yarn add element-plus@1.3.0-beta.5
+```
