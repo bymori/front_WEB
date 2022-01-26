@@ -4,28 +4,28 @@
  * @Author: by_mori
  * @Date: 2022-01-26 16:16:44
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 19:34:38
+ * @LastEditTime: 2022-01-26 19:51:41
 -->
 
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="formRef" :model="form">
+    <el-form class="login-form" ref="formRef" :model="form" :rules="rules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
-      <el-form-item>
+      <el-form-item prop="username">
         <!-- <el-icon :size="size" class="svg-container">
           <avatar />
         </el-icon>-->
         <svg-icon icon="user" class="svg-container"></svg-icon>
-        <el-input v-model="form.name"></el-input>
+        <el-input v-model="form.username"></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <svg-icon icon="password" class="svg-container"></svg-icon>
         <el-input v-model="form.password"></el-input>
         <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" @click="changeType"></svg-icon>
       </el-form-item>
-      <el-button type="primary" round class="login-button">登录</el-button>
+      <el-button type="primary" round class="login-button" @click="submitForm(formRef)">登录</el-button>
     </el-form>
   </div>
 </template>
@@ -33,9 +33,32 @@
 <script setup>
 import { ref } from 'vue'
 // import { Avatar } from '@element-plus/icons-vue'
+
+import { submitForm } from '@/utils'
+
 const form = ref({
-  name: ''
+  username: '',
+  password: ''
 })
+
+const rules = ref({
+  username: [
+    {
+      required: true,
+      message: '请输入名字',
+      trigger: 'blur'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      message: '请输入密码',
+      trigger: 'blur'
+    }
+  ]
+})
+
+const formRef = ref(null)
 </script>
 
 <style lang="scss" scoped>
