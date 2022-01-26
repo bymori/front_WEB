@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 20:30:07
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 21:06:02
+ * @LastEditTime: 2022-01-26 21:50:33
  */
 import axios from 'axios'
 
@@ -26,10 +26,12 @@ instance.interceptors.request.use(
     // 3.params/data序列化的操作
     // console.log('请求被拦截')
 
+    config.headers.Authorization = localStorage.getItem('token')
+
     return config
   },
   (err) => {
-    console.log(err)
+    return Promise.reject(new Error(err))
   }
 )
 

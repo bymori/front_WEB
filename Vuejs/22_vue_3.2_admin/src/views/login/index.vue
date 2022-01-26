@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 16:16:44
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 20:57:45
+ * @LastEditTime: 2022-01-26 21:47:50
 -->
 
 <template>
@@ -25,7 +25,12 @@
         <el-input v-model="form.password" :type="passwordType"></el-input>
         <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" @click="changeType"></svg-icon>
       </el-form-item>
-      <el-button type="primary" round class="login-button" @click="submitForm(formRef, form)">登录</el-button>
+      <el-button
+        type="primary"
+        round
+        class="login-button"
+        @click="submitForm(formRef, form, store)"
+      >登录</el-button>
     </el-form>
   </div>
 </template>
@@ -35,6 +40,9 @@ import { ref } from 'vue'
 // import { Avatar } from '@element-plus/icons-vue'
 
 import { submitForm } from '@/utils'
+
+import { useStore } from 'vuex'
+const store = useStore()
 
 const form = ref({
   username: 'admin',
@@ -62,6 +70,7 @@ const formRef = ref(null)
 
 const passwordType = ref('password')
 const changeType = () => {
+  console.log(store)
   if (passwordType.value === 'password') {
     passwordType.value = 'text'
   } else {
