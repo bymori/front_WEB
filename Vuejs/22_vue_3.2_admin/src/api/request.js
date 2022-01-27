@@ -4,13 +4,14 @@
  * @Author: by_mori
  * @Date: 2022-01-26 20:30:07
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 22:34:55
+ * @LastEditTime: 2022-01-27 12:10:20
  */
 import axios from 'axios'
-
 import { BASE_URL, TIMEOUT } from './config'
-
 import { ElMessage } from 'element-plus'
+
+import { diffTokenTime } from '@/utils/auth'
+import store from '@/store'
 
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -22,6 +23,12 @@ instance.interceptors.request.use(
     // 1.发送网络请求时, 在界面的中间位置显示Loading的组件
 
     // 2.某一些请求要求用户必须携带token, 如果没有携带, 那么直接跳转到登录页面
+    if (localStorage.getItem('token')) {
+      if (diffTokenTime()) {
+        store.dispatch('app/logout')
+        return Promise.reject(new Error('token 失效了'))
+      }
+    }
 
     // 3.params/data序列化的操作
     // console.log('请求被拦截')
