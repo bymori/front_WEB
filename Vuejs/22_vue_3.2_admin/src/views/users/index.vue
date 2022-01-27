@@ -4,17 +4,18 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:53:46
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 22:48:30
+ * @LastEditTime: 2022-01-27 23:04:44
 -->
 <template>
   <el-card>
     <el-row :gutter="20" class="header">
       <el-col :span="7">
-        <el-input v-model="queryForm.query" :placeholder="$t(`table.placeholder`)"></el-input>
+        <el-input v-model="queryForm.query" :placeholder="$t(`table.placeholder`)" clearable></el-input>
       </el-col>
-      <el-button type="primary" :icon="Search">{{ $t(`table.search`) }}</el-button>
+      <el-button type="primary" :icon="Search" @click="initGetUsersList">{{ $t(`table.search`) }}</el-button>
       <el-button type="primary">{{ $t(`table.adduser`) }}</el-button>
     </el-row>
+
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column
         :width="item.width"
@@ -37,6 +38,18 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <div class="demo-pagination-block">
+      <el-pagination
+        v-model:currentPage="currentPage4"
+        :page-sizes="[2, 5, 10, 15]"
+        :page-size="queryForm.pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      ></el-pagination>
+    </div>
   </el-card>
 </template>
 
@@ -51,23 +64,39 @@ import { options } from './options'
 const queryForm = ref({
   query: '',
   pagenum: 1,
-  pagesize: 2
+  pagesize: 5
 })
 
+const total = ref(0)
 const tableData = ref([])
 
 const initGetUsersList = async () => {
   const res = await getUsers(queryForm.value)
   console.log(res)
+  total.value = res.total
   tableData.value = res.users
 }
 
 initGetUsersList()
+
+const handleSizeChange = (pageSize) => {
+  queryForm.value.pagenum = 1
+  queryForm.value.pagesize = pageSize
+  initGetUsersList()
+}
+
+const handleCurrentChange = (pageNum) => {
+  queryForm.value.pagenum = pageNum
+  initGetUsersList()
+}
 </script>
 
 <style lang="scss" scoped>
 .header {
   padding-bottom: 16px;
   box-sizing: border-box;
+}
+::v-deep .el-input__suffix {
+  align-items: center;
 }
 </style>
