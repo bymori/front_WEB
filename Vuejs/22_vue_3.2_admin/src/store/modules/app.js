@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 21:24:42
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 12:14:39
+ * @LastEditTime: 2022-01-27 12:29:14
  */
 import { login as loginApi } from '@/api/login'
 import router from '@/router'
@@ -13,12 +13,16 @@ import { setTokenTime } from '@/utils/auth'
 export default {
   namespaced: true,
   state: () => ({
-    token: localStorage.getItem('token') || ''
+    token: localStorage.getItem('token') || '',
+    siderType: true
   }),
   mutations: {
     setToken(state, token) {
       state.token = token
       localStorage.setItem('token', token)
+    },
+    changeSiderType(state) {
+      state.siderType = !state.siderType
     }
   },
   actions: {

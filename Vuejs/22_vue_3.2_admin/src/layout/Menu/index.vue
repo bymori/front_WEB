@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:22:41
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 23:07:56
+ * @LastEditTime: 2022-01-27 12:32:48
 -->
 <template>
   <el-menu
@@ -15,6 +15,7 @@
     text-color="#fff"
     router
     unique-opened
+    :collapse="!$store.getters.siderType"
   >
     <el-sub-menu :index="item.id" v-for="(item, index) in menusList" :key="item.id">
       <template #title>
