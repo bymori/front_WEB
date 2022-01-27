@@ -4,20 +4,19 @@
  * @Author: by_mori
  * @Date: 2022-01-27 13:56:43
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 14:11:56
+ * @LastEditTime: 2022-01-27 14:19:58
  */
 import { createI18n } from 'vue-i18n'
 
+import EN from './en'
+import ZH from './zh'
+
 const messages = {
   en: {
-    msg: {
-      title: 'use login'
-    }
+    ...EN
   },
   zh: {
-    msg: {
-      title: '用户登录'
-    }
+    ...ZH
   }
 }
 

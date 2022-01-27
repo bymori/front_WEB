@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 21:24:42
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 12:29:14
+ * @LastEditTime: 2022-01-27 15:23:43
  */
 import { login as loginApi } from '@/api/login'
 import router from '@/router'
@@ -14,7 +14,8 @@ export default {
   namespaced: true,
   state: () => ({
     token: localStorage.getItem('token') || '',
-    siderType: true
+    siderType: true,
+    lang: localStorage.getItem('lang') || 'en'
   }),
   mutations: {
     setToken(state, token) {
@@ -23,6 +24,9 @@ export default {
     },
     changeSiderType(state) {
       state.siderType = !state.siderType
+    },
+    changLang(state, lang) {
+      state.lang = lang
     }
   },
   actions: {

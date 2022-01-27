@@ -4,14 +4,14 @@
  * @Author: by_mori
  * @Date: 2022-01-26 16:16:44
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 14:14:25
+ * @LastEditTime: 2022-01-27 14:20:43
 -->
 
 <template>
   <div class="login-container">
     <el-form class="login-form" ref="formRef" :model="form" :rules="rules">
       <div class="title-container">
-        <h3 class="title">{{ $t(`msg.title`) }}</h3>
+        <h3 class="title">{{ $t(`login.title`) }}</h3>
       </div>
       <el-form-item prop="username">
         <!-- <el-icon :size="size" class="svg-container">
@@ -30,7 +30,7 @@
         round
         class="login-button"
         @click="submitForm(formRef, form, store)"
-      >登录</el-button>
+      >{{ $t(`login.btnTitle`) }}</el-button>
     </el-form>
   </div>
 </template>

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:22:41
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 12:32:48
+ * @LastEditTime: 2022-01-27 14:57:34
 -->
 <template>
   <el-menu
@@ -35,7 +35,7 @@
           <el-icon>
             <component :is="icon"></component>
           </el-icon>
-          <span>{{ it.authName }}</span>
+          <span>{{ $t(`menus.${it.path}`) }}</span>
         </template>
       </el-menu-item>
     </el-sub-menu>
