@@ -11,6 +11,7 @@
     "@element-plus/icons-vue": "0.2.4",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
+    "driver.js": "^0.9.8",
     "element-plus": "1.3.0-beta.5",
     "screenfull": "5.1.0",
     "unplugin-auto-import": "^0.5.11",

@@ -4,13 +4,14 @@
  * @Author: by_mori
  * @Date: 2022-01-27 12:17:10
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 15:03:19
+ * @LastEditTime: 2022-01-27 17:21:41
 -->
 <template>
   <div class="navbar">
     <Hamburger />
     <Breadcrumb />
     <div class="navbar-right">
+      <Driver class="navbar-item" />
       <screen-full class="navbar-item" />
       <Lang class="navbar-item" />
       <Avatar class="navbar-item" />
@@ -22,6 +23,8 @@ import Hamburger from './components/hamburger.vue'
 import Breadcrumb from './components/breadcrumb.vue'
 import Avatar from './components/avatar.vue'
 import Lang from './components/lang.vue'
+import ScreenFull from './components/screenFull.vue'
+import Driver from './components/driver'
 </script>
 
 <style scoped lang="scss">
