@@ -4,14 +4,14 @@
  * @Author: by_mori
  * @Date: 2022-01-26 16:16:44
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 21:47:50
+ * @LastEditTime: 2022-01-27 14:14:25
 -->
 
 <template>
   <div class="login-container">
     <el-form class="login-form" ref="formRef" :model="form" :rules="rules">
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t(`msg.title`) }}</h3>
       </div>
       <el-form-item prop="username">
         <!-- <el-icon :size="size" class="svg-container">
