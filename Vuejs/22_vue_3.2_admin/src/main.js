@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 11:39:21
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 14:15:10
+ * @LastEditTime: 2022-01-27 22:46:07
  */
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -16,6 +16,7 @@ import 'element-plus/dist/index.css'
 import '@/router/permission' // 路由守卫配置
 import * as ELIcons from '@element-plus/icons-vue' // 使用图标
 import i18n from '@/i18n'
+import filters from './utils/filters'
 
 const app = createApp(App)
 
@@ -23,6 +24,8 @@ for (const iconName in ELIcons) {
   app.component(iconName, ELIcons[iconName])
   // iconName 注册为全局组件
 }
+
+filters(app)
 
 SvgIcon(app)
 app.use(store).use(router).use(i18n).mount('#app')
