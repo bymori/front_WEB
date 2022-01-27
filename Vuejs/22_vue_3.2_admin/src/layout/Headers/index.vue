@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-27 12:17:10
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 12:39:52
+ * @LastEditTime: 2022-01-27 13:03:55
 -->
 <template>
   <div class="navbar">
@@ -12,12 +12,14 @@
     <Breadcrumb />
     <div class="navbar-right">
       <screen-full class="navbar-item" />
+      <Avatar class="navbar-item" />
     </div>
   </div>
 </template>
 <script setup>
 import Hamburger from './components/hamburger.vue'
 import Breadcrumb from './components/breadcrumb.vue'
+import Avatar from './components/avatar.vue'
 </script>
 
 <style scoped lang="scss">
