@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 20:30:07
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 12:10:20
+ * @LastEditTime: 2022-01-28 20:46:01
  */
 import axios from 'axios'
 import { BASE_URL, TIMEOUT } from './config'

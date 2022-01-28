@@ -4,18 +4,20 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:53:46
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 23:04:44
+ * @LastEditTime: 2022-01-28 20:55:21
 -->
 <template>
   <el-card>
+    <!-- 搜索查询相关 -->
     <el-row :gutter="20" class="header">
       <el-col :span="7">
         <el-input v-model="queryForm.query" :placeholder="$t(`table.placeholder`)" clearable></el-input>
       </el-col>
       <el-button type="primary" :icon="Search" @click="initGetUsersList">{{ $t(`table.search`) }}</el-button>
-      <el-button type="primary">{{ $t(`table.adduser`) }}</el-button>
+      <el-button type="primary" @click="handleDialogVisible">{{ $t(`table.adduser`) }}</el-button>
     </el-row>
 
+    <!-- Form 表单 -->
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column
         :width="item.width"
@@ -25,7 +27,7 @@
         :key="index"
       >
         <template v-slot="{ row }" v-if="item.prop === 'mg_state'">
-          <el-switch v-model="row.mg_state"></el-switch>
+          <el-switch v-model="row.mg_state" @change="changeState(row)"></el-switch>
         </template>
         <template v-slot="{ row }" v-else-if="item.prop === 'create_time'">
           <!-- <el-switch v-model="row.mg_state"></el-switch> -->
@@ -39,6 +41,7 @@
       </el-table-column>
     </el-table>
 
+    <!-- 分页器 -->
     <div class="demo-pagination-block">
       <el-pagination
         v-model:currentPage="currentPage4"
@@ -51,15 +54,20 @@
       ></el-pagination>
     </div>
   </el-card>
+  <Dialog v-model="dialogVisible" :dialogTitle="dialogTitle" v-if="dialogVisible" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
-
+import { ElMessage } from 'element-plus'
 import { Search, Edit, Setting, Delete } from '@element-plus/icons-vue'
 
-import { getUsers } from '@/api/users'
+import { getUsers, changeUserState } from '@/api/users'
 import { options } from './options'
+import { useI18n } from 'vue-i18n'
+import Dialog from './components/dialog.vue'
+
+const i18n = useI18n()
 
 const queryForm = ref({
   query: '',
@@ -69,6 +77,8 @@ const queryForm = ref({
 
 const total = ref(0)
 const tableData = ref([])
+const dialogVisible = ref(false)
+const dialogTitle = ref('')
 
 const initGetUsersList = async () => {
   const res = await getUsers(queryForm.value)
@@ -89,6 +99,22 @@ const handleCurrentChange = (pageNum) => {
   queryForm.value.pagenum = pageNum
   initGetUsersList()
 }
+
+const changeState = async (info) => {
+  await changeUserState(info.id, info.mg_state)
+
+  ElMessage({
+    // message: res.meta.msg,
+    message: i18n.t('message.updeteSuccess'),
+    type: 'success'
+  })
+  // √ todo 设置后提示是否成功 弹出框
+}
+
+const handleDialogVisible = () => {
+  dialogTitle.value = '添加用户'
+  dialogVisible.value = true
+}
 </script>
 
 <style lang="scss" scoped>
@@ -98,5 +124,9 @@ const handleCurrentChange = (pageNum) => {
 }
 ::v-deep .el-input__suffix {
   align-items: center;
+}
+
+::v-deep .demo-pagination-block {
+  padding-top: 16px;
 }
 </style>

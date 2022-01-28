@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-15 13:39:12
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 15:09:33
+ * @LastEditTime: 2022-01-28 00:16:31
  */
 export default {
   menus: {
@@ -25,7 +25,13 @@ export default {
     logout: '退出'
   },
   dialog: {
-    deleteTitle: '确定要删除用户'
+    deleteTitle: '确定要删除用户',
+    cancel: '取消',
+    confirm: '确认',
+    username: '用户名',
+    password: '密码',
+    email: '邮箱',
+    mobile: '手机号'
   },
   table: {
     username: '姓名',

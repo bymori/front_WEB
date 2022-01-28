@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-15 13:39:12
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-27 15:09:46
+ * @LastEditTime: 2022-01-28 00:16:40
  */
 export default {
   menus: {
@@ -25,7 +25,13 @@ export default {
     logout: 'logout'
   },
   dialog: {
-    deleteTitle: 'Are you sure you want to delete the user '
+    deleteTitle: 'Are you sure you want to delete the user ',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    username: 'username',
+    password: 'password',
+    email: 'email',
+    mobile: 'mobile'
   },
   table: {
     username: 'username',

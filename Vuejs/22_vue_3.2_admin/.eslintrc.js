@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 11:39:21
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-26 16:14:42
+ * @LastEditTime: 2022-01-28 00:33:31
  */
 module.exports = {
   root: true,
@@ -19,6 +19,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     indent: 0,
-    'space-before-function-paren': 0
+    'space-before-function-paren': 0,
+    'no-useless-escape': 1
   }
 }
