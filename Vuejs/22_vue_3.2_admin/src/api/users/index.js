@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:28:27
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-28 20:43:54
+ * @LastEditTime: 2022-01-28 21:50:14
  */
 import request from '@/api/request'
 
@@ -27,6 +27,14 @@ export const addUser = (data) => {
   return request({
     url: '/users',
     method: 'POST',
+    data
+  })
+}
+
+export const editUser = (data) => {
+  return request({
+    url: `users/${data.id}`,
+    method: 'PUT',
     data
   })
 }

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:53:46
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-28 20:55:21
+ * @LastEditTime: 2022-01-28 21:30:15
 -->
 <template>
   <el-card>
@@ -14,7 +14,7 @@
         <el-input v-model="queryForm.query" :placeholder="$t(`table.placeholder`)" clearable></el-input>
       </el-col>
       <el-button type="primary" :icon="Search" @click="initGetUsersList">{{ $t(`table.search`) }}</el-button>
-      <el-button type="primary" @click="handleDialogVisible">{{ $t(`table.adduser`) }}</el-button>
+      <el-button type="primary" @click="handleDialogVisible()">{{ $t(`table.adduser`) }}</el-button>
     </el-row>
 
     <!-- Form 表单 -->
@@ -33,8 +33,14 @@
           <!-- <el-switch v-model="row.mg_state"></el-switch> -->
           {{$filters.filterTimes(row.create_time)}}
         </template>
-        <template #default v-else-if="item.prop === 'action'">
-          <el-button type="primary" round size="small" :icon="Edit"></el-button>
+        <template #default="{row}" v-else-if="item.prop === 'action'">
+          <el-button
+            type="primary"
+            round
+            size="small"
+            :icon="Edit"
+            @click="handleDialogVisible(row)"
+          ></el-button>
           <el-button type="success" round size="small" :icon="Setting"></el-button>
           <el-button type="danger" round size="small" :icon="Delete"></el-button>
         </template>
@@ -54,7 +60,13 @@
       ></el-pagination>
     </div>
   </el-card>
-  <Dialog v-model="dialogVisible" :dialogTitle="dialogTitle" v-if="dialogVisible" />
+  <Dialog
+    v-model="dialogVisible"
+    :dialogTitle="dialogTitle"
+    v-if="dialogVisible"
+    @initUserList="initGetUsersList()"
+    :dialogTabValue="dialogTabValue"
+  />
 </template>
 
 <script setup>
@@ -65,6 +77,9 @@ import { Search, Edit, Setting, Delete } from '@element-plus/icons-vue'
 import { getUsers, changeUserState } from '@/api/users'
 import { options } from './options'
 import { useI18n } from 'vue-i18n'
+
+import { isNull } from '@/utils/filters'
+
 import Dialog from './components/dialog.vue'
 
 const i18n = useI18n()
@@ -79,6 +94,7 @@ const total = ref(0)
 const tableData = ref([])
 const dialogVisible = ref(false)
 const dialogTitle = ref('')
+const dialogTabValue = ref({})
 
 const initGetUsersList = async () => {
   const res = await getUsers(queryForm.value)
@@ -111,8 +127,15 @@ const changeState = async (info) => {
   // √ todo 设置后提示是否成功 弹出框
 }
 
-const handleDialogVisible = () => {
-  dialogTitle.value = '添加用户'
+const handleDialogVisible = (row) => {
+  if (isNull(row)) {
+    dialogTitle.value = '添加用户'
+    dialogTabValue.value = {}
+  } else {
+    dialogTitle.value = '编辑用户'
+    dialogTabValue.value = JSON.parse(JSON.stringify(row))
+  }
+
   dialogVisible.value = true
 }
 </script>
