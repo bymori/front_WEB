@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:28:27
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-28 21:50:14
+ * @LastEditTime: 2022-01-28 22:13:26
  */
 import request from '@/api/request'
 
@@ -36,5 +36,12 @@ export const editUser = (data) => {
     url: `users/${data.id}`,
     method: 'PUT',
     data
+  })
+}
+
+export const deleteUser = (id) => {
+  return request({
+    url: `users/${id}`,
+    method: 'DELETE'
   })
 }

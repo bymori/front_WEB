@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-26 22:53:46
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-28 21:30:15
+ * @LastEditTime: 2022-01-28 22:14:55
 -->
 <template>
   <el-card>
@@ -42,7 +42,7 @@
             @click="handleDialogVisible(row)"
           ></el-button>
           <el-button type="success" round size="small" :icon="Setting"></el-button>
-          <el-button type="danger" round size="small" :icon="Delete"></el-button>
+          <el-button type="danger" round size="small" :icon="Delete" @click="delUser(row)"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -71,10 +71,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Search, Edit, Setting, Delete } from '@element-plus/icons-vue'
 
-import { getUsers, changeUserState } from '@/api/users'
+import { getUsers, changeUserState, deleteUser } from '@/api/users'
 import { options } from './options'
 import { useI18n } from 'vue-i18n'
 
@@ -138,6 +138,34 @@ const handleDialogVisible = (row) => {
 
   dialogVisible.value = true
 }
+
+const delUser = (row) => {
+  console.log(row)
+  ElMessageBox.confirm(
+    '是否删除该用户?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning'
+    }
+  )
+    .then(async () => {
+      await deleteUser(row.id)
+      initGetUsersList()
+      ElMessage({
+        type: 'success',
+        message: 'Delete completed'
+      })
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '用户取消了该操作'
+      })
+    })
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -150,6 +178,9 @@ const handleDialogVisible = (row) => {
 }
 
 ::v-deep .demo-pagination-block {
+  /* @extend .header; */
   padding-top: 16px;
+  box-sizing: border-box;
+  text-align: right;
 }
 </style>
