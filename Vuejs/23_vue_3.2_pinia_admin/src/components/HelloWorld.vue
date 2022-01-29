@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-29 16:29:57
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-29 16:46:05
+ * @LastEditTime: 2022-01-29 16:55:39
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -40,6 +40,12 @@ const count = ref(0)
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+  <el-button>Default</el-button>
+  <el-button type="primary">Primary</el-button>
+  <el-button type="success">Success</el-button>
+  <el-button type="info">Info</el-button>
+  <el-button type="warning">Warning</el-button>
+  <el-button type="danger">Danger</el-button>
 </template>
 
 <style scoped lang="scss">
