@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-29 17:08:37
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-29 19:34:56
+ * @LastEditTime: 2022-01-29 20:58:39
 -->
 <template>
   <div class="login-container">
@@ -29,7 +29,7 @@
         type="primary"
         round
         class="login-button"
-        @click="submitForm(formRef)"
+        @click="submitForm(formRef, form)"
         >登录-i18n</el-button
       >
     </el-form>

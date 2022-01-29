@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-29 17:07:17
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-29 18:41:08
+ * @LastEditTime: 2022-01-29 20:01:27
  */
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -14,6 +14,11 @@ const routes = [
     name: 'Login',
     component: () =>
       import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
+  },
+  {
+    path: '/',
+    name: '/',
+    component: () => import('@/views/layout/index.vue'),
   },
 ];
 
