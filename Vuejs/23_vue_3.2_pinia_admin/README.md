@@ -157,3 +157,87 @@ export default defineConfig({
 // ...
 import './styles/index.scss';
 ```
+
+### 静态登录界面
+
+使用element-plus 的 Icon 图标
+
+```shell
+yarn add @element-plus/icons-vue 
+
+# 使用方式
+
+<el-icon class="svg-container">
+  <avatar />
+</el-icon>
+
+<script>
+  import { Avatar } from '@element-plus/icons-vue';
+</script>
+```
+
+登录布局页面
+
+```vue
+<template>
+  <div class="login-container">
+    <el-form class="login-form" ref="formRef" :model="form" :rules="rules">
+      <div class="title-container">
+        <h3 class="title">用户登录-i18n</h3>
+      </div>
+      <el-form-item prop="username">
+        <el-icon class="svg-container">
+          <avatar />
+        </el-icon>
+        <!-- <svg-icon icon="user" class="svg-container"></svg-icon> -->
+        <el-input v-model="form.username"> </el-input>
+      </el-form-item>
+      <el-form-item prop="password">
+        <el-icon class="svg-container">
+          <avatar />
+        </el-icon>
+        <el-input v-model="form.password" show-password> </el-input>
+      </el-form-item>
+      <el-button
+        type="primary"
+        round
+        class="login-button"
+        @click="submitForm(formRef)"
+        >登录-i18n</el-button
+      >
+    </el-form>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { Avatar } from '@element-plus/icons-vue';
+import { submitForm } from './utils'; // 封装一个工具函数 用以登录
+import type { ElForm } from 'element-plus'; // ts 使用类型
+
+const form = ref({
+  username: 'admin',
+  password: '123456',
+});
+
+const rules = ref({
+  username: [
+    {
+      required: true,
+      message: '请输入名字',
+      trigger: 'blur',
+    },
+  ],
+  password: [
+    // ...
+  ],
+});
+
+const formRef = ref<InstanceType<typeof ElForm>>();
+</script>
+
+<style lang="scss" scoped>
+/* 相关样式具体查看文件 */
+</style>
+```
+
