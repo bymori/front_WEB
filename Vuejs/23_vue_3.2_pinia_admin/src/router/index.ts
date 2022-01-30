@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-29 17:07:17
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-29 20:01:27
+ * @LastEditTime: 2022-01-29 23:21:39
  */
 import { createRouter, createWebHistory } from 'vue-router';
 

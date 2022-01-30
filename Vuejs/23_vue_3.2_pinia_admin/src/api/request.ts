@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2022-01-29 20:12:17
  * @LastEditors: by_mori
- * @LastEditTime: 2022-01-29 20:48:11
+ * @LastEditTime: 2022-01-29 22:53:50
  */
 import axios from 'axios';
 import { BASE_URL, TIMEOUT } from './config';
@@ -23,6 +23,7 @@ instance.interceptors.request.use(
 
     // 3.params/data序列化的操作
     // console.log('请求被拦截')
+    config.headers.Authorization = localStorage.getItem('token');
 
     return config;
   },
